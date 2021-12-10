@@ -1,0 +1,299 @@
+{
+  "Md5CheckSum": "f9aa9fd1bef509491133b10dd5553e20",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Flowchart_1",
+        "Name": "Root",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "Sequence_1",
+            "Name": "序列 - 数据入库",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "DatabaseConnectActivity_1",
+                "Name": "连接数据库",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "Sequence_4",
+                    "Name": "序列-链接数据库",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "ExecuteTransactionActivity_2",
+                        "Name": "执行事务 - 插入Excel to Order",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": "Sequence_8",
+                            "Name": "序列 - 数据库事务",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": "If_7",
+                                "Name": "条件（If 存在EX2O 数据 ）",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": null,
+                                    "Name": "If.Then",
+                                    "IsActivity": true,
+                                    "SubItems": [
+                                      {
+                                        "RefId": "Sequence_24",
+                                        "Name": "序列 - 插入Excel To Order",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": "InvokeWorkflow_17",
+                                            "Name": "调用子流程: 根据数据表拼接数据库SQL语句",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          },
+                                          {
+                                            "RefId": "ExecuteSqlActivity_4",
+                                            "Name": "执行语句 - 插入 etoInsertSql",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          },
+                                          {
+                                            "RefId": "LogActivity_5",
+                                            "Name": "写入日志 - 作用行数 ETO",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "RefId": "If_12",
+                                "Name": "条件（If clean_order_file_path 存在）",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": null,
+                                    "Name": "If.Then",
+                                    "IsActivity": true,
+                                    "SubItems": [
+                                      {
+                                        "RefId": "OfficeExcelOpenOrCreateActivity_4",
+                                        "Name": "打开 clean exception file",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": "Sequence_28",
+                                            "Name": "序列 - 打开 clean exception file",
+                                            "IsActivity": true,
+                                            "SubItems": [
+                                              {
+                                                "RefId": "Sequence_29",
+                                                "Name": "序列 - by PO template",
+                                                "IsActivity": true,
+                                                "SubItems": [
+                                                  {
+                                                    "RefId": "OfficeExcelGetLastRowIndexActivity_4",
+                                                    "Name": "获取末行号",
+                                                    "IsActivity": true,
+                                                    "SubItems": []
+                                                  },
+                                                  {
+                                                    "RefId": "OfficeExcelGetLastColIndexActivity_4",
+                                                    "Name": "获取末列号",
+                                                    "IsActivity": true,
+                                                    "SubItems": []
+                                                  },
+                                                  {
+                                                    "RefId": "OfficeExcelReadRangeActivity_4",
+                                                    "Name": "读取区域-读取模板文件，获取列头",
+                                                    "IsActivity": true,
+                                                    "SubItems": []
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "RefId": "If_9",
+                                                "Name": "条件（If cleanAndExceptionPODT 不为空）",
+                                                "IsActivity": true,
+                                                "SubItems": [
+                                                  {
+                                                    "RefId": null,
+                                                    "Name": "If.Then",
+                                                    "IsActivity": true,
+                                                    "SubItems": [
+                                                      {
+                                                        "RefId": "Sequence_26",
+                                                        "Name": "序列",
+                                                        "IsActivity": true,
+                                                        "SubItems": [
+                                                          {
+                                                            "RefId": "InvokeWorkflow_19",
+                                                            "Name": "调用子流程: 根据数据表拼接数据库SQL语句",
+                                                            "IsActivity": true,
+                                                            "SubItems": []
+                                                          },
+                                                          {
+                                                            "RefId": "ExecuteSqlActivity_5",
+                                                            "Name": "执行语句 - 插入 clean and Exception",
+                                                            "IsActivity": true,
+                                                            "SubItems": []
+                                                          },
+                                                          {
+                                                            "RefId": "LogActivity_6",
+                                                            "Name": "写入日志 - 作用行数 clean and Exception",
+                                                            "IsActivity": true,
+                                                            "SubItems": []
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "RefId": "Sequence_30",
+                                                "Name": "序列 -  by PO or Item Template",
+                                                "IsActivity": true,
+                                                "SubItems": [
+                                                  {
+                                                    "RefId": "OfficeExcelGetLastRowIndexActivity_5",
+                                                    "Name": "获取末行号",
+                                                    "IsActivity": true,
+                                                    "SubItems": []
+                                                  },
+                                                  {
+                                                    "RefId": "OfficeExcelGetLastColIndexActivity_5",
+                                                    "Name": "获取末列号",
+                                                    "IsActivity": true,
+                                                    "SubItems": []
+                                                  },
+                                                  {
+                                                    "RefId": "OfficeExcelReadRangeActivity_5",
+                                                    "Name": "读取区域-读取模板文件，获取列头",
+                                                    "IsActivity": true,
+                                                    "SubItems": []
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "RefId": "If_10",
+                                                "Name": "条件（If exceptionPODT）",
+                                                "IsActivity": true,
+                                                "SubItems": [
+                                                  {
+                                                    "RefId": null,
+                                                    "Name": "If.Then",
+                                                    "IsActivity": true,
+                                                    "SubItems": [
+                                                      {
+                                                        "RefId": "Sequence_27",
+                                                        "Name": "序列",
+                                                        "IsActivity": true,
+                                                        "SubItems": [
+                                                          {
+                                                            "RefId": "InvokeWorkflow_20",
+                                                            "Name": "调用子流程: 根据数据表拼接数据库SQL语句",
+                                                            "IsActivity": true,
+                                                            "SubItems": []
+                                                          },
+                                                          {
+                                                            "RefId": "ExecuteSqlActivity_6",
+                                                            "Name": "执行语句 - 插入  exception",
+                                                            "IsActivity": true,
+                                                            "SubItems": []
+                                                          },
+                                                          {
+                                                            "RefId": "LogActivity_7",
+                                                            "Name": "写入日志 - 作用行数 exception",
+                                                            "IsActivity": true,
+                                                            "SubItems": []
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "RefId": "Sequence_31",
+                                "Name": "序列 - 分仓明细表",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "InvokeWorkflow_21",
+                                    "Name": "执行流程 : 打开excel文件读取指定全部数据",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  },
+                                  {
+                                    "RefId": "If_11",
+                                    "Name": "条件（If 分仓明细结果数据表 存在）",
+                                    "IsActivity": true,
+                                    "SubItems": [
+                                      {
+                                        "RefId": null,
+                                        "Name": "If.Then",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": "Sequence_32",
+                                            "Name": "序列",
+                                            "IsActivity": true,
+                                            "SubItems": [
+                                              {
+                                                "RefId": "InvokeWorkflow_22",
+                                                "Name": "调用子流程: 根据数据表拼接数据库SQL语句-插入分仓明细",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              },
+                                              {
+                                                "RefId": "ExecuteSqlActivity_7",
+                                                "Name": "执行语句 - 插入分仓明细",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              },
+                                              {
+                                                "RefId": "LogActivity_8",
+                                                "Name": "写入日志 - 作用行数-插入分仓明细",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

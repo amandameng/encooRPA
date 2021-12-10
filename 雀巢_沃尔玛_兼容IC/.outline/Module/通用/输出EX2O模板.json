@@ -1,0 +1,99 @@
+{
+  "Md5CheckSum": "74eb060e427f70ff3b8ad4d6bd69a6e1",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Flowchart_1",
+        "Name": "Root",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "InvokeWorkflow_1",
+            "Name": "调用子流程: 连接查询订单明细",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "FlowDecision_1",
+            "Name": "订单连接客户查询不为空",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": null,
+                "Name": "FlowDecision.True",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "FileCopyMoveActivity_3",
+                    "Name": "复制文件-excel to order 模板",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "OfficeExcelOpenOrCreateActivity_3",
+                    "Name": "打开 eto file",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "Sequence_4",
+                        "Name": "序列-打开eto文件",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": "OfficeExcelGetAllSheetsActivity_3",
+                            "Name": "获取所有工作表名",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "Assign_3",
+                            "Name": "赋值 - targetSheetName",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "OfficeExcelGetLastRowIndexActivity_3",
+                            "Name": "获取末行号",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "OfficeExcelGetLastColIndexActivity_3",
+                            "Name": "获取末列号",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "OfficeExcelReadRangeActivity_3",
+                            "Name": "读取区域-读取模板文件，获取列头",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "InvokeCSharpCodeActivity_5",
+                            "Name": "执行C#代码 - 拼接EX2O.cs",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "OfficeExcelSetRangeActivity_3",
+                            "Name": "写入区域 - 模板数据-不加列头",
+                            "IsActivity": true,
+                            "SubItems": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

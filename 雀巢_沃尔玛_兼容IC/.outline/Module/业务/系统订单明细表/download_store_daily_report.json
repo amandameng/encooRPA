@@ -1,0 +1,413 @@
+{
+  "Md5CheckSum": "2da549fca5cca4a465f10399e1b95559",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Flowchart_1",
+        "Name": "Root",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "ExtractTextActivity_1",
+            "Name": "提取文本 - jobID",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "LogActivity_1",
+            "Name": "写入日志 jobID",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "ClickActivity_2",
+            "Name": "点击 - View Status",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "TryCatch_1",
+            "Name": "错误捕获 重试等待report list show",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": null,
+                "Name": "TryCatch.Try",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "Retry_1",
+                    "Name": "重试 - 重试等待report 结果失败",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "WaitElementAppearActivity_2",
+                        "Name": "等待元素出现 - report list",
+                        "IsActivity": true,
+                        "SubItems": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "RefId": null,
+                "Name": "TryCatch.Catches",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "Sequence_1",
+                    "Name": "序列",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "Throw_1",
+                        "Name": "抛出异常",
+                        "IsActivity": true,
+                        "SubItems": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "RefId": "If_1",
+            "Name": "条件（If resultShow）",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": null,
+                "Name": "If.Then",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "Sequence_2",
+                    "Name": "序列",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "TryCatch_3",
+                        "Name": "错误捕获 获取Done的job",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": null,
+                            "Name": "TryCatch.Try",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": "Flowchart_2",
+                                "Name": "Flowchart",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "GetStructuredDataActivity_2",
+                                    "Name": "获取结构化数据 - job list",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  },
+                                  {
+                                    "RefId": "FilterDataTableActivity_2",
+                                    "Name": "筛选  - 根据 jobID 筛选job",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  },
+                                  {
+                                    "RefId": "FlowDecision_1",
+                                    "Name": "status==Done or received",
+                                    "IsActivity": true,
+                                    "SubItems": [
+                                      {
+                                        "RefId": null,
+                                        "Name": "FlowDecision.True",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": "ClickActivity_4",
+                                            "Name": "点击 - 已完成的job ID",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          },
+                                          {
+                                            "RefId": "Sequence_3",
+                                            "Name": "序列 - 保存文件",
+                                            "IsActivity": true,
+                                            "SubItems": [
+                                              {
+                                                "RefId": "SetClipboardTextActivity_2",
+                                                "Name": "设置剪贴板文本 - 文件路径",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              },
+                                              {
+                                                "RefId": "ClickActivity_6",
+                                                "Name": "点击 - 文件框-文件名部分",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              },
+                                              {
+                                                "RefId": "SendHotKeyActivity_1",
+                                                "Name": "发送快捷键 ctrl A",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              },
+                                              {
+                                                "RefId": "SendHotKeyActivity_2",
+                                                "Name": "发送快捷键 - delete",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              },
+                                              {
+                                                "RefId": "SendHotKeyActivity_3",
+                                                "Name": "发送快捷键 ctrl V",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              },
+                                              {
+                                                "RefId": "ClickActivity_7",
+                                                "Name": "点击 - 保存",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "RefId": "While_1",
+                                            "Name": "循环操作 文件不存在，则等待指定时长",
+                                            "IsActivity": true,
+                                            "SubItems": [
+                                              {
+                                                "RefId": "Sequence_4",
+                                                "Name": "序列",
+                                                "IsActivity": true,
+                                                "SubItems": [
+                                                  {
+                                                    "RefId": "Delay_2",
+                                                    "Name": "延迟 - 5S - 等待文件下载完成",
+                                                    "IsActivity": true,
+                                                    "SubItems": []
+                                                  },
+                                                  {
+                                                    "RefId": "Assign_3",
+                                                    "Name": "赋值 - waitedFileSeconds+5",
+                                                    "IsActivity": true,
+                                                    "SubItems": []
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "RefId": "If_4",
+                                            "Name": "条件（If waitedFileSeconds > totalSeconds）",
+                                            "IsActivity": true,
+                                            "SubItems": [
+                                              {
+                                                "RefId": null,
+                                                "Name": "If.Then",
+                                                "IsActivity": true,
+                                                "SubItems": [
+                                                  {
+                                                    "RefId": "Sequence_5",
+                                                    "Name": "序列",
+                                                    "IsActivity": true,
+                                                    "SubItems": [
+                                                      {
+                                                        "RefId": "Throw_4",
+                                                        "Name": "抛出异常 - 等待文件下载完成超时了",
+                                                        "IsActivity": true,
+                                                        "SubItems": []
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "RefId": "BrowserClose_3",
+                                            "Name": "关闭浏览器- - receive Request",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          },
+                                          {
+                                            "RefId": "BrowserClose_7",
+                                            "Name": "关闭浏览器 - Daily Store Receive detail",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "RefId": null,
+                                        "Name": "FlowDecision.False",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": "ClickActivity_3",
+                                            "Name": "点击 - refresh",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          },
+                                          {
+                                            "RefId": "Delay_1",
+                                            "Name": "延迟 30S",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          },
+                                          {
+                                            "RefId": "Assign_2",
+                                            "Name": "赋值 - curSeconds",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          },
+                                          {
+                                            "RefId": "FlowDecision_2",
+                                            "Name": "curSeconds > totalSeconds",
+                                            "IsActivity": true,
+                                            "SubItems": [
+                                              {
+                                                "RefId": null,
+                                                "Name": "FlowDecision.True",
+                                                "IsActivity": true,
+                                                "SubItems": [
+                                                  {
+                                                    "RefId": "Throw_2",
+                                                    "Name": "抛出异常 - 报表下载",
+                                                    "IsActivity": true,
+                                                    "SubItems": []
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "RefId": null,
+                                                "Name": "FlowDecision.False",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "RefId": null,
+                            "Name": "TryCatch.Catches",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": "Sequence_8",
+                                "Name": "序列",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "LogActivity_3",
+                                    "Name": "写入日志",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  },
+                                  {
+                                    "RefId": "BrowserClose_6",
+                                    "Name": "关闭浏览器 - Daily Store Receive detail",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  },
+                                  {
+                                    "RefId": "Rethrow_1",
+                                    "Name": "重新抛出异常",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "RefId": "TryCatch_2",
+            "Name": "错误捕获 重试点击Run Now",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": null,
+                "Name": "TryCatch.Try",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "Retry_3",
+                    "Name": "重试 - 点击 -Run Now",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "Sequence_6",
+                        "Name": "序列",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": "ClickActivity_8",
+                            "Name": "点击 -Run Now",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "GetTextActivity_2",
+                            "Name": "获取文本 - query job id",
+                            "IsActivity": true,
+                            "SubItems": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "RefId": null,
+                "Name": "TryCatch.Catches",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "Sequence_7",
+                    "Name": "序列",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "LogActivity_2",
+                        "Name": "写入日志",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "Throw_5",
+                        "Name": "抛出异常 - 异常信息",
+                        "IsActivity": true,
+                        "SubItems": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

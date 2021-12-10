@@ -1,0 +1,123 @@
+{
+  "QuickOpenItems": [
+    "Main.xaml"
+  ],
+  "ProjectBreakpoints": {
+    "Value": {
+      "Module\\业务\\系统订单明细表\\daily_store_receive_detail_01.xaml": [
+        {
+          "ActivityId": "1.4",
+          "IsEnabled": false,
+          "IdRef": "OfficeExcelDeleteDataActivity_1",
+          "DisplayName": "删除数据 - 2-20行"
+        },
+        {
+          "ActivityId": "1.175",
+          "IsEnabled": false,
+          "IdRef": "OfficeExcelGetLastColIndexActivity_1",
+          "DisplayName": "获取末列号"
+        },
+        {
+          "ActivityId": "1.44",
+          "IsEnabled": false,
+          "IdRef": "InvokeCSharpCodeActivity_1",
+          "DisplayName": "执行C#代码 - 筛选指定商品"
+        }
+      ],
+      "Module\\业务\\抓取订单并入库1.xaml": [
+        {
+          "ActivityId": "1.4",
+          "IsEnabled": false,
+          "IdRef": "If_4",
+          "DisplayName": "条件（If 初始数据入库）"
+        },
+        {
+          "ActivityId": "1.5",
+          "IsEnabled": false,
+          "IdRef": "If_5",
+          "DisplayName": "条件（实际增量订单数据表）"
+        },
+        {
+          "ActivityId": "1.752",
+          "IsEnabled": false,
+          "IdRef": "InvokeWorkflow_6",
+          "DisplayName": "调用子流程: 抓取订单详情页"
+        },
+        {
+          "ActivityId": "1.40",
+          "IsEnabled": false,
+          "IdRef": "ForEach_1",
+          "DisplayName": "遍历行 - 实际增量订单数据表"
+        },
+        {
+          "ActivityId": "1.272",
+          "IsEnabled": false,
+          "IdRef": "If_14",
+          "DisplayName": "条件（If order 成功抓取）"
+        },
+        {
+          "ActivityId": "1.1297",
+          "IsEnabled": false,
+          "IdRef": "Assign_26",
+          "DisplayName": "赋值 - existingRows"
+        },
+        {
+          "ActivityId": "1.1403",
+          "IsEnabled": false,
+          "IdRef": "If_10",
+          "DisplayName": "条件（If 订单已经存在）"
+        }
+      ],
+      "Module\\业务\\循环页数采集订单11_backup.xaml": [
+        {
+          "ActivityId": "1.857",
+          "IsEnabled": false,
+          "IdRef": "If_1",
+          "DisplayName": "条件（If 总条目 > 1页数量 && 当前不是最后一页）"
+        },
+        {
+          "ActivityId": "1.35",
+          "IsEnabled": false,
+          "IdRef": "ForEach_1",
+          "DisplayName": "遍历行 - orderSimpleDT"
+        },
+        {
+          "ActivityId": "1.883",
+          "IsEnabled": false,
+          "IdRef": "JoinDataTablesActivity_1",
+          "DisplayName": "联结数据表 - 只获取属于增量订单的部分"
+        },
+        {
+          "ActivityId": "1.598",
+          "IsEnabled": false,
+          "IdRef": "InvokeWorkflow_2",
+          "DisplayName": "调用子流程: 抓取订单详情页"
+        }
+      ],
+      "Module\\业务\\沃尔玛\\输出cleanException-沃尔玛.xaml": [
+        {
+          "ActivityId": "1.254",
+          "IsEnabled": false,
+          "IdRef": "InvokeCSharpCodeActivity_3",
+          "DisplayName": "执行C#代码 - 异常订单检查-沃尔玛-byPO"
+        }
+      ],
+      "Module\\业务\\沃尔玛.xaml": [
+        {
+          "ActivityId": "1.165",
+          "IsEnabled": true,
+          "IdRef": "InvokeWorkflow_40",
+          "DisplayName": "执行流程 : 更新exported_Order"
+        }
+      ],
+      "Module\\通用\\订单报表入库.xaml": [
+        {
+          "ActivityId": "1.21",
+          "IsEnabled": true,
+          "IdRef": "Sequence_32",
+          "DisplayName": "序列"
+        }
+      ]
+    }
+  }
+}

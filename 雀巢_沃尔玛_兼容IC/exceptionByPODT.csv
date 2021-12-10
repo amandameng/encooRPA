@@ -1,0 +1,2 @@
+﻿Order Date,PO No.,SAP PO,仓号,WMDC,Order type（Promotional Event）,Nestle BU,是否为手工单,是否为稳定库存,Order qty,起送日,MABD,Order category,Exception category,Item Type,Customer order Item,原始MABD,新MABD,沃尔玛产品编码,雀巢产品编码,Material Description,原单箱规,原订单数量,修改后订单数量,雀巢数量,雀巢价格,沃尔玛价格,Exception reason
+11/30/2021,4650586774,4650586774,7495,GZDC,STOF4,,,,3,11/30/2021,12/05/2021,exception,STOF4订单; 跨月订单,Order,1,,12/05/2021,,,,,,,,,,STOF4订单; 跨月订单

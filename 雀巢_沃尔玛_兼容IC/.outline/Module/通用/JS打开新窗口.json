@@ -1,0 +1,23 @@
+{
+  "Md5CheckSum": "faecc817cced5eab55eec3c563042bef",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Flowchart_1",
+        "Name": "Root",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "InvokeJavaScriptActivityV2_1",
+            "Name": "执行JavaScript代码 - 打开新窗口",
+            "IsActivity": true,
+            "SubItems": []
+          }
+        ]
+      }
+    ]
+  }
+}

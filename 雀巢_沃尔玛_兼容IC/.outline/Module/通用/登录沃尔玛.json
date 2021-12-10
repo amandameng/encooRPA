@@ -1,0 +1,366 @@
+{
+  "Md5CheckSum": "10b52ac09886710d31f053ed6c5784d9",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Flowchart_1",
+        "Name": "Root",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "ForEach`1_2",
+            "Name": "循环操作 登录重试",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "TryCatch_4",
+                "Name": "错误捕获 如果登录不成功，依次重试每一次",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": null,
+                    "Name": "TryCatch.Try",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "Sequence_12",
+                        "Name": "序列",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": "Flowchart_3",
+                            "Name": "处理登录逻辑",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": "Assign_2",
+                                "Name": "赋值",
+                                "IsActivity": true,
+                                "SubItems": []
+                              },
+                              {
+                                "RefId": "Flowchart_4",
+                                "Name": "流程图 - 去登录",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "Sequence_8",
+                                    "Name": "序列 - 登录",
+                                    "IsActivity": true,
+                                    "SubItems": [
+                                      {
+                                        "RefId": "SetTextActivity_6",
+                                        "Name": "输入文本 - username",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      },
+                                      {
+                                        "RefId": "SetTextActivity_7",
+                                        "Name": "输入文本- 密码",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      },
+                                      {
+                                        "RefId": "ClickActivity_3",
+                                        "Name": "点击 - 登录",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "RefId": "TryCatch_5",
+                                    "Name": "错误捕获 - 未等到首页元素",
+                                    "IsActivity": true,
+                                    "SubItems": [
+                                      {
+                                        "RefId": null,
+                                        "Name": "TryCatch.Try",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": "WaitElementAppearActivity_7",
+                                            "Name": "等待元素出现 - 订单列表首页",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "RefId": null,
+                                        "Name": "TryCatch.Catches",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": "Sequence_9",
+                                            "Name": "序列",
+                                            "IsActivity": true,
+                                            "SubItems": [
+                                              {
+                                                "RefId": "WaitElementAppearActivity_8",
+                                                "Name": "等待元素出现  - 账密错误",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              },
+                                              {
+                                                "RefId": "If_3",
+                                                "Name": "条件（If 账密错误）",
+                                                "IsActivity": true,
+                                                "SubItems": [
+                                                  {
+                                                    "RefId": null,
+                                                    "Name": "If.Then",
+                                                    "IsActivity": true,
+                                                    "SubItems": [
+                                                      {
+                                                        "RefId": "Sequence_10",
+                                                        "Name": "序列",
+                                                        "IsActivity": true,
+                                                        "SubItems": [
+                                                          {
+                                                            "RefId": "GetTextActivity_2",
+                                                            "Name": "获取文本 - 错误信息",
+                                                            "IsActivity": true,
+                                                            "SubItems": []
+                                                          },
+                                                          {
+                                                            "RefId": "Throw_3",
+                                                            "Name": "抛出异常",
+                                                            "IsActivity": true,
+                                                            "SubItems": []
+                                                          },
+                                                          {
+                                                            "RefId": "LogActivity_2",
+                                                            "Name": "写入日志 - loginMsg",
+                                                            "IsActivity": true,
+                                                            "SubItems": []
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "RefId": null,
+                                                    "Name": "If.Else",
+                                                    "IsActivity": true,
+                                                    "SubItems": [
+                                                      {
+                                                        "RefId": "Sequence_11",
+                                                        "Name": "序列",
+                                                        "IsActivity": true,
+                                                        "SubItems": [
+                                                          {
+                                                            "RefId": "Throw_2",
+                                                            "Name": "抛出异常 - 其他错误",
+                                                            "IsActivity": true,
+                                                            "SubItems": []
+                                                          },
+                                                          {
+                                                            "RefId": "CommentActivity_3",
+                                                            "Name": "注释掉",
+                                                            "IsActivity": true,
+                                                            "SubItems": [
+                                                              {
+                                                                "RefId": "ConfirmMessageBox_2",
+                                                                "Name": "确认框",
+                                                                "IsActivity": true,
+                                                                "SubItems": []
+                                                              }
+                                                            ]
+                                                          },
+                                                          {
+                                                            "RefId": "CommentActivity_4",
+                                                            "Name": "注释掉",
+                                                            "IsActivity": true,
+                                                            "SubItems": [
+                                                              {
+                                                                "RefId": "InvokeWorkflow_2",
+                                                                "Name": "调用子流程: 发送邮件 - 登录失败邮件",
+                                                                "IsActivity": true,
+                                                                "SubItems": []
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "RefId": "FlowDecision_2",
+                                "Name": "首页出现",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": null,
+                                    "Name": "FlowDecision.True",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  },
+                                  {
+                                    "RefId": null,
+                                    "Name": "FlowDecision.False",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  }
+                                ]
+                              },
+                              {
+                                "RefId": "TryCatch_3",
+                                "Name": "错误捕获-绑定现有页面",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": null,
+                                    "Name": "TryCatch.Try",
+                                    "IsActivity": true,
+                                    "SubItems": [
+                                      {
+                                        "RefId": "BrowserAttach_2",
+                                        "Name": "绑定浏览器 - 订单首页",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": "Sequence_7",
+                                            "Name": "序列",
+                                            "IsActivity": true,
+                                            "SubItems": [
+                                              {
+                                                "RefId": "BrowserRefresh_2",
+                                                "Name": "刷新浏览器",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              },
+                                              {
+                                                "RefId": "BrowserNavigate_2",
+                                                "Name": "当前页跳转 - 订单列表页",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "RefId": null,
+                                    "Name": "TryCatch.Catches",
+                                    "IsActivity": true,
+                                    "SubItems": [
+                                      {
+                                        "RefId": "BrowserOpen_2",
+                                        "Name": "打开浏览器 - 登录页",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "RefId": "WaitElementAppearActivity_6",
+                                "Name": "等待元素出现 - 订单列表首页",
+                                "IsActivity": true,
+                                "SubItems": []
+                              }
+                            ]
+                          },
+                          {
+                            "RefId": "Break_1",
+                            "Name": "终止循环",
+                            "IsActivity": true,
+                            "SubItems": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "RefId": null,
+                    "Name": "TryCatch.Catches",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "If_2",
+                        "Name": "条件（If 密码错误）",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": null,
+                            "Name": "If.Then",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": "Rethrow_1",
+                                "Name": "重新抛出异常",
+                                "IsActivity": true,
+                                "SubItems": []
+                              }
+                            ]
+                          },
+                          {
+                            "RefId": null,
+                            "Name": "If.Else",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": "TryCatch_6",
+                                "Name": "错误捕获（Try Catch）",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": null,
+                                    "Name": "TryCatch.Try",
+                                    "IsActivity": true,
+                                    "SubItems": [
+                                      {
+                                        "RefId": "Sequence_13",
+                                        "Name": "序列",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": "ExecuteCmd_1",
+                                            "Name": "执行命令行-delay 5S",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "RefId": null,
+                                    "Name": "TryCatch.Catches",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

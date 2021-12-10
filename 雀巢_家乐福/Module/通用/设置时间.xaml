@@ -1,0 +1,85 @@
+<Activity mc:Ignorable="sap sap2010 sads" x:Class="EncooWorkflow.Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:eac="clr-namespace:Encootech.AutomationActivity.CodeTool;assembly=AutomationActivity" xmlns:ed="clr-namespace:Encoo.DataType;assembly=Encoo.DataType" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:this="clr-namespace:EncooWorkflow" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger">
+  <x:Members>
+    <x:Property Name="开始日期" Type="InArgument(x:String)" />
+    <x:Property Name="结束日期" Type="InArgument(x:String)" />
+  </x:Members>
+  <this:Main.开始日期>
+    <InArgument x:TypeArguments="x:String">
+      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_1">2021-10-01</Literal>
+    </InArgument>
+  </this:Main.开始日期>
+  <this:Main.结束日期>
+    <InArgument x:TypeArguments="x:String">
+      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_2">2021-10-09</Literal>
+    </InArgument>
+  </this:Main.结束日期>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap:VirtualizedContainerService.HintSize>654,716</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>EncooWorkflow.Workflow_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="9">
+      <x:String>System</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>Encootech.AutomationActivity.CodeTool</x:String>
+      <x:String>Encoo.DataType</x:String>
+      <x:String>Microsoft.CSharp.Activities</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>AutomationActivity</AssemblyReference>
+      <AssemblyReference>Encoo.DataType</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Flowchart DisplayName="Root" sap:VirtualizedContainerService.HintSize="614,636" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+        <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
+        <av:Size x:Key="ShapeSize">80,48</av:Size>
+        <av:PointCollection x:Key="ConnectorLocation">310,50.5 310,100.5</av:PointCollection>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Flowchart.StartNode>
+      <x:Reference>__ReferenceID0</x:Reference>
+    </Flowchart.StartNode>
+    <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <av:Point x:Key="ShapeLocation">210,100.5</av:Point>
+          <av:Size x:Key="ShapeSize">200,70</av:Size>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <eac:InvokeJavaScriptActivityV2 DelayAfter="{x:Null}" DelayBefore="{x:Null}" ExecuteTimeout="{x:Null}" Selector="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" BringWindowType="Default" ContinueOnError="False" DisplayName="执行JavaScript代码" ElementRect="0, 0, 0, 0" Guid="47db0235-83d3-4e53-960d-bd4cb260f81d" sap:VirtualizedContainerService.HintSize="200,70" sap2010:WorkflowViewState.IdRef="InvokeJavaScriptActivityV2_1" IsIgnore="False" JavaScriptCode="function setTime(startTime, endTime){&#xD;&#xA;  document.getElementById(&quot;startTime&quot;).value=startTime;&#xD;&#xA;  document.getElementById(&quot;endTime&quot;).value=endTime;&#xD;&#xA;}" ScreenShoot="767a1a2b-5366-492c-8dbc-86fd2a7d49f7.jpg" SelectionRect="0, 0, 0, 0">
+        <eac:InvokeJavaScriptActivityV2.MethodName>
+          <InArgument x:TypeArguments="x:String">
+            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">(String.Format("setTime('{0}', '{1}')", 开始日期, 结束日期)).ToString()</mca:CSharpValue>
+          </InArgument>
+        </eac:InvokeJavaScriptActivityV2.MethodName>
+        <eac:InvokeJavaScriptActivityV2.Selector2>
+          <InArgument x:TypeArguments="ed:Selector">
+            <mca:CSharpValue x:TypeArguments="ed:Selector" sap2010:WorkflowViewState.IdRef="CSharpValue`1_3">"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTE2Ij8+CjxBcHBsaWNhdGlvbiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4bWxuczp4c2Q9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hIj4KPEF1dG9tYXRpb25UeXBlPldFQi1DSFJPTUU8L0F1dG9tYXRpb25UeXBlPgo8UHJvY2Vzc05hbWU+Y2hyb21lPC9Qcm9jZXNzTmFtZT4KPEZpbGVQYXRoPmNocm9tZS5leGU8L0ZpbGVQYXRoPgo8VmVyc2lvbj4xLjM8L1ZlcnNpb24+CjxDaGlsZENvbnRyb2xzPgo8Q29udHJvbE1ldGFEYXRhPgo8SWRlbnRpZmllcj4KPENsYXNzTmFtZT5DaHJvbWVfV2lkZ2V0V2luXzE8L0NsYXNzTmFtZT4KPFRpdGxlPuWVhuWutuW3peS9nOWPsDwvVGl0bGU+CjxSb2xlPldpbmRvdzwvUm9sZT4KPElzRGlyZWN0Q2hpbGQ+dHJ1ZTwvSXNEaXJlY3RDaGlsZD4KPFVSTD4qbmV3UHVyY2hhc2VPcmRlKjwvVVJMPgo8L0lkZW50aWZpZXI+CjxDaGlsZENvbnRyb2xzPgo8Q29udHJvbE1ldGFEYXRhPgo8V2ViSWRlbnRpZmllcj4KPFRhZz5GT1JNPC9UYWc+CjxJZD5wdXJjaGFzZU9yZGVyRm9ybTwvSWQ+CjwvV2ViSWRlbnRpZmllcj4KPEFjY2Vzc0tleSAvPgo8Q29tcG9uZW50PjwvQ29tcG9uZW50Pgo8L0NvbnRyb2xNZXRhRGF0YT4KPC9DaGlsZENvbnRyb2xzPgo8QWNjZXNzS2V5IC8+CjxDb21wb25lbnQ+PC9Db21wb25lbnQ+CjwvQ29udHJvbE1ldGFEYXRhPgo8L0NoaWxkQ29udHJvbHM+CjwvQXBwbGljYXRpb24+Cg=="</mca:CSharpValue>
+          </InArgument>
+        </eac:InvokeJavaScriptActivityV2.Selector2>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </eac:InvokeJavaScriptActivityV2>
+    </FlowStep>
+  </Flowchart>
+</Activity>

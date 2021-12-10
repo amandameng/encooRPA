@@ -1,0 +1,474 @@
+{
+  "Md5CheckSum": "c5a6d8bae191f2cab66560700f6fd00b",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Flowchart_1",
+        "Name": "Root",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "InvokeWorkflow_1",
+            "Name": "调用子流程: download_store_daily_report",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "OfficeExcelOpenOrCreateActivity_2",
+            "Name": "打开 - 主产品表",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "Sequence_2",
+                "Name": "序列",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "OfficeExcelGetLastRowIndexActivity_1",
+                    "Name": "获取末行号",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "OfficeExcelGetLastColIndexActivity_1",
+                    "Name": "获取末列号",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "OfficeExcelReadRangeActivity_1",
+                    "Name": "读取区域 - 全部数据",
+                    "IsActivity": true,
+                    "SubItems": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "RefId": "OfficeExcelOpenOrCreateActivity_3",
+            "Name": "打开 - 门店信息",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "Sequence_4",
+                "Name": "序列",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "OfficeExcelGetAllSheetsActivity_2",
+                    "Name": "获取所有工作表名",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "Assign_5",
+                    "Name": "赋值 - firstSheet",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "OfficeExcelGetLastRowIndexActivity_3",
+                    "Name": "获取末行号",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "OfficeExcelGetLastColIndexActivity_2",
+                    "Name": "获取末列号",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "OfficeExcelReadRangeActivity_2",
+                    "Name": "读取区域 - 全部数据",
+                    "IsActivity": true,
+                    "SubItems": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "RefId": "OfficeExcelOpenOrCreateActivity_1",
+            "Name": "打开 订单明细表",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "Sequence_1",
+                "Name": "序列",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "OfficeExcelGetAllSheetsActivity_1",
+                    "Name": "获取所有工作表名",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "Assign_3",
+                    "Name": "赋值 - firstSheet",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "OfficeExcelDeleteDataActivity_1",
+                    "Name": "删除数据 - 2-20行",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "Sequence_9",
+                    "Name": "序列 - 增减列",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "OfficeExcelGetLastRowIndexActivity_4",
+                        "Name": "获取末行号 - lastRow",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "OfficeExcelInsertRowColumnActivity_1",
+                        "Name": "插入列 B列后插入列",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "OfficeExcelSetCellActivity_1",
+                        "Name": "写入单元格B2= product code",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "OfficeExcelSetCellActivity_2",
+                        "Name": "写入单元格C2=BU",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "OfficeExcelInsertRowColumnActivity_2",
+                        "Name": "插入列 V列后插入2列",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "OfficeExcelSetCellActivity_3",
+                        "Name": "写入单元格 W2=Province",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "OfficeExcelSetCellActivity_4",
+                        "Name": "写入单元格 X2=City",
+                        "IsActivity": true,
+                        "SubItems": []
+                      }
+                    ]
+                  },
+                  {
+                    "RefId": "Sequence_3",
+                    "Name": "序列 - 辅助数据",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "OfficeExcelSetRangeActivity_1",
+                        "Name": "写入区域 - 主产品信息",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "OfficeExcelRunMacroActivity_2",
+                        "Name": "执行宏 - 主产品 - 分列A",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "OfficeExcelSetRangeActivity_2",
+                        "Name": "写入区域 - 门店信息",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "OfficeExcelRunMacroActivity_1",
+                        "Name": "执行宏 - 分列A",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "Sequence_5",
+                        "Name": "序列 - 填充product code",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": "OfficeExcelAddFormulaActivity_1",
+                            "Name": "插入公式 - product code",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "If_1",
+                            "Name": "条件（If lastRow > 3）",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": null,
+                                "Name": "If.Then",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "OfficeExcelAutoFillRangeActivity_1",
+                                    "Name": "自动填充 B3到末尾",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "RefId": "Sequence_6",
+                        "Name": "序列 - 填充 BU",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": "OfficeExcelAddFormulaActivity_2",
+                            "Name": "插入公式 - BU",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "If_2",
+                            "Name": "条件（If lastRow > 3）",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": null,
+                                "Name": "If.Then",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "OfficeExcelAutoFillRangeActivity_2",
+                                    "Name": "自动填充 C3到末尾",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "RefId": "Sequence_7",
+                        "Name": "序列 - 填充 Province",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": "OfficeExcelAddFormulaActivity_3",
+                            "Name": "插入公式 - province",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "If_3",
+                            "Name": "条件（If lastRow > 3）",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": null,
+                                "Name": "If.Then",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "OfficeExcelAutoFillRangeActivity_3",
+                                    "Name": "自动填充 W3到末尾",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "RefId": "Sequence_8",
+                        "Name": "序列 - 填充 City",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": "OfficeExcelAddFormulaActivity_4",
+                            "Name": "插入公式 - City",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "If_4",
+                            "Name": "条件（If lastRow > 3）",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": null,
+                                "Name": "If.Then",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "OfficeExcelAutoFillRangeActivity_4",
+                                    "Name": "自动填充 X3到末尾",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "RefId": "OfficeExcelSaveActivity_1",
+                    "Name": "保存",
+                    "IsActivity": true,
+                    "SubItems": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "RefId": "OfficeExcelOpenOrCreateActivity_4",
+            "Name": "打开 订单明细表",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "Sequence_10",
+                "Name": "序列",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "OfficeExcelGetAllSheetsActivity_3",
+                    "Name": "获取所有工作表名",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "Assign_6",
+                    "Name": "赋值 - firstSheet",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "OfficeExcelGetLastRowIndexActivity_5",
+                    "Name": "获取末行号 - lastRow",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "OfficeExcelGetLastColIndexActivity_3",
+                    "Name": "获取末列号 - lastCol",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "OfficeExcelReadRangeActivity_4",
+                    "Name": "读取区域 - 读取A2到末行",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "DataTableSaveToCSVActivity_1",
+                    "Name": "保存为CSV文件",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "InvokeCSharpCodeActivity_1",
+                    "Name": "执行C#代码 - 筛选指定商品",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "OfficeExcelSetRangeActivity_4",
+                    "Name": "写入区域 - JD",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "OfficeExcelSetRangeActivity_5",
+                    "Name": "写入区域 - 趣满果",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "OfficeExcelSaveActivity_2",
+                    "Name": "保存",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "CommentActivity_3",
+                    "Name": "注释掉",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "Sequence_11",
+                        "Name": "序列",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": "OfficeExcelFilterActivity_1",
+                            "Name": "筛选",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "OfficeExcelReadRangeActivity_3",
+                            "Name": "读取区域 - 读取A2到末行，使用筛选",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "OfficeExcelSetRangeActivity_3",
+                            "Name": "写入区域 - JD",
+                            "IsActivity": true,
+                            "SubItems": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "RefId": "CommentActivity_1",
+            "Name": "注释掉",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "Assign_2",
+                "Name": "赋值",
+                "IsActivity": true,
+                "SubItems": []
+              }
+            ]
+          },
+          {
+            "RefId": "Assign_4",
+            "Name": "赋值 - 文件路径",
+            "IsActivity": true,
+            "SubItems": []
+          }
+        ]
+      }
+    ]
+  }
+}

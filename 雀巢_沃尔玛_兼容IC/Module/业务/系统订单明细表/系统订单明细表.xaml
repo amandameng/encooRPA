@@ -1,0 +1,308 @@
+<Activity mc:Ignorable="sap sap2010 sads" x:Class="EncooWorkflow.Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:baast="clr-namespace:BotTime.ActivityLibrary.Activities.System.Tool;assembly=BotTime.ActivityLibrary" xmlns:bfa="clr-namespace:BotTime.Flow.Activities;assembly=BotTime.Flow.Activities" xmlns:eaw="clr-namespace:Encootech.AutomationActivity.WebAction;assembly=AutomationActivity" xmlns:ed="clr-namespace:Encoo.DataType;assembly=Encoo.DataType" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:this="clr-namespace:EncooWorkflow" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger">
+  <x:Members>
+    <x:Property Name="订单明细表文件夹" Type="InArgument(x:String)" />
+  </x:Members>
+  <this:Main.订单明细表文件夹>
+    <InArgument x:TypeArguments="x:String">
+      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_15">C:\RPA工作目录\雀巢_沃尔玛\导出文件\DailySalesReport</Literal>
+    </InArgument>
+  </this:Main.订单明细表文件夹>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap:VirtualizedContainerService.HintSize>654,716</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>EncooWorkflow.Workflow_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="11">
+      <x:String>System.Xml</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>Encootech.AutomationActivity.WebAction</x:String>
+      <x:String>Encoo.DataType</x:String>
+      <x:String>Microsoft.CSharp.Activities</x:String>
+      <x:String>BotTime.Flow.Activities</x:String>
+      <x:String>BotTime.ActivityLibrary.Activities.System.Tool</x:String>
+      <x:String>System</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>AutomationActivity</AssemblyReference>
+      <AssemblyReference>Encoo.DataType</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>BotTime.Flow.Activities</AssemblyReference>
+      <AssemblyReference>BotTime.ActivityLibrary</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Globalization.Extensions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Net.WebSockets.Client.Managed</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>ParallelExtensionsExtras</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Flowchart DisplayName="Root" sap:VirtualizedContainerService.HintSize="614,636" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+        <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
+        <av:Size x:Key="ShapeSize">80,48</av:Size>
+        <av:PointCollection x:Key="ConnectorLocation">310,50.5 310,133.5</av:PointCollection>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Flowchart.StartNode>
+      <x:Reference>__ReferenceID0</x:Reference>
+    </Flowchart.StartNode>
+    <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <av:Point x:Key="ShapeLocation">210,133.5</av:Point>
+          <av:Size x:Key="ShapeSize">200,53</av:Size>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <eaw:BrowserAttach DelayAfter="{x:Null}" DelayBefore="{x:Null}" Selector="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActivityName="绑定浏览器" BringWindowType="Default" BrowserType="Chrome" ContinueOnError="False" DisplayName="绑定浏览器 - Reta Link Main" ElementRect="0, 0, 0, 0" Guid="9eba15b3-2c5f-43ff-af80-807f510851e5" sap:VirtualizedContainerService.HintSize="509,1702" sap2010:WorkflowViewState.IdRef="BrowserAttach_1" IsEndClose="False" IsIgnore="False" IsMaximize="True" ScreenShoot="9a0b2ba6-4fb6-4f26-8d1a-b09fdf469c54.jpg" SelectionRect="0, 0, 0, 0">
+        <eaw:BrowserAttach.Body>
+          <ActivityAction x:TypeArguments="x:Object">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:Object" Name="CurrentBrowser" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="495,1572" sap2010:WorkflowViewState.IdRef="Sequence_1">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="dailyStoreReceiveDetailLink" />
+                <Variable x:TypeArguments="x:String" Name="dailyStoreReceiveDetailFFLink" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 重试下载 系统订单明细" sap:VirtualizedContainerService.HintSize="473,525" sap2010:WorkflowViewState.IdRef="TryCatch_2" IsIgnore="False">
+                <bfa:TryCatch.Try>
+                  <bfa:Retry ActivityName="重试" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="重试" sap:VirtualizedContainerService.HintSize="455,574" sap2010:WorkflowViewState.IdRef="Retry_1" IsIgnore="False">
+                    <bfa:Retry.RetryCount>
+                      <InArgument x:TypeArguments="x:Int32">
+                        <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_22" Value="1" />
+                      </InArgument>
+                    </bfa:Retry.RetryCount>
+                    <bfa:Retry.RetryTimeSpan>
+                      <InArgument x:TypeArguments="x:TimeSpan">
+                        <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_23" />
+                      </InArgument>
+                    </bfa:Retry.RetryTimeSpan>
+                    <bfa:Retry.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <Literal x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="Literal`1_24" Value="True" />
+                      </InArgument>
+                    </bfa:Retry.Condition>
+                    <bfa:Retry.Body>
+                      <Sequence DisplayName="序列 - dailyStoreReceiveDetailLink" sap:VirtualizedContainerService.HintSize="371,451" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - dailyStoreReceiveDetailLink" sap:VirtualizedContainerService.HintSize="349,55" sap2010:WorkflowViewState.IdRef="Assign_1" IsIgnore="False">
+                          <bfa:Assign.To>
+                            <OutArgument x:TypeArguments="x:String">
+                              <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1">dailyStoreReceiveDetailLink</mca:CSharpReference>
+                            </OutArgument>
+                          </bfa:Assign.To>
+                          <bfa:Assign.Value>
+                            <InArgument x:TypeArguments="x:String">
+                              <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_9">"https://retaillink2.wal-mart.com/decision_support/Report_Builder.aspx?reopen=true&amp;AppId=300&amp;jobid=41044795&amp;getSavedRequests=1&amp;isShared=N&amp;isScheduled=N&amp;country_cd=CN&amp;divid=1"</mca:CSharpValue>
+                            </InArgument>
+                          </bfa:Assign.Value>
+                        </bfa:Assign>
+                        <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: JS打开新窗口-dailyStoreReceiveDetailLink" sap:VirtualizedContainerService.HintSize="349,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_4" IsIgnore="False">
+                          <bfa:InvokeWorkflow.Arguments>
+                            <InArgument x:TypeArguments="x:String" x:Key="targetLink">
+                              <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_17">(dailyStoreReceiveDetailLink).ToString()</mca:CSharpValue>
+                            </InArgument>
+                          </bfa:InvokeWorkflow.Arguments>
+                          <bfa:InvokeWorkflow.WorkflowPath>
+                            <InArgument x:TypeArguments="x:String">
+                              <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_20">Module\通用\JS打开新窗口.xaml</Literal>
+                            </InArgument>
+                          </bfa:InvokeWorkflow.WorkflowPath>
+                        </bfa:InvokeWorkflow>
+                        <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: daily_store_receive_detail_01" sap:VirtualizedContainerService.HintSize="349,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_1" IsIgnore="False">
+                          <bfa:InvokeWorkflow.Arguments>
+                            <InArgument x:TypeArguments="x:String" x:Key="folder">
+                              <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_8">(订单明细表文件夹).ToString()</mca:CSharpValue>
+                            </InArgument>
+                          </bfa:InvokeWorkflow.Arguments>
+                          <bfa:InvokeWorkflow.WorkflowPath>
+                            <InArgument x:TypeArguments="x:String">
+                              <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_16">Module\业务\系统订单明细表\daily_store_receive_detail_01.xaml</Literal>
+                            </InArgument>
+                          </bfa:InvokeWorkflow.WorkflowPath>
+                        </bfa:InvokeWorkflow>
+                      </Sequence>
+                    </bfa:Retry.Body>
+                  </bfa:Retry>
+                </bfa:TryCatch.Try>
+                <bfa:TryCatch.Catches>
+                  <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="435,355" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                    <bfa:Catch.Action>
+                      <ActivityAction x:TypeArguments="s:Exception">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="371,244" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <baast:LogActivity ActivityName="写入日志" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="写入日志" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="LogActivity_1" Level="Error">
+                            <baast:LogActivity.LogContent>
+                              <InArgument x:TypeArguments="x:String">
+                                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_19">(exception.Message).ToString()</mca:CSharpValue>
+                              </InArgument>
+                            </baast:LogActivity.LogContent>
+                          </baast:LogActivity>
+                          <bfa:Throw DisplayName="抛出异常 - 下载系统订单明细失败" sap:VirtualizedContainerService.HintSize="349,22" sap2010:WorkflowViewState.IdRef="Throw_1">
+                            <InArgument x:TypeArguments="s:Exception">
+                              <mca:CSharpValue x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="CSharpValue`1_20">new Exception("下载系统订单明细失败")</mca:CSharpValue>
+                            </InArgument>
+                          </bfa:Throw>
+                        </Sequence>
+                      </ActivityAction>
+                    </bfa:Catch.Action>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </bfa:Catch>
+                </bfa:TryCatch.Catches>
+              </bfa:TryCatch>
+              <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获  重试下载 系统稳定订单明细" sap:VirtualizedContainerService.HintSize="473,883" sap2010:WorkflowViewState.IdRef="TryCatch_3" IsIgnore="False">
+                <bfa:TryCatch.Try>
+                  <bfa:Retry ActivityName="重试" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="重试" sap:VirtualizedContainerService.HintSize="455,574" sap2010:WorkflowViewState.IdRef="Retry_2" IsIgnore="False">
+                    <bfa:Retry.RetryCount>
+                      <InArgument x:TypeArguments="x:Int32">
+                        <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_25" Value="1" />
+                      </InArgument>
+                    </bfa:Retry.RetryCount>
+                    <bfa:Retry.RetryTimeSpan>
+                      <InArgument x:TypeArguments="x:TimeSpan">
+                        <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_26" />
+                      </InArgument>
+                    </bfa:Retry.RetryTimeSpan>
+                    <bfa:Retry.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <Literal x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="Literal`1_27" Value="True" />
+                      </InArgument>
+                    </bfa:Retry.Condition>
+                    <bfa:Retry.Body>
+                      <Sequence DisplayName="序列 - dailyStoreReceiveDetailFFLink" sap:VirtualizedContainerService.HintSize="371,451" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - dailyStoreReceiveDetailFFLink" sap:VirtualizedContainerService.HintSize="349,55" sap2010:WorkflowViewState.IdRef="Assign_2" IsIgnore="False">
+                          <bfa:Assign.To>
+                            <OutArgument x:TypeArguments="x:String">
+                              <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_2">dailyStoreReceiveDetailFFLink</mca:CSharpReference>
+                            </OutArgument>
+                          </bfa:Assign.To>
+                          <bfa:Assign.Value>
+                            <InArgument x:TypeArguments="x:String">
+                              <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_10">"https://retaillink2.wal-mart.com/decision_support/Report_Builder.aspx?reopen=true&amp;AppId=300&amp;jobid=41178025&amp;getSavedRequests=1&amp;isShared=N&amp;isScheduled=N&amp;country_cd=CN&amp;divid=1"</mca:CSharpValue>
+                            </InArgument>
+                          </bfa:Assign.Value>
+                        </bfa:Assign>
+                        <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: JS打开新窗口-dailyStoreReceiveDetailLinkFF" sap:VirtualizedContainerService.HintSize="349,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_5" IsIgnore="False">
+                          <bfa:InvokeWorkflow.Arguments>
+                            <InArgument x:TypeArguments="x:String" x:Key="targetLink">
+                              <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_18">(dailyStoreReceiveDetailFFLink).ToString()</mca:CSharpValue>
+                            </InArgument>
+                          </bfa:InvokeWorkflow.Arguments>
+                          <bfa:InvokeWorkflow.WorkflowPath>
+                            <InArgument x:TypeArguments="x:String">
+                              <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_21">Module\通用\JS打开新窗口.xaml</Literal>
+                            </InArgument>
+                          </bfa:InvokeWorkflow.WorkflowPath>
+                        </bfa:InvokeWorkflow>
+                        <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: daily_store_receive_detail_ff" sap:VirtualizedContainerService.HintSize="349,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_2" IsIgnore="False">
+                          <bfa:InvokeWorkflow.Arguments>
+                            <InArgument x:TypeArguments="x:String" x:Key="folder">
+                              <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_14">(订单明细表文件夹).ToString()</mca:CSharpValue>
+                            </InArgument>
+                          </bfa:InvokeWorkflow.Arguments>
+                          <bfa:InvokeWorkflow.WorkflowPath>
+                            <InArgument x:TypeArguments="x:String">
+                              <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_17">Module\业务\系统订单明细表\daily_store_receive_detail_ff.xaml</Literal>
+                            </InArgument>
+                          </bfa:InvokeWorkflow.WorkflowPath>
+                        </bfa:InvokeWorkflow>
+                      </Sequence>
+                    </bfa:Retry.Body>
+                  </bfa:Retry>
+                </bfa:TryCatch.Try>
+                <bfa:TryCatch.Catches>
+                  <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="459,23" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                    <bfa:Catch.Action>
+                      <ActivityAction x:TypeArguments="s:Exception">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="371,244" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <baast:LogActivity ActivityName="写入日志" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="写入日志" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="LogActivity_2" Level="Error">
+                            <baast:LogActivity.LogContent>
+                              <InArgument x:TypeArguments="x:String">
+                                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_21">(exception.Message).ToString()</mca:CSharpValue>
+                              </InArgument>
+                            </baast:LogActivity.LogContent>
+                          </baast:LogActivity>
+                          <bfa:Throw DisplayName="抛出异常 -  系统稳定订单明细" sap:VirtualizedContainerService.HintSize="349,22" sap2010:WorkflowViewState.IdRef="Throw_2">
+                            <InArgument x:TypeArguments="s:Exception">
+                              <mca:CSharpValue x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="CSharpValue`1_22">new Exception("下载稳定系统订单明细失败了")</mca:CSharpValue>
+                            </InArgument>
+                          </bfa:Throw>
+                        </Sequence>
+                      </ActivityAction>
+                    </bfa:Catch.Action>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </bfa:Catch>
+                </bfa:TryCatch.Catches>
+              </bfa:TryCatch>
+            </Sequence>
+          </ActivityAction>
+        </eaw:BrowserAttach.Body>
+        <eaw:BrowserAttach.Selector2>
+          <InArgument x:TypeArguments="ed:Selector">
+            <mca:CSharpValue x:TypeArguments="ed:Selector" sap2010:WorkflowViewState.IdRef="CSharpValue`1_3">"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTE2Ij8+CjxBcHBsaWNhdGlvbiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4bWxuczp4c2Q9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hIj4KPEF1dG9tYXRpb25UeXBlPldFQi1DSFJPTUU8L0F1dG9tYXRpb25UeXBlPgo8UHJvY2Vzc05hbWU+Y2hyb21lPC9Qcm9jZXNzTmFtZT4KPEZpbGVQYXRoPmNocm9tZS5leGU8L0ZpbGVQYXRoPgo8VmVyc2lvbj4xLjM8L1ZlcnNpb24+CjxDaGlsZENvbnRyb2xzPgo8Q29udHJvbE1ldGFEYXRhPgo8SWRlbnRpZmllcj4KPENsYXNzTmFtZT5DaHJvbWVfV2lkZ2V0V2luXzE8L0NsYXNzTmFtZT4KPFJvbGU+V2luZG93PC9Sb2xlPgo8SXNEaXJlY3RDaGlsZD50cnVlPC9Jc0RpcmVjdENoaWxkPgo8VVJMPipyZXRhaWxsaW5rMi53YWwtbWFydC5jb20qPC9VUkw+CjwvSWRlbnRpZmllcj4KPENoaWxkQ29udHJvbHM+CjxDb250cm9sTWV0YURhdGE+CjxXZWJJZGVudGlmaWVyPgo8VGFnPkhUTUw8L1RhZz4KPC9XZWJJZGVudGlmaWVyPgo8QWNjZXNzS2V5IC8+CjxDb21wb25lbnQ+PC9Db21wb25lbnQ+CjwvQ29udHJvbE1ldGFEYXRhPgo8L0NoaWxkQ29udHJvbHM+CjxBY2Nlc3NLZXkgLz4KPENvbXBvbmVudD48L0NvbXBvbmVudD4KPC9Db250cm9sTWV0YURhdGE+CjwvQ2hpbGRDb250cm9scz4KPC9BcHBsaWNhdGlvbj4K"</mca:CSharpValue>
+          </InArgument>
+        </eaw:BrowserAttach.Selector2>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </eaw:BrowserAttach>
+    </FlowStep>
+  </Flowchart>
+</Activity>

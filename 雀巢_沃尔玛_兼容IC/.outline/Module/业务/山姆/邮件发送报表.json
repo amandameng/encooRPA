@@ -1,0 +1,255 @@
+{
+  "Md5CheckSum": "30b820839746eb179c947f5eaccb0748",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Flowchart_7",
+        "Name": "邮件发送报表",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "Assign_19",
+            "Name": "赋值 - 邮件标题",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "Assign_20",
+            "Name": "赋值 - 邮件正文模板无数据",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "Assign_21",
+            "Name": "赋值 - 邮件正文模板有数据",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "Retry_1",
+            "Name": "重试 - 发送山姆EX2O邮件",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "If_24",
+                "Name": "条件（If 山姆或者山姆水的ex2o 文件存在）",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": null,
+                    "Name": "If.Then",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "Sequence_33",
+                        "Name": "序列",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": "If_27",
+                            "Name": "条件（If - 山姆EX2OFile）",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": null,
+                                "Name": "If.Then",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "AddToCollectionActivity_8",
+                                    "Name": "添加对象 - 山姆EX2OFile",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "RefId": "If_28",
+                            "Name": "条件（If - 山姆水单EX2OFile）",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": null,
+                                "Name": "If.Then",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "AddToCollectionActivity_9",
+                                    "Name": "添加对象 - 山姆水单EX2OFile",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "RefId": "InvokeCSharpCodeActivity_2",
+                            "Name": "执行C#代码 - 散威化附件去重添加到ETO附件中",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "InvokeWorkflow_38",
+                            "Name": "调用子流程: 发送邮件 - ex2o有数据",
+                            "IsActivity": true,
+                            "SubItems": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "RefId": null,
+                    "Name": "If.Else",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "InvokeWorkflow_34",
+                        "Name": "调用子流程: 发送邮件 - ex2o无数据",
+                        "IsActivity": true,
+                        "SubItems": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "RefId": "Retry_2",
+            "Name": "重试 - 山姆CLean + Exception",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "If_25",
+                "Name": "条件（If Clean Order文件存在）",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": null,
+                    "Name": "If.Then",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "Sequence_34",
+                        "Name": "序列",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": "If_29",
+                            "Name": "条件（If - 山姆CleanExceptionFile）",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": null,
+                                "Name": "If.Then",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "AddToCollectionActivity_10",
+                                    "Name": "添加对象 - 山姆CleanExceptionFile",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "RefId": "If_30",
+                            "Name": "条件（If - 山姆水单CleanExceptionFile）",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": null,
+                                "Name": "If.Then",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "AddToCollectionActivity_11",
+                                    "Name": "添加对象 - 山姆水单CleanExceptionFile",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "RefId": "InvokeWorkflow_39",
+                            "Name": "调用子流程: 发送邮件 - clean order 有数据",
+                            "IsActivity": true,
+                            "SubItems": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "RefId": null,
+                    "Name": "If.Else",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "InvokeWorkflow_35",
+                        "Name": "调用子流程: 发送邮件 - clean order 无数据",
+                        "IsActivity": true,
+                        "SubItems": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "RefId": "Retry_3",
+            "Name": "重试 - 山姆分仓明细",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "If_26",
+                "Name": "条件（If 分仓明细表）",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": null,
+                    "Name": "If.Then",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "InvokeWorkflow_36",
+                        "Name": "调用子流程: 发送邮件 - 分仓明细有数据",
+                        "IsActivity": true,
+                        "SubItems": []
+                      }
+                    ]
+                  },
+                  {
+                    "RefId": null,
+                    "Name": "If.Else",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "InvokeWorkflow_37",
+                        "Name": "调用子流程: 发送邮件 - exception order无数据",
+                        "IsActivity": true,
+                        "SubItems": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

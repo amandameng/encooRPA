@@ -1,0 +1,65 @@
+<Activity mc:Ignorable="sap sap2010 sads" x:Class="EncooWorkflow.Main" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap:VirtualizedContainerService.HintSize="654,716" sap2010:WorkflowViewState.IdRef="EncooWorkflow.Workflow_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:eaw="clr-namespace:Encootech.AutomationActivity.WebAction;assembly=AutomationActivity" xmlns:ed="clr-namespace:Encoo.DataType;assembly=Encoo.DataType" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger">
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="9">
+      <x:String>System</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>Encootech.AutomationActivity.WebAction</x:String>
+      <x:String>Encoo.DataType</x:String>
+      <x:String>Microsoft.CSharp.Activities</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>AutomationActivity</AssemblyReference>
+      <AssemblyReference>Encoo.DataType</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Flowchart DisplayName="Root" sap:VirtualizedContainerService.HintSize="614,636" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+        <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
+        <av:Size x:Key="ShapeSize">80,48</av:Size>
+        <av:PointCollection x:Key="ConnectorLocation">310,50.5 310,123.5</av:PointCollection>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Flowchart.StartNode>
+      <x:Reference>__ReferenceID0</x:Reference>
+    </Flowchart.StartNode>
+    <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <av:Point x:Key="ShapeLocation">210,123.5</av:Point>
+          <av:Size x:Key="ShapeSize">200,53</av:Size>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <eaw:BrowserClose DelayAfter="{x:Null}" DelayBefore="{x:Null}" Selector="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActivityName="关闭浏览器" BringWindowType="Default" BrowserType="Chrome" ContinueOnError="False" DisplayName="关闭浏览器" ElementRect="0, 0, 0, 0" Guid="ab00ca71-b538-4856-ba09-f0c5b1316f27" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="BrowserClose_2" IsIgnore="False" ScreenShoot="1631d64c-c151-400b-81e6-8835cf68af13.jpg" SelectionRect="0, 0, 0, 0">
+        <eaw:BrowserClose.Body>
+          <ActivityAction x:TypeArguments="x:Object">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:Object" Name="CurrentBrowser" />
+            </ActivityAction.Argument>
+          </ActivityAction>
+        </eaw:BrowserClose.Body>
+        <eaw:BrowserClose.Selector2>
+          <InArgument x:TypeArguments="ed:Selector">
+            <mca:CSharpValue x:TypeArguments="ed:Selector" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTE2Ij8+DQo8QXBwbGljYXRpb24geG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeG1sbnM6eHNkPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSI+DQogIDxBdXRvbWF0aW9uVHlwZT5XRUItQ0hST01FPC9BdXRvbWF0aW9uVHlwZT4NCiAgPFByb2Nlc3NOYW1lPmNocm9tZTwvUHJvY2Vzc05hbWU+DQogIDxGaWxlUGF0aD5jaHJvbWUuZXhlPC9GaWxlUGF0aD4NCiAgPFZlcnNpb24+MS4zPC9WZXJzaW9uPg0KICA8Q2hpbGRDb250cm9scz4NCiAgICA8Q29udHJvbE1ldGFEYXRhPg0KICAgICAgPElkZW50aWZpZXI+DQogICAgICAgIDxDbGFzc05hbWU+Q2hyb21lX1dpZGdldFdpbl8xPC9DbGFzc05hbWU+DQogICAgICAgIDxUaXRsZT7llYblrrblt6XkvZzlj7A8L1RpdGxlPg0KICAgICAgICA8QWNjZXNzS2V5IC8+DQogICAgICAgIDxSb2xlPldpbmRvdzwvUm9sZT4NCiAgICAgICAgPElzRGlyZWN0Q2hpbGQ+dHJ1ZTwvSXNEaXJlY3RDaGlsZD4NCiAgICAgIDwvSWRlbnRpZmllcj4NCiAgICAgIDxDaGlsZENvbnRyb2xzPg0KICAgICAgICA8Q29udHJvbE1ldGFEYXRhPg0KICAgICAgICAgIDxXZWJJZGVudGlmaWVyPg0KICAgICAgICAgICAgPFJvbGU+QnV0dG9uPC9Sb2xlPg0KICAgICAgICAgICAgPFRhZz5IVE1MPC9UYWc+DQogICAgICAgICAgPC9XZWJJZGVudGlmaWVyPg0KICAgICAgICA8L0NvbnRyb2xNZXRhRGF0YT4NCiAgICAgIDwvQ2hpbGRDb250cm9scz4NCiAgICA8L0NvbnRyb2xNZXRhRGF0YT4NCiAgPC9DaGlsZENvbnRyb2xzPg0KPC9BcHBsaWNhdGlvbj4="</mca:CSharpValue>
+          </InArgument>
+        </eaw:BrowserClose.Selector2>
+      </eaw:BrowserClose>
+    </FlowStep>
+  </Flowchart>
+</Activity>

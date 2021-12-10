@@ -1,0 +1,648 @@
+[
+    {
+      "name": "采购订单",
+      "table_name": "orders",
+      "columns": [
+		{
+		"field": "order_number",
+		"type": "string",
+		"display_name": "order_number"
+		},
+		{
+		"field": "order_type",
+		"type": "string",
+		"display_name": "order_type"
+		},
+		{
+		"field": "create_date",
+		"type": "string",
+		"display_name": "order_create_date"
+		},
+		{
+		"field": "order_create_datatime",
+		"type": "string",
+		"display_name": "order_create_time"
+		},
+		{
+		"field": "request_delivery_date",
+		"type": "string",
+		"display_name": "order_expire_date"
+		},
+		{
+		"field": "logistics_warehouse",
+		"type": "string",
+		"display_name": "Logistics_warehouse"
+		},
+		{
+		"field": "customer_name",
+		"type": "string",
+		"display_name": "customer_name"
+		}
+      ]
+    },
+	{
+      "name": "采购单详情",
+      "table_name": "order_line_items",
+      "columns": [
+		{
+		"field": "order_number",
+		"type": "string",
+		"display_name": "order_number"
+		},
+		{
+		"field": "line_number",
+		"type": "string",
+		"display_name": "line_number"
+		},
+		{
+		"field": "product_code",
+		"type": "string",
+		"display_name": "customer_product_code"
+		},
+		{
+		"field": "product_name",
+		"type": "string",
+		"display_name": "customer_product_name"
+		},
+		{
+		"field": "product_barcode",
+		"type": "string",
+		"display_name": "product_barcode"
+		},
+		{
+		"field": "base_uom",
+		"type": "string",
+		"display_name": "case_uom"
+		},
+		{
+		"field": "package_size",
+		"type": "string",
+		"display_name": "Nestle_Case_Configuration"
+		},
+		{
+		"field": "unit_price",
+		"type": "decimal",
+		"display_name": "unit_price"
+		},
+		{
+		"field": "discount_rate",
+		"type": "string",
+		"display_name": "discount_rate"
+		},
+		{
+		"field": "total_sales",
+		"type": "decimal",
+		"display_name": "total_sales"
+		},
+		{
+		"field": "quantity",
+		"type": "string",
+		"display_name": "purchase_qty"
+		},
+		{
+		"field": "confirm_qty",
+		"type": "decimal",
+		"display_name": "confirm_qty"
+		},
+		{
+		"field": "customer_name",
+		"type": "string",
+		"display_name": "customer_name"
+		}
+      ]
+    },
+  {
+    "name": "clean_order",
+    "table_name": "clean_order",
+    "columns": [
+      {
+        "field": "渠道",
+        "type": "string",
+        "display_name": "渠道"
+      },
+      {
+        "field": "读单日期",
+        "type": "date",
+        "display_name": "读单当天日期"
+      },
+      {
+        "field": "客户名称",
+        "type": "string",
+        "display_name": "客户名称"
+      },
+      {
+        "field": "雀巢PO_No",
+        "type": "string",
+        "display_name": "雀巢PO No"
+      },
+      {
+        "field": "客户Po_No",
+        "type": "string",
+        "display_name": "客户系统PO No"
+      },
+      {
+        "field": "订单数量",
+        "type": "string",
+        "display_name": "订单数量（单位CS)"
+      },
+      {
+        "field": "区域",
+        "type": "string",
+        "display_name": "Plant/区域"
+      },
+      {
+        "field": "交货地",
+        "type": "string",
+        "display_name": "交货地"
+      },
+      {
+        "field": "要求送货日",
+        "type": "date",
+        "display_name": "客户要求送货日"
+      },
+      {
+        "field": "配送时间",
+        "type": "string",
+        "display_name": "实际配送时间"
+      },
+      {
+        "field": "有效期",
+        "type": "date",
+        "display_name": "订单有效期截至日期"
+      },
+      {
+        "field": "订单类型",
+        "type": "string",
+        "display_name": "订单类型"
+      },
+      {
+        "field": "档期",
+        "type": "string",
+        "display_name": "档期"
+      },
+      {
+        "field": "备注",
+        "type": "string",
+        "display_name": "备注"
+      }
+    ]
+  },
+  {
+    "name": "excel_to_order",
+    "table_name": "excel_to_order",
+    "columns": [
+      {
+        "field": "Customer_Order_Date",
+        "type": "date",
+        "display_name": "Customer Order Date"
+      },
+      {
+        "field": "Customer_Name",
+        "type": "string",
+        "display_name": "customer_name"
+      },
+      {
+        "field": "Sales_Order_Type",
+        "type": "string",
+        "display_name": "Order Type"
+      },
+      {
+        "field": "Sales_Org",
+        "type": "string",
+        "display_name": "Sales Org"
+      },
+      {
+        "field": "Distribution_channel",
+        "type": "string",
+        "display_name": "Distribution channel"
+      },
+      {
+        "field": "Sold_to",
+        "type": "string",
+        "display_name": "Sold to"
+      },
+      {
+        "field": "Sold_to_Name",
+        "type": "string",
+        "display_name": "Sold to Name"
+      },
+      {
+        "field": "Ship_to",
+        "type": "string",
+        "display_name": "Ship to"
+      },
+      {
+        "field": "Ship_to_Name",
+        "type": "string",
+        "display_name": "Ship to Name"
+      },
+      {
+        "field": "PO",
+        "type": "string",
+        "display_name": "PO"
+      },
+      {
+        "field": "PO_Number",
+        "type": "string",
+        "display_name": "PO Number"
+      },
+      {
+        "field": "Reqd_Del_Date",
+        "type": "date",
+        "display_name": "Reqd Del Date"
+      },
+      {
+        "field": "SAP_Material",
+        "type": "string",
+        "display_name": "SAP Material"
+      },
+      {
+        "field": "SAP_Description",
+        "type": "string",
+        "display_name": "SAP Description"
+      },
+      {
+        "field": "Qty",
+        "type": "string",
+        "display_name": "Qty"
+      },
+      {
+        "field": "UoM",
+        "type": "string",
+        "display_name": "UoM"
+      },
+      {
+        "field": "SLoc",
+        "type": "string",
+        "display_name": "SLoc"
+      },
+      {
+        "field": "Batch",
+        "type": "string",
+        "display_name": "Batch"
+      },
+      {
+        "field": "Plant",
+        "type": "string",
+        "display_name": "Plant"
+      },
+      {
+        "field": "WBS",
+        "type": "string",
+        "display_name": "WBS"
+      },
+      {
+        "field": "Item_Category",
+        "type": "string",
+        "display_name": "Item Category"
+      },
+      {
+        "field": "Delivery_note_text",
+        "type": "string",
+        "display_name": "Delivery note text"
+      },
+      {
+        "field": "Language",
+        "type": "string",
+        "display_name": "Language"
+      },
+      {
+        "field": "Order_Reason",
+        "type": "string",
+        "display_name": "Order Reason"
+      },
+      {
+        "field": "Cost_Center",
+        "type": "string",
+        "display_name": "Cost Center"
+      },
+      {
+        "field": "OTC_Name",
+        "type": "string",
+        "display_name": "OTC Name"
+      },
+      {
+        "field": "OTC_Street",
+        "type": "string",
+        "display_name": "OTC Street"
+      },
+      {
+        "field": "OTC_City_Name",
+        "type": "string",
+        "display_name": "OTC City Name"
+      },
+      {
+        "field": "Route",
+        "type": "string",
+        "display_name": "Route"
+      },
+      {
+        "field": "OTC_Check",
+        "type": "string",
+        "display_name": "OTC Check"
+      }
+    ]
+  },
+  {
+    "name": "exception_order",
+    "table_name": "exception_order",
+    "columns": [
+      {
+        "field": "渠道",
+        "type": "string",
+        "display_name": "渠道"
+      },
+      {
+        "field": "客户名称",
+        "type": "string",
+        "display_name": "客户名称"
+      },
+      {
+        "field": "订单日期",
+        "type": "date",
+        "display_name": "订单日期"
+      },
+      {
+        "field": "客户PO",
+        "type": "string",
+        "display_name": "客户PO"
+      },
+      {
+        "field": "客户产品码",
+        "type": "string",
+        "display_name": "客户产品代码"
+      },
+      {
+        "field": "雀巢产品码",
+        "type": "string",
+        "display_name": "雀巢产品代码"
+      },
+      {
+        "field": "区域",
+        "type": "string",
+        "display_name": "Plant/区域"
+      },
+      {
+        "field": "产品名称",
+        "type": "string",
+        "display_name": "产品名称"
+      },
+      {
+        "field": "Nestle_BU",
+        "type": "string",
+        "display_name": "BU"
+      },
+      {
+        "field": "数量",
+        "type": "string",
+        "display_name": "数量"
+      },
+      {
+        "field": "SAP_PO",
+        "type": "string",
+        "display_name": "雀巢 SAP PO"
+      },
+      {
+        "field": "C4开票价",
+        "type": "string",
+        "display_name": "C4开票价"
+      },
+      {
+        "field": "价差",
+        "type": "string",
+        "display_name": "价差"
+      },
+      {
+        "field": "箱价",
+        "type": "string",
+        "display_name": "箱价"
+      },
+      {
+        "field": "TPP扣点",
+        "type": "string",
+        "display_name": "TPP扣点"
+      },
+      {
+        "field": "实际扣点",
+        "type": "string",
+        "display_name": "实际扣点"
+      },
+      {
+        "field": "客户要求送货日",
+        "type": "date",
+        "display_name": "客户要求送货日"
+      },
+      {
+        "field": "客户价格",
+        "type": "string",
+        "display_name": "客户价格"
+      },
+      {
+        "field": "雀巢价格",
+        "type": "string",
+        "display_name": "雀巢价格"
+      },
+      {
+        "field": "单价价差",
+        "type": "string",
+        "display_name": "单价价差"
+      },
+      {
+        "field": "产品行价差",
+        "type": "string",
+        "display_name": "产品行价差"
+      },
+      {
+        "field": "订单总金额价差",
+        "type": "string",
+        "display_name": "订单总金额价差"
+      },
+      {
+        "field": "起送日",
+        "type": "date",
+        "display_name": "起送日"
+      },
+      {
+        "field": "物流模式",
+        "type": "string",
+        "display_name": "物流模式"
+      },
+      {
+        "field": "问题分类",
+        "type": "string",
+        "display_name": "问题分类"
+      },
+      {
+        "field": "问题详细描述",
+        "type": "string",
+        "display_name": "问题详细描述"
+      },
+      {
+        "field": "备注",
+        "type": "string",
+        "display_name": "备注"
+      }
+    ]
+  },
+    {
+    "name": "导出的采购单",
+    "table_name": "exported_orders",
+    "columns": [
+      {
+        "field": "order_number",
+        "type": "string",
+        "display_name": "采购平台订单号"
+      },
+      {
+        "field": "discount_rate",
+        "type": "string",
+        "display_name": "折扣率"
+      },
+      {
+        "field": "line_number",
+        "type": "string",
+        "display_name": "采购平台订单行号"
+      },
+      {
+        "field": "order_num2",
+        "type": "string",
+        "display_name": "采购订单号(财务开票请用此单号)"
+      },
+      {
+        "field": "customer_product_code",
+        "type": "string",
+        "display_name": "苏宁商品编码"
+      },
+      {
+        "field": "customer_product_code2",
+        "type": "string",
+        "display_name": "商家商品编码"
+      },
+      {
+        "field": "customer_product_name",
+        "type": "string",
+        "display_name": "商品名称"
+      },
+      {
+        "field": "core_singular",
+        "type": "string",
+        "display_name": "核心单品"
+      },
+      {
+        "field": "product_barcode",
+        "type": "string",
+        "display_name": "商品条形码"
+      },
+      {
+        "field": "Logistics_warehouse",
+        "type": "string",
+        "display_name": "地点名称"
+      },
+      {
+        "field": "order_qty",
+        "type": "int",
+        "display_name": "订单数量"
+      },
+      {
+        "field": "unit_price",
+        "type": "decimal",
+        "display_name": "含税单价"
+      },
+      {
+        "field": "total_sales",
+        "type": "decimal",
+        "display_name": "含税总价"
+      },
+      {
+        "field": "order_packages",
+        "type": "string",
+        "display_name": "订货箱数"
+      },
+      {
+        "field": "Nestle_Case_Configuration",
+        "type": "string",
+        "display_name": "箱规信息"
+      },
+      {
+        "field": "case_uom",
+        "type": "string",
+        "display_name": "采购单位"
+      },
+      {
+        "field": "order_create_time",
+        "type": "datetime",
+        "display_name": "采购单创建日期"
+      },
+	  {
+        "field": "order_create_date",
+        "type": "date",
+        "display_name": "订单创建日期"
+      },
+      {
+        "field": "order_expire_date",
+        "type": "datetime",
+        "display_name": "采购单有效期"
+      },
+      {
+        "field": "purchase_qty",
+        "type": "int",
+        "display_name": "采购数量"
+      },
+      {
+        "field": "confirm_qty",
+        "type": "int",
+        "display_name": "确认数量"
+      },
+      {
+        "field": "for_delivery_qty",
+        "type": "int",
+        "display_name": "已预约待送货数量"
+      },
+      {
+        "field": "receive_qty",
+        "type": "int",
+        "display_name": "收货数量"
+      },
+      {
+        "field": "order_status",
+        "type": "string",
+        "display_name": "采购单状态"
+      },
+      {
+        "field": "item_status_code",
+        "type": "int",
+        "display_name": "订单行状态"
+      },
+      {
+        "field": "currency",
+        "type": "string",
+        "display_name": "货币单位"
+      },
+      {
+        "field": "order_type",
+        "type": "string",
+        "display_name": "订单类型"
+      },
+      {
+        "field": "delivery_way",
+        "type": "string",
+        "display_name": "交货方式"
+      },
+      {
+        "field": "received_condition",
+        "type": "string",
+        "display_name": "收货状态"
+      },
+      {
+        "field": "location_remark",
+        "type": "string",
+        "display_name": "地址备注信息"
+      },
+      {
+        "field": "customer_name",
+        "type": "string",
+        "display_name": "customer_name"
+      }
+    ]
+  }
+]

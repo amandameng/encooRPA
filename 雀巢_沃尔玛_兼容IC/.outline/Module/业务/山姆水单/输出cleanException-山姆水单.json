@@ -1,0 +1,150 @@
+{
+  "Md5CheckSum": "4882fe46fe76771a16f8544ea125d81f",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Flowchart_1",
+        "Name": "Root",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "FileCopyMoveActivity_3",
+            "Name": "复制文件-clean and exception模板",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "OfficeExcelOpenOrCreateActivity_5",
+            "Name": "打开 clean exception file",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "Sequence_9",
+                "Name": "序列-打开eto文件",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "Sequence_10",
+                    "Name": "序列 - by PO template",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "OfficeExcelGetLastRowIndexActivity_4",
+                        "Name": "获取末行号",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "OfficeExcelGetLastColIndexActivity_4",
+                        "Name": "获取末列号",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "OfficeExcelReadRangeActivity_4",
+                        "Name": "读取区域-读取模板文件，获取列头",
+                        "IsActivity": true,
+                        "SubItems": []
+                      }
+                    ]
+                  },
+                  {
+                    "RefId": "Sequence_11",
+                    "Name": "序列 -  by PO or Item Template",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "OfficeExcelGetLastRowIndexActivity_5",
+                        "Name": "获取末行号",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "OfficeExcelGetLastColIndexActivity_5",
+                        "Name": "获取末列号",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "OfficeExcelReadRangeActivity_5",
+                        "Name": "读取区域-读取模板文件，获取列头",
+                        "IsActivity": true,
+                        "SubItems": []
+                      }
+                    ]
+                  },
+                  {
+                    "RefId": "InvokeCSharpCodeActivity_7",
+                    "Name": "执行C#代码 - 异常订单检查-山姆水单-byPO",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "DataTableSaveToCSVActivity_2",
+                    "Name": "保存为CSV文件",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "OfficeExcelSetRangeActivity_4",
+                    "Name": "写入区域 - 模板数据-不加列头",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "OfficeExcelSetRangeActivity_5",
+                    "Name": "写入区域 - 模板数据-不加列头",
+                    "IsActivity": true,
+                    "SubItems": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "RefId": "DatabaseConnectActivity_3",
+            "Name": "连接数据库  - 获取增量订单关联信息",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "Sequence_8",
+                "Name": "序列",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "InvokeCSharpCodeActivity_6",
+                    "Name": "执行C#代码  - 获取clean Exception Orders相关",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "QueryTableActivity_4",
+                    "Name": "查询语句 - orders join others",
+                    "IsActivity": true,
+                    "SubItems": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "RefId": "FlowDecision_1",
+            "Name": "增量订单关联数据表 不为空",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": null,
+                "Name": "FlowDecision.True",
+                "IsActivity": true,
+                "SubItems": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

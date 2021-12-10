@@ -1,0 +1,151 @@
+{
+  "Md5CheckSum": "17db705f89db38bb5ce86f2d5d27915d",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Flowchart_1",
+        "Name": "Root",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "OfficeExcelOpenOrCreateActivity_1",
+            "Name": "打开 - 家乐福产品主数据",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "Sequence_1",
+                "Name": "序列",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "OfficeExcelReadRangeActivity_1",
+                    "Name": "读取区域",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "Assign_5",
+                    "Name": "赋值 - 家乐福更新数据表",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "FilterDataTableActivity_1",
+                    "Name": "筛选 - 新增订单",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "FilterDataTableActivity_2",
+                    "Name": "筛选 - 删除订单",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "DatabaseConnectActivity_1",
+                    "Name": "连接数据库",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "Sequence_4",
+                        "Name": "序列",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": "Sequence_2",
+                            "Name": "序列 - 新增产品",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": "DataTableRemoveColumnActivity_1",
+                                "Name": "移除列 - 操作",
+                                "IsActivity": true,
+                                "SubItems": []
+                              },
+                              {
+                                "RefId": "InvokeWorkflow_1",
+                                "Name": "调用子流程: 根据数据表拼接数据库SQL语句 - 新增",
+                                "IsActivity": true,
+                                "SubItems": []
+                              },
+                              {
+                                "RefId": "ExecuteSqlActivity_1",
+                                "Name": "执行语句",
+                                "IsActivity": true,
+                                "SubItems": []
+                              },
+                              {
+                                "RefId": "LogActivity_1",
+                                "Name": "写入日志 - 作用行数",
+                                "IsActivity": true,
+                                "SubItems": []
+                              }
+                            ]
+                          },
+                          {
+                            "RefId": "Sequence_3",
+                            "Name": "序列 - 删除产品",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": "ForEach_1",
+                                "Name": "遍历行",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "Sequence_5",
+                                    "Name": "序列",
+                                    "IsActivity": true,
+                                    "SubItems": [
+                                      {
+                                        "RefId": "Assign_1",
+                                        "Name": "赋值 - plantNo",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      },
+                                      {
+                                        "RefId": "Assign_2",
+                                        "Name": "赋值 - 客户产品编码",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      },
+                                      {
+                                        "RefId": "Assign_3",
+                                        "Name": "赋值 - 雀巢产品编码",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      },
+                                      {
+                                        "RefId": "Assign_4",
+                                        "Name": "赋值",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      },
+                                      {
+                                        "RefId": "ExecuteSqlActivity_2",
+                                        "Name": "执行语句 - delete item",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

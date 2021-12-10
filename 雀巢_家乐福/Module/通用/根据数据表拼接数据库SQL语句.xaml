@@ -1,0 +1,109 @@
+<Activity mc:Ignorable="sap sap2010 sads" x:Class="根据数据表拼接数据库SQL语句" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:bda="clr-namespace:BotTime.DataTableActivity.Activities;assembly=BotTime.DataTableActivity" xmlns:bfa="clr-namespace:BotTime.Flow.Activities;assembly=BotTime.Flow.Activities" xmlns:ecaac="clr-namespace:Encoo.CodeTool.Activity.Activities.CSharp;assembly=Encoo.CodeTool.Activity" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger">
+  <x:Members>
+    <x:Property Name="str_TableName" Type="InArgument(x:String)" />
+    <x:Property Name="源数据表" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="str_SQL" Type="OutArgument(x:String)" />
+    <x:Property Name="addCustomerName" Type="InArgument(x:Boolean)" />
+  </x:Members>
+  <this:根据数据表拼接数据库SQL语句.addCustomerName>
+    <InArgument x:TypeArguments="x:Boolean">
+      <Literal x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="Literal`1_8" />
+    </InArgument>
+  </this:根据数据表拼接数据库SQL语句.addCustomerName>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap:VirtualizedContainerService.HintSize>511,675</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>根据数据表拼接数据库SQL语句_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="16">
+      <x:String>System.Xml</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>BotTime.DataBase.Activity</x:String>
+      <x:String>Encoo.CodeTool.Activity.Activities.CSharp</x:String>
+      <x:String>Microsoft.CSharp.Activities</x:String>
+      <x:String>GlobalVariable</x:String>
+      <x:String>System</x:String>
+      <x:String>BotTime.ActivityLibrary.Activities.System.Tool</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>BotTime.DataTableActivity.Activities</x:String>
+      <x:String>BotTime.Flow.Activities</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Globalization.Extensions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Net.WebSockets.Client.Managed</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>ParallelExtensionsExtras</AssemblyReference>
+      <AssemblyReference>BotTime.DataBase.Activity</AssemblyReference>
+      <AssemblyReference>Encoo.CodeTool.Activity</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>GlobalVariable</AssemblyReference>
+      <AssemblyReference>BotTime.ActivityLibrary</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>BotTime.DataTableActivity</AssemblyReference>
+      <AssemblyReference>BotTime.Flow.Activities</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="471,595" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If addCustomerName）" sap:VirtualizedContainerService.HintSize="449,338" sap2010:WorkflowViewState.IdRef="If_1" IsIgnore="False">
+      <bfa:If.Condition>
+        <InArgument x:TypeArguments="x:Boolean">
+          <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">addCustomerName</mca:CSharpValue>
+        </InArgument>
+      </bfa:If.Condition>
+      <bfa:If.Then>
+        <bda:DataTableAddColumnActivity DataColumn="{x:Null}" MaxLength="{x:Null}" TargetIndex="{x:Null}" ActivityName="添加数据列" AllowDBNull="False" sap2010:Annotation.AnnotationText="数据表增加一列customer_name 并设置默认值为 家乐福" AutoIncrement="False" ContinueOnError="No" DataType="x:String" DelayAfter="0" DelayBefore="0" DisplayName="添加数据列 - 数据表增加一列customer_name" sap:VirtualizedContainerService.HintSize="200,81" sap2010:WorkflowViewState.IdRef="DataTableAddColumnActivity_1" Unique="False">
+          <bda:DataTableAddColumnActivity.ColumnName>
+            <InArgument x:TypeArguments="x:String">
+              <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_9">customer_name</Literal>
+            </InArgument>
+          </bda:DataTableAddColumnActivity.ColumnName>
+          <bda:DataTableAddColumnActivity.DataTable>
+            <InArgument x:TypeArguments="sd:DataTable">
+              <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_2">源数据表</mca:CSharpValue>
+            </InArgument>
+          </bda:DataTableAddColumnActivity.DataTable>
+          <bda:DataTableAddColumnActivity.DefaultValue>
+            <InArgument x:TypeArguments="x:String">
+              <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_3">"家乐福"</mca:CSharpValue>
+            </InArgument>
+          </bda:DataTableAddColumnActivity.DefaultValue>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </bda:DataTableAddColumnActivity>
+      </bfa:If.Then>
+    </bfa:If>
+    <ecaac:InvokeCSharpCodeActivity ActivityName="执行C#代码" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行C#代码: 根据数据表拼接数据库SQL语句" sap:VirtualizedContainerService.HintSize="449,93" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_3">
+      <ecaac:InvokeCSharpCodeActivity.CodeFilePath>
+        <InArgument x:TypeArguments="x:String">
+          <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_6">.code\CSharp\根据数据表拼接数据库SQL语句.cs</Literal>
+        </InArgument>
+      </ecaac:InvokeCSharpCodeActivity.CodeFilePath>
+    </ecaac:InvokeCSharpCodeActivity>
+  </Sequence>
+</Activity>

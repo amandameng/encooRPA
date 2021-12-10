@@ -1,0 +1,775 @@
+[
+  {
+    "name": "沃尔玛订单明细表",
+    "table_name": "walmart_order_items",
+    "columns": [
+      {
+        "field": "order_number",
+        "type": "string",
+        "display_name": "orderNumber"
+      },
+      {
+        "field": "document_link",
+        "type": "string",
+        "display_name": "document_link"
+      },
+      {
+        "field": "line_number",
+        "type": "string",
+        "display_name": "Line"
+      },
+      {
+        "field": "product_code",
+        "type": "string",
+        "display_name": "Item"
+      },
+      {
+        "field": "gtin",
+        "type": "string",
+        "display_name": "GTIN"
+      },
+      {
+        "field": "supplier_stock",
+        "type": "string",
+        "display_name": "Supplier Stock #"
+      },
+      {
+        "field": "color",
+        "type": "string",
+        "display_name": "Color"
+      },
+      {
+        "field": "size",
+        "type": "string",
+        "display_name": "Size"
+      },
+      {
+        "field": "quantity_ordered",
+        "type": "string",
+        "display_name": "Quantity Ordered"
+      },
+      {
+        "field": "uom",
+        "type": "string",
+        "display_name": "UOM"
+      },
+      {
+        "field": "pack",
+        "type": "string",
+        "display_name": "Pack"
+      },
+      {
+        "field": "cost",
+        "type": "string",
+        "display_name": "Cost"
+      },
+      {
+        "field": "extended_cost",
+        "type": "string",
+        "display_name": "Extended Cost"
+      },
+      {
+        "field": "item_description",
+        "type": "string",
+        "display_name": "itemDescription"
+      },
+      {
+        "field": "tax_type",
+        "type": "string",
+        "display_name": "taxType"
+      },
+      {
+        "field": "tax_percent",
+        "type": "string",
+        "display_name": "taxPercent"
+      },
+      {
+        "field": "allowance_or_charge",
+        "type": "string",
+        "display_name": "allowance"
+      },
+      {
+        "field": "allowance_description",
+        "type": "string",
+        "display_name": "allowanceDecp"
+      },
+      {
+        "field": "allowance_qty",
+        "type": "string",
+        "display_name": "allowanceQty"
+      },
+      {
+        "field": "allowance_uom",
+        "type": "string",
+        "display_name": "allowanceUOM"
+      },
+      {
+        "field": "allowance_percent",
+        "type": "string",
+        "display_name": "allowancePercent"
+      },
+      {
+        "field": "allowance_total",
+        "type": "string",
+        "display_name": "allowanceTotal"
+      },
+      {
+        "field": "item_instructions",
+        "type": "string",
+        "display_name": "itemInstructions"
+      },
+      {
+        "field": "customer_name",
+        "type": "string",
+        "display_name": "customer_name"
+      }
+    ]
+  },
+  {
+    "name": "沃尔玛订单表",
+    "table_name": "walmart_orders",
+    "columns": [
+      {
+        "field": "order_number",
+        "type": "string",
+        "display_name": "order_number"
+      },
+      {
+        "field": "order_type",
+        "type": "string",
+        "display_name": "order_type"
+      },
+      {
+        "field": "create_date",
+        "type": "date",
+        "display_name": "create_date"
+      },
+      {
+        "field": "create_date_time",
+        "type": "datetime",
+        "display_name": "create_date_time"
+      },
+      {
+        "field": "document_link",
+        "type": "string",
+        "display_name": "document_link"
+      },
+      {
+        "field": "ship_date",
+        "type": "date",
+        "display_name": "ship_date"
+      },
+      {
+        "field": "must_arrived_by",
+        "type": "date",
+        "display_name": "must_arrived_by"
+      },
+      {
+        "field": "promotional_event",
+        "type": "string",
+        "display_name": "promotional_event"
+      },
+      {
+        "field": "location",
+        "type": "string",
+        "display_name": "location"
+      },
+      {
+        "field": "allowance_or_charge",
+        "type": "string",
+        "display_name": "allowance_or_charge"
+      },
+      {
+        "field": "allowance_description",
+        "type": "string",
+        "display_name": "allowance_description"
+      },
+      {
+        "field": "allowance_percent",
+        "type": "string",
+        "display_name": "allowance_percent"
+      },
+      {
+        "field": "allowance_total",
+        "type": "string",
+        "display_name": "allowance_total"
+      },
+      {
+        "field": "total_order_amount_after_adjustments",
+        "type": "decimal(20",
+        "display_name": "total_order_amount_after_adjustments"
+      },
+      {
+        "field": "total_line_items",
+        "type": "int",
+        "display_name": "total_line_items"
+      },
+      {
+        "field": "total_units_ordered",
+        "type": "int",
+        "display_name": "total_units_ordered"
+      },
+      {
+        "field": "customer_name",
+        "type": "string",
+        "display_name": "customer_name"
+      }
+    ]
+  },
+  {
+    "name": "沃尔玛导出订单",
+    "table_name": "walmart_exported_orders",
+	"columns": [
+	  {
+        "field": "order_number",
+        "type": "string",
+        "display_name": "Document Number"
+      },
+	  {
+        "field": "document_type",
+        "type": "string",
+        "display_name": "Document Type"
+      },
+	  {
+        "field": "received_date_time",
+        "type": "datetime",
+        "display_name": "Received Date"
+      },
+	  {
+        "field": "vendor_number",
+        "type": "string",
+        "display_name": "Vendor Number"
+      },
+	  {
+        "field": "location",
+        "type": "string",
+        "display_name": "Location"
+      },
+	]
+  },
+   {
+    "name": "clean+exception（by PO)",
+    "table_name": "clean_exception_order_WM",
+    "columns": [
+      {
+        "field": "Order_Capture_Date",
+        "type": "mdy_date",
+        "display_name": "Order Date"
+      },
+      {
+        "field": "PO_No",
+        "type": "string",
+        "display_name": "PO No."
+      },
+      {
+        "field": "SAP_PO",
+        "type": "string",
+        "display_name": "SAP PO"
+      },
+      {
+        "field": "Nestle_Plant_NO",
+        "type": "string",
+        "display_name": "仓号"
+      },
+      {
+        "field": "WMDC",
+        "type": "string",
+        "display_name": "WMDC"
+      },
+      {
+        "field": "Order_Type",
+        "type": "string",
+        "display_name": "Order type（Promotional Event）"
+      },
+      {
+        "field": "Nestle_BU",
+        "type": "string",
+        "display_name": "Nestle BU"
+      },
+      {
+        "field": "Manual_Order",
+        "type": "string",
+        "display_name": "是否为手工单"
+      },
+      {
+        "field": "Stable_Inventory",
+        "type": "string",
+        "display_name": "是否为稳定库存"
+      },
+      {
+        "field": "Order_Qty",
+        "type": "string",
+        "display_name": "Order qty"
+      },
+      {
+        "field": "Customer_RDD",
+        "type": "mdy_date",
+        "display_name": "起送日"
+      },
+      {
+        "field": "MABD",
+        "type": "mdy_date",
+        "display_name": "MABD"
+      },
+      {
+        "field": "Order_Category",
+        "type": "string",
+        "display_name": "Order category"
+      },
+      {
+        "field": "Exception_Category",
+        "type": "string",
+        "display_name": "Exception category"
+      },
+      {
+        "field": "Customer_Name",
+        "type": "string",
+        "display_name": "customer_name"
+      }
+    ]
+  },
+  {
+    "name": "exception（by PO or item)",
+    "table_name": "exception_order_WM",
+    "columns": [
+      {
+        "field": "Order_Capture_Date",
+        "type": "mdy_date",
+        "display_name": "Order Date"
+      },
+      {
+        "field": "PO_No",
+        "type": "string",
+        "display_name": "PO No."
+      },
+      {
+        "field": "Customer_Order_Item",
+        "type": "string",
+        "display_name": "Customer order Item"
+      },
+      {
+        "field": "Original_MABD",
+        "type": "mdy_date",
+        "display_name": "原始MABD"
+      },
+      {
+        "field": "New_MABD",
+        "type": "mdy_date",
+        "display_name": "新MABD"
+      },
+      {
+        "field": "Customer_Material_No",
+        "type": "string",
+        "display_name": "沃尔玛产品编码"
+      },
+      {
+        "field": "Nestle_Material_No",
+        "type": "string",
+        "display_name": "雀巢产品编码"
+      },
+      {
+        "field": "Material_Description",
+        "type": "string",
+        "display_name": "Material Description"
+      },
+      {
+        "field": "Nestle_BU",
+        "type": "string",
+        "display_name": "Nestle BU"
+      },
+      {
+        "field": "Original_Case_Configuration",
+        "type": "string",
+        "display_name": "原单箱规"
+      },
+      {
+        "field": "Original_Qty",
+        "type": "string",
+        "display_name": "原订单数量"
+      },
+      {
+        "field": "New_Qty",
+        "type": "string",
+        "display_name": "修改后订单数量"
+      },
+      {
+        "field": "Nestle_Qty",
+        "type": "string",
+        "display_name": "雀巢数量"
+      },
+      {
+        "field": "Nestle_NPS",
+        "type": "string",
+        "display_name": "雀巢价格"
+      },
+      {
+        "field": "Customer_Price",
+        "type": "string",
+        "display_name": "沃尔玛价格"
+      },
+      {
+        "field": "Exception_Reason",
+        "type": "string",
+        "display_name": "Exception reason"
+      },
+	  {
+        "field": "Customer_Name",
+        "type": "string",
+        "display_name": "customer_name"
+      }
+    ]
+  },
+  {
+    "name": "Copy of Excel to Order",
+    "table_name": "excel_to_order",
+    "columns": [
+      {
+        "field": "Customer_Order_Date",
+        "type": "date",
+        "display_name": "Customer Order Date"
+      },
+      {
+        "field": "Customer_Name",
+        "type": "string",
+        "display_name": "customer_name"
+      },
+      {
+        "field": "Sales_Order_Type",
+        "type": "string",
+        "display_name": "Order Type"
+      },
+      {
+        "field": "Sales_Org",
+        "type": "string",
+        "display_name": "Sales Org"
+      },
+      {
+        "field": "Distribution_channel",
+        "type": "string",
+        "display_name": "Distribution channel"
+      },
+      {
+        "field": "Sold_to",
+        "type": "string",
+        "display_name": "Sold to"
+      },
+      {
+        "field": "Sold_to_Name",
+        "type": "string",
+        "display_name": "Sold to Name"
+      },
+      {
+        "field": "Ship_to",
+        "type": "string",
+        "display_name": "Ship to"
+      },
+      {
+        "field": "Ship_to_Name",
+        "type": "string",
+        "display_name": "Ship to Name"
+      },
+      {
+        "field": "PO",
+        "type": "string",
+        "display_name": "PO"
+      },
+      {
+        "field": "PO_Number",
+        "type": "string",
+        "display_name": "PO Number"
+      },
+      {
+        "field": "Reqd_Del_Date",
+        "type": "date",
+        "display_name": "Reqd Del Date"
+      },
+      {
+        "field": "SAP_Material",
+        "type": "string",
+        "display_name": "SAP Material"
+      },
+      {
+        "field": "SAP_Description",
+        "type": "string",
+        "display_name": "SAP Description"
+      },
+      {
+        "field": "Qty",
+        "type": "string",
+        "display_name": "Qty"
+      },
+      {
+        "field": "UoM",
+        "type": "string",
+        "display_name": "UoM"
+      },
+      {
+        "field": "SLoc",
+        "type": "string",
+        "display_name": "SLoc"
+      },
+      {
+        "field": "Batch",
+        "type": "string",
+        "display_name": "Batch"
+      },
+      {
+        "field": "Plant",
+        "type": "string",
+        "display_name": "Plant"
+      },
+      {
+        "field": "WBS",
+        "type": "string",
+        "display_name": "WBS"
+      },
+      {
+        "field": "Item_Category",
+        "type": "string",
+        "display_name": "Item Category"
+      },
+      {
+        "field": "Delivery_note_text",
+        "type": "string",
+        "display_name": "Delivery note text"
+      },
+      {
+        "field": "Language",
+        "type": "string",
+        "display_name": "Language"
+      },
+      {
+        "field": "Order_Reason",
+        "type": "string",
+        "display_name": "Order Reason"
+      },
+      {
+        "field": "Cost_Center",
+        "type": "string",
+        "display_name": "Cost Center"
+      },
+      {
+        "field": "OTC_Name",
+        "type": "string",
+        "display_name": "OTC Name"
+      },
+      {
+        "field": "OTC_Street",
+        "type": "string",
+        "display_name": "OTC Street"
+      },
+      {
+        "field": "OTC_City_Name",
+        "type": "string",
+        "display_name": "OTC City Name"
+      },
+      {
+        "field": "Route",
+        "type": "string",
+        "display_name": "Route"
+      },
+      {
+        "field": "OTC_Check",
+        "type": "string",
+        "display_name": "OTC Check"
+      }
+    ]
+  },
+  {
+    "name": "分仓明细表",
+    "table_name": "branch_warehouse",
+    "columns": [
+      {
+        "field": "读单当天日期",
+        "type": "mdy_date",
+        "display_name": "读单当天日期"
+      },
+      {
+        "field": "PO_No",
+        "type": "string",
+        "display_name": "PO."
+      },
+      {
+        "field": "WMDC",
+        "type": "string",
+        "display_name": "WMDC"
+      },
+      {
+        "field": "订单类型（Promotional Event）",
+        "type": "string",
+        "display_name": "订单类型（Promotional Event）"
+      },
+      {
+        "field": "是否为手工单",
+        "type": "string",
+        "display_name": "是否为手工单"
+      },
+      {
+        "field": "是否为稳定库存",
+        "type": "string",
+        "display_name": "是否为稳定库存"
+      },
+      {
+        "field": "数量",
+        "type": "int",
+        "display_name": "数量"
+      },
+      {
+        "field": "起送日",
+        "type": "mdy_date",
+        "display_name": "起送日"
+      },
+      {
+        "field": "MABD",
+        "type": "mdy_date",
+        "display_name": "MABD"
+      },
+      {
+        "field": "订单修改信息",
+        "type": "string",
+        "display_name": "订单修改信息"
+      },
+      {
+        "field": "实际发货日",
+        "type": "string",
+        "display_name": "实际发货日"
+      },
+      {
+        "field": "送货时间",
+        "type": "string",
+        "display_name": "送货时间"
+      },
+      {
+        "field": "预约号",
+        "type": "string",
+        "display_name": "预约号"
+      },
+      {
+        "field": "订单数量",
+        "type": "string",
+        "display_name": "订单数量"
+      },
+      {
+        "field": "送货数量",
+        "type": "string",
+        "display_name": "送货数量"
+      },
+      {
+        "field": "沃尔玛入",
+        "type": "string",
+        "display_name": "沃尔玛入"
+      },
+      {
+        "field": "拒收",
+        "type": "string",
+        "display_name": "拒收"
+      },
+      {
+        "field": "早送/准时/晚送",
+        "type": "string",
+        "display_name": "早送/准时/晚送"
+      },
+      {
+        "field": "早送/晚送原因",
+        "type": "string",
+        "display_name": "早送/晚送原因"
+      },
+      {
+        "field": "满单/少送/不送",
+        "type": "string",
+        "display_name": "满单/少送/不送"
+      },
+      {
+        "field": "少送/不送原因",
+        "type": "string",
+        "display_name": "少送/不送原因"
+      },
+      {
+        "field": "订单类型",
+        "type": "string",
+        "display_name": "订单类型"
+      },
+	  {
+        "field": "Customer_Name",
+        "type": "string",
+        "display_name": "customer_name"
+      }
+    ]
+  },
+  {
+    "name": "主产品数据",
+    "table_name": "material_master_data",
+    "columns": [
+      {
+        "field": "Sold_to_Code",
+        "type": "string",
+        "display_name": "Sold to"
+      },
+      {
+        "field": "Ship_to_Code",
+        "type": "string",
+        "display_name": "Ship to"
+      },
+      {
+        "field": "Nestle_Plant_No",
+        "type": "string",
+        "display_name": "Plant"
+      },
+      {
+        "field": "Region",
+        "type": "string",
+        "display_name": "区域"
+      },
+      {
+        "field": "Customer_Name",
+        "type": "string",
+        "display_name": "客户名称"
+      },
+      {
+        "field": "Customer_Material_No",
+        "type": "string",
+        "display_name": "客户产品编码"
+      },
+      {
+        "field": "Nestle_Material_No",
+        "type": "string",
+        "display_name": "雀巢产品编码"
+      },
+      {
+        "field": "Material_Description",
+        "type": "string",
+        "display_name": "产品名称"
+      },
+      {
+        "field": "Nestle_BU",
+        "type": "string",
+        "display_name": "BU"
+      },
+      {
+        "field": "Nestle_NPS",
+        "type": "string",
+        "display_name": "雀巢产品箱价"
+      },
+      {
+        "field": "Nestle_Case_Configuration",
+        "type": "string",
+        "display_name": "雀巢产品箱规"
+      },
+      {
+        "field": "Adjustive_Price",
+        "type": "string",
+        "display_name": "调价价格"
+      },
+      {
+        "field": "Tax_Point",
+        "type": "string",
+        "display_name": "税点"
+      },
+      {
+        "field": "Remark",
+        "type": "string",
+        "display_name": "备注"
+      }
+    ]
+  }
+]

@@ -1,0 +1,42 @@
+{
+  "Md5CheckSum": "13333b0b9ee0597fd7ef5f3848834782",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Flowchart_1",
+        "Name": "Root",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "CommentActivity_1",
+            "Name": "注释掉",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "Assign_2",
+                "Name": "赋值",
+                "IsActivity": true,
+                "SubItems": []
+              }
+            ]
+          },
+          {
+            "RefId": "Assign_1",
+            "Name": "赋值 - filePath",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "InvokeWorkflow_1",
+            "Name": "调用子流程: download_store_daily_report",
+            "IsActivity": true,
+            "SubItems": []
+          }
+        ]
+      }
+    ]
+  }
+}

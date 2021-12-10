@@ -1,0 +1,24 @@
+Public Function macroReturnRow(ByVal SerialNum As String) As Variant
+
+    ActiveSheet.AutoFilterMode = False '取消筛选状态
+    Columns("A:A").Select
+    Dim totalRow As Long
+    ActiveSheet.Range("A:A").AutoFilter Field:=1, Criteria1:= _
+        "=" & SerialNum, Operator:=xlAnd
+	Dim i As Long
+    Dim rng As Range
+    Dim rng2 As Range
+    Dim RowS()
+	'将筛指定列的可见数据赋给rng，12是可见，2是常量，23是16+4+1+2
+    Set rng = Range("A:A").SpecialCells(12).SpecialCells(2, 23)
+    i = 1
+
+    ReDim RowS(0 To rng.Count)
+    For Each rng2 In rng
+        RowS(i) = rng2.Row
+        i = i + 1
+    Next
+    ActiveSheet.AutoFilterMode = False '取消筛选状态
+	
+    macroReturnRow = RowS
+End Function

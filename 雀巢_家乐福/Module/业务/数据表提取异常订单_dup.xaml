@@ -1,0 +1,151 @@
+<Activity mc:Ignorable="sap sap2010 sads" x:Class="整单异常" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:bda="clr-namespace:BotTime.DataTableActivity.Activities;assembly=BotTime.DataTableActivity" xmlns:bfa="clr-namespace:BotTime.Flow.Activities;assembly=BotTime.Flow.Activities" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger">
+  <x:Members>
+    <x:Property Name="etoConfigDT" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="exceptionOrder模板数据表" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="outExceptionDT" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="源订单数据表" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="异常原因" Type="InArgument(x:String)" />
+    <x:Property Name="异常详细描述" Type="InArgument(x:String)" />
+    <x:Property Name="跳过异常检查" Type="InArgument(x:Boolean)" />
+  </x:Members>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap:VirtualizedContainerService.HintSize>512,791</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>整单异常_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="17">
+      <x:String>System.Xml</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>Microsoft.CSharp.Activities</x:String>
+      <x:String>BotTime.Flow.Activities</x:String>
+      <x:String>BotTime.Office.Activity</x:String>
+      <x:String>BotTime.ActivityLibrary.Activities.System.Tool</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>Encoo.CodeTool.Activity.Activities.CSharp</x:String>
+      <x:String>GlobalVariable</x:String>
+      <x:String>Encootech.ActivityCommon.EncooCommonActivity</x:String>
+      <x:String>BotTime.ActivityLibrary.Activities.System.File</x:String>
+      <x:String>BotTime.DataTableActivity.Activities</x:String>
+      <x:String>BotTime.DataTableActivity.Activities.Models</x:String>
+      <x:String>System</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>BotTime.Flow.Activities</AssemblyReference>
+      <AssemblyReference>BotTime.Office.Activity</AssemblyReference>
+      <AssemblyReference>BotTime.ActivityLibrary</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>ParallelExtensionsExtras</AssemblyReference>
+      <AssemblyReference>Encoo.CodeTool.Activity</AssemblyReference>
+      <AssemblyReference>GlobalVariable</AssemblyReference>
+      <AssemblyReference>ActivityCommon</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Globalization.Extensions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Net.WebSockets.Client.Managed</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>BotTime.DataTableActivity</AssemblyReference>
+      <AssemblyReference>System.Data.Entity</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="472,711" sap2010:WorkflowViewState.IdRef="Sequence_20">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <bfa:Assign ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - outExceptionDT" sap:VirtualizedContainerService.HintSize="450,55" sap2010:WorkflowViewState.IdRef="Assign_8" IsIgnore="False">
+      <bfa:Assign.To>
+        <OutArgument x:TypeArguments="sd:DataTable">
+          <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_36">outExceptionDT</mca:CSharpReference>
+        </OutArgument>
+      </bfa:Assign.To>
+      <bfa:Assign.Value>
+        <InArgument x:TypeArguments="sd:DataTable">
+          <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_182">exceptionOrder模板数据表.Clone()</mca:CSharpValue>
+        </InArgument>
+      </bfa:Assign.Value>
+    </bfa:Assign>
+    <bda:ForEach CurrentIndex="{x:Null}" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="遍历行 - exceptionOrder模板数据表" sap:VirtualizedContainerService.HintSize="450,492" sap2010:WorkflowViewState.IdRef="ForEach_6">
+      <bda:ForEach.DataTable>
+        <InArgument x:TypeArguments="sd:DataTable">
+          <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_183">源订单数据表</mca:CSharpValue>
+        </InArgument>
+      </bda:ForEach.DataTable>
+      <ActivityAction x:TypeArguments="sd:DataRow">
+        <ActivityAction.Argument>
+          <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+        </ActivityAction.Argument>
+        <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="371,377" sap2010:WorkflowViewState.IdRef="Sequence_19">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="sd:DataRow" Name="exceptionDRow" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <bfa:Assign ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - exceptionDRow" sap:VirtualizedContainerService.HintSize="349,55" sap2010:WorkflowViewState.IdRef="Assign_7" IsIgnore="False">
+            <bfa:Assign.To>
+              <OutArgument x:TypeArguments="sd:DataRow">
+                <mca:CSharpReference x:TypeArguments="sd:DataRow" sap2010:WorkflowViewState.IdRef="CSharpReference`1_35">exceptionDRow</mca:CSharpReference>
+              </OutArgument>
+            </bfa:Assign.To>
+            <bfa:Assign.Value>
+              <InArgument x:TypeArguments="sd:DataRow">
+                <mca:CSharpValue x:TypeArguments="sd:DataRow" sap2010:WorkflowViewState.IdRef="CSharpValue`1_184">outExceptionDT.NewRow()</mca:CSharpValue>
+              </InArgument>
+            </bfa:Assign.Value>
+          </bfa:Assign>
+          <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: 异常订单检查" sap:VirtualizedContainerService.HintSize="349,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_8" IsIgnore="False">
+            <bfa:InvokeWorkflow.Arguments>
+              <InArgument x:TypeArguments="sd:DataRow" x:Key="orderItemDRow">
+                <mca:CSharpValue x:TypeArguments="sd:DataRow" sap2010:WorkflowViewState.IdRef="CSharpValue`1_178">row</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="sd:DataTable" x:Key="etoConfigDT">
+                <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_179">etoConfigDT</mca:CSharpValue>
+              </InArgument>
+              <InOutArgument x:TypeArguments="sd:DataRow" x:Key="exceptionDRow">
+                <mca:CSharpReference x:TypeArguments="sd:DataRow" sap2010:WorkflowViewState.IdRef="CSharpReference`1_34">exceptionDRow</mca:CSharpReference>
+              </InOutArgument>
+              <InArgument x:TypeArguments="x:Boolean" x:Key="跳过异常检查">
+                <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_188">跳过异常检查</mca:CSharpValue>
+              </InArgument>
+            </bfa:InvokeWorkflow.Arguments>
+            <bfa:InvokeWorkflow.WorkflowPath>
+              <InArgument x:TypeArguments="x:String">
+                <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_1">Module\业务\异常订单检查.xaml</Literal>
+              </InArgument>
+            </bfa:InvokeWorkflow.WorkflowPath>
+          </bfa:InvokeWorkflow>
+          <bda:DataTableAddRowActivity ArrayRow="{x:Null}" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="添加数据行 - 一行异常信息" sap:VirtualizedContainerService.HintSize="349,22" sap2010:WorkflowViewState.IdRef="DataTableAddRowActivity_1">
+            <bda:DataTableAddRowActivity.DataRow>
+              <InArgument x:TypeArguments="sd:DataRow">
+                <mca:CSharpValue x:TypeArguments="sd:DataRow" sap2010:WorkflowViewState.IdRef="CSharpValue`1_186">exceptionDRow</mca:CSharpValue>
+              </InArgument>
+            </bda:DataTableAddRowActivity.DataRow>
+            <bda:DataTableAddRowActivity.DataTable>
+              <InArgument x:TypeArguments="sd:DataTable">
+                <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_185">outExceptionDT</mca:CSharpValue>
+              </InArgument>
+            </bda:DataTableAddRowActivity.DataTable>
+          </bda:DataTableAddRowActivity>
+        </Sequence>
+      </ActivityAction>
+    </bda:ForEach>
+  </Sequence>
+</Activity>

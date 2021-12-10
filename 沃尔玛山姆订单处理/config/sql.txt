@@ -1,0 +1,93 @@
+CREATE TABLE `clean_exception_order_wm` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `Order Date` date DEFAULT NULL,
+  `PO No.` varchar(255) DEFAULT NULL,
+  `WMDC` varchar(255) DEFAULT NULL,
+  `Order Type（Promotional Event）` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Nestle BU` varchar(255) DEFAULT NULL,
+  `是否为手工单` varchar(255) DEFAULT NULL,
+  `是否为稳定库存` varchar(255) DEFAULT NULL,
+  `Order Qty` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `起送日` date DEFAULT NULL,
+  `MABD` date DEFAULT NULL,
+  `Order Category` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Exception Category` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Exception Reason` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `exception_order_wm` (
+  `Order Date` date DEFAULT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `PO No.` varchar(255) DEFAULT NULL,
+  `Customer Order Item` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `原始MABD` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `新MABD` varchar(255) DEFAULT NULL,
+  `沃尔玛产品编码` varchar(255) DEFAULT NULL,
+  `雀巢产品编码` varchar(255) DEFAULT NULL,
+  `Material Description` varchar(255) DEFAULT NULL,
+  `Nestle BU` varchar(255) DEFAULT NULL,
+  `原单箱规` varchar(255) DEFAULT NULL,
+  `原订单数量` varchar(255) DEFAULT NULL,
+  `修改后订单数量` varchar(255) DEFAULT NULL,
+  `雀巢数量` varchar(255) DEFAULT NULL,
+  `雀巢价格` varchar(255) DEFAULT NULL,
+  `沃尔玛价格` varchar(255) DEFAULT NULL,
+  `Exception Category` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `Exception Reason` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `dc_details` (
+  `Order_Date` date DEFAULT NULL,
+  `PO` varchar(255) DEFAULT NULL,
+  `WMDC` varchar(255) DEFAULT NULL,
+  `Order_Type` varchar(255) DEFAULT NULL,
+  `是否为手工单` varchar(255) DEFAULT NULL,
+  `是否为稳定库存` varchar(255) DEFAULT NULL,
+  `数量` varchar(255) DEFAULT NULL,
+  `起送日` date DEFAULT NULL,
+  `MABD` date DEFAULT NULL,
+  `订单修改信息` varchar(255) DEFAULT NULL,
+  `实际发货日` date DEFAULT NULL,
+  `送货时间` varchar(255) DEFAULT NULL,
+  `预约号` varchar(255) DEFAULT NULL,
+  `订单数量` varchar(255) DEFAULT NULL,
+  `送货数量` varchar(255) DEFAULT NULL,
+  `沃尔玛入` varchar(255) DEFAULT NULL,
+  `拒收` varchar(255) DEFAULT NULL,
+  `早送_准时_晚送` varchar(255) DEFAULT NULL,
+  `早送_晚送原因` varchar(255) DEFAULT NULL,
+  `满单_少送_不送` varchar(255) DEFAULT NULL,
+  `少送_不送原因` varchar(255) DEFAULT NULL,
+  `订单类型` varchar(255) DEFAULT NULL,
+  `created_time` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+CREATE TABLE `material_master_data` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `Sold_to_Code` varchar(255) CHARACTER SET utf8 DEFAULT NULL COMMENT 'Sold_to编码',
+  `Ship_to_Code` varchar(255) CHARACTER SET utf8 DEFAULT NULL COMMENT 'Ship_to编码',
+  `Nestle_Plant_No` varchar(255) CHARACTER SET utf8 DEFAULT NULL COMMENT '雀巢生产工厂编码',
+  `Region` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '区域名称',
+  `Customer_Name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '客户名称',
+  `Customer_Material_No` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '客户产品编码',
+  `Nestle_Material_No` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '雀巢产品编码',
+  `Material_Description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '产品名称',
+  `Nestle_BU` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '雀巢BU',
+  `Nestle_NPS` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '雀巢产品箱价',
+  `Nestle_Case_Configuration` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '雀巢产品箱规',
+  `Adjustive_Price` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '调价价格',
+  `Tax_Point` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '税点',
+  `Remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '备注',
+  `Remark_Option` varchar(255) DEFAULT NULL COMMENT '特殊产品备注说明',
+  `Distribution_Channel` varchar(45) DEFAULT NULL COMMENT '渠道',
+  `WMDC` varchar(45) DEFAULT NULL,
+  `Discount_Rate` varchar(45) DEFAULT NULL COMMENT '扣点',
+  `Update_Time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_product_mapping` (`Nestle_Plant_No`,`Customer_Material_No`,`Nestle_Material_No`) /*!80000 INVISIBLE */
+) ENGINE=InnoDB AUTO_INCREMENT=10050 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

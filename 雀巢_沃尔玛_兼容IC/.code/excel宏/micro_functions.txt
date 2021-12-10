@@ -1,0 +1,13 @@
+Sub splitColumn(ByVal sheetName As string, ByVal colName As string)
+'
+' 宏1 宏
+'
+
+    Sheets(sheetName).Select
+    Columns(colName  & ":" & colName ).Select
+    startCell = colName & "1"
+    Selection.TextToColumns Destination:=Range(startCell), DataType:=xlDelimited, _
+        TextQualifier:=xlDoubleQuote, ConsecutiveDelimiter:=False, Tab:=True, _
+        Semicolon:=False, Comma:=False, Space:=False, Other:=False, FieldInfo _
+        :=Array(1, 2), TrailingMinusNumbers:=True
+End Sub

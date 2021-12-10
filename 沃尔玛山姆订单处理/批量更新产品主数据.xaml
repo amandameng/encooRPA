@@ -1,0 +1,358 @@
+<Activity mc:Ignorable="sap sap2010 sads" x:Class="EncooWorkflow.Main" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap:VirtualizedContainerService.HintSize="654,716" sap2010:WorkflowViewState.IdRef="EncooWorkflow.Workflow_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:baast="clr-namespace:BotTime.ActivityLibrary.Activities.System.Tool;assembly=BotTime.ActivityLibrary" xmlns:bda="clr-namespace:BotTime.DataTableActivity.Activities;assembly=BotTime.DataTableActivity" xmlns:bda1="clr-namespace:BotTime.DataBase.Activity;assembly=BotTime.DataBase.Activity" xmlns:bdam="clr-namespace:BotTime.DataTableActivity.Activities.Models;assembly=BotTime.DataTableActivity" xmlns:bfa="clr-namespace:BotTime.Flow.Activities;assembly=BotTime.Flow.Activities" xmlns:boa="clr-namespace:BotTime.Office.Activity;assembly=BotTime.Office.Activity" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger">
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="13">
+      <x:String>System</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>BotTime.ActivityLibrary.Activities.System.Tool</x:String>
+      <x:String>BotTime.DataTableActivity.Activities</x:String>
+      <x:String>BotTime.DataBase.Activity</x:String>
+      <x:String>BotTime.DataTableActivity.Activities.Models</x:String>
+      <x:String>BotTime.Flow.Activities</x:String>
+      <x:String>BotTime.Office.Activity</x:String>
+      <x:String>Microsoft.CSharp.Activities</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>BotTime.ActivityLibrary</AssemblyReference>
+      <AssemblyReference>BotTime.DataTableActivity</AssemblyReference>
+      <AssemblyReference>BotTime.DataBase.Activity</AssemblyReference>
+      <AssemblyReference>BotTime.Flow.Activities</AssemblyReference>
+      <AssemblyReference>BotTime.Office.Activity</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Flowchart DisplayName="Root" sap:VirtualizedContainerService.HintSize="614,636" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <Flowchart.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="家乐福更新数据表" />
+    </Flowchart.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+        <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
+        <av:Size x:Key="ShapeSize">80,48</av:Size>
+        <av:PointCollection x:Key="ConnectorLocation">310,50.5 310,100.5</av:PointCollection>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Flowchart.StartNode>
+      <x:Reference>__ReferenceID0</x:Reference>
+    </Flowchart.StartNode>
+    <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <av:Point x:Key="ShapeLocation">210,100.5</av:Point>
+          <av:Size x:Key="ShapeSize">200,53</av:Size>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <boa:OfficeExcelOpenOrCreateActivity OfficeVersion="{x:Null}" Password="{x:Null}" SaveAs="{x:Null}" ActivityName="打开/新建" AutoSave="True" ContinueOnError="No" CreateNewFile="False" DelayAfter="0" DelayBefore="0" DisplayName="打开 - 家乐福产品主数据" EnableMacro="False" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="OfficeExcelOpenOrCreateActivity_1" ReadOnly="False" Visible="True" needRestoreKey="False">
+        <boa:OfficeExcelOpenOrCreateActivity.Body>
+          <ActivityAction x:TypeArguments="x:Object">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:Object" Name="XlWorkbook" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="530,2002" sap2010:WorkflowViewState.IdRef="Sequence_1">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="sd:DataTable" Name="家乐福新增数据表" />
+                <Variable x:TypeArguments="sd:DataTable" Name="家乐福删除数据表" />
+                <Variable x:TypeArguments="x:String" Name="新增产品SQL" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <boa:OfficeExcelReadRangeActivity Range="{x:Null}" ActivityName="读取区域" AddHeaders="True" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="读取区域" sap:VirtualizedContainerService.HintSize="508,58" sap2010:WorkflowViewState.IdRef="OfficeExcelReadRangeActivity_1" PreserveFormat="False" RepeatedColumn="False" UseFilter="False">
+                <boa:OfficeExcelReadRangeActivity.Data>
+                  <OutArgument x:TypeArguments="sd:DataTable">
+                    <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_2">家乐福更新数据表</mca:CSharpReference>
+                  </OutArgument>
+                </boa:OfficeExcelReadRangeActivity.Data>
+                <boa:OfficeExcelReadRangeActivity.SheetName>
+                  <InArgument x:TypeArguments="x:String">
+                    <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_4">Sheet4</Literal>
+                  </InArgument>
+                </boa:OfficeExcelReadRangeActivity.SheetName>
+              </boa:OfficeExcelReadRangeActivity>
+              <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - 家乐福更新数据表" sap:VirtualizedContainerService.HintSize="508,55" sap2010:WorkflowViewState.IdRef="Assign_5" IsIgnore="False">
+                <bfa:Assign.To>
+                  <OutArgument x:TypeArguments="sd:DataTable">
+                    <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_11">家乐福更新数据表</mca:CSharpReference>
+                  </OutArgument>
+                </bfa:Assign.To>
+                <bfa:Assign.Value>
+                  <InArgument x:TypeArguments="sd:DataTable">
+                    <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_18">家乐福更新数据表.DefaultView.ToTable(true, new string[]{"Sold to", "Ship to", "Plant", "客户名称", "区域", "客户产品编码", "雀巢产品编码", "产品名称", "BU", "雀巢产品箱价", "雀巢产品箱规", "调价价格", "税点", "备注", "操作"})</mca:CSharpValue>
+                  </InArgument>
+                </bfa:Assign.Value>
+              </bfa:Assign>
+              <bda:FilterDataTableActivity FilteredDataTable="{x:Null}" ActivityName="筛选" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="筛选 - 新增订单" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="508,63" sap2010:WorkflowViewState.IdRef="FilterDataTableActivity_1">
+                <bda:FilterDataTableActivity.Filters>
+                  <scg:List x:TypeArguments="bdam:FilterOperationArgument" Capacity="4">
+                    <bdam:FilterOperationArgument BooleanOperator="And" Operator="EQ">
+                      <bdam:FilterOperationArgument.Column>
+                        <InArgument x:TypeArguments="x:String">
+                          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_4">"操作"</mca:CSharpValue>
+                        </InArgument>
+                      </bdam:FilterOperationArgument.Column>
+                      <bdam:FilterOperationArgument.Operand>
+                        <InArgument x:TypeArguments="x:String">
+                          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_5">"新增"</mca:CSharpValue>
+                        </InArgument>
+                      </bdam:FilterOperationArgument.Operand>
+                    </bdam:FilterOperationArgument>
+                  </scg:List>
+                </bda:FilterDataTableActivity.Filters>
+                <bda:FilterDataTableActivity.InputDataTable>
+                  <InArgument x:TypeArguments="sd:DataTable">
+                    <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_2">家乐福更新数据表</mca:CSharpValue>
+                  </InArgument>
+                </bda:FilterDataTableActivity.InputDataTable>
+                <bda:FilterDataTableActivity.OutputDataTable>
+                  <OutArgument x:TypeArguments="sd:DataTable">
+                    <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_4">家乐福新增数据表</mca:CSharpReference>
+                  </OutArgument>
+                </bda:FilterDataTableActivity.OutputDataTable>
+              </bda:FilterDataTableActivity>
+              <bda:FilterDataTableActivity FilteredDataTable="{x:Null}" ActivityName="筛选" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="筛选 - 删除订单" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="508,63" sap2010:WorkflowViewState.IdRef="FilterDataTableActivity_2">
+                <bda:FilterDataTableActivity.Filters>
+                  <scg:List x:TypeArguments="bdam:FilterOperationArgument" Capacity="4">
+                    <bdam:FilterOperationArgument BooleanOperator="And" Operator="EQ">
+                      <bdam:FilterOperationArgument.Column>
+                        <InArgument x:TypeArguments="x:String">
+                          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_6">"操作"</mca:CSharpValue>
+                        </InArgument>
+                      </bdam:FilterOperationArgument.Column>
+                      <bdam:FilterOperationArgument.Operand>
+                        <InArgument x:TypeArguments="x:String">
+                          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_7">"删除"</mca:CSharpValue>
+                        </InArgument>
+                      </bdam:FilterOperationArgument.Operand>
+                    </bdam:FilterOperationArgument>
+                  </scg:List>
+                </bda:FilterDataTableActivity.Filters>
+                <bda:FilterDataTableActivity.InputDataTable>
+                  <InArgument x:TypeArguments="sd:DataTable">
+                    <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_3">家乐福更新数据表</mca:CSharpValue>
+                  </InArgument>
+                </bda:FilterDataTableActivity.InputDataTable>
+                <bda:FilterDataTableActivity.OutputDataTable>
+                  <OutArgument x:TypeArguments="sd:DataTable">
+                    <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_5">家乐福删除数据表</mca:CSharpReference>
+                  </OutArgument>
+                </bda:FilterDataTableActivity.OutputDataTable>
+              </bda:FilterDataTableActivity>
+              <bda1:DatabaseConnectActivity ActivityName="连接数据库" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="连接数据库" sap:VirtualizedContainerService.HintSize="508,1479" sap2010:WorkflowViewState.IdRef="DatabaseConnectActivity_1" ProviderName="MySql">
+                <bda1:DatabaseConnectActivity.Body>
+                  <ActivityAction x:TypeArguments="x:Object">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="x:Object" Name="DataBaseScope" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="494,1371" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Sequence DisplayName="序列 - 新增产品" sap:VirtualizedContainerService.HintSize="472,442" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="x:Int32" Name="作用行数" />
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <bda:DataTableRemoveColumnActivity ColumnIndex="{x:Null}" DataColumn="{x:Null}" ActivityName="移除列" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="移除列 - 操作" sap:VirtualizedContainerService.HintSize="349,22" sap2010:WorkflowViewState.IdRef="DataTableRemoveColumnActivity_1">
+                          <bda:DataTableRemoveColumnActivity.ColumnName>
+                            <InArgument x:TypeArguments="x:String">
+                              <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_10">操作</Literal>
+                            </InArgument>
+                          </bda:DataTableRemoveColumnActivity.ColumnName>
+                          <bda:DataTableRemoveColumnActivity.DataTable>
+                            <InArgument x:TypeArguments="sd:DataTable">
+                              <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_19">家乐福新增数据表</mca:CSharpValue>
+                            </InArgument>
+                          </bda:DataTableRemoveColumnActivity.DataTable>
+                        </bda:DataTableRemoveColumnActivity>
+                        <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: 根据数据表拼接数据库SQL语句 - 新增" sap:VirtualizedContainerService.HintSize="349,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_1" IsIgnore="False">
+                          <bfa:InvokeWorkflow.Arguments>
+                            <InArgument x:TypeArguments="x:String" x:Key="str_TableName">
+                              <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_1">material_master_data</Literal>
+                            </InArgument>
+                            <InArgument x:TypeArguments="sd:DataTable" x:Key="源数据表">
+                              <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">家乐福新增数据表</mca:CSharpValue>
+                            </InArgument>
+                            <OutArgument x:TypeArguments="x:String" x:Key="str_SQL">
+                              <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1">新增产品SQL</mca:CSharpReference>
+                            </OutArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="customerName" />
+                            <InArgument x:TypeArguments="x:Boolean" x:Key="addCustomerName">
+                              <Literal x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="Literal`1_8" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:Boolean" x:Key="insertIgnore">
+                              <Literal x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="Literal`1_2" Value="True" />
+                            </InArgument>
+                          </bfa:InvokeWorkflow.Arguments>
+                          <bfa:InvokeWorkflow.WorkflowPath>
+                            <InArgument x:TypeArguments="x:String">
+                              <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_6">Module\通用\根据数据表拼接数据库SQL语句.xaml</Literal>
+                            </InArgument>
+                          </bfa:InvokeWorkflow.WorkflowPath>
+                        </bfa:InvokeWorkflow>
+                        <bda1:ExecuteSqlActivity ActivityName="执行语句" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行语句" sap:VirtualizedContainerService.HintSize="349,22" sap2010:WorkflowViewState.IdRef="ExecuteSqlActivity_1">
+                          <bda1:ExecuteSqlActivity.AffectedRows>
+                            <OutArgument x:TypeArguments="x:Int32">
+                              <mca:CSharpReference x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpReference`1_6">作用行数</mca:CSharpReference>
+                            </OutArgument>
+                          </bda1:ExecuteSqlActivity.AffectedRows>
+                          <bda1:ExecuteSqlActivity.ExecuteTimeOut>
+                            <InArgument x:TypeArguments="x:TimeSpan">
+                              <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_7" Value="00:00:30" />
+                            </InArgument>
+                          </bda1:ExecuteSqlActivity.ExecuteTimeOut>
+                          <bda1:ExecuteSqlActivity.Sql>
+                            <InArgument x:TypeArguments="x:String">
+                              <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_8">System.Convert.ToString(新增产品SQL)</mca:CSharpValue>
+                            </InArgument>
+                          </bda1:ExecuteSqlActivity.Sql>
+                        </bda1:ExecuteSqlActivity>
+                        <baast:LogActivity ActivityName="写入日志" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="写入日志 - 作用行数" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="LogActivity_1" Level="Info">
+                          <baast:LogActivity.LogContent>
+                            <InArgument x:TypeArguments="x:String">
+                              <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_9">System.Convert.ToString(作用行数)</mca:CSharpValue>
+                            </InArgument>
+                          </baast:LogActivity.LogContent>
+                        </baast:LogActivity>
+                      </Sequence>
+                      <Sequence DisplayName="序列 - 删除产品" sap:VirtualizedContainerService.HintSize="472,765" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="x:String" Name="plantNo" />
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <bda:ForEach CurrentIndex="{x:Null}" ActivityName="遍历行" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="遍历行" sap:VirtualizedContainerService.HintSize="450,641" sap2010:WorkflowViewState.IdRef="ForEach_1">
+                          <bda:ForEach.DataTable>
+                            <InArgument x:TypeArguments="sd:DataTable">
+                              <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_10">家乐福删除数据表</mca:CSharpValue>
+                            </InArgument>
+                          </bda:ForEach.DataTable>
+                          <ActivityAction x:TypeArguments="sd:DataRow">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="345,526" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="x:String" Name="客户产品编码" />
+                                <Variable x:TypeArguments="x:String" Name="雀巢产品编码" />
+                                <Variable x:TypeArguments="x:String" Name="deleteSQL" />
+                              </Sequence.Variables>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - plantNo" sap:VirtualizedContainerService.HintSize="323,55" sap2010:WorkflowViewState.IdRef="Assign_1" IsIgnore="False">
+                                <bfa:Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">
+                                    <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_7">plantNo</mca:CSharpReference>
+                                  </OutArgument>
+                                </bfa:Assign.To>
+                                <bfa:Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_11">row["Plant"].ToString()</mca:CSharpValue>
+                                  </InArgument>
+                                </bfa:Assign.Value>
+                              </bfa:Assign>
+                              <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - 客户产品编码" sap:VirtualizedContainerService.HintSize="323,55" sap2010:WorkflowViewState.IdRef="Assign_2" IsIgnore="False">
+                                <bfa:Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">
+                                    <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_8">客户产品编码</mca:CSharpReference>
+                                  </OutArgument>
+                                </bfa:Assign.To>
+                                <bfa:Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_12">row["客户产品编码"].ToString()</mca:CSharpValue>
+                                  </InArgument>
+                                </bfa:Assign.Value>
+                              </bfa:Assign>
+                              <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - 雀巢产品编码" sap:VirtualizedContainerService.HintSize="323,55" sap2010:WorkflowViewState.IdRef="Assign_3" IsIgnore="False">
+                                <bfa:Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">
+                                    <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_9">雀巢产品编码</mca:CSharpReference>
+                                  </OutArgument>
+                                </bfa:Assign.To>
+                                <bfa:Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_13">row["雀巢产品编码"].ToString()</mca:CSharpValue>
+                                  </InArgument>
+                                </bfa:Assign.Value>
+                              </bfa:Assign>
+                              <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值" sap:VirtualizedContainerService.HintSize="323,55" sap2010:WorkflowViewState.IdRef="Assign_4" IsIgnore="False">
+                                <bfa:Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">
+                                    <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_10">deleteSQL</mca:CSharpReference>
+                                  </OutArgument>
+                                </bfa:Assign.To>
+                                <bfa:Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_20">String.Format("delete from material_master_data where Nestle_Plant_No='{0}' and Customer_Material_No='{1}' and Nestle_Material_No = '{2}' ", plantNo, 客户产品编码, 雀巢产品编码)</mca:CSharpValue>
+                                  </InArgument>
+                                </bfa:Assign.Value>
+                              </bfa:Assign>
+                              <bda1:ExecuteSqlActivity AffectedRows="{x:Null}" ActivityName="执行语句" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行语句 - delete item" sap:VirtualizedContainerService.HintSize="323,22" sap2010:WorkflowViewState.IdRef="ExecuteSqlActivity_2">
+                                <bda1:ExecuteSqlActivity.ExecuteTimeOut>
+                                  <InArgument x:TypeArguments="x:TimeSpan">
+                                    <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_9" Value="00:00:30" />
+                                  </InArgument>
+                                </bda1:ExecuteSqlActivity.ExecuteTimeOut>
+                                <bda1:ExecuteSqlActivity.Sql>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_15">System.Convert.ToString(deleteSQL)</mca:CSharpValue>
+                                  </InArgument>
+                                </bda1:ExecuteSqlActivity.Sql>
+                              </bda1:ExecuteSqlActivity>
+                            </Sequence>
+                          </ActivityAction>
+                        </bda:ForEach>
+                      </Sequence>
+                    </Sequence>
+                  </ActivityAction>
+                </bda1:DatabaseConnectActivity.Body>
+                <bda1:DatabaseConnectActivity.ConnectionString>
+                  <InArgument x:TypeArguments="x:String">
+                    <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_5">Server=127.0.0.1;Database=vicode_nestle; Uid=root;Password=123456Q</Literal>
+                  </InArgument>
+                </bda1:DatabaseConnectActivity.ConnectionString>
+              </bda1:DatabaseConnectActivity>
+            </Sequence>
+          </ActivityAction>
+        </boa:OfficeExcelOpenOrCreateActivity.Body>
+        <boa:OfficeExcelOpenOrCreateActivity.ExcelFile>
+          <InArgument x:TypeArguments="x:String">
+            <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_3">D:\RPA 客户\雀巢\家乐福产品主数据.xlsx</Literal>
+          </InArgument>
+        </boa:OfficeExcelOpenOrCreateActivity.ExcelFile>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </boa:OfficeExcelOpenOrCreateActivity>
+    </FlowStep>
+  </Flowchart>
+</Activity>

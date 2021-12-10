@@ -1,0 +1,238 @@
+<Activity mc:Ignorable="sap sap2010 sads" x:Class="_06_订单修改RDD异常" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:bda="clr-namespace:BotTime.DataTableActivity.Activities;assembly=BotTime.DataTableActivity" xmlns:bdam="clr-namespace:BotTime.DataTableActivity.Activities.Models;assembly=BotTime.DataTableActivity" xmlns:bfa="clr-namespace:BotTime.Flow.Activities;assembly=BotTime.Flow.Activities" xmlns:eae="clr-namespace:Encootech.ActivityCommon.EncooCommonActivity;assembly=ActivityCommon" xmlns:ecaac="clr-namespace:Encoo.CodeTool.Activity.Activities.CSharp;assembly=Encoo.CodeTool.Activity" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger">
+  <x:Members>
+    <x:Property Name="数据库最近订单数据表" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="待预约采购单数据表" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="existingExceptionOrders" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="增量交期不准订单数据表" Type="OutArgument(sd:DataTable)" />
+  </x:Members>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap:VirtualizedContainerService.HintSize>654,826</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>_06_订单修改RDD异常_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="18">
+      <x:String>System</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>Microsoft.CSharp.Activities</x:String>
+      <x:String>BotTime.Flow.Activities</x:String>
+      <x:String>BotTime.Office.Activity</x:String>
+      <x:String>BotTime.ActivityLibrary.Activities.System.Tool</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>Encoo.CodeTool.Activity.Activities.CSharp</x:String>
+      <x:String>GlobalVariable</x:String>
+      <x:String>Encootech.ActivityCommon.EncooCommonActivity</x:String>
+      <x:String>BotTime.DataBase.Activity</x:String>
+      <x:String>BotTime.Mail.Activity.Activities</x:String>
+      <x:String>BotTime.DataTableActivity.Activities</x:String>
+      <x:String>BotTime.DataTableActivity.Activities.Models</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>BotTime.Flow.Activities</AssemblyReference>
+      <AssemblyReference>BotTime.Office.Activity</AssemblyReference>
+      <AssemblyReference>BotTime.ActivityLibrary</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>ParallelExtensionsExtras</AssemblyReference>
+      <AssemblyReference>Encoo.CodeTool.Activity</AssemblyReference>
+      <AssemblyReference>GlobalVariable</AssemblyReference>
+      <AssemblyReference>ActivityCommon</AssemblyReference>
+      <AssemblyReference>BotTime.DataBase.Activity</AssemblyReference>
+      <AssemblyReference>BotTime.Mail.Activity</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>BotTime.DataTableActivity</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Flowchart sap2010:Annotation.AnnotationText="客户网站交货日期被修改&#xA;1、获取网站7天待预约订单 orders1 （在前面已经获取过）&#xA;2、获取数据库7天订单 order2&#xA;3、联结数据表  =&gt; orders3&#xA;4、依次判断orders3的网站交货日期 与 数据库的request_delivery_date 是否相同&#xA;5、第4步不相同则加到异常订单" DisplayName="06. 订单修改RDD" sap:VirtualizedContainerService.HintSize="614,746" sap2010:WorkflowViewState.IdRef="Flowchart_8">
+    <Flowchart.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="最近待预约订单数据表" />
+      <Variable x:TypeArguments="sd:DataTable" Name="rdd异常订单数据表" />
+    </Flowchart.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
+        <av:Size x:Key="ShapeSize">80,48</av:Size>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        <av:PointCollection x:Key="ConnectorLocation">310,50.5 310,100.5</av:PointCollection>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Flowchart.StartNode>
+      <x:Reference>__ReferenceID2</x:Reference>
+    </Flowchart.StartNode>
+    <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_4">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <av:Point x:Key="ShapeLocation">210,100.5</av:Point>
+          <av:Size x:Key="ShapeSize">200,129</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">310,229.5 310,279.5</av:PointCollection>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <bda:JoinDataTablesActivity JoinSettings="{x:Null}" sap2010:Annotation.AnnotationText="待预约采购单数据表（网页新下载的7天订单）&#xA;join&#xA;数据库最近订单数据表" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="联结数据表" sap:VirtualizedContainerService.HintSize="200,129" sap2010:WorkflowViewState.IdRef="JoinDataTablesActivity_1" JoinType="Inner">
+        <bda:JoinDataTablesActivity.Arguments>
+          <scg:List x:TypeArguments="bdam:JoinOperationArgument" Capacity="4">
+            <bdam:JoinOperationArgument>
+              <bdam:JoinOperationArgument.Column1>
+                <InArgument x:TypeArguments="x:String">
+                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_188">"order_number"</mca:CSharpValue>
+                </InArgument>
+              </bdam:JoinOperationArgument.Column1>
+              <bdam:JoinOperationArgument.Column2>
+                <InArgument x:TypeArguments="x:String">
+                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_189">"采购单号"</mca:CSharpValue>
+                </InArgument>
+              </bdam:JoinOperationArgument.Column2>
+            </bdam:JoinOperationArgument>
+          </scg:List>
+        </bda:JoinDataTablesActivity.Arguments>
+        <bda:JoinDataTablesActivity.InputDataTable1>
+          <InArgument x:TypeArguments="sd:DataTable">
+            <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_186">数据库最近订单数据表</mca:CSharpValue>
+          </InArgument>
+        </bda:JoinDataTablesActivity.InputDataTable1>
+        <bda:JoinDataTablesActivity.InputDataTable2>
+          <InArgument x:TypeArguments="sd:DataTable">
+            <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_187">待预约采购单数据表</mca:CSharpValue>
+          </InArgument>
+        </bda:JoinDataTablesActivity.InputDataTable2>
+        <bda:JoinDataTablesActivity.OutputDataTable>
+          <OutArgument x:TypeArguments="sd:DataTable">
+            <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_65">最近待预约订单数据表</mca:CSharpReference>
+          </OutArgument>
+        </bda:JoinDataTablesActivity.OutputDataTable>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </bda:JoinDataTablesActivity>
+      <FlowStep.Next>
+        <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_3">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">135.5,279.5</av:Point>
+              <av:Size x:Key="ShapeSize">349,93</av:Size>
+              <av:PointCollection x:Key="ConnectorLocation">310,372.5 310,414.38</av:PointCollection>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ecaac:InvokeCSharpCodeActivity ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行C#代码 - checkRDD" sap:VirtualizedContainerService.HintSize="349,93" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_9">
+            <ecaac:InvokeCSharpCodeActivity.CodeFilePath>
+              <InArgument x:TypeArguments="x:String">
+                <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_146">.code\CSharp\执行CSharp代码_checkRDD.cs</Literal>
+              </InArgument>
+            </ecaac:InvokeCSharpCodeActivity.CodeFilePath>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ecaac:InvokeCSharpCodeActivity>
+          <FlowStep.Next>
+            <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_2">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <av:Point x:Key="ShapeLocation">210,414.38</av:Point>
+                  <av:Size x:Key="ShapeSize">200,53</av:Size>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <bfa:If ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If rdd异常订单数据表 不为空）" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="If_12" IsIgnore="False">
+                <bfa:If.Condition>
+                  <InArgument x:TypeArguments="x:Boolean">
+                    <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_205">rdd异常订单数据表.Rows.Count &gt; 0</mca:CSharpValue>
+                  </InArgument>
+                </bfa:If.Condition>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <bfa:If.Then>
+                  <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="477,462" sap2010:WorkflowViewState.IdRef="Sequence_1">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <bfa:InvokeWorkflow sap2010:Annotation.AnnotationText="数据表两两比较，输出增量" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行流程 : 执行C_代码_输出增量order" sap:VirtualizedContainerService.HintSize="455,121" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_18" IsIgnore="False">
+                      <bfa:InvokeWorkflow.Arguments>
+                        <InArgument x:TypeArguments="sd:DataTable" x:Key="srcDataTable">
+                          <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_206">rdd异常订单数据表</mca:CSharpValue>
+                        </InArgument>
+                        <InArgument x:TypeArguments="sd:DataTable" x:Key="targetDT">
+                          <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_198">existingExceptionOrders</mca:CSharpValue>
+                        </InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="targetOrderCol">
+                          <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_152">客户PO</Literal>
+                        </InArgument>
+                        <InArgument x:TypeArguments="x:String" x:Key="srcCol">
+                          <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_150">采购单号</Literal>
+                        </InArgument>
+                        <OutArgument x:TypeArguments="sd:DataTable" x:Key="增量订单数据表">
+                          <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_67">增量交期不准订单数据表</mca:CSharpReference>
+                        </OutArgument>
+                      </bfa:InvokeWorkflow.Arguments>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <bfa:InvokeWorkflow.WorkflowPath>
+                        <InArgument x:TypeArguments="x:String">
+                          <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_151">Module\通用\执行C_代码_输出增量order.xaml</Literal>
+                        </InArgument>
+                      </bfa:InvokeWorkflow.WorkflowPath>
+                    </bfa:InvokeWorkflow>
+                    <eae:CommentActivity DisplayName="注释掉" sap:VirtualizedContainerService.HintSize="455,177" sap2010:WorkflowViewState.IdRef="CommentActivity_1">
+                      <bda:DataTablePreviewActivity ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="预览数据表 - 增量rdd异常订单数据表" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="DataTablePreviewActivity_6">
+                        <bda:DataTablePreviewActivity.DataTable>
+                          <InArgument x:TypeArguments="sd:DataTable">
+                            <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_207">增量交期不准订单数据表</mca:CSharpValue>
+                          </InArgument>
+                        </bda:DataTablePreviewActivity.DataTable>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </bda:DataTablePreviewActivity>
+                    </eae:CommentActivity>
+                  </Sequence>
+                </bfa:If.Then>
+                <bfa:If.Else>
+                  <bfa:Assign ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - 增量交期不准订单数据表" sap:VirtualizedContainerService.HintSize="323,55" sap2010:WorkflowViewState.IdRef="Assign_1" IsIgnore="False">
+                    <bfa:Assign.To>
+                      <OutArgument x:TypeArguments="sd:DataTable">
+                        <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_68">增量交期不准订单数据表</mca:CSharpReference>
+                      </OutArgument>
+                    </bfa:Assign.To>
+                    <bfa:Assign.Value>
+                      <InArgument x:TypeArguments="sd:DataTable">
+                        <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_208">new DataTable()</mca:CSharpValue>
+                      </InArgument>
+                    </bfa:Assign.Value>
+                  </bfa:Assign>
+                </bfa:If.Else>
+              </bfa:If>
+            </FlowStep>
+          </FlowStep.Next>
+        </FlowStep>
+      </FlowStep.Next>
+    </FlowStep>
+    <x:Reference>__ReferenceID0</x:Reference>
+    <x:Reference>__ReferenceID1</x:Reference>
+  </Flowchart>
+</Activity>

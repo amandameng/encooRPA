@@ -1,0 +1,689 @@
+{
+  "Md5CheckSum": "11d062a405a1da000a160afa5211e730",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Flowchart_1",
+        "Name": "Root",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "TryCatch_5",
+            "Name": "错误捕获 - 主流程捕获",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": null,
+                "Name": "TryCatch.Try",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "Flowchart_5",
+                    "Name": "flowchart",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "Flowchart_6",
+                        "Name": "流程图 - 初始化",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": "InvokeCSharpCodeActivity_11",
+                            "Name": "执行C#代码 - 流程初始化",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "OfficeExcelOpenOrCreateActivity_3",
+                            "Name": "打开 - 配置文件",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": "Sequence_38",
+                                "Name": "序列",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "OfficeExcelReadRangeActivity_3",
+                                    "Name": "读取区域",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  },
+                                  {
+                                    "RefId": "Assign_18",
+                                    "Name": "赋值 - sqlConn",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "RefId": "DatabaseConnectActivity_6",
+                            "Name": "连接数据库",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": "Sequence_39",
+                                "Name": "序列",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "Sequence_41",
+                                    "Name": "序列 - rpa_accounts",
+                                    "IsActivity": true,
+                                    "SubItems": [
+                                      {
+                                        "RefId": "QueryTableActivity_30",
+                                        "Name": "查询-rpa_accounts",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      },
+                                      {
+                                        "RefId": "If_16",
+                                        "Name": "条件（If rpa account 不存在）",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": null,
+                                            "Name": "If.Then",
+                                            "IsActivity": true,
+                                            "SubItems": [
+                                              {
+                                                "RefId": "Throw_7",
+                                                "Name": "抛出异常",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "RefId": "QueryTableActivity_31",
+                                        "Name": "查询- mail settings",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "RefId": "QueryTableActivity_22",
+                                    "Name": "查询 - excel_to_order_config",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  },
+                                  {
+                                    "RefId": "QueryTableActivity_23",
+                                    "Name": "查询- 山姆 shipTo",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  },
+                                  {
+                                    "RefId": "QueryTableActivity_24",
+                                    "Name": "查询 - 散威化分配比例",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  },
+                                  {
+                                    "RefId": "QueryTableActivity_25",
+                                    "Name": "查询语句 - 查询1：N雀巢码",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  },
+                                  {
+                                    "RefId": "QueryTableActivity_26",
+                                    "Name": "查询 - 山姆-雀巢数量对照表",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  },
+                                  {
+                                    "RefId": "QueryTableActivity_27",
+                                    "Name": "查询语句 - 山姆主产品数据",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  },
+                                  {
+                                    "RefId": "QueryTableActivity_28",
+                                    "Name": "查询语句 - 山姆水产品数据",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  },
+                                  {
+                                    "RefId": "QueryTableActivity_29",
+                                    "Name": "查询语句 - 山姆水起送量+整托",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  },
+                                  {
+                                    "RefId": "InvokeCSharpCodeActivity_14",
+                                    "Name": "执行C#代码",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  },
+                                  {
+                                    "RefId": "InvokeCSharpCodeActivity_15",
+                                    "Name": "执行C#代码: 执行CSharp代码-配置转化变量",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "RefId": "CommentActivity_2",
+                            "Name": "注释掉",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": "InvokeWorkflow_32",
+                                "Name": "调用子流程: 初始化环境",
+                                "IsActivity": true,
+                                "SubItems": []
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "RefId": "Sequence_31",
+                        "Name": "序列 - 登录",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": "InvokeWorkflow_33",
+                            "Name": "调用子流程: 登录沃尔玛",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "If_15",
+                            "Name": "条件（If 登录不成功，则抛出异常，结束流程）",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": null,
+                                "Name": "If.Then",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "Throw_6",
+                                    "Name": "抛出异常",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "RefId": "BrowserAttach_2",
+                        "Name": "绑定浏览器 - 跳转到订单页",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": "Sequence_34",
+                            "Name": "序列",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": "BrowserNavigate_4",
+                                "Name": "当前页跳转",
+                                "IsActivity": true,
+                                "SubItems": []
+                              },
+                              {
+                                "RefId": "ForEach`1_2",
+                                "Name": "循环操作 - 重试文件导出",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "TryCatch_6",
+                                    "Name": "错误捕获 - 重试保存文件",
+                                    "IsActivity": true,
+                                    "SubItems": [
+                                      {
+                                        "RefId": null,
+                                        "Name": "TryCatch.Try",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": "Sequence_42",
+                                            "Name": "序列 - 错误捕获",
+                                            "IsActivity": true,
+                                            "SubItems": [
+                                              {
+                                                "RefId": "TryCatch_7",
+                                                "Name": "错误捕获 点击 export",
+                                                "IsActivity": true,
+                                                "SubItems": [
+                                                  {
+                                                    "RefId": null,
+                                                    "Name": "TryCatch.Try",
+                                                    "IsActivity": true,
+                                                    "SubItems": [
+                                                      {
+                                                        "RefId": "Sequence_44",
+                                                        "Name": "序列",
+                                                        "IsActivity": true,
+                                                        "SubItems": [
+                                                          {
+                                                            "RefId": "Retry_2",
+                                                            "Name": "重试 - 点击导出excel按钮",
+                                                            "IsActivity": true,
+                                                            "SubItems": [
+                                                              {
+                                                                "RefId": "ClickActivity_8",
+                                                                "Name": "点击 - export Grid",
+                                                                "IsActivity": true,
+                                                                "SubItems": []
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "RefId": null,
+                                                    "Name": "TryCatch.Catches",
+                                                    "IsActivity": true,
+                                                    "SubItems": [
+                                                      {
+                                                        "RefId": "Throw_9",
+                                                        "Name": "抛出异常",
+                                                        "IsActivity": true,
+                                                        "SubItems": []
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "RefId": "SelectItemActivity_4",
+                                                "Name": "选择项目- Excel",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              },
+                                              {
+                                                "RefId": "ClickActivity_7",
+                                                "Name": "点击 - Download",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              },
+                                              {
+                                                "RefId": "Sequence_43",
+                                                "Name": "序列",
+                                                "IsActivity": true,
+                                                "SubItems": [
+                                                  {
+                                                    "RefId": "Sequence_46",
+                                                    "Name": "序列",
+                                                    "IsActivity": true,
+                                                    "SubItems": [
+                                                      {
+                                                        "RefId": "Sequence_48",
+                                                        "Name": "序列 - 文件保存",
+                                                        "IsActivity": true,
+                                                        "SubItems": [
+                                                          {
+                                                            "RefId": "SetClipboardTextActivity_2",
+                                                            "Name": "设置剪贴板文本",
+                                                            "IsActivity": true,
+                                                            "SubItems": []
+                                                          },
+                                                          {
+                                                            "RefId": "DeleteActivity_2",
+                                                            "Name": "删除文件 已有listing 文件",
+                                                            "IsActivity": true,
+                                                            "SubItems": []
+                                                          },
+                                                          {
+                                                            "RefId": "ClickActivity_9",
+                                                            "Name": "点击 - 路径输入框",
+                                                            "IsActivity": true,
+                                                            "SubItems": []
+                                                          },
+                                                          {
+                                                            "RefId": "Sequence_49",
+                                                            "Name": "序列",
+                                                            "IsActivity": true,
+                                                            "SubItems": [
+                                                              {
+                                                                "RefId": "SendHotKeyActivity_4",
+                                                                "Name": "发送快捷键 - ctrl A",
+                                                                "IsActivity": true,
+                                                                "SubItems": []
+                                                              },
+                                                              {
+                                                                "RefId": "SendHotKeyActivity_5",
+                                                                "Name": "发送快捷键 - Delete",
+                                                                "IsActivity": true,
+                                                                "SubItems": []
+                                                              },
+                                                              {
+                                                                "RefId": "SendHotKeyActivity_6",
+                                                                "Name": "发送快捷键 - ctrl V",
+                                                                "IsActivity": true,
+                                                                "SubItems": []
+                                                              }
+                                                            ]
+                                                          },
+                                                          {
+                                                            "RefId": "ClickActivity_10",
+                                                            "Name": "点击 - 文件框保存",
+                                                            "IsActivity": true,
+                                                            "SubItems": []
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "RefId": "While_2",
+                                                    "Name": "循环操作（While)",
+                                                    "IsActivity": true,
+                                                    "SubItems": [
+                                                      {
+                                                        "RefId": "Sequence_47",
+                                                        "Name": "序列",
+                                                        "IsActivity": true,
+                                                        "SubItems": [
+                                                          {
+                                                            "RefId": "Delay_2",
+                                                            "Name": "延迟 - 2s",
+                                                            "IsActivity": true,
+                                                            "SubItems": []
+                                                          },
+                                                          {
+                                                            "RefId": "Assign_19",
+                                                            "Name": "赋值 curWaitSeconds + 2",
+                                                            "IsActivity": true,
+                                                            "SubItems": []
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "RefId": "If_17",
+                                                    "Name": "条件（If 订单文件不存在则抛出异常）",
+                                                    "IsActivity": true,
+                                                    "SubItems": [
+                                                      {
+                                                        "RefId": null,
+                                                        "Name": "If.Then",
+                                                        "IsActivity": true,
+                                                        "SubItems": [
+                                                          {
+                                                            "RefId": "Throw_8",
+                                                            "Name": "抛出异常 - 文件下载超时失败",
+                                                            "IsActivity": true,
+                                                            "SubItems": []
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "RefId": "Break_2",
+                                                "Name": "终止循环",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "RefId": null,
+                                        "Name": "TryCatch.Catches",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": "Sequence_45",
+                                            "Name": "序列",
+                                            "IsActivity": true,
+                                            "SubItems": [
+                                              {
+                                                "RefId": "LogActivity_6",
+                                                "Name": "写入日志",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              },
+                                              {
+                                                "RefId": "BrowserNavigate_5",
+                                                "Name": "当前页跳转 - inboundLink",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "RefId": "If_18",
+                        "Name": "条件（If 实际增量订单数据表 != null）",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": null,
+                            "Name": "If.Then",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": "CommentActivity_3",
+                                "Name": "注释掉",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "DataTablePreviewActivity_3",
+                                    "Name": "预览数据表",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "RefId": "InvokeWorkflow_31",
+                        "Name": "调用子流程: 抓取订单并入库",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "If_14",
+                        "Name": "条件（If 增量订单数据表 存在）",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": null,
+                            "Name": "If.Then",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": "Sequence_33",
+                                "Name": "序列 - 增量订单存在的话",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "Sequence_36",
+                                    "Name": "序列 - 输出到 excel and 报表入库 - 山姆",
+                                    "IsActivity": true,
+                                    "SubItems": [
+                                      {
+                                        "RefId": "InvokeWorkflow_36",
+                                        "Name": "调用子流程: 异常订单判断- 山姆",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      },
+                                      {
+                                        "RefId": "InvokeWorkflow_37",
+                                        "Name": "调用子流程: 输出EX2O模板",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      },
+                                      {
+                                        "RefId": "InvokeWorkflow_38",
+                                        "Name": "调用子流程: 订单报表入库",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "RefId": "Sequence_37",
+                                    "Name": "序列 - 输出到 excel and 报表入库 - 山姆水单",
+                                    "IsActivity": true,
+                                    "SubItems": [
+                                      {
+                                        "RefId": "InvokeCSharpCodeActivity_13",
+                                        "Name": "执行C#代码 - 设置山姆水单相关变量",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      },
+                                      {
+                                        "RefId": "InvokeWorkflow_39",
+                                        "Name": "调用子流程: 异常订单判断 - 山姆水单",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      },
+                                      {
+                                        "RefId": "InvokeWorkflow_40",
+                                        "Name": "调用子流程: 输出EX2O模板 - 山姆水单",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      },
+                                      {
+                                        "RefId": "InvokeWorkflow_41",
+                                        "Name": "调用子流程: 订单报表入库 - 山姆水单",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "RefId": "InvokeCSharpCodeActivity_12",
+                                    "Name": "执行C#代码 - 汇总山姆报表文件",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  },
+                                  {
+                                    "RefId": "InvokeWorkflow_35",
+                                    "Name": "执行流程 : 邮件发送报表",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "RefId": "InvokeWorkflow_44",
+                        "Name": "执行流程 : 邮件发送报表",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "InvokeWorkflow_45",
+                        "Name": "执行流程 : 更新exported_Order",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "DatabaseConnectActivity_5",
+                        "Name": "连接数据库 - 测试用",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": "Sequence_35",
+                            "Name": "序列",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": "QueryTableActivity_20",
+                                "Name": "查询语句 - 增量订单数据",
+                                "IsActivity": true,
+                                "SubItems": []
+                              },
+                              {
+                                "RefId": "QueryTableActivity_21",
+                                "Name": "查询语句 - 增量订单数据",
+                                "IsActivity": true,
+                                "SubItems": []
+                              },
+                              {
+                                "RefId": "Assign_17",
+                                "Name": "赋值",
+                                "IsActivity": true,
+                                "SubItems": []
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "RefId": null,
+                "Name": "TryCatch.Catches",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "Sequence_32",
+                    "Name": "序列",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "LogActivity_4",
+                        "Name": "写入日志",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "InvokeWorkflow_34",
+                        "Name": "调用子流程 - 发送邮件",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "Rethrow_1",
+                        "Name": "重新抛出异常",
+                        "IsActivity": true,
+                        "SubItems": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

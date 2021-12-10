@@ -1,0 +1,43 @@
+{
+  "Md5CheckSum": "c141de2b494d1cc312d1db811872deb4",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Sequence_1",
+        "Name": "序列",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "If_1",
+            "Name": "条件（If addCustomerName）",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": null,
+                "Name": "If.Then",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "DataTableAddColumnActivity_1",
+                    "Name": "添加数据列",
+                    "IsActivity": true,
+                    "SubItems": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "RefId": "InvokeCSharpCodeActivity_3",
+            "Name": "执行C#代码: 根据数据表拼接数据库SQL语句",
+            "IsActivity": true,
+            "SubItems": []
+          }
+        ]
+      }
+    ]
+  }
+}

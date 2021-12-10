@@ -1,0 +1,175 @@
+{
+  "Md5CheckSum": "ba0a49c5495b63f99712f87079990b51",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Flowchart_1",
+        "Name": "Root",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "BrowserAttach_1",
+            "Name": "绑定浏览器 - Reta Link Main",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "Sequence_1",
+                "Name": "序列",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "TryCatch_2",
+                    "Name": "错误捕获 重试下载 系统订单明细",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": null,
+                        "Name": "TryCatch.Try",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": "Retry_1",
+                            "Name": "重试",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": "Sequence_3",
+                                "Name": "序列 - dailyStoreReceiveDetailLink",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "Assign_1",
+                                    "Name": "赋值 - dailyStoreReceiveDetailLink",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  },
+                                  {
+                                    "RefId": "InvokeWorkflow_4",
+                                    "Name": "调用子流程: JS打开新窗口-dailyStoreReceiveDetailLink",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  },
+                                  {
+                                    "RefId": "InvokeWorkflow_1",
+                                    "Name": "调用子流程: daily_store_receive_detail_01",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "RefId": null,
+                        "Name": "TryCatch.Catches",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": "Sequence_4",
+                            "Name": "序列",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": "LogActivity_1",
+                                "Name": "写入日志",
+                                "IsActivity": true,
+                                "SubItems": []
+                              },
+                              {
+                                "RefId": "Throw_1",
+                                "Name": "抛出异常 - 下载系统订单明细失败",
+                                "IsActivity": true,
+                                "SubItems": []
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "RefId": "TryCatch_3",
+                    "Name": "错误捕获  重试下载 系统稳定订单明细",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": null,
+                        "Name": "TryCatch.Try",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": "Retry_2",
+                            "Name": "重试",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": "Sequence_2",
+                                "Name": "序列 - dailyStoreReceiveDetailFFLink",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "Assign_2",
+                                    "Name": "赋值 - dailyStoreReceiveDetailFFLink",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  },
+                                  {
+                                    "RefId": "InvokeWorkflow_5",
+                                    "Name": "调用子流程: JS打开新窗口-dailyStoreReceiveDetailLinkFF",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  },
+                                  {
+                                    "RefId": "InvokeWorkflow_2",
+                                    "Name": "调用子流程: daily_store_receive_detail_ff",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "RefId": null,
+                        "Name": "TryCatch.Catches",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": "Sequence_5",
+                            "Name": "序列",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": "LogActivity_2",
+                                "Name": "写入日志",
+                                "IsActivity": true,
+                                "SubItems": []
+                              },
+                              {
+                                "RefId": "Throw_2",
+                                "Name": "抛出异常 -  系统稳定订单明细",
+                                "IsActivity": true,
+                                "SubItems": []
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

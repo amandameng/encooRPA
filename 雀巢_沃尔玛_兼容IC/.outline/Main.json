@@ -1,0 +1,42 @@
+{
+  "Md5CheckSum": "fd9ae90b9df11bad29328b9d6b3c11a2",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Flowchart_1",
+        "Name": "Root",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "InvokeCSharpCodeActivity_3",
+            "Name": "执行C#代码 - 参数有效性判断",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "ForEach`1_2",
+            "Name": "循环操作 待运行模块",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "InvokeWorkflow_5",
+                "Name": "调用子流程: 指定模块的流程",
+                "IsActivity": true,
+                "SubItems": []
+              }
+            ]
+          },
+          {
+            "RefId": "InvokeWorkflow_6",
+            "Name": "调用子流程: 初始化环境",
+            "IsActivity": true,
+            "SubItems": []
+          }
+        ]
+      }
+    ]
+  }
+}

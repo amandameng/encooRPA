@@ -1,0 +1,607 @@
+{
+  "Md5CheckSum": "4a191f34aba560a34d4610c230925c81",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Flowchart_1",
+        "Name": "Root",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "If_4",
+            "Name": "条件（If 初始数据入库）",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": null,
+                "Name": "If.Then",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "Sequence_5",
+                    "Name": "序列 - 下载数据",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "InvokeCSharpCodeActivity_2",
+                        "Name": "执行C#代码 - 执行CSharp代码-保留30天订单.cs",
+                        "IsActivity": true,
+                        "SubItems": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "RefId": "If_5",
+            "Name": "条件（实际增量订单数据表）",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": null,
+                "Name": "If.Then",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "Sequence_14",
+                    "Name": "序列 - if  实际增量订单存在",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "Assign_30",
+                        "Name": "赋值 - 增量订单数据表",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "DataTableAddColumnActivity_1",
+                        "Name": "添加数据列 - order number",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "DataTableAddColumnActivity_2",
+                        "Name": "添加数据列 - location",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "InitializeCollectionActivity_1",
+                        "Name": "初始化集合 - 抓取失败订单",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "ForEach_1",
+                        "Name": "遍历行 - 实际增量订单数据表",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": "TryCatch_3",
+                            "Name": "错误捕获 - 获取单条订单",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": null,
+                                "Name": "TryCatch.Try",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "Sequence_12",
+                                    "Name": "序列 - 遍历增量订单",
+                                    "IsActivity": true,
+                                    "SubItems": [
+                                      {
+                                        "RefId": "Assign_17",
+                                        "Name": "赋值 - order_number",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      },
+                                      {
+                                        "RefId": "ForEach`1_2",
+                                        "Name": "循环重试 - 搜索结果没出来的再试一次",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": "Sequence_26",
+                                            "Name": "序列 - 重新搜索订单",
+                                            "IsActivity": true,
+                                            "SubItems": [
+                                              {
+                                                "RefId": "SetTextActivity_1",
+                                                "Name": "输入文本 - Document Number",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              },
+                                              {
+                                                "RefId": "ClickActivity_1",
+                                                "Name": "点击 - 搜索",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              },
+                                              {
+                                                "RefId": "Sequence_11",
+                                                "Name": "序列 - 搜索订单",
+                                                "IsActivity": true,
+                                                "SubItems": [
+                                                  {
+                                                    "RefId": "DoWhile_1",
+                                                    "Name": "循环操作（Do While）-判断搜索是否完成, 60秒超时",
+                                                    "IsActivity": true,
+                                                    "SubItems": [
+                                                      {
+                                                        "RefId": "Sequence_13",
+                                                        "Name": "序列 - 循环",
+                                                        "IsActivity": true,
+                                                        "SubItems": [
+                                                          {
+                                                            "RefId": "Delay_1",
+                                                            "Name": "延迟 1s",
+                                                            "IsActivity": true,
+                                                            "SubItems": []
+                                                          },
+                                                          {
+                                                            "RefId": "Assign_18",
+                                                            "Name": "赋值  passedSnds + 1",
+                                                            "IsActivity": true,
+                                                            "SubItems": []
+                                                          },
+                                                          {
+                                                            "RefId": "GetStructuredDataActivity_2",
+                                                            "Name": "获取结构化数据 - 搜索出的结果",
+                                                            "IsActivity": true,
+                                                            "SubItems": []
+                                                          },
+                                                          {
+                                                            "RefId": "InvokeCSharpCodeActivity_4",
+                                                            "Name": "执行C#代码 - 判断搜索是否完成",
+                                                            "IsActivity": true,
+                                                            "SubItems": []
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "RefId": "If_12",
+                                                "Name": "条件（If searchDone）",
+                                                "IsActivity": true,
+                                                "SubItems": [
+                                                  {
+                                                    "RefId": null,
+                                                    "Name": "If.Then",
+                                                    "IsActivity": true,
+                                                    "SubItems": [
+                                                      {
+                                                        "RefId": "Break_1",
+                                                        "Name": "终止循环",
+                                                        "IsActivity": true,
+                                                        "SubItems": []
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "RefId": null,
+                                                    "Name": "If.Else",
+                                                    "IsActivity": true,
+                                                    "SubItems": [
+                                                      {
+                                                        "RefId": "Sequence_27",
+                                                        "Name": "序列",
+                                                        "IsActivity": true,
+                                                        "SubItems": [
+                                                          {
+                                                            "RefId": "BrowserAttach_2",
+                                                            "Name": "绑定浏览器",
+                                                            "IsActivity": true,
+                                                            "SubItems": [
+                                                              {
+                                                                "RefId": "BrowserRefresh_1",
+                                                                "Name": "刷新浏览器",
+                                                                "IsActivity": true,
+                                                                "SubItems": []
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "RefId": "If_13",
+                                        "Name": "条件（If searchDone）",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": null,
+                                            "Name": "If.Then",
+                                            "IsActivity": true,
+                                            "SubItems": [
+                                              {
+                                                "RefId": "Sequence_28",
+                                                "Name": "序列",
+                                                "IsActivity": true,
+                                                "SubItems": [
+                                                  {
+                                                    "RefId": "Continue_2",
+                                                    "Name": "继续循环",
+                                                    "IsActivity": true,
+                                                    "SubItems": []
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "RefId": "DatabaseConnectActivity_4",
+                                        "Name": "连接数据库 - 查当前单据是否已经存在",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": "Sequence_25",
+                                            "Name": "序列 - existingOrdersDT",
+                                            "IsActivity": true,
+                                            "SubItems": [
+                                              {
+                                                "RefId": "Assign_28",
+                                                "Name": "赋值 - existingOrderSql",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              },
+                                              {
+                                                "RefId": "LogActivity_7",
+                                                "Name": "写入日志",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              },
+                                              {
+                                                "RefId": "QueryTableActivity_4",
+                                                "Name": "查询语句 - 已存在的orders",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "RefId": "Assign_20",
+                                        "Name": "赋值 - loopIndex",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      },
+                                      {
+                                        "RefId": "While_1",
+                                        "Name": "循环操作（While)",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": "Sequence_16",
+                                            "Name": "序列 - 循环下载订单",
+                                            "IsActivity": true,
+                                            "SubItems": [
+                                              {
+                                                "RefId": "Assign_22",
+                                                "Name": "赋值 - thisOrderLink",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              },
+                                              {
+                                                "RefId": "Assign_26",
+                                                "Name": "赋值 - existingRows",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              },
+                                              {
+                                                "RefId": "If_10",
+                                                "Name": "条件（If 订单已经存在）",
+                                                "IsActivity": true,
+                                                "SubItems": [
+                                                  {
+                                                    "RefId": null,
+                                                    "Name": "If.Then",
+                                                    "IsActivity": true,
+                                                    "SubItems": [
+                                                      {
+                                                        "RefId": "Sequence_24",
+                                                        "Name": "序列",
+                                                        "IsActivity": true,
+                                                        "SubItems": [
+                                                          {
+                                                            "RefId": "Assign_27",
+                                                            "Name": "赋值 loopIndex-1",
+                                                            "IsActivity": true,
+                                                            "SubItems": []
+                                                          },
+                                                          {
+                                                            "RefId": "DataTableAddRowActivity_1",
+                                                            "Name": "添加数据行 - 添加一行增量订单",
+                                                            "IsActivity": true,
+                                                            "SubItems": []
+                                                          },
+                                                          {
+                                                            "RefId": "Continue_1",
+                                                            "Name": "继续循环",
+                                                            "IsActivity": true,
+                                                            "SubItems": []
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "RefId": "InvokeWorkflow_5",
+                                                "Name": "调用子流程: JS打开新窗口",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              },
+                                              {
+                                                "RefId": "TryCatch_1",
+                                                "Name": "错误捕获 - 抓取订单详细数据",
+                                                "IsActivity": true,
+                                                "SubItems": [
+                                                  {
+                                                    "RefId": null,
+                                                    "Name": "TryCatch.Try",
+                                                    "IsActivity": true,
+                                                    "SubItems": [
+                                                      {
+                                                        "RefId": "Sequence_18",
+                                                        "Name": "序列",
+                                                        "IsActivity": true,
+                                                        "SubItems": [
+                                                          {
+                                                            "RefId": "Retry_1",
+                                                            "Name": "重试 - 抓取订单数据",
+                                                            "IsActivity": true,
+                                                            "SubItems": [
+                                                              {
+                                                                "RefId": "Sequence_19",
+                                                                "Name": "序列-重试",
+                                                                "IsActivity": true,
+                                                                "SubItems": [
+                                                                  {
+                                                                    "RefId": "InvokeWorkflow_6",
+                                                                    "Name": "调用子流程: 抓取订单详情页",
+                                                                    "IsActivity": true,
+                                                                    "SubItems": []
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "RefId": null,
+                                                    "Name": "TryCatch.Catches",
+                                                    "IsActivity": true,
+                                                    "SubItems": [
+                                                      {
+                                                        "RefId": "LogActivity_2",
+                                                        "Name": "写入日志 - 抓取订单失败",
+                                                        "IsActivity": true,
+                                                        "SubItems": []
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "RefId": "If_14",
+                                                "Name": "条件（If order 成功抓取）",
+                                                "IsActivity": true,
+                                                "SubItems": [
+                                                  {
+                                                    "RefId": null,
+                                                    "Name": "If.Then",
+                                                    "IsActivity": true,
+                                                    "SubItems": [
+                                                      {
+                                                        "RefId": "DatabaseConnectActivity_3",
+                                                        "Name": "连接数据库 - 插入订单数据",
+                                                        "IsActivity": true,
+                                                        "SubItems": [
+                                                          {
+                                                            "RefId": "ExecuteTransactionActivity_2",
+                                                            "Name": "执行事务 - 插入订单",
+                                                            "IsActivity": true,
+                                                            "SubItems": [
+                                                              {
+                                                                "RefId": "Sequence_20",
+                                                                "Name": "序列",
+                                                                "IsActivity": true,
+                                                                "SubItems": [
+                                                                  {
+                                                                    "RefId": "InvokeWorkflow_7",
+                                                                    "Name": "调用子流程: 拼接数据库SQL语句 - order",
+                                                                    "IsActivity": true,
+                                                                    "SubItems": []
+                                                                  },
+                                                                  {
+                                                                    "RefId": "InvokeWorkflow_8",
+                                                                    "Name": "调用子流程: 拼接数据库SQL语句 - order item",
+                                                                    "IsActivity": true,
+                                                                    "SubItems": []
+                                                                  },
+                                                                  {
+                                                                    "RefId": "Sequence_21",
+                                                                    "Name": "序列 - 执行插入订单",
+                                                                    "IsActivity": true,
+                                                                    "SubItems": [
+                                                                      {
+                                                                        "RefId": "ExecuteSqlActivity_4",
+                                                                        "Name": "执行语句 - order",
+                                                                        "IsActivity": true,
+                                                                        "SubItems": []
+                                                                      },
+                                                                      {
+                                                                        "RefId": "LogActivity_3",
+                                                                        "Name": "写入日志 - order 作用行数",
+                                                                        "IsActivity": true,
+                                                                        "SubItems": []
+                                                                      },
+                                                                      {
+                                                                        "RefId": "ExecuteSqlActivity_5",
+                                                                        "Name": "执行语句 - order_items",
+                                                                        "IsActivity": true,
+                                                                        "SubItems": []
+                                                                      },
+                                                                      {
+                                                                        "RefId": "LogActivity_4",
+                                                                        "Name": "写入日志 - items作用行数",
+                                                                        "IsActivity": true,
+                                                                        "SubItems": []
+                                                                      },
+                                                                      {
+                                                                        "RefId": "DataTableAddRowActivity_2",
+                                                                        "Name": "添加数据行 - 添加一行增量订单",
+                                                                        "IsActivity": true,
+                                                                        "SubItems": []
+                                                                      }
+                                                                    ]
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "RefId": null,
+                                                    "Name": "If.Else",
+                                                    "IsActivity": true,
+                                                    "SubItems": [
+                                                      {
+                                                        "RefId": "AddToCollectionActivity_1",
+                                                        "Name": "添加对象 - 抓取失败，记录订单号",
+                                                        "IsActivity": true,
+                                                        "SubItems": []
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "RefId": "BrowserAttach_6",
+                                                "Name": "绑定浏览器-关闭详情标签",
+                                                "IsActivity": true,
+                                                "SubItems": [
+                                                  {
+                                                    "RefId": "CloseTab_4",
+                                                    "Name": "关闭标签页",
+                                                    "IsActivity": true,
+                                                    "SubItems": []
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "RefId": "Assign_21",
+                                                "Name": "赋值 loopIndex-1",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "RefId": null,
+                                "Name": "TryCatch.Catches",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "Sequence_29",
+                                    "Name": "序列",
+                                    "IsActivity": true,
+                                    "SubItems": [
+                                      {
+                                        "RefId": "AddToCollectionActivity_2",
+                                        "Name": "添加对象 - 抓取失败，记录订单号",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      },
+                                      {
+                                        "RefId": "BrowserAttach_7",
+                                        "Name": "绑定浏览器-关闭详情标签",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": "CloseTab_5",
+                                            "Name": "关闭标签页",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "RefId": null,
+                                "Name": "TryCatch.Finally",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "CommentActivity_2",
+                                    "Name": "注释掉",
+                                    "IsActivity": true,
+                                    "SubItems": [
+                                      {
+                                        "RefId": "BrowserAttach_4",
+                                        "Name": "绑定浏览器-关闭详情标签",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": "CloseTab_2",
+                                            "Name": "关闭标签页",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "QuickOpenItems": [
+    "Main.xaml"
+  ],
+  "ProjectBreakpoints": {
+    "Value": {
+      "Module\\业务\\抓取订单并入库1.xaml": [
+        {
+          "ActivityId": "1.5",
+          "IsEnabled": false,
+          "IdRef": "If_5",
+          "DisplayName": "条件（实际增量订单数据表）"
+        },
+        {
+          "ActivityId": "1.752",
+          "IsEnabled": false,
+          "IdRef": "InvokeWorkflow_6",
+          "DisplayName": "调用子流程: 抓取订单详情页"
+        },
+        {
+          "ActivityId": "1.40",
+          "IsEnabled": false,
+          "IdRef": "ForEach_1",
+          "DisplayName": "遍历行 - 实际增量订单数据表"
+        },
+        {
+          "ActivityId": "1.272",
+          "IsEnabled": false,
+          "IdRef": "If_14",
+          "DisplayName": "条件（If order 成功抓取）"
+        },
+        {
+          "ActivityId": "1.1297",
+          "IsEnabled": false,
+          "IdRef": "Assign_26",
+          "DisplayName": "赋值 - existingRows"
+        },
+        {
+          "ActivityId": "1.1403",
+          "IsEnabled": false,
+          "IdRef": "If_10",
+          "DisplayName": "条件（If 订单已经存在）"
+        }
+      ],
+      "Module\\业务\\沃尔玛\\输出cleanException-沃尔玛.xaml": [
+        {
+          "ActivityId": "1.254",
+          "IsEnabled": false,
+          "IdRef": "InvokeCSharpCodeActivity_3",
+          "DisplayName": "执行C#代码 - 异常订单检查-沃尔玛-byPO"
+        },
+        {
+          "ActivityId": "1.210",
+          "IsEnabled": true,
+          "IdRef": "DataTableSaveToCSVActivity_1",
+          "DisplayName": "保存为CSV文件"
+        }
+      ],
+      "Module\\业务\\沃尔玛.xaml": [
+        {
+          "ActivityId": "1.165",
+          "IsEnabled": false,
+          "IdRef": "InvokeWorkflow_40",
+          "DisplayName": "执行流程 : 更新exported_Order"
+        },
+        {
+          "ActivityId": "1.481",
+          "IsEnabled": true,
+          "IdRef": "InvokeWorkflow_23",
+          "DisplayName": "调用子流程: 订单报表入库"
+        }
+      ],
+      "Module\\通用\\订单报表入库.xaml": [
+        {
+          "ActivityId": "1.21",
+          "IsEnabled": false,
+          "IdRef": "Sequence_32",
+          "DisplayName": "序列"
+        }
+      ],
+      "Module\\业务\\沃尔玛IC.xaml": [
+        {
+          "ActivityId": "1.5000",
+          "IsEnabled": false,
+          "IdRef": "InvokeCSharpCodeActivity_7",
+          "DisplayName": "执行C#代码 - 筛选当前location订单-沃尔玛IC.cs"
+        },
+        {
+          "ActivityId": "1.4165",
+          "IsEnabled": false,
+          "IdRef": "ExecuteSqlActivity_8",
+          "DisplayName": "执行语句 - 插入全部订单进Tmp表"
+        },
+        {
+          "ActivityId": "1.54",
+          "IsEnabled": true,
+          "IdRef": "InvokeWorkflow_21",
+          "DisplayName": "调用子流程 - 发送邮件"
+        }
+      ],
+      "Module\\通用\\更新exported_Order.xaml": [
+        {
+          "ActivityId": "1.73",
+          "IsEnabled": false,
+          "IdRef": "InvokeCSharpCodeActivity_1",
+          "DisplayName": "执行C#代码 - 筛选入库成功原始导出订单"
+        }
+      ],
+      "Module\\业务\\沃尔玛IC\\输出cleanException-沃尔玛IC.xaml": [
+        {
+          "ActivityId": "1.266",
+          "IsEnabled": false,
+          "IdRef": "InvokeCSharpCodeActivity_3",
+          "DisplayName": "执行C#代码 - 异常订单检查-沃尔玛IC-byPO"
+        }
+      ],
+      "Module\\业务\\山姆.xaml": [
+        {
+          "ActivityId": "1.310",
+          "IsEnabled": true,
+          "IdRef": "InvokeWorkflow_45",
+          "DisplayName": "执行流程 : 更新exported_Order"
+        },
+        {
+          "ActivityId": "1.1977",
+          "IsEnabled": true,
+          "IdRef": "InvokeWorkflow_38",
+          "DisplayName": "调用子流程: 订单报表入库"
+        }
+      ],
+      "Module\\业务\\山姆水单\\输出cleanException-山姆水单.xaml": [
+        {
+          "ActivityId": "1.42",
+          "IsEnabled": true,
+          "IdRef": "OfficeExcelSetRangeActivity_4",
+          "DisplayName": "写入区域 - 模板数据-不加列头"
+        }
+      ],
+      "Module\\业务\\山姆\\输出cleanException-山姆.xaml": [
+        {
+          "ActivityId": "1.166",
+          "IsEnabled": true,
+          "IdRef": "OfficeExcelSetRangeActivity_1",
+          "DisplayName": "写入区域 - 模板数据-不加列头"
+        }
+      ],
+      "Module\\通用\\导出订单_读取订单数据.xaml": [
+        {
+          "ActivityId": "1.2",
+          "IsEnabled": true,
+          "IdRef": "Retry_3",
+          "DisplayName": "重试 - 打开导出的订单文件"
+        }
+      ]
+    }
+  }
+}

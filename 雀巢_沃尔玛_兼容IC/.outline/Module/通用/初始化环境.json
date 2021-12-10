@@ -1,0 +1,110 @@
+{
+  "Md5CheckSum": "16e1abd384f17c5e205065faceb3cd34",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Flowchart_15",
+        "Name": "初始化",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "TryCatch_1",
+            "Name": "错误捕获（Try Catch）",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": null,
+                "Name": "TryCatch.Try",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "Sequence_2",
+                    "Name": "序列",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "If_3",
+                        "Name": "条件-关闭Excel进程",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": null,
+                            "Name": "If.Then",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": "Sequence_6",
+                                "Name": "序列",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "ExecuteCmd_4",
+                                    "Name": "执行命令行",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  },
+                                  {
+                                    "RefId": "Delay_4",
+                                    "Name": "延迟",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "RefId": null,
+                "Name": "TryCatch.Catches",
+                "IsActivity": true,
+                "SubItems": []
+              }
+            ]
+          },
+          {
+            "RefId": "TryCatch_2",
+            "Name": "错误捕获（Try Catch）",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": null,
+                "Name": "TryCatch.Try",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "Sequence_4",
+                    "Name": "序列",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "ExecuteCmd_5",
+                        "Name": "执行命令行",
+                        "IsActivity": true,
+                        "SubItems": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "RefId": null,
+                "Name": "TryCatch.Catches",
+                "IsActivity": true,
+                "SubItems": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,661 @@
+<Activity mc:Ignorable="sap sap2010 sads" x:Class="EncooWorkflow.Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:baasf="clr-namespace:BotTime.ActivityLibrary.Activities.System.File;assembly=BotTime.ActivityLibrary" xmlns:baast="clr-namespace:BotTime.ActivityLibrary.Activities.System.Tool;assembly=BotTime.ActivityLibrary" xmlns:bfa="clr-namespace:BotTime.Flow.Activities;assembly=BotTime.Flow.Activities" xmlns:ea="clr-namespace:Encootech.AutomationActivity;assembly=AutomationActivity" xmlns:eae="clr-namespace:Encootech.ActivityCommon.EncooCommonActivity;assembly=ActivityCommon" xmlns:eaw="clr-namespace:Encootech.AutomationActivity.WebAction;assembly=AutomationActivity" xmlns:ed="clr-namespace:Encoo.DataType;assembly=Encoo.DataType" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:EncooWorkflow" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger">
+  <x:Members>
+    <x:Property Name="开始日期" Type="InArgument(x:String)" />
+    <x:Property Name="结束日期" Type="InArgument(x:String)" />
+    <x:Property Name="采购单文件路径" Type="OutArgument(x:String)" />
+  </x:Members>
+  <this:Main.开始日期>
+    <InArgument x:TypeArguments="x:String">
+      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_28">2021-10-20</Literal>
+    </InArgument>
+  </this:Main.开始日期>
+  <this:Main.结束日期>
+    <InArgument x:TypeArguments="x:String">
+      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_29">2021-10-26</Literal>
+    </InArgument>
+  </this:Main.结束日期>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap:VirtualizedContainerService.HintSize>654,716</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>EncooWorkflow.Workflow_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="15">
+      <x:String>System</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>BotTime.Flow.Activities</x:String>
+      <x:String>Encootech.AutomationActivity</x:String>
+      <x:String>Encootech.AutomationActivity.WebAction</x:String>
+      <x:String>Encoo.DataType</x:String>
+      <x:String>Microsoft.CSharp.Activities</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>BotTime.ActivityLibrary.Activities.System.File</x:String>
+      <x:String>BotTime.ActivityLibrary.Activities.System.Tool</x:String>
+      <x:String>Encootech.ActivityCommon.EncooCommonActivity</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>BotTime.Flow.Activities</AssemblyReference>
+      <AssemblyReference>AutomationActivity</AssemblyReference>
+      <AssemblyReference>Encoo.DataType</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>ParallelExtensionsExtras</AssemblyReference>
+      <AssemblyReference>BotTime.ActivityLibrary</AssemblyReference>
+      <AssemblyReference>ActivityCommon</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Flowchart DisplayName="Root" sap:VirtualizedContainerService.HintSize="614,636" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <Flowchart.Variables>
+      <Variable x:TypeArguments="x:String" Name="桌面路径" />
+      <Variable x:TypeArguments="x:String" Name="采购单导出文件夹" />
+    </Flowchart.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+        <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
+        <av:Size x:Key="ShapeSize">80,48</av:Size>
+        <av:PointCollection x:Key="ConnectorLocation">310,50.5 310,82.5</av:PointCollection>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Flowchart.StartNode>
+      <x:Reference>__ReferenceID4</x:Reference>
+    </Flowchart.StartNode>
+    <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <av:Point x:Key="ShapeLocation">210,463.5</av:Point>
+          <av:Size x:Key="ShapeSize">200,53</av:Size>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <eaw:BrowserAttach DelayAfter="{x:Null}" DelayBefore="{x:Null}" Selector="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActivityName="绑定浏览器" BringWindowType="Default" BrowserType="Chrome" ContinueOnError="False" DisplayName="绑定浏览器" ElementRect="0, 0, 0, 0" Guid="cb8c7df3-a32c-4eeb-9954-dfece8adc5f8" sap:VirtualizedContainerService.HintSize="549,4037" sap2010:WorkflowViewState.IdRef="BrowserAttach_1" IsEndClose="False" IsIgnore="False" IsMaximize="True" ScreenShoot="d42080a8-cf03-439c-9fb7-5b6b36dd3a80.jpg" SelectionRect="0, 0, 0, 0">
+        <eaw:BrowserAttach.Body>
+          <ActivityAction x:TypeArguments="x:Object">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:Object" Name="CurrentBrowser" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="535,3907" sap2010:WorkflowViewState.IdRef="Sequence_1">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:Boolean" Name="存在查询结果" />
+                <Variable x:TypeArguments="sd:DataTable" Name="采购单数据表" />
+              </Sequence.Variables>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <eaw:BrowserNavigate DelayAfter="{x:Null}" DelayBefore="{x:Null}" TimeOut="{x:Null}" WaitTimeout="{x:Null}" ActivityName="BrowserNavigate" ContinueOnError="False" DisplayName="当前页跳转 - 全部订单" Guid="521c4d45-9108-41d5-860a-d1649bd8746b" sap:VirtualizedContainerService.HintSize="513,55" sap2010:WorkflowViewState.IdRef="BrowserNavigate_1" IsIgnore="False" IsReady="True">
+                <eaw:BrowserNavigate.Url>
+                  <InArgument x:TypeArguments="x:String">
+                    <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_1">https://scpc.suning.com/scpc/newPurchaseOrder/newPurchaseAllList.action</Literal>
+                  </InArgument>
+                </eaw:BrowserNavigate.Url>
+              </eaw:BrowserNavigate>
+              <Sequence DisplayName="序列 -设置查询条件" sap:VirtualizedContainerService.HintSize="513,533" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <bfa:Retry ActivityName="重试" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="重试 1次，点击指定状态" sap:VirtualizedContainerService.HintSize="455,273" sap2010:WorkflowViewState.IdRef="Retry_2" IsIgnore="False">
+                  <bfa:Retry.RetryCount>
+                    <InArgument x:TypeArguments="x:Int32">
+                      <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_8" Value="1" />
+                    </InArgument>
+                  </bfa:Retry.RetryCount>
+                  <bfa:Retry.RetryTimeSpan>
+                    <InArgument x:TypeArguments="x:TimeSpan">
+                      <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_9" />
+                    </InArgument>
+                  </bfa:Retry.RetryTimeSpan>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <bfa:Retry.Condition>
+                    <InArgument x:TypeArguments="x:Boolean">
+                      <Literal x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="Literal`1_10" Value="True" />
+                    </InArgument>
+                  </bfa:Retry.Condition>
+                  <bfa:Retry.Body>
+                    <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="222,190" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ea:WaitElementAppearActivity ControlObject="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" Result="{x:Null}" Selector="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActivityName="等待元素出现" BringWindowType="Default" ContinueOnError="False" DisplayName="等待元素出现 - 全部订单-搜索form" ElementRect="0, 0, 0, 0" Guid="8d9065d2-8de8-4114-bdf4-797381959d74" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="WaitElementAppearActivity_2" IsIgnore="False" ScreenShoot="bac132f0-414f-4b6d-817b-bbac84845f2d.jpg" SelectionRect="0, 0, 0, 0">
+                        <ea:WaitElementAppearActivity.Selector2>
+                          <InArgument x:TypeArguments="ed:Selector">
+                            <mca:CSharpValue x:TypeArguments="ed:Selector" sap2010:WorkflowViewState.IdRef="CSharpValue`1_8">"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTE2Ij8+CjxBcHBsaWNhdGlvbiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4bWxuczp4c2Q9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hIj4KPEF1dG9tYXRpb25UeXBlPldFQi1DSFJPTUU8L0F1dG9tYXRpb25UeXBlPgo8UHJvY2Vzc05hbWU+Y2hyb21lPC9Qcm9jZXNzTmFtZT4KPEZpbGVQYXRoPmNocm9tZS5leGU8L0ZpbGVQYXRoPgo8VmVyc2lvbj4xLjM8L1ZlcnNpb24+CjxDaGlsZENvbnRyb2xzPgo8Q29udHJvbE1ldGFEYXRhPgo8SWRlbnRpZmllcj4KPENsYXNzTmFtZT5DaHJvbWVfV2lkZ2V0V2luXzE8L0NsYXNzTmFtZT4KPFRpdGxlPuWVhuWutuW3peS9nOWPsDwvVGl0bGU+CjxSb2xlPldpbmRvdzwvUm9sZT4KPElzRGlyZWN0Q2hpbGQ+dHJ1ZTwvSXNEaXJlY3RDaGlsZD4KPFVSTD4qbmV3UHVyY2hhc2VPcmRlci9uZXdQdXJjaGFzZUFsbExpc3QqPC9VUkw+CjwvSWRlbnRpZmllcj4KPENoaWxkQ29udHJvbHM+CjxDb250cm9sTWV0YURhdGE+CjxXZWJJZGVudGlmaWVyPgo8VGFnPkZPUk08L1RhZz4KPElkPnB1cmNoYXNlT3JkZXJGb3JtPC9JZD4KPC9XZWJJZGVudGlmaWVyPgo8QWNjZXNzS2V5IC8+CjxDb21wb25lbnQ+PC9Db21wb25lbnQ+CjwvQ29udHJvbE1ldGFEYXRhPgo8L0NoaWxkQ29udHJvbHM+CjxBY2Nlc3NLZXkgLz4KPENvbXBvbmVudD48L0NvbXBvbmVudD4KPC9Db250cm9sTWV0YURhdGE+CjwvQ2hpbGRDb250cm9scz4KPC9BcHBsaWNhdGlvbj4K"</mca:CSharpValue>
+                          </InArgument>
+                        </ea:WaitElementAppearActivity.Selector2>
+                      </ea:WaitElementAppearActivity>
+                    </Sequence>
+                  </bfa:Retry.Body>
+                </bfa:Retry>
+                <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程" sap:VirtualizedContainerService.HintSize="455,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_1" IsIgnore="False">
+                  <bfa:InvokeWorkflow.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="开始日期">
+                      <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">(开始日期).ToString()</mca:CSharpValue>
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="结束日期">
+                      <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_2">(结束日期).ToString()</mca:CSharpValue>
+                    </InArgument>
+                  </bfa:InvokeWorkflow.Arguments>
+                  <bfa:InvokeWorkflow.WorkflowPath>
+                    <InArgument x:TypeArguments="x:String">
+                      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_11">Module\通用\设置时间.xaml</Literal>
+                    </InArgument>
+                  </bfa:InvokeWorkflow.WorkflowPath>
+                </bfa:InvokeWorkflow>
+              </Sequence>
+              <ea:ClickActivity ControlElement="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" Selector="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActivityName="点击" BringWindowType="Default" ClickLocation="Center" ClickMethod="Default" ClkType="SingleClick" ContinueOnError="False" DisplayName="点击 - 查询" ElementRect="0, 0, 0, 0" Guid="f9164162-ff1b-413f-847b-b37628b5055a" sap:VirtualizedContainerService.HintSize="513,66" sap2010:WorkflowViewState.IdRef="ClickActivity_2" IsIgnore="False" ModifierKey="None" MouseButton="LeftButton" ScreenShoot="400298d5-dafb-4a4e-8da8-b27f2f2b0961.jpg" SelectionRect="0, 0, 0, 0">
+                <ea:ClickActivity.Selector2>
+                  <InArgument x:TypeArguments="ed:Selector">
+                    <mca:CSharpValue x:TypeArguments="ed:Selector" sap2010:WorkflowViewState.IdRef="CSharpValue`1_4">"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTE2Ij8+DQo8QXBwbGljYXRpb24geG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeG1sbnM6eHNkPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSI+DQogIDxBdXRvbWF0aW9uVHlwZT5XRUItQ0hST01FPC9BdXRvbWF0aW9uVHlwZT4NCiAgPFByb2Nlc3NOYW1lPmNocm9tZTwvUHJvY2Vzc05hbWU+DQogIDxGaWxlUGF0aD5jaHJvbWUuZXhlPC9GaWxlUGF0aD4NCiAgPFZlcnNpb24+MS4zPC9WZXJzaW9uPg0KICA8Q2hpbGRDb250cm9scz4NCiAgICA8Q29udHJvbE1ldGFEYXRhPg0KICAgICAgPElkZW50aWZpZXI+DQogICAgICAgIDxDbGFzc05hbWU+Q2hyb21lX1dpZGdldFdpbl8xPC9DbGFzc05hbWU+DQogICAgICAgIDxUaXRsZT7llYblrrblt6XkvZzlj7A8L1RpdGxlPg0KICAgICAgICA8QWNjZXNzS2V5IC8+DQogICAgICAgIDxSb2xlPldpbmRvdzwvUm9sZT4NCiAgICAgICAgPElzRGlyZWN0Q2hpbGQ+dHJ1ZTwvSXNEaXJlY3RDaGlsZD4NCiAgICAgIDwvSWRlbnRpZmllcj4NCiAgICAgIDxDaGlsZENvbnRyb2xzPg0KICAgICAgICA8Q29udHJvbE1ldGFEYXRhPg0KICAgICAgICAgIDxXZWJJZGVudGlmaWVyPg0KICAgICAgICAgICAgPFJvbGU+QnV0dG9uPC9Sb2xlPg0KICAgICAgICAgICAgPFRhZz5BPC9UYWc+DQogICAgICAgICAgICA8QW5jZXN0b3JJZD5wdXJjaGFzZU9yZGVyRm9ybTwvQW5jZXN0b3JJZD4NCiAgICAgICAgICAgIDxTSW5mbz7mn6Xor6I8L1NJbmZvPg0KICAgICAgICAgIDwvV2ViSWRlbnRpZmllcj4NCiAgICAgICAgPC9Db250cm9sTWV0YURhdGE+DQogICAgICA8L0NoaWxkQ29udHJvbHM+DQogICAgPC9Db250cm9sTWV0YURhdGE+DQogIDwvQ2hpbGRDb250cm9scz4NCjwvQXBwbGljYXRpb24+"</mca:CSharpValue>
+                  </InArgument>
+                </ea:ClickActivity.Selector2>
+                <ea:ClickActivity.X>
+                  <InArgument x:TypeArguments="x:Int32">
+                    <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_2" />
+                  </InArgument>
+                </ea:ClickActivity.X>
+                <ea:ClickActivity.XRate>
+                  <InArgument x:TypeArguments="x:Double">
+                    <Literal x:TypeArguments="x:Double" sap2010:WorkflowViewState.IdRef="Literal`1_4" />
+                  </InArgument>
+                </ea:ClickActivity.XRate>
+                <ea:ClickActivity.Y>
+                  <InArgument x:TypeArguments="x:Int32">
+                    <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_3" />
+                  </InArgument>
+                </ea:ClickActivity.Y>
+                <ea:ClickActivity.YRate>
+                  <InArgument x:TypeArguments="x:Double">
+                    <Literal x:TypeArguments="x:Double" sap2010:WorkflowViewState.IdRef="Literal`1_5" />
+                  </InArgument>
+                </ea:ClickActivity.YRate>
+              </ea:ClickActivity>
+              <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获（Try Catch）" sap:VirtualizedContainerService.HintSize="513,530" sap2010:WorkflowViewState.IdRef="TryCatch_2" IsIgnore="False">
+                <bfa:TryCatch.Try>
+                  <bfa:Retry ActivityName="重试" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="重试 - 等待元素导出采购单结果" sap:VirtualizedContainerService.HintSize="455,221" sap2010:WorkflowViewState.IdRef="Retry_4" IsIgnore="False">
+                    <bfa:Retry.RetryCount>
+                      <InArgument x:TypeArguments="x:Int32">
+                        <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_25" Value="1" />
+                      </InArgument>
+                    </bfa:Retry.RetryCount>
+                    <bfa:Retry.RetryTimeSpan>
+                      <InArgument x:TypeArguments="x:TimeSpan">
+                        <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_26" />
+                      </InArgument>
+                    </bfa:Retry.RetryTimeSpan>
+                    <bfa:Retry.Condition>
+                      <InArgument x:TypeArguments="x:Boolean">
+                        <Literal x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="Literal`1_27" Value="True" />
+                      </InArgument>
+                    </bfa:Retry.Condition>
+                    <bfa:Retry.Body>
+                      <ea:WaitElementAppearActivity ControlObject="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" Selector="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActivityName="等待元素出现" BringWindowType="Default" ContinueOnError="False" DisplayName="等待元素出现-查询结果" ElementRect="0, 0, 0, 0" Guid="08a6e8e0-f94c-40bc-9e88-5c4a123d7d0e" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="WaitElementAppearActivity_1" IsIgnore="False" ScreenShoot="245503b6-ecca-4c23-af31-40201dcf55e6.jpg" SelectionRect="0, 0, 0, 0">
+                        <ea:WaitElementAppearActivity.Result>
+                          <OutArgument x:TypeArguments="x:Boolean">
+                            <mca:CSharpReference x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1">存在查询结果</mca:CSharpReference>
+                          </OutArgument>
+                        </ea:WaitElementAppearActivity.Result>
+                        <ea:WaitElementAppearActivity.Selector2>
+                          <InArgument x:TypeArguments="ed:Selector">
+                            <mca:CSharpValue x:TypeArguments="ed:Selector" sap2010:WorkflowViewState.IdRef="CSharpValue`1_5">"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTE2Ij8+DQo8QXBwbGljYXRpb24geG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeG1sbnM6eHNkPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSI+DQogIDxBdXRvbWF0aW9uVHlwZT5XRUItQ0hST01FPC9BdXRvbWF0aW9uVHlwZT4NCiAgPFByb2Nlc3NOYW1lPmNocm9tZTwvUHJvY2Vzc05hbWU+DQogIDxGaWxlUGF0aD5jaHJvbWUuZXhlPC9GaWxlUGF0aD4NCiAgPFZlcnNpb24+MS4zPC9WZXJzaW9uPg0KICA8Q2hpbGRDb250cm9scz4NCiAgICA8Q29udHJvbE1ldGFEYXRhPg0KICAgICAgPElkZW50aWZpZXI+DQogICAgICAgIDxDbGFzc05hbWU+Q2hyb21lX1dpZGdldFdpbl8xPC9DbGFzc05hbWU+DQogICAgICAgIDxUaXRsZT7llYblrrblt6XkvZzlj7A8L1RpdGxlPg0KICAgICAgICA8QWNjZXNzS2V5IC8+DQogICAgICAgIDxSb2xlPldpbmRvdzwvUm9sZT4NCiAgICAgICAgPElzRGlyZWN0Q2hpbGQ+dHJ1ZTwvSXNEaXJlY3RDaGlsZD4NCiAgICAgIDwvSWRlbnRpZmllcj4NCiAgICAgIDxDaGlsZENvbnRyb2xzPg0KICAgICAgICA8Q29udHJvbE1ldGFEYXRhPg0KICAgICAgICAgIDxXZWJJZGVudGlmaWVyPg0KICAgICAgICAgICAgPFJvbGU+QnV0dG9uPC9Sb2xlPg0KICAgICAgICAgICAgPEluZGV4PjE8L0luZGV4Pg0KICAgICAgICAgICAgPFRhZz5UQUJMRTwvVGFnPg0KICAgICAgICAgIDwvV2ViSWRlbnRpZmllcj4NCiAgICAgICAgICA8Q2hpbGRDb250cm9scz4NCiAgICAgICAgICAgIDxDb250cm9sTWV0YURhdGE+DQogICAgICAgICAgICAgIDxXZWJJZGVudGlmaWVyPg0KICAgICAgICAgICAgICAgIDxSb2xlPkJ1dHRvbjwvUm9sZT4NCiAgICAgICAgICAgICAgICA8SW5kZXg+MTwvSW5kZXg+DQogICAgICAgICAgICAgICAgPFRhZz5URDwvVGFnPg0KICAgICAgICAgICAgICAgIDxUYWJsZUNvbD4yPC9UYWJsZUNvbD4NCiAgICAgICAgICAgICAgPC9XZWJJZGVudGlmaWVyPg0KICAgICAgICAgICAgPC9Db250cm9sTWV0YURhdGE+DQogICAgICAgICAgPC9DaGlsZENvbnRyb2xzPg0KICAgICAgICA8L0NvbnRyb2xNZXRhRGF0YT4NCiAgICAgIDwvQ2hpbGRDb250cm9scz4NCiAgICA8L0NvbnRyb2xNZXRhRGF0YT4NCiAgPC9DaGlsZENvbnRyb2xzPg0KPC9BcHBsaWNhdGlvbj4="</mca:CSharpValue>
+                          </InArgument>
+                        </ea:WaitElementAppearActivity.Selector2>
+                      </ea:WaitElementAppearActivity>
+                    </bfa:Retry.Body>
+                  </bfa:Retry>
+                </bfa:TryCatch.Try>
+                <bfa:TryCatch.Catches>
+                  <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="459,23" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                    <bfa:Catch.Action>
+                      <ActivityAction x:TypeArguments="s:Exception">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                        </ActivityAction.Argument>
+                        <bfa:Throw DisplayName="抛出异常" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_2">
+                          <InArgument x:TypeArguments="s:Exception">
+                            <mca:CSharpValue x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="CSharpValue`1_23">new Exception("未查到7天内订单结果，请检查网站是否出问题")</mca:CSharpValue>
+                          </InArgument>
+                        </bfa:Throw>
+                      </ActivityAction>
+                    </bfa:Catch.Action>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </bfa:Catch>
+                </bfa:TryCatch.Catches>
+              </bfa:TryCatch>
+              <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件 存在查询结果" sap:VirtualizedContainerService.HintSize="555,2594" sap2010:WorkflowViewState.IdRef="If_1" IsIgnore="False">
+                <bfa:If.Condition>
+                  <InArgument x:TypeArguments="x:Boolean">
+                    <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_6">存在查询结果</mca:CSharpValue>
+                  </InArgument>
+                </bfa:If.Condition>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <bfa:If.Then>
+                  <Sequence DisplayName="序列-存在查询结果" sap:VirtualizedContainerService.HintSize="537,2409" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获（Try Catch）" sap:VirtualizedContainerService.HintSize="515,530" sap2010:WorkflowViewState.IdRef="TryCatch_3" IsIgnore="False">
+                      <bfa:TryCatch.Try>
+                        <bfa:Retry ActivityName="重试" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="重试- 导出采购单" sap:VirtualizedContainerService.HintSize="455,221" sap2010:WorkflowViewState.IdRef="Retry_5" IsIgnore="False">
+                          <bfa:Retry.RetryCount>
+                            <InArgument x:TypeArguments="x:Int32">
+                              <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_30" Value="1" />
+                            </InArgument>
+                          </bfa:Retry.RetryCount>
+                          <bfa:Retry.RetryTimeSpan>
+                            <InArgument x:TypeArguments="x:TimeSpan">
+                              <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_31" />
+                            </InArgument>
+                          </bfa:Retry.RetryTimeSpan>
+                          <bfa:Retry.Condition>
+                            <InArgument x:TypeArguments="x:Boolean">
+                              <Literal x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="Literal`1_32" Value="True" />
+                            </InArgument>
+                          </bfa:Retry.Condition>
+                          <bfa:Retry.Body>
+                            <ea:ClickActivity ControlElement="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" Selector="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActivityName="点击" BringWindowType="Default" ClickLocation="Center" ClickMethod="Default" ClkType="SingleClick" ContinueOnError="False" DisplayName="点击-导出采购单" ElementRect="0, 0, 0, 0" Guid="cd890c19-3405-447b-ac9f-87a62a16dcca" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="ClickActivity_1" IsIgnore="False" ModifierKey="None" MouseButton="LeftButton" ScreenShoot="6a8459ec-6cb7-4f24-9ae6-17686b14e29e.jpg" SelectionRect="0, 0, 0, 0">
+                              <ea:ClickActivity.Selector2>
+                                <InArgument x:TypeArguments="ed:Selector">
+                                  <mca:CSharpValue x:TypeArguments="ed:Selector" sap2010:WorkflowViewState.IdRef="CSharpValue`1_7">"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTE2Ij8+DQo8QXBwbGljYXRpb24geG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeG1sbnM6eHNkPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSI+DQogIDxBdXRvbWF0aW9uVHlwZT5XRUItQ0hST01FPC9BdXRvbWF0aW9uVHlwZT4NCiAgPFByb2Nlc3NOYW1lPmNocm9tZTwvUHJvY2Vzc05hbWU+DQogIDxGaWxlUGF0aD5jaHJvbWUuZXhlPC9GaWxlUGF0aD4NCiAgPFZlcnNpb24+MS4zPC9WZXJzaW9uPg0KICA8Q2hpbGRDb250cm9scz4NCiAgICA8Q29udHJvbE1ldGFEYXRhPg0KICAgICAgPElkZW50aWZpZXI+DQogICAgICAgIDxDbGFzc05hbWU+Q2hyb21lX1dpZGdldFdpbl8xPC9DbGFzc05hbWU+DQogICAgICAgIDxUaXRsZT7llYblrrblt6XkvZzlj7A8L1RpdGxlPg0KICAgICAgICA8QWNjZXNzS2V5IC8+DQogICAgICAgIDxSb2xlPldpbmRvdzwvUm9sZT4NCiAgICAgICAgPElzRGlyZWN0Q2hpbGQ+dHJ1ZTwvSXNEaXJlY3RDaGlsZD4NCiAgICAgIDwvSWRlbnRpZmllcj4NCiAgICAgIDxDaGlsZENvbnRyb2xzPg0KICAgICAgICA8Q29udHJvbE1ldGFEYXRhPg0KICAgICAgICAgIDxXZWJJZGVudGlmaWVyPg0KICAgICAgICAgICAgPFJvbGU+QnV0dG9uPC9Sb2xlPg0KICAgICAgICAgICAgPFRhZz5BPC9UYWc+DQogICAgICAgICAgICA8SWQ+ZXhwb3J0QWxsPC9JZD4NCiAgICAgICAgICA8L1dlYklkZW50aWZpZXI+DQogICAgICAgIDwvQ29udHJvbE1ldGFEYXRhPg0KICAgICAgPC9DaGlsZENvbnRyb2xzPg0KICAgIDwvQ29udHJvbE1ldGFEYXRhPg0KICA8L0NoaWxkQ29udHJvbHM+DQo8L0FwcGxpY2F0aW9uPg=="</mca:CSharpValue>
+                                </InArgument>
+                              </ea:ClickActivity.Selector2>
+                              <ea:ClickActivity.X>
+                                <InArgument x:TypeArguments="x:Int32">
+                                  <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_12" />
+                                </InArgument>
+                              </ea:ClickActivity.X>
+                              <ea:ClickActivity.XRate>
+                                <InArgument x:TypeArguments="x:Double">
+                                  <Literal x:TypeArguments="x:Double" sap2010:WorkflowViewState.IdRef="Literal`1_14" />
+                                </InArgument>
+                              </ea:ClickActivity.XRate>
+                              <ea:ClickActivity.Y>
+                                <InArgument x:TypeArguments="x:Int32">
+                                  <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_13" />
+                                </InArgument>
+                              </ea:ClickActivity.Y>
+                              <ea:ClickActivity.YRate>
+                                <InArgument x:TypeArguments="x:Double">
+                                  <Literal x:TypeArguments="x:Double" sap2010:WorkflowViewState.IdRef="Literal`1_15" />
+                                </InArgument>
+                              </ea:ClickActivity.YRate>
+                            </ea:ClickActivity>
+                          </bfa:Retry.Body>
+                        </bfa:Retry>
+                      </bfa:TryCatch.Try>
+                      <bfa:TryCatch.Catches>
+                        <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="459,23">
+                          <bfa:Catch.Action>
+                            <ActivityAction x:TypeArguments="s:Exception">
+                              <ActivityAction.Argument>
+                                <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                              </ActivityAction.Argument>
+                              <bfa:Throw DisplayName="抛出异常" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_3">
+                                <InArgument x:TypeArguments="s:Exception">
+                                  <mca:CSharpValue x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="CSharpValue`1_24">new Exception("retry clicking 导出采购单 failed")</mca:CSharpValue>
+                                </InArgument>
+                              </bfa:Throw>
+                            </ActivityAction>
+                          </bfa:Catch.Action>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </bfa:Catch>
+                      </bfa:TryCatch.Catches>
+                    </bfa:TryCatch>
+                    <baasf:DeleteActivity ActivityName="删除文件/文件夹" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="删除文件 - 采购单文件路径" sap:VirtualizedContainerService.HintSize="473,58" sap2010:WorkflowViewState.IdRef="DeleteActivity_1" InputType="File">
+                      <baasf:DeleteActivity.InputPath>
+                        <InArgument x:TypeArguments="x:String">
+                          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_21">(采购单文件路径).ToString()</mca:CSharpValue>
+                        </InArgument>
+                      </baasf:DeleteActivity.InputPath>
+                    </baasf:DeleteActivity>
+                    <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 - 输入文件路径" sap:VirtualizedContainerService.HintSize="515,1617" sap2010:WorkflowViewState.IdRef="TryCatch_1" IsIgnore="False">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <bfa:TryCatch.Try>
+                        <bfa:Retry ActivityName="重试" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="重试 - 输入文件路径" sap:VirtualizedContainerService.HintSize="497,1308" sap2010:WorkflowViewState.IdRef="Retry_3" IsIgnore="False">
+                          <bfa:Retry.RetryCount>
+                            <InArgument x:TypeArguments="x:Int32">
+                              <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_16" Value="1" />
+                            </InArgument>
+                          </bfa:Retry.RetryCount>
+                          <bfa:Retry.RetryTimeSpan>
+                            <InArgument x:TypeArguments="x:TimeSpan">
+                              <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_17" />
+                            </InArgument>
+                          </bfa:Retry.RetryTimeSpan>
+                          <bfa:Retry.Condition>
+                            <InArgument x:TypeArguments="x:Boolean">
+                              <Literal x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="Literal`1_18" Value="True" />
+                            </InArgument>
+                          </bfa:Retry.Condition>
+                          <bfa:Retry.Body>
+                            <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="477,1225" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <baast:SetClipboardTextActivity ActivityName="设置剪贴板文本" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="设置剪贴板文本 - 采购单文件路径" sap:VirtualizedContainerService.HintSize="455,58" sap2010:WorkflowViewState.IdRef="SetClipboardTextActivity_1">
+                                <baast:SetClipboardTextActivity.Text>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_25">(采购单文件路径).ToString()</mca:CSharpValue>
+                                  </InArgument>
+                                </baast:SetClipboardTextActivity.Text>
+                                <baast:SetClipboardTextActivity.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32">
+                                    <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_33" Value="10000" />
+                                  </InArgument>
+                                </baast:SetClipboardTextActivity.TimeoutMS>
+                              </baast:SetClipboardTextActivity>
+                              <ea:ClickActivity ControlElement="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" ScreenShoot="{x:Null}" Selector="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActivityName="点击" BringWindowType="Default" ClickLocation="Center" ClickMethod="Default" ClkType="SingleClick" ContinueOnError="False" DisplayName="点击 - 文本框内" ElementRect="0, 0, 0, 0" Guid="2065ca7e-7a85-4de5-9ef6-466103b0d554" sap:VirtualizedContainerService.HintSize="455,56" sap2010:WorkflowViewState.IdRef="ClickActivity_4" IsIgnore="False" ModifierKey="None" MouseButton="LeftButton" SelectionRect="0, 0, 0, 0">
+                                <ea:ClickActivity.Selector2>
+                                  <InArgument x:TypeArguments="ed:Selector">
+                                    <mca:CSharpValue x:TypeArguments="ed:Selector" sap2010:WorkflowViewState.IdRef="CSharpValue`1_26">"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTE2Ij8+CjxBcHBsaWNhdGlvbiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4bWxuczp4c2Q9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hIj4KPEF1dG9tYXRpb25UeXBlPlVJQTM8L0F1dG9tYXRpb25UeXBlPgo8UHJvY2Vzc05hbWU+Y2hyb21lPC9Qcm9jZXNzTmFtZT4KPEZpbGVQYXRoPmNocm9tZS5leGU8L0ZpbGVQYXRoPgo8VmVyc2lvbj4xLjM8L1ZlcnNpb24+CjxDaGlsZENvbnRyb2xzPgo8Q29udHJvbE1ldGFEYXRhPgo8SWRlbnRpZmllcj4KPENsYXNzTmFtZT5DaHJvbWVfV2lkZ2V0V2luXzE8L0NsYXNzTmFtZT4KPE5hbWU+5ZWG5a625bel5L2c5Y+wIC0gR29vZ2xlIENocm9tZTwvTmFtZT4KPFJvbGU+UGFuZTwvUm9sZT4KPElzRGlyZWN0Q2hpbGQ+dHJ1ZTwvSXNEaXJlY3RDaGlsZD4KPC9JZGVudGlmaWVyPgo8Q2hpbGRDb250cm9scz4KPENvbnRyb2xNZXRhRGF0YT4KPElkZW50aWZpZXI+CjxDbGFzc05hbWU+IzMyNzcwPC9DbGFzc05hbWU+CjxOYW1lPuWPpuWtmOS4ujwvTmFtZT4KPFJvbGU+V2luZG93PC9Sb2xlPgo8SXNEaXJlY3RDaGlsZD50cnVlPC9Jc0RpcmVjdENoaWxkPgo8L0lkZW50aWZpZXI+CjxDaGlsZENvbnRyb2xzPgo8Q29udHJvbE1ldGFEYXRhPgo8SWRlbnRpZmllcj4KPENsYXNzTmFtZT5EVUlWaWV3V25kQ2xhc3NOYW1lPC9DbGFzc05hbWU+CjxSb2xlPlBhbmU8L1JvbGU+CjxJc0RpcmVjdENoaWxkPnRydWU8L0lzRGlyZWN0Q2hpbGQ+CjwvSWRlbnRpZmllcj4KPENoaWxkQ29udHJvbHM+CjxDb250cm9sTWV0YURhdGE+CjxJZGVudGlmaWVyPgo8Q2xhc3NOYW1lPkFwcENvbnRyb2xIb3N0PC9DbGFzc05hbWU+CjxSb2xlPkNvbWJvQm94PC9Sb2xlPgo8SXNEaXJlY3RDaGlsZD50cnVlPC9Jc0RpcmVjdENoaWxkPgo8QXV0b21hdGlvbklkPkZpbGVOYW1lQ29udHJvbEhvc3Q8L0F1dG9tYXRpb25JZD4KPC9JZGVudGlmaWVyPgo8Q2hpbGRDb250cm9scz4KPENvbnRyb2xNZXRhRGF0YT4KPElkZW50aWZpZXI+CjxDbGFzc05hbWU+RWRpdDwvQ2xhc3NOYW1lPgo8Um9sZT5FZGl0PC9Sb2xlPgo8SXNEaXJlY3RDaGlsZD50cnVlPC9Jc0RpcmVjdENoaWxkPgo8QXV0b21hdGlvbklkPjEwMDE8L0F1dG9tYXRpb25JZD4KPC9JZGVudGlmaWVyPgo8QWNjZXNzS2V5IC8+CjxDb21wb25lbnQ+PC9Db21wb25lbnQ+CjwvQ29udHJvbE1ldGFEYXRhPgo8L0NoaWxkQ29udHJvbHM+CjxBY2Nlc3NLZXkgLz4KPENvbXBvbmVudD48L0NvbXBvbmVudD4KPC9Db250cm9sTWV0YURhdGE+CjwvQ2hpbGRDb250cm9scz4KPEFjY2Vzc0tleSAvPgo8Q29tcG9uZW50PjwvQ29tcG9uZW50Pgo8L0NvbnRyb2xNZXRhRGF0YT4KPC9DaGlsZENvbnRyb2xzPgo8QWNjZXNzS2V5IC8+CjxDb21wb25lbnQ+PC9Db21wb25lbnQ+CjwvQ29udHJvbE1ldGFEYXRhPgo8L0NoaWxkQ29udHJvbHM+CjxBY2Nlc3NLZXkgLz4KPENvbXBvbmVudD48L0NvbXBvbmVudD4KPC9Db250cm9sTWV0YURhdGE+CjwvQ2hpbGRDb250cm9scz4KPC9BcHBsaWNhdGlvbj4K"</mca:CSharpValue>
+                                  </InArgument>
+                                </ea:ClickActivity.Selector2>
+                                <ea:ClickActivity.X>
+                                  <InArgument x:TypeArguments="x:Int32">
+                                    <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_34" />
+                                  </InArgument>
+                                </ea:ClickActivity.X>
+                                <ea:ClickActivity.XRate>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <Literal x:TypeArguments="x:Double" sap2010:WorkflowViewState.IdRef="Literal`1_36" />
+                                  </InArgument>
+                                </ea:ClickActivity.XRate>
+                                <ea:ClickActivity.Y>
+                                  <InArgument x:TypeArguments="x:Int32">
+                                    <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_35" />
+                                  </InArgument>
+                                </ea:ClickActivity.Y>
+                                <ea:ClickActivity.YRate>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <Literal x:TypeArguments="x:Double" sap2010:WorkflowViewState.IdRef="Literal`1_37" />
+                                  </InArgument>
+                                </ea:ClickActivity.YRate>
+                              </ea:ClickActivity>
+                              <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="455,516" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <ea:SendHotKeyActivity ControlElement="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" ScreenShoot="{x:Null}" Selector="{x:Null}" Selector2="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActivityName="发送快捷键" ActivityVersion="1.1" Alt="False" BringWindowType="Default" ContinueOnError="False" Ctrl="True" DisplayName="发送快捷键 ctrl A" ElementRect="0, 0, 0, 0" Guid="6c59f298-1a67-4406-8b5e-e1ca549c7b23" sap:VirtualizedContainerService.HintSize="200,104" sap2010:WorkflowViewState.IdRef="SendHotKeyActivity_1" IsIgnore="False" PrefixAction="SetFocus" SelectionRect="0, 0, 0, 0" Shift="False" Win="False">
+                                  <ea:SendHotKeyActivity.HotKey>
+                                    <InArgument x:TypeArguments="x:String">
+                                      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_38">A</Literal>
+                                    </InArgument>
+                                  </ea:SendHotKeyActivity.HotKey>
+                                </ea:SendHotKeyActivity>
+                                <ea:SendHotKeyActivity ControlElement="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" ScreenShoot="{x:Null}" Selector="{x:Null}" Selector2="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActivityName="发送快捷键" ActivityVersion="1.1" Alt="False" BringWindowType="Default" ContinueOnError="False" Ctrl="False" DisplayName="发送快捷键 - Delete" ElementRect="0, 0, 0, 0" Guid="6c59f298-1a67-4406-8b5e-e1ca549c7b23" sap:VirtualizedContainerService.HintSize="200,104" sap2010:WorkflowViewState.IdRef="SendHotKeyActivity_2" IsIgnore="False" PrefixAction="SetFocus" SelectionRect="0, 0, 0, 0" Shift="False" Win="False">
+                                  <ea:SendHotKeyActivity.HotKey>
+                                    <InArgument x:TypeArguments="x:String">
+                                      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_39">{DELETE}</Literal>
+                                    </InArgument>
+                                  </ea:SendHotKeyActivity.HotKey>
+                                </ea:SendHotKeyActivity>
+                                <ea:SendHotKeyActivity ControlElement="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" ScreenShoot="{x:Null}" Selector="{x:Null}" Selector2="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActivityName="发送快捷键" ActivityVersion="1.1" Alt="False" BringWindowType="Default" ContinueOnError="False" Ctrl="True" DisplayName="发送快捷键 - ctrl V" ElementRect="0, 0, 0, 0" Guid="6c59f298-1a67-4406-8b5e-e1ca549c7b23" sap:VirtualizedContainerService.HintSize="200,104" sap2010:WorkflowViewState.IdRef="SendHotKeyActivity_3" IsIgnore="False" PrefixAction="SetFocus" SelectionRect="0, 0, 0, 0" Shift="False" Win="False">
+                                  <ea:SendHotKeyActivity.HotKey>
+                                    <InArgument x:TypeArguments="x:String">
+                                      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_40">V</Literal>
+                                    </InArgument>
+                                  </ea:SendHotKeyActivity.HotKey>
+                                </ea:SendHotKeyActivity>
+                              </Sequence>
+                              <eae:CommentActivity DisplayName="注释掉" sap:VirtualizedContainerService.HintSize="455,245" sap2010:WorkflowViewState.IdRef="CommentActivity_1">
+                                <ea:SetTextActivity ControlElement="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" Selector="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActionInvokeType="KeyboardSimulation" ActivityName="输入文本" BringWindowType="Default" ClearFist="True" ContinueOnError="False" DisplayName="输入文本 - 文件路径" ElementRect="0, 0, 0, 0" Guid="b3764e27-bba4-43c9-a375-3f93fd0b86a7" sap:VirtualizedContainerService.HintSize="200,90" sap2010:WorkflowViewState.IdRef="SetTextActivity_1" IsIgnore="False" ScreenShoot="dcc5f58c-e6a2-4de8-8088-fdfba05d8426.jpg" SelectionRect="0, 0, 0, 0">
+                                  <ea:SetTextActivity.Selector2>
+                                    <InArgument x:TypeArguments="ed:Selector">
+                                      <mca:CSharpValue x:TypeArguments="ed:Selector" sap2010:WorkflowViewState.IdRef="CSharpValue`1_14">"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTE2Ij8+DQo8QXBwbGljYXRpb24geG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeG1sbnM6eHNkPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSI+DQogIDxBdXRvbWF0aW9uVHlwZT5VSUEzPC9BdXRvbWF0aW9uVHlwZT4NCiAgPFByb2Nlc3NOYW1lPmNocm9tZTwvUHJvY2Vzc05hbWU+DQogIDxGaWxlUGF0aD5jaHJvbWUuZXhlPC9GaWxlUGF0aD4NCiAgPFZlcnNpb24+MS4zPC9WZXJzaW9uPg0KICA8Q2hpbGRDb250cm9scz4NCiAgICA8Q29udHJvbE1ldGFEYXRhPg0KICAgICAgPElkZW50aWZpZXI+DQogICAgICAgIDxDbGFzc05hbWU+Q2hyb21lX1dpZGdldFdpbl8xPC9DbGFzc05hbWU+DQogICAgICAgIDxOYW1lPuWVhuWutuW3peS9nOWPsCAtIEdvb2dsZSBDaHJvbWU8L05hbWU+DQogICAgICAgIDxSb2xlPlBhbmU8L1JvbGU+DQogICAgICAgIDxJc0RpcmVjdENoaWxkPnRydWU8L0lzRGlyZWN0Q2hpbGQ+DQogICAgICAgIDxBdXRvbWF0aW9uSWQgLz4NCiAgICAgIDwvSWRlbnRpZmllcj4NCiAgICAgIDxDaGlsZENvbnRyb2xzPg0KICAgICAgICA8Q29udHJvbE1ldGFEYXRhPg0KICAgICAgICAgIDxJZGVudGlmaWVyPg0KICAgICAgICAgICAgPENsYXNzTmFtZT4jMzI3NzA8L0NsYXNzTmFtZT4NCiAgICAgICAgICAgIDxOYW1lPuWPpuWtmOS4ujwvTmFtZT4NCiAgICAgICAgICAgIDxSb2xlPldpbmRvdzwvUm9sZT4NCiAgICAgICAgICAgIDxJc0RpcmVjdENoaWxkPnRydWU8L0lzRGlyZWN0Q2hpbGQ+DQogICAgICAgICAgICA8QXV0b21hdGlvbklkIC8+DQogICAgICAgICAgPC9JZGVudGlmaWVyPg0KICAgICAgICAgIDxDaGlsZENvbnRyb2xzPg0KICAgICAgICAgICAgPENvbnRyb2xNZXRhRGF0YT4NCiAgICAgICAgICAgICAgPElkZW50aWZpZXI+DQogICAgICAgICAgICAgICAgPENsYXNzTmFtZT5EVUlWaWV3V25kQ2xhc3NOYW1lPC9DbGFzc05hbWU+DQogICAgICAgICAgICAgICAgPE5hbWUgLz4NCiAgICAgICAgICAgICAgICA8Um9sZT5QYW5lPC9Sb2xlPg0KICAgICAgICAgICAgICAgIDxJc0RpcmVjdENoaWxkPnRydWU8L0lzRGlyZWN0Q2hpbGQ+DQogICAgICAgICAgICAgICAgPEF1dG9tYXRpb25JZCAvPg0KICAgICAgICAgICAgICA8L0lkZW50aWZpZXI+DQogICAgICAgICAgICAgIDxDaGlsZENvbnRyb2xzPg0KICAgICAgICAgICAgICAgIDxDb250cm9sTWV0YURhdGE+DQogICAgICAgICAgICAgICAgICA8SWRlbnRpZmllcj4NCiAgICAgICAgICAgICAgICAgICAgPENsYXNzTmFtZT5BcHBDb250cm9sSG9zdDwvQ2xhc3NOYW1lPg0KICAgICAgICAgICAgICAgICAgICA8TmFtZSAvPg0KICAgICAgICAgICAgICAgICAgICA8Um9sZT5Db21ib0JveDwvUm9sZT4NCiAgICAgICAgICAgICAgICAgICAgPElzRGlyZWN0Q2hpbGQ+dHJ1ZTwvSXNEaXJlY3RDaGlsZD4NCiAgICAgICAgICAgICAgICAgICAgPEF1dG9tYXRpb25JZD5GaWxlTmFtZUNvbnRyb2xIb3N0PC9BdXRvbWF0aW9uSWQ+DQogICAgICAgICAgICAgICAgICA8L0lkZW50aWZpZXI+DQogICAgICAgICAgICAgICAgICA8Q2hpbGRDb250cm9scz4NCiAgICAgICAgICAgICAgICAgICAgPENvbnRyb2xNZXRhRGF0YT4NCiAgICAgICAgICAgICAgICAgICAgICA8SWRlbnRpZmllcj4NCiAgICAgICAgICAgICAgICAgICAgICAgIDxDbGFzc05hbWU+RWRpdDwvQ2xhc3NOYW1lPg0KICAgICAgICAgICAgICAgICAgICAgICAgPE5hbWUgLz4NCiAgICAgICAgICAgICAgICAgICAgICAgIDxSb2xlPkVkaXQ8L1JvbGU+DQogICAgICAgICAgICAgICAgICAgICAgICA8SXNEaXJlY3RDaGlsZD50cnVlPC9Jc0RpcmVjdENoaWxkPg0KICAgICAgICAgICAgICAgICAgICAgICAgPEF1dG9tYXRpb25JZD4xMDAxPC9BdXRvbWF0aW9uSWQ+DQogICAgICAgICAgICAgICAgICAgICAgPC9JZGVudGlmaWVyPg0KICAgICAgICAgICAgICAgICAgICA8L0NvbnRyb2xNZXRhRGF0YT4NCiAgICAgICAgICAgICAgICAgIDwvQ2hpbGRDb250cm9scz4NCiAgICAgICAgICAgICAgICA8L0NvbnRyb2xNZXRhRGF0YT4NCiAgICAgICAgICAgICAgPC9DaGlsZENvbnRyb2xzPg0KICAgICAgICAgICAgPC9Db250cm9sTWV0YURhdGE+DQogICAgICAgICAgPC9DaGlsZENvbnRyb2xzPg0KICAgICAgICA8L0NvbnRyb2xNZXRhRGF0YT4NCiAgICAgIDwvQ2hpbGRDb250cm9scz4NCiAgICA8L0NvbnRyb2xNZXRhRGF0YT4NCiAgPC9DaGlsZENvbnRyb2xzPg0KPC9BcHBsaWNhdGlvbj4="</mca:CSharpValue>
+                                    </InArgument>
+                                  </ea:SetTextActivity.Selector2>
+                                  <ea:SetTextActivity.Text>
+                                    <InArgument x:TypeArguments="x:String">
+                                      <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_13">(采购单文件路径).ToString()</mca:CSharpValue>
+                                    </InArgument>
+                                  </ea:SetTextActivity.Text>
+                                </ea:SetTextActivity>
+                              </eae:CommentActivity>
+                              <ea:ClickActivity ControlElement="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" Selector="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActivityName="点击" BringWindowType="Default" ClickLocation="Center" ClickMethod="Default" ClkType="SingleClick" ContinueOnError="False" DisplayName="点击 - 保存" ElementRect="0, 0, 0, 0" Guid="d06cef22-d2b9-4e30-b207-ea02f7f3614c" sap:VirtualizedContainerService.HintSize="455,66" sap2010:WorkflowViewState.IdRef="ClickActivity_3" IsIgnore="False" ModifierKey="None" MouseButton="LeftButton" ScreenShoot="a6f151e8-8559-4f97-8df2-6e14a979efbb.jpg" SelectionRect="0, 0, 0, 0">
+                                <ea:ClickActivity.Selector2>
+                                  <InArgument x:TypeArguments="ed:Selector">
+                                    <mca:CSharpValue x:TypeArguments="ed:Selector" sap2010:WorkflowViewState.IdRef="CSharpValue`1_15">"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTE2Ij8+DQo8QXBwbGljYXRpb24geG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeG1sbnM6eHNkPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSI+DQogIDxBdXRvbWF0aW9uVHlwZT5VSUEzPC9BdXRvbWF0aW9uVHlwZT4NCiAgPFByb2Nlc3NOYW1lPmNocm9tZTwvUHJvY2Vzc05hbWU+DQogIDxGaWxlUGF0aD5jaHJvbWUuZXhlPC9GaWxlUGF0aD4NCiAgPFZlcnNpb24+MS4zPC9WZXJzaW9uPg0KICA8Q2hpbGRDb250cm9scz4NCiAgICA8Q29udHJvbE1ldGFEYXRhPg0KICAgICAgPElkZW50aWZpZXI+DQogICAgICAgIDxDbGFzc05hbWU+Q2hyb21lX1dpZGdldFdpbl8xPC9DbGFzc05hbWU+DQogICAgICAgIDxOYW1lPuWVhuWutuW3peS9nOWPsCAtIEdvb2dsZSBDaHJvbWU8L05hbWU+DQogICAgICAgIDxSb2xlPlBhbmU8L1JvbGU+DQogICAgICAgIDxJc0RpcmVjdENoaWxkPnRydWU8L0lzRGlyZWN0Q2hpbGQ+DQogICAgICAgIDxBdXRvbWF0aW9uSWQgLz4NCiAgICAgIDwvSWRlbnRpZmllcj4NCiAgICAgIDxDaGlsZENvbnRyb2xzPg0KICAgICAgICA8Q29udHJvbE1ldGFEYXRhPg0KICAgICAgICAgIDxJZGVudGlmaWVyPg0KICAgICAgICAgICAgPENsYXNzTmFtZT4jMzI3NzA8L0NsYXNzTmFtZT4NCiAgICAgICAgICAgIDxOYW1lPuWPpuWtmOS4ujwvTmFtZT4NCiAgICAgICAgICAgIDxSb2xlPldpbmRvdzwvUm9sZT4NCiAgICAgICAgICAgIDxJc0RpcmVjdENoaWxkPnRydWU8L0lzRGlyZWN0Q2hpbGQ+DQogICAgICAgICAgICA8QXV0b21hdGlvbklkIC8+DQogICAgICAgICAgPC9JZGVudGlmaWVyPg0KICAgICAgICAgIDxDaGlsZENvbnRyb2xzPg0KICAgICAgICAgICAgPENvbnRyb2xNZXRhRGF0YT4NCiAgICAgICAgICAgICAgPElkZW50aWZpZXI+DQogICAgICAgICAgICAgICAgPENsYXNzTmFtZT5CdXR0b248L0NsYXNzTmFtZT4NCiAgICAgICAgICAgICAgICA8TmFtZSAvPg0KICAgICAgICAgICAgICAgIDxSb2xlPkJ1dHRvbjwvUm9sZT4NCiAgICAgICAgICAgICAgICA8SXNEaXJlY3RDaGlsZD50cnVlPC9Jc0RpcmVjdENoaWxkPg0KICAgICAgICAgICAgICAgIDxBdXRvbWF0aW9uSWQ+MTwvQXV0b21hdGlvbklkPg0KICAgICAgICAgICAgICA8L0lkZW50aWZpZXI+DQogICAgICAgICAgICA8L0NvbnRyb2xNZXRhRGF0YT4NCiAgICAgICAgICA8L0NoaWxkQ29udHJvbHM+DQogICAgICAgIDwvQ29udHJvbE1ldGFEYXRhPg0KICAgICAgPC9DaGlsZENvbnRyb2xzPg0KICAgIDwvQ29udHJvbE1ldGFEYXRhPg0KICA8L0NoaWxkQ29udHJvbHM+DQo8L0FwcGxpY2F0aW9uPg=="</mca:CSharpValue>
+                                  </InArgument>
+                                </ea:ClickActivity.Selector2>
+                                <ea:ClickActivity.X>
+                                  <InArgument x:TypeArguments="x:Int32">
+                                    <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_19" />
+                                  </InArgument>
+                                </ea:ClickActivity.X>
+                                <ea:ClickActivity.XRate>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <Literal x:TypeArguments="x:Double" sap2010:WorkflowViewState.IdRef="Literal`1_21" />
+                                  </InArgument>
+                                </ea:ClickActivity.XRate>
+                                <ea:ClickActivity.Y>
+                                  <InArgument x:TypeArguments="x:Int32">
+                                    <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_20" />
+                                  </InArgument>
+                                </ea:ClickActivity.Y>
+                                <ea:ClickActivity.YRate>
+                                  <InArgument x:TypeArguments="x:Double">
+                                    <Literal x:TypeArguments="x:Double" sap2010:WorkflowViewState.IdRef="Literal`1_22" />
+                                  </InArgument>
+                                </ea:ClickActivity.YRate>
+                              </ea:ClickActivity>
+                            </Sequence>
+                          </bfa:Retry.Body>
+                        </bfa:Retry>
+                      </bfa:TryCatch.Try>
+                      <bfa:TryCatch.Catches>
+                        <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="459,23" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                          <bfa:Catch.Action>
+                            <ActivityAction x:TypeArguments="s:Exception">
+                              <ActivityAction.Argument>
+                                <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                              </ActivityAction.Argument>
+                              <bfa:Throw DisplayName="抛出异常" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_1">
+                                <InArgument x:TypeArguments="s:Exception">
+                                  <mca:CSharpValue x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="CSharpValue`1_16">new Exception("文件路径输入失败")</mca:CSharpValue>
+                                </InArgument>
+                              </bfa:Throw>
+                            </ActivityAction>
+                          </bfa:Catch.Action>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </bfa:Catch>
+                      </bfa:TryCatch.Catches>
+                    </bfa:TryCatch>
+                  </Sequence>
+                </bfa:If.Then>
+              </bfa:If>
+            </Sequence>
+          </ActivityAction>
+        </eaw:BrowserAttach.Body>
+        <eaw:BrowserAttach.Selector2>
+          <InArgument x:TypeArguments="ed:Selector">
+            <mca:CSharpValue x:TypeArguments="ed:Selector" sap2010:WorkflowViewState.IdRef="CSharpValue`1_3">"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTE2Ij8+DQo8QXBwbGljYXRpb24geG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeG1sbnM6eHNkPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSI+DQogIDxBdXRvbWF0aW9uVHlwZT5XRUItQ0hST01FPC9BdXRvbWF0aW9uVHlwZT4NCiAgPFByb2Nlc3NOYW1lPmNocm9tZTwvUHJvY2Vzc05hbWU+DQogIDxGaWxlUGF0aD5jaHJvbWUuZXhlPC9GaWxlUGF0aD4NCiAgPFZlcnNpb24+MS4zPC9WZXJzaW9uPg0KICA8Q2hpbGRDb250cm9scz4NCiAgICA8Q29udHJvbE1ldGFEYXRhPg0KICAgICAgPElkZW50aWZpZXI+DQogICAgICAgIDxDbGFzc05hbWU+Q2hyb21lX1dpZGdldFdpbl8xPC9DbGFzc05hbWU+DQogICAgICAgIDxUaXRsZT7llYblrrblt6XkvZzlj7A8L1RpdGxlPg0KICAgICAgICA8QWNjZXNzS2V5IC8+DQogICAgICAgIDxSb2xlPldpbmRvdzwvUm9sZT4NCiAgICAgICAgPElzRGlyZWN0Q2hpbGQ+dHJ1ZTwvSXNEaXJlY3RDaGlsZD4NCiAgICAgIDwvSWRlbnRpZmllcj4NCiAgICAgIDxDaGlsZENvbnRyb2xzPg0KICAgICAgICA8Q29udHJvbE1ldGFEYXRhPg0KICAgICAgICAgIDxXZWJJZGVudGlmaWVyPg0KICAgICAgICAgICAgPFJvbGU+QnV0dG9uPC9Sb2xlPg0KICAgICAgICAgICAgPFRhZz5IVE1MPC9UYWc+DQogICAgICAgICAgPC9XZWJJZGVudGlmaWVyPg0KICAgICAgICA8L0NvbnRyb2xNZXRhRGF0YT4NCiAgICAgIDwvQ2hpbGRDb250cm9scz4NCiAgICA8L0NvbnRyb2xNZXRhRGF0YT4NCiAgPC9DaGlsZENvbnRyb2xzPg0KPC9BcHBsaWNhdGlvbj4="</mca:CSharpValue>
+          </InArgument>
+        </eaw:BrowserAttach.Selector2>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </eaw:BrowserAttach>
+    </FlowStep>
+    <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_5">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <av:Point x:Key="ShapeLocation">148.5,82.5</av:Point>
+          <av:Size x:Key="ShapeSize">323,55</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">310,137.5 310,172.5</av:PointCollection>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - 桌面路径" sap:VirtualizedContainerService.HintSize="323,55" sap2010:WorkflowViewState.IdRef="Assign_2" IsIgnore="False">
+        <bfa:Assign.To>
+          <OutArgument x:TypeArguments="x:String">
+            <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_2">桌面路径</mca:CSharpReference>
+          </OutArgument>
+        </bfa:Assign.To>
+        <bfa:Assign.Value>
+          <InArgument x:TypeArguments="x:String">
+            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_9">Environment.GetFolderPath(Environment.SpecialFolder.Desktop).ToString()</mca:CSharpValue>
+          </InArgument>
+        </bfa:Assign.Value>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </bfa:Assign>
+      <FlowStep.Next>
+        <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">148.5,172.5</av:Point>
+              <av:Size x:Key="ShapeSize">323,55</av:Size>
+              <av:PointCollection x:Key="ConnectorLocation">310,227.5 310,253.5</av:PointCollection>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - 采购单导出文件夹" sap:VirtualizedContainerService.HintSize="323,55" sap2010:WorkflowViewState.IdRef="Assign_3" IsIgnore="False">
+            <bfa:Assign.To>
+              <OutArgument x:TypeArguments="x:String">
+                <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_3">采购单导出文件夹</mca:CSharpReference>
+              </OutArgument>
+            </bfa:Assign.To>
+            <bfa:Assign.Value>
+              <InArgument x:TypeArguments="x:String">
+                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_10">Path.Combine(桌面路径, @"雀巢\家乐福\采购单导出")</mca:CSharpValue>
+              </InArgument>
+            </bfa:Assign.Value>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </bfa:Assign>
+          <FlowStep.Next>
+            <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_3">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <av:Point x:Key="ShapeLocation">210,253.5</av:Point>
+                  <av:Size x:Key="ShapeSize">200,53</av:Size>
+                  <av:PointCollection x:Key="ConnectorLocation">310,306.5 310,342.5</av:PointCollection>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 采购单导出文件夹 不存在）" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="If_2" IsIgnore="False">
+                <bfa:If.Condition>
+                  <InArgument x:TypeArguments="x:Boolean">
+                    <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_19">!Directory.Exists(采购单导出文件夹)</mca:CSharpValue>
+                  </InArgument>
+                </bfa:If.Condition>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <bfa:If.Then>
+                  <baasf:CreateActivity ActivityName="新建文件/文件夹" ContinueOnError="No" CreationType="Folder" DelayAfter="0" DelayBefore="0" DisplayName="新建文件夹 - 采购单导出文件夹" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="CreateActivity_2">
+                    <baasf:CreateActivity.CreationPath>
+                      <InArgument x:TypeArguments="x:String">
+                        <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_18">(采购单导出文件夹).ToString()</mca:CSharpValue>
+                      </InArgument>
+                    </baasf:CreateActivity.CreationPath>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </baasf:CreateActivity>
+                </bfa:If.Then>
+              </bfa:If>
+              <FlowStep.Next>
+                <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_2">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <av:Point x:Key="ShapeLocation">148.5,342.5</av:Point>
+                      <av:Size x:Key="ShapeSize">323,55</av:Size>
+                      <av:PointCollection x:Key="ConnectorLocation">310,397.5 310,463.5</av:PointCollection>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - 采购单文件路径" sap:VirtualizedContainerService.HintSize="323,55" sap2010:WorkflowViewState.IdRef="Assign_4" IsIgnore="False">
+                    <bfa:Assign.To>
+                      <OutArgument x:TypeArguments="x:String">
+                        <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_4">采购单文件路径</mca:CSharpReference>
+                      </OutArgument>
+                    </bfa:Assign.To>
+                    <bfa:Assign.Value>
+                      <InArgument x:TypeArguments="x:String">
+                        <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_22">Path.Combine(采购单导出文件夹, string.Format("采购单导出_{0}_{1}.xls", 开始日期, 结束日期))</mca:CSharpValue>
+                      </InArgument>
+                    </bfa:Assign.Value>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </bfa:Assign>
+                  <FlowStep.Next>
+                    <x:Reference>__ReferenceID0</x:Reference>
+                  </FlowStep.Next>
+                </FlowStep>
+              </FlowStep.Next>
+            </FlowStep>
+          </FlowStep.Next>
+        </FlowStep>
+      </FlowStep.Next>
+    </FlowStep>
+    <x:Reference>__ReferenceID1</x:Reference>
+    <x:Reference>__ReferenceID2</x:Reference>
+    <x:Reference>__ReferenceID3</x:Reference>
+  </Flowchart>
+</Activity>

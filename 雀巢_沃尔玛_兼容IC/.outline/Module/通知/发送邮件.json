@@ -1,0 +1,68 @@
+{
+  "Md5CheckSum": "6f08345cb52151c2e04654f102e7c30c",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Flowchart_1",
+        "Name": "Root",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "CommentActivity_1",
+            "Name": "注释掉",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "AcquireAssetsActivity_1",
+                "Name": "获取资产",
+                "IsActivity": true,
+                "SubItems": []
+              }
+            ]
+          },
+          {
+            "RefId": "While_1",
+            "Name": "循环操作（While)",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "Sequence_1",
+                "Name": "序列",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "SendSmtpMailActivity_2",
+                    "Name": "发送邮件(SMTP)",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "Assign_1",
+                    "Name": "赋值",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "Delay_1",
+                    "Name": "延迟",
+                    "IsActivity": true,
+                    "SubItems": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "RefId": "SendSmtpMailActivity_3",
+            "Name": "发送邮件(SMTP)",
+            "IsActivity": true,
+            "SubItems": []
+          }
+        ]
+      }
+    ]
+  }
+}
