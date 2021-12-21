@@ -1,12 +1,10 @@
 <Activity mc:Ignorable="sap sap2010 sads" x:Class="更新exported_Order" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:baast="clr-namespace:BotTime.ActivityLibrary.Activities.System.Tool;assembly=BotTime.ActivityLibrary" xmlns:bda="clr-namespace:BotTime.DataBase.Activity;assembly=BotTime.DataBase.Activity" xmlns:bfa="clr-namespace:BotTime.Flow.Activities;assembly=BotTime.Flow.Activities" xmlns:ecaac="clr-namespace:Encoo.CodeTool.Activity.Activities.CSharp;assembly=Encoo.CodeTool.Activity" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger">
   <x:Members>
     <x:Property Name="sqlConn" Type="InArgument(x:String)" />
-    <x:Property Name="实际增量订单数据表" Type="InArgument(sd:DataTable)" />
-    <x:Property Name="抓取失败订单列表" Type="InArgument(scg:List(x:String))" />
-    <x:Property Name="walmart_exported_orders_name" Type="InArgument(x:String)" />
+    <x:Property Name="待更新exportedOrders" Type="InArgument(sd:DataTable)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>610,1089</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>610,1085</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>更新exported_Order_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="21">
@@ -64,27 +62,26 @@
       <AssemblyReference>System.Text.Encoding.CodePages</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <bda:DatabaseConnectActivity ActivityName="连接数据库" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="连接数据库 - 更新exported Order" sap:VirtualizedContainerService.HintSize="570,937" sap2010:WorkflowViewState.IdRef="DatabaseConnectActivity_8" ProviderName="MySql">
+  <bda:DatabaseConnectActivity ActivityName="连接数据库" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="连接数据库 - 更新exported Order" sap:VirtualizedContainerService.HintSize="570,933" sap2010:WorkflowViewState.IdRef="DatabaseConnectActivity_8" ProviderName="MySql">
     <bda:DatabaseConnectActivity.Body>
       <ActivityAction x:TypeArguments="x:Object">
         <ActivityAction.Argument>
           <DelegateInArgument x:TypeArguments="x:Object" Name="DataBaseScope" />
         </ActivityAction.Argument>
-        <Sequence DisplayName="序列 - 更新导出的订单" sap:VirtualizedContainerService.HintSize="556,829" sap2010:WorkflowViewState.IdRef="Sequence_1">
+        <Sequence DisplayName="序列 - 更新导出的订单" sap:VirtualizedContainerService.HintSize="556,825" sap2010:WorkflowViewState.IdRef="Sequence_1">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Name="insertWMExportedOrdersSQL" />
             <Variable x:TypeArguments="x:Int32" Name="作用行数" />
-            <Variable x:TypeArguments="sd:DataTable" Name="validOrdersDT" />
           </Sequence.Variables>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 实际增量订单数据表 不为空）" sap:VirtualizedContainerService.HintSize="534,705" sap2010:WorkflowViewState.IdRef="If_1" IsIgnore="False">
+          <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 实际增量订单数据表 不为空）" sap:VirtualizedContainerService.HintSize="534,701" sap2010:WorkflowViewState.IdRef="If_1" IsIgnore="False">
             <bfa:If.Condition>
               <InArgument x:TypeArguments="x:Boolean">
-                <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_6">实际增量订单数据表!=null &amp;&amp; 实际增量订单数据表.Rows.Count &gt; 0</mca:CSharpValue>
+                <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_6">待更新exportedOrders!=null &amp;&amp; 待更新exportedOrders.Rows.Count &gt; 0</mca:CSharpValue>
               </InArgument>
             </bfa:If.Condition>
             <bfa:If.Then>
@@ -94,20 +91,20 @@
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ecaac:InvokeCSharpCodeActivity ActivityName="执行C#代码" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行C#代码 -筛选入库成功原始导出订单WM-IC" sap:VirtualizedContainerService.HintSize="349,93" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_2">
+                <ecaac:InvokeCSharpCodeActivity ActivityName="执行C#代码" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行C#代码 - 筛选入库成功原始导出订单" sap:VirtualizedContainerService.HintSize="349,93" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_1">
                   <ecaac:InvokeCSharpCodeActivity.CodeFilePath>
                     <InArgument x:TypeArguments="x:String">
-                      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_4">.code\CSharp\执行CSharp代码-筛选入库成功原始导出订单-IC.cs</Literal>
+                      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_1">.code\CSharp\执行CSharp代码-筛选入库成功原始导出订单.cs</Literal>
                     </InArgument>
                   </ecaac:InvokeCSharpCodeActivity.CodeFilePath>
                 </ecaac:InvokeCSharpCodeActivity>
                 <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: 根据数据表拼接数据库SQL语句" sap:VirtualizedContainerService.HintSize="349,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_1" IsIgnore="False">
                   <bfa:InvokeWorkflow.Arguments>
                     <InArgument x:TypeArguments="x:String" x:Key="str_TableName">
-                      <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_4">(walmart_exported_orders_name).ToString()</mca:CSharpValue>
+                      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_5">walmart_exported_orders</Literal>
                     </InArgument>
                     <InArgument x:TypeArguments="sd:DataTable" x:Key="源数据表">
-                      <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_5">validOrdersDT</mca:CSharpValue>
+                      <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_7">待更新exportedOrders</mca:CSharpValue>
                     </InArgument>
                     <OutArgument x:TypeArguments="x:String" x:Key="str_SQL">
                       <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_2">insertWMExportedOrdersSQL</mca:CSharpReference>

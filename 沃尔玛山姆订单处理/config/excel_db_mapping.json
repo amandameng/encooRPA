@@ -209,6 +209,11 @@
         "type": "int",
         "display_name": "total_units_ordered"
       },
+	  {
+        "field": "file_path",
+        "type": "int",
+        "display_name": "file_path"
+      },
       {
         "field": "customer_name",
         "type": "string",

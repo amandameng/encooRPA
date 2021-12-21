@@ -8,6 +8,7 @@
     <x:Property Name="curCustomerName" Type="InArgument(x:String)" />
     <x:Property Name="samWaterDeliverySettingDT" Type="InArgument(sd:DataTable)" />
     <x:Property Name="byPOorItem模板数据表" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="不录单订单列表" Type="InOutArgument(scg:List(x:String))" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
   <sap:VirtualizedContainerService.HintSize>654,760</sap:VirtualizedContainerService.HintSize>
@@ -101,7 +102,7 @@
               <av:Size x:Key="ShapeSize">200,129</av:Size>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <boa:OfficeExcelOpenOrCreateActivity OfficeVersion="{x:Null}" Password="{x:Null}" SaveAs="{x:Null}" ActivityName="打开/新建" sap2010:Annotation.AnnotationText="异常检查逻辑在此！！&#xA;&#xA;写入异常数据&#xA;" AutoSave="True" ContinueOnError="No" CreateNewFile="False" DelayAfter="0" DelayBefore="0" DisplayName="打开 clean exception file" EnableMacro="False" sap:VirtualizedContainerService.HintSize="200,129" sap2010:WorkflowViewState.IdRef="OfficeExcelOpenOrCreateActivity_5" ReadOnly="False" Visible="False" needRestoreKey="False">
+          <boa:OfficeExcelOpenOrCreateActivity OfficeVersion="{x:Null}" Password="{x:Null}" SaveAs="{x:Null}" ActivityName="打开/新建" sap2010:Annotation.AnnotationText="异常检查逻辑在此！！&#xA;&#xA;写入异常数据&#xA;" AutoSave="True" ContinueOnError="No" CreateNewFile="False" DelayAfter="0" DelayBefore="0" DisplayName="打开 clean exception file" EnableMacro="False" sap:VirtualizedContainerService.HintSize="451,1637" sap2010:WorkflowViewState.IdRef="OfficeExcelOpenOrCreateActivity_5" ReadOnly="False" Visible="False" needRestoreKey="False">
             <boa:OfficeExcelOpenOrCreateActivity.Body>
               <ActivityAction x:TypeArguments="x:Object">
                 <ActivityAction.Argument>
@@ -395,7 +396,7 @@
       <FlowStep.Next>
         <FlowDecision x:Name="__ReferenceID1" DisplayName="增量订单关联数据表 不为空" sap:VirtualizedContainerService.HintSize="152,87" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
           <FlowDecision.Condition>
-            <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_59">增量订单关联数据表.Rows.Count &gt; 0</mca:CSharpValue>
+            <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_77">增量订单关联数据表 != null &amp;&amp; 增量订单关联数据表.Rows.Count &gt; 0</mca:CSharpValue>
           </FlowDecision.Condition>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">

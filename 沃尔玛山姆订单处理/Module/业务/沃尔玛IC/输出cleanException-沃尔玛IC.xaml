@@ -12,6 +12,7 @@
     <x:Property Name="oneToNNestleProductsDT" Type="InArgument(sd:DataTable)" />
     <x:Property Name="WMLocationsList" Type="InArgument(scg:List(x:String))" />
     <x:Property Name="订单序号" Type="InArgument(x:Int32)" />
+    <x:Property Name="不录单订单列表" Type="InOutArgument(scg:List(x:String))" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
   <sap:VirtualizedContainerService.HintSize>654,716</sap:VirtualizedContainerService.HintSize>
@@ -220,7 +221,7 @@
                           </InArgument>
                         </bfa:Assign.Value>
                       </bfa:Assign>
-                      <boa:OfficeExcelGetLastRowIndexActivity ActivityName="获取末行号" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取末行号" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="OfficeExcelGetLastRowIndexActivity_3">
+                      <boa:OfficeExcelGetLastRowIndexActivity LettersColumnIndex="{x:Null}" ActivityName="获取末行号" ColumnType="NumberColumn" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取末行号" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="OfficeExcelGetLastRowIndexActivity_3">
                         <boa:OfficeExcelGetLastRowIndexActivity.ColumnIndex>
                           <InArgument x:TypeArguments="x:Int32">
                             <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_16" Value="1" />
@@ -295,13 +296,13 @@
                       <av:PointCollection x:Key="ConnectorLocation">310,543 310,601</av:PointCollection>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <boa:OfficeExcelOpenOrCreateActivity OfficeVersion="{x:Null}" Password="{x:Null}" SaveAs="{x:Null}" ActivityName="打开/新建" sap2010:Annotation.AnnotationText="异常检查逻辑在此！！&#xA;写入异常数据&#xA;" AutoSave="True" ContinueOnError="No" CreateNewFile="False" DelayAfter="0" DelayBefore="0" DisplayName="打开 clean exception file" EnableMacro="False" sap:VirtualizedContainerService.HintSize="451,1566" sap2010:WorkflowViewState.IdRef="OfficeExcelOpenOrCreateActivity_2" ReadOnly="False" Visible="False" needRestoreKey="False">
+                  <boa:OfficeExcelOpenOrCreateActivity OfficeVersion="{x:Null}" Password="{x:Null}" SaveAs="{x:Null}" ActivityName="打开/新建" sap2010:Annotation.AnnotationText="异常检查逻辑在此！！&#xA;写入异常数据&#xA;" AutoSave="True" ContinueOnError="No" CreateNewFile="False" DelayAfter="0" DelayBefore="0" DisplayName="打开 clean exception file" EnableMacro="False" sap:VirtualizedContainerService.HintSize="451,1620" sap2010:WorkflowViewState.IdRef="OfficeExcelOpenOrCreateActivity_2" ReadOnly="False" Visible="False" needRestoreKey="False">
                     <boa:OfficeExcelOpenOrCreateActivity.Body>
                       <ActivityAction x:TypeArguments="x:Object">
                         <ActivityAction.Argument>
                           <DelegateInArgument x:TypeArguments="x:Object" Name="XlWorkbook" />
                         </ActivityAction.Argument>
-                        <Sequence DisplayName="序列-打开eto文件" sap:VirtualizedContainerService.HintSize="393,1399" sap2010:WorkflowViewState.IdRef="Sequence_1">
+                        <Sequence DisplayName="序列-打开eto文件" sap:VirtualizedContainerService.HintSize="393,1453" sap2010:WorkflowViewState.IdRef="Sequence_1">
                           <Sequence.Variables>
                             <Variable x:TypeArguments="sd:DataTable" Name="byPO模板数据表" />
                             <Variable x:TypeArguments="x:String" Name="byPOSheet">
@@ -323,7 +324,7 @@
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <Sequence DisplayName="序列 - by PO template" sap:VirtualizedContainerService.HintSize="371,378" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                          <Sequence DisplayName="序列 - by PO template" sap:VirtualizedContainerService.HintSize="371,405" sap2010:WorkflowViewState.IdRef="Sequence_2">
                             <Sequence.Variables>
                               <Variable x:TypeArguments="x:Int32" Name="lastRow" />
                               <Variable x:TypeArguments="x:String" Name="lastColName" />
@@ -334,7 +335,7 @@
                                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <boa:OfficeExcelGetLastRowIndexActivity ActivityName="获取末行号" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取末行号" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="OfficeExcelGetLastRowIndexActivity_1">
+                            <boa:OfficeExcelGetLastRowIndexActivity LettersColumnIndex="{x:Null}" ActivityName="获取末行号" ColumnType="NumberColumn" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取末行号" sap:VirtualizedContainerService.HintSize="349,85" sap2010:WorkflowViewState.IdRef="OfficeExcelGetLastRowIndexActivity_1">
                               <boa:OfficeExcelGetLastRowIndexActivity.ColumnIndex>
                                 <InArgument x:TypeArguments="x:Int32">
                                   <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_6" Value="1" />
@@ -386,7 +387,7 @@
                               </boa:OfficeExcelReadRangeActivity.SheetName>
                             </boa:OfficeExcelReadRangeActivity>
                           </Sequence>
-                          <Sequence DisplayName="序列 -  by PO or Item Template" sap:VirtualizedContainerService.HintSize="371,378" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                          <Sequence DisplayName="序列 -  by PO or Item Template" sap:VirtualizedContainerService.HintSize="371,405" sap2010:WorkflowViewState.IdRef="Sequence_4">
                             <Sequence.Variables>
                               <Variable x:TypeArguments="x:Int32" Name="lastRow" />
                               <Variable x:TypeArguments="x:String" Name="lastColName" />
@@ -397,7 +398,7 @@
                                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <boa:OfficeExcelGetLastRowIndexActivity ActivityName="获取末行号" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取末行号" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="OfficeExcelGetLastRowIndexActivity_2">
+                            <boa:OfficeExcelGetLastRowIndexActivity LettersColumnIndex="{x:Null}" ActivityName="获取末行号" ColumnType="NumberColumn" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取末行号" sap:VirtualizedContainerService.HintSize="349,85" sap2010:WorkflowViewState.IdRef="OfficeExcelGetLastRowIndexActivity_2">
                               <boa:OfficeExcelGetLastRowIndexActivity.ColumnIndex>
                                 <InArgument x:TypeArguments="x:Int32">
                                   <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_13" Value="1" />

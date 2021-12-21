@@ -18,7 +18,7 @@
     </InArgument>
   </this:根据数据表拼接数据库SQL语句.insertIgnore>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>511,658</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>596,921</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>根据数据表拼接数据库SQL语句_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="15">
@@ -66,13 +66,13 @@
       <AssemblyReference>System.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="471,578" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="556,841" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If addCustomerName）" sap:VirtualizedContainerService.HintSize="449,321" sap2010:WorkflowViewState.IdRef="If_1" IsIgnore="False">
+    <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If addCustomerName）" sap:VirtualizedContainerService.HintSize="534,324" sap2010:WorkflowViewState.IdRef="If_1" IsIgnore="False">
       <bfa:If.Condition>
         <InArgument x:TypeArguments="x:Boolean">
           <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">addCustomerName</mca:CSharpValue>
@@ -103,12 +103,21 @@
         </bda:DataTableAddColumnActivity>
       </bfa:If.Then>
     </bfa:If>
-    <ecaac:InvokeCSharpCodeActivity ActivityName="执行C#代码" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行C#代码: 根据数据表拼接数据库SQL语句" sap:VirtualizedContainerService.HintSize="449,93" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_3">
-      <ecaac:InvokeCSharpCodeActivity.CodeFilePath>
-        <InArgument x:TypeArguments="x:String">
-          <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_6">.code\CSharp\根据数据表拼接数据库SQL语句.cs</Literal>
+    <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 源数据不为空）" sap:VirtualizedContainerService.HintSize="534,353" sap2010:WorkflowViewState.IdRef="If_2" IsIgnore="False">
+      <bfa:If.Condition>
+        <InArgument x:TypeArguments="x:Boolean">
+          <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_4">源数据表!=null &amp;&amp; 源数据表.Rows.Count &gt; 0</mca:CSharpValue>
         </InArgument>
-      </ecaac:InvokeCSharpCodeActivity.CodeFilePath>
-    </ecaac:InvokeCSharpCodeActivity>
+      </bfa:If.Condition>
+      <bfa:If.Then>
+        <ecaac:InvokeCSharpCodeActivity ActivityName="执行C#代码" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行C#代码: 根据数据表拼接数据库SQL语句" sap:VirtualizedContainerService.HintSize="349,93" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_3">
+          <ecaac:InvokeCSharpCodeActivity.CodeFilePath>
+            <InArgument x:TypeArguments="x:String">
+              <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_6">.code\CSharp\根据数据表拼接数据库SQL语句.cs</Literal>
+            </InArgument>
+          </ecaac:InvokeCSharpCodeActivity.CodeFilePath>
+        </ecaac:InvokeCSharpCodeActivity>
+      </bfa:If.Then>
+    </bfa:If>
   </Sequence>
 </Activity>

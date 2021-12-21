@@ -25,6 +25,12 @@
       "Type": "ActivityOrCode"
     },
     {
+      "Id": "BotTime.Office.Activity",
+      "AutoUpgrade": false,
+      "UpgradeVersionPattern": "1.*.*.*",
+      "Type": "ActivityOrCode"
+    },
+    {
       "Id": "BotTime.ActivityLibrary",
       "AutoUpgrade": false,
       "UpgradeVersionPattern": "1.*.*.*",
@@ -38,12 +44,6 @@
     },
     {
       "Id": "BotTime.DataBase.Activity",
-      "AutoUpgrade": false,
-      "UpgradeVersionPattern": "1.*.*.*",
-      "Type": "ActivityOrCode"
-    },
-    {
-      "Id": "BotTime.Office.Activity",
       "AutoUpgrade": false,
       "UpgradeVersionPattern": "1.*.*.*",
       "Type": "ActivityOrCode"
@@ -129,6 +129,98 @@
       "Id": "System.ValueTuple",
       "Version": "4.5.0",
       "Title": "System.ValueTuple",
+      "InnerDependencies": []
+    },
+    {
+      "Id": "BotTime.Office.Activity",
+      "Version": "1.8.2111.2",
+      "Title": "BotTime.Office.Activity",
+      "InnerDependencies": [
+        {
+          "Id": "ActiproSoftware.Controls.WPF.Editors",
+          "MaxVersion": null,
+          "MinVersion": "20.1.1"
+        },
+        {
+          "Id": "ActiproSoftware.Controls.WPF.Ribbon",
+          "MaxVersion": null,
+          "MinVersion": "20.1.1"
+        },
+        {
+          "Id": "Microsoft.Office.Interop.Excel",
+          "MaxVersion": null,
+          "MinVersion": "15.0.4795.1000"
+        },
+        {
+          "Id": "Panuon.UI.Silver",
+          "MaxVersion": null,
+          "MinVersion": "1.0.8.7"
+        },
+        {
+          "Id": "System.IO.Packaging",
+          "MaxVersion": null,
+          "MinVersion": "4.0.0"
+        }
+      ]
+    },
+    {
+      "Id": "ActiproSoftware.Controls.WPF.Editors",
+      "Version": "20.1.1",
+      "Title": "Actipro Editors (for WPF)",
+      "InnerDependencies": [
+        {
+          "Id": "ActiproSoftware.Controls.WPF.Shared",
+          "MaxVersion": "20.1.1",
+          "MinVersion": "20.1.1"
+        }
+      ]
+    },
+    {
+      "Id": "ActiproSoftware.Controls.WPF.Shared",
+      "Version": "20.1.1",
+      "Title": "Actipro Shared Library (for WPF)",
+      "InnerDependencies": []
+    },
+    {
+      "Id": "ActiproSoftware.Controls.WPF.Ribbon",
+      "Version": "20.1.1",
+      "Title": "Actipro Ribbon (for WPF)",
+      "InnerDependencies": [
+        {
+          "Id": "ActiproSoftware.Controls.WPF.Shared",
+          "MaxVersion": "20.1.1",
+          "MinVersion": "20.1.1"
+        }
+      ]
+    },
+    {
+      "Id": "Microsoft.Office.Interop.Excel",
+      "Version": "15.0.4795.1000",
+      "Title": "Microsoft.Office.Interop.Excel",
+      "InnerDependencies": []
+    },
+    {
+      "Id": "Panuon.UI.Silver",
+      "Version": "1.0.8.7",
+      "Title": "Panuon.UI.Silver",
+      "InnerDependencies": []
+    },
+    {
+      "Id": "System.IO.Packaging",
+      "Version": "4.0.0",
+      "Title": "System.IO.Packaging",
+      "InnerDependencies": [
+        {
+          "Id": "System.IO.FileSystem.Primitives",
+          "MaxVersion": null,
+          "MinVersion": "4.0.1"
+        }
+      ]
+    },
+    {
+      "Id": "System.IO.FileSystem.Primitives",
+      "Version": "4.0.1",
+      "Title": "System.IO.FileSystem.Primitives",
       "InnerDependencies": []
     },
     {
@@ -229,12 +321,6 @@
           "MinVersion": "20.1.1"
         }
       ]
-    },
-    {
-      "Id": "ActiproSoftware.Controls.WPF.Shared",
-      "Version": "20.1.1",
-      "Title": "Actipro Shared Library (for WPF)",
-      "InnerDependencies": []
     },
     {
       "Id": "ActiproSoftware.Controls.WPF.SyntaxEditor",
@@ -528,12 +614,6 @@
       ]
     },
     {
-      "Id": "Panuon.UI.Silver",
-      "Version": "1.0.8.7",
-      "Title": "Panuon.UI.Silver",
-      "InnerDependencies": []
-    },
-    {
       "Id": "SharpCompress",
       "Version": "0.24.0",
       "Title": "SharpCompress",
@@ -688,86 +768,6 @@
       "Id": "BotTime.DataBase.Activity",
       "Version": "1.6.2111.3",
       "Title": "BotTime.DataBase.Activity",
-      "InnerDependencies": []
-    },
-    {
-      "Id": "BotTime.Office.Activity",
-      "Version": "1.8.2111.2",
-      "Title": "BotTime.Office.Activity",
-      "InnerDependencies": [
-        {
-          "Id": "ActiproSoftware.Controls.WPF.Editors",
-          "MaxVersion": null,
-          "MinVersion": "20.1.1"
-        },
-        {
-          "Id": "ActiproSoftware.Controls.WPF.Ribbon",
-          "MaxVersion": null,
-          "MinVersion": "20.1.1"
-        },
-        {
-          "Id": "Microsoft.Office.Interop.Excel",
-          "MaxVersion": null,
-          "MinVersion": "15.0.4795.1000"
-        },
-        {
-          "Id": "Panuon.UI.Silver",
-          "MaxVersion": null,
-          "MinVersion": "1.0.8.7"
-        },
-        {
-          "Id": "System.IO.Packaging",
-          "MaxVersion": null,
-          "MinVersion": "4.0.0"
-        }
-      ]
-    },
-    {
-      "Id": "ActiproSoftware.Controls.WPF.Editors",
-      "Version": "20.1.1",
-      "Title": "Actipro Editors (for WPF)",
-      "InnerDependencies": [
-        {
-          "Id": "ActiproSoftware.Controls.WPF.Shared",
-          "MaxVersion": "20.1.1",
-          "MinVersion": "20.1.1"
-        }
-      ]
-    },
-    {
-      "Id": "ActiproSoftware.Controls.WPF.Ribbon",
-      "Version": "20.1.1",
-      "Title": "Actipro Ribbon (for WPF)",
-      "InnerDependencies": [
-        {
-          "Id": "ActiproSoftware.Controls.WPF.Shared",
-          "MaxVersion": "20.1.1",
-          "MinVersion": "20.1.1"
-        }
-      ]
-    },
-    {
-      "Id": "Microsoft.Office.Interop.Excel",
-      "Version": "15.0.4795.1000",
-      "Title": "Microsoft.Office.Interop.Excel",
-      "InnerDependencies": []
-    },
-    {
-      "Id": "System.IO.Packaging",
-      "Version": "4.0.0",
-      "Title": "System.IO.Packaging",
-      "InnerDependencies": [
-        {
-          "Id": "System.IO.FileSystem.Primitives",
-          "MaxVersion": null,
-          "MinVersion": "4.0.1"
-        }
-      ]
-    },
-    {
-      "Id": "System.IO.FileSystem.Primitives",
-      "Version": "4.0.1",
-      "Title": "System.IO.FileSystem.Primitives",
       "InnerDependencies": []
     },
     {

@@ -51,7 +51,6 @@
     "Module\\业务\\山姆.xaml",
     "Module\\业务\\山姆\\输出cleanException-山姆.xaml",
     ".code\\CSharp\\执行CSharp代码-异常订单检查-山姆-byPO.cs",
-    "批量更新产品主数据.xaml",
     ".code\\CSharp\\执行CSharp代码-只有WM录单.cs",
     ".code\\CSharp\\执行CSharp代码-筛选当前location订单-山姆.cs",
     ".code\\CSharp\\执行CSharp代码-订单文件名.cs",
@@ -78,14 +77,24 @@
     ".code\\CSharp\\执行CSharp代码-筛选当前location订单-沃尔玛IC.cs",
     ".code\\CSharp\\执行CSharp代码-发送邮件.cs",
     "Module\\业务\\沃尔玛IC",
-    "Module\\业务\\沃尔玛IC\\输出cleanException-沃尔玛IC.xaml",
     ".code\\CSharp\\执行CSharp代码-异常订单检查-沃尔玛IC-byPO.cs",
     ".code\\CSharp\\执行CSharp代码.cs",
     ".code\\CSharp\\执行CSharp代码 - 汇总沃尔玛报表文件.cs",
     ".code\\CSharp\\执行CSharp代码-整理邮件报表.cs",
     ".code\\CSharp\\执行CSharp代码-WMIC-配置转化变量.cs",
     "Module\\通用\\文件清理.xaml",
-    ".code\\CSharp\\执行CSharp代码-清理指定文件夹.cs"
+    ".code\\CSharp\\执行CSharp代码-清理指定文件夹.cs",
+    ".code\\CSharp\\执行CSharp代码-压缩订单附件.cs",
+    ".code\\CSharp\\执行CSharp代码-判断下载或抓取失败订单.cs",
+    ".code\\CSharp\\执行CSharp代码-排除不录单订单.cs",
+    "Module\\通用\\刷新订单页.xaml",
+    "Module\\通用\\输出增量订单.xaml",
+    "Module\\通用\\抓取失败订单通知.xaml",
+    "Module\\通用\\连接数据库_查询订单附件.xaml",
+    ".code\\CSharp\\执行CSharp代码 - 汇总待更新exportedOrders.cs",
+    "Module\\通用\\批量更新exported_Order.xaml",
+    "测试.xaml",
+    "Module\\业务\\沃尔玛IC\\输出cleanException-沃尔玛IC.xaml"
   ],
   "TargetFramework": ".NETFramework,Version=v4.6.1",
   "ProjectDependencies": [
@@ -1162,7 +1171,7 @@
       "InnerDependencies": []
     }
   ],
-  "LastModifyTime": "2021-12-09T19:02:52.8872688+08:00",
+  "LastModifyTime": "2021-12-21T10:56:31.066805+08:00",
   "ProjectReferences": [],
   "TerminationHandler": null,
   "ExceptionHandler": null,

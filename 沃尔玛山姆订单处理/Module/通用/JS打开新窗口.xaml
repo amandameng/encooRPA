@@ -49,10 +49,10 @@
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <av:Point x:Key="ShapeLocation">210,132.5</av:Point>
-          <av:Size x:Key="ShapeSize">200,95</av:Size>
+          <av:Size x:Key="ShapeSize">200,97</av:Size>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <eac:InvokeJavaScriptActivityV2 DelayAfter="{x:Null}" DelayBefore="{x:Null}" ExecuteTimeout="{x:Null}" Selector="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActivityName="执行JavaScript代码" sap2010:Annotation.AnnotationText="targetLink" BringWindowType="Default" ContinueOnError="False" DisplayName="执行JavaScript代码 - 打开新窗口" ElementRect="0, 0, 0, 0" Guid="cc09451c-5eea-4c9f-b323-93573f116a7c" sap:VirtualizedContainerService.HintSize="200,95" sap2010:WorkflowViewState.IdRef="InvokeJavaScriptActivityV2_1" IsIgnore="False" JavaScriptCode="function openNewWindow(newLink){&#xA;   window.open(newLink);&#xA;}&#xA;" ScreenShoot="ebd5103f-aa43-48b4-a029-ac8c378c5776.jpg" SelectionRect="0, 0, 0, 0">
+      <eac:InvokeJavaScriptActivityV2 DelayAfter="{x:Null}" DelayBefore="{x:Null}" ExecuteTimeout="{x:Null}" Selector="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActivityName="执行JavaScript代码" sap2010:Annotation.AnnotationText="targetLink" BringWindowType="Default" ContinueOnError="False" DisplayName="执行JavaScript代码 - 打开新窗口" ElementRect="0, 0, 0, 0" Guid="cc09451c-5eea-4c9f-b323-93573f116a7c" sap:VirtualizedContainerService.HintSize="200,97" sap2010:WorkflowViewState.IdRef="InvokeJavaScriptActivityV2_1" IsIgnore="False" JavaScriptCode="function openNewWindow(newLink){&#xA;   window.open(newLink);&#xA;}&#xA;" ScreenShoot="f3e30132-2c74-4847-861b-b1a2460ea80e.jpg" SelectionRect="0, 0, 0, 0">
         <eac:InvokeJavaScriptActivityV2.MethodName>
           <InArgument x:TypeArguments="x:String">
             <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_3">(string.Format("openNewWindow('{0}')", targetLink)).ToString()</mca:CSharpValue>

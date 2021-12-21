@@ -259,7 +259,7 @@
               </bfa:Retry>
             </bfa:TryCatch.Try>
             <bfa:TryCatch.Catches>
-              <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="459,23">
+              <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="459,23" sap2010:WorkflowViewState.IdRef="Catch`1_4">
                 <bfa:Catch.Action>
                   <ActivityAction x:TypeArguments="s:Exception">
                     <ActivityAction.Argument>
@@ -350,7 +350,7 @@
                           </Variable>
                           <Variable x:TypeArguments="x:Int32" Name="totalWaitSeonds">
                             <Variable.Default>
-                              <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_38" Value="120" />
+                              <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_50" Value="60" />
                             </Variable.Default>
                           </Variable>
                         </Sequence.Variables>
@@ -360,7 +360,7 @@
                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 点击 export" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="TryCatch_2" IsIgnore="False">
+                        <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 点击 export" sap:VirtualizedContainerService.HintSize="449,335" sap2010:WorkflowViewState.IdRef="TryCatch_2" IsIgnore="False">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -435,7 +435,7 @@
                             </Sequence>
                           </bfa:TryCatch.Try>
                           <bfa:TryCatch.Catches>
-                            <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="481,23" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                            <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="435,165" sap2010:WorkflowViewState.IdRef="Catch`1_1">
                               <bfa:Catch.Action>
                                 <ActivityAction x:TypeArguments="s:Exception">
                                   <ActivityAction.Argument>
@@ -450,7 +450,7 @@
                               </bfa:Catch.Action>
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
@@ -507,7 +507,7 @@
                               <x:Boolean x:Key="IsPinned">False</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="393,696" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                          <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="534,696" sap2010:WorkflowViewState.IdRef="Sequence_8">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -540,7 +540,7 @@
                                   </InArgument>
                                 </baasf:DeleteActivity.InputPath>
                               </baasf:DeleteActivity>
-                              <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 - 重试输入文件路径" sap:VirtualizedContainerService.HintSize="349,53" sap2010:WorkflowViewState.IdRef="TryCatch_3" IsIgnore="False">
+                              <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 - 重试输入文件路径" sap:VirtualizedContainerService.HintSize="449,485" sap2010:WorkflowViewState.IdRef="TryCatch_3" IsIgnore="False">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -606,7 +606,7 @@
                                   </bfa:Retry>
                                 </bfa:TryCatch.Try>
                                 <bfa:TryCatch.Catches>
-                                  <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="459,23" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                                  <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="435,315" sap2010:WorkflowViewState.IdRef="Catch`1_2">
                                     <bfa:Catch.Action>
                                       <ActivityAction x:TypeArguments="s:Exception">
                                         <ActivityAction.Argument>
@@ -635,7 +635,7 @@
                                     </bfa:Catch.Action>
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
@@ -706,13 +706,13 @@
                               </ea:ClickActivity>
                             </Sequence>
                           </Sequence>
-                          <bfa:While ActivityName="循环操作（While)" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="循环操作 等待文件下载完成" sap:VirtualizedContainerService.HintSize="393,53" sap2010:WorkflowViewState.IdRef="While_1" IsIgnore="False">
+                          <bfa:While ActivityName="循环操作（While)" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="循环操作 等待文件下载完成" sap:VirtualizedContainerService.HintSize="534,381" sap2010:WorkflowViewState.IdRef="While_1" IsIgnore="False">
                             <bfa:While.Variables>
                               <Variable x:TypeArguments="x:String" Name="variable2" />
                             </bfa:While.Variables>
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
@@ -748,7 +748,7 @@
                               </bfa:Assign>
                             </Sequence>
                           </bfa:While>
-                          <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 订单文件不存在则抛出异常）" sap:VirtualizedContainerService.HintSize="393,53" sap2010:WorkflowViewState.IdRef="If_26" IsIgnore="False">
+                          <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 订单文件不存在则抛出异常）" sap:VirtualizedContainerService.HintSize="534,248" sap2010:WorkflowViewState.IdRef="If_26" IsIgnore="False">
                             <bfa:If.Condition>
                               <InArgument x:TypeArguments="x:Boolean">
                                 <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_18">!File.Exists(当前Listing文件)</mca:CSharpValue>
@@ -756,7 +756,7 @@
                             </bfa:If.Condition>
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>

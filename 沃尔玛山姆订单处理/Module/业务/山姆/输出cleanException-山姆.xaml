@@ -11,6 +11,7 @@
     <x:Property Name="samQtyMappingDT" Type="InArgument(sd:DataTable)" />
     <x:Property Name="bulkWalferConfigDT" Type="InArgument(sd:DataTable)" />
     <x:Property Name="oneToNNestleProductsDT" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="不录单订单列表" Type="InOutArgument(scg:List(x:String))" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
   <sap:VirtualizedContainerService.HintSize>664,765</sap:VirtualizedContainerService.HintSize>
@@ -591,7 +592,7 @@
     <x:Reference>__ReferenceID4</x:Reference>
     <FlowDecision x:Name="__ReferenceID6" DisplayName="增量订单关联数据表 不为空" sap:VirtualizedContainerService.HintSize="152,87" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
       <FlowDecision.Condition>
-        <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_61">增量订单关联数据表.Rows.Count &gt; 0</mca:CSharpValue>
+        <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_62">增量订单关联数据表 !=null &amp;&amp; 增量订单关联数据表.Rows.Count &gt; 0</mca:CSharpValue>
       </FlowDecision.Condition>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
