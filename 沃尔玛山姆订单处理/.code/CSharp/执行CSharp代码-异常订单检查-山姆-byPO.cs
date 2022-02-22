@@ -718,8 +718,9 @@ public void setRowValueForDC(ref DataRow 分仓行, DataRow cleanExceptionDRow){
     分仓行["是否为手工单"] = cleanExceptionDRow["是否为手工单"];
     分仓行["是否为稳定库存"] = cleanExceptionDRow["是否为稳定库存"];
     分仓行["数量"] = cleanExceptionDRow["Order qty"];
-    分仓行["起送日"] = Convert.ToDateTime(cleanExceptionDRow["起送日"].ToString()).ToString("yyyy/MM/dd");;
-    分仓行["MABD"] = Convert.ToDateTime(cleanExceptionDRow["MABD"].ToString()).ToString("yyyy/MM/dd");;
+    分仓行["起送日"] = Convert.ToDateTime(cleanExceptionDRow["起送日"].ToString()).ToString("yyyy/MM/dd");
+    分仓行["MABD"] = Convert.ToDateTime(cleanExceptionDRow["MABD"].ToString()).ToString("yyyy/MM/dd");
+    分仓行["客户名称"] = curCustomerName;
 }
 
 public static decimal toDecimalConvert(object srcValue){

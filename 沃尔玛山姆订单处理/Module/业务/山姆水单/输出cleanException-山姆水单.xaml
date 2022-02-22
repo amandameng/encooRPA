@@ -11,7 +11,7 @@
     <x:Property Name="不录单订单列表" Type="InOutArgument(scg:List(x:String))" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>798,991</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>798,1022</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>EncooWorkflow.Workflow_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="16">
@@ -113,13 +113,13 @@
               <av:PointCollection x:Key="ConnectorLocation">310,784.5 310,853.5</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <boa:OfficeExcelOpenOrCreateActivity OfficeVersion="{x:Null}" Password="{x:Null}" SaveAs="{x:Null}" ActivityName="打开/新建" sap2010:Annotation.AnnotationText="异常检查逻辑在此！！&#xA;&#xA;写入异常数据&#xA;" AutoSave="True" ContinueOnError="No" CreateNewFile="False" DelayAfter="0" DelayBefore="0" DisplayName="打开 clean exception file" EnableMacro="False" sap:VirtualizedContainerService.HintSize="200,129" sap2010:WorkflowViewState.IdRef="OfficeExcelOpenOrCreateActivity_5" ReadOnly="False" Visible="False" needRestoreKey="False">
+          <boa:OfficeExcelOpenOrCreateActivity OfficeVersion="{x:Null}" Password="{x:Null}" SaveAs="{x:Null}" ActivityName="打开/新建" sap2010:Annotation.AnnotationText="异常检查逻辑在此！！&#xA;&#xA;写入异常数据&#xA;" AutoSave="True" ContinueOnError="No" CreateNewFile="False" DelayAfter="0" DelayBefore="0" DisplayName="打开 clean exception file" EnableMacro="False" sap:VirtualizedContainerService.HintSize="650,2515" sap2010:WorkflowViewState.IdRef="OfficeExcelOpenOrCreateActivity_5" ReadOnly="False" Visible="False" needRestoreKey="False">
             <boa:OfficeExcelOpenOrCreateActivity.Body>
               <ActivityAction x:TypeArguments="x:Object">
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="x:Object" Name="XlWorkbook" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="序列-打开eto文件" sap:VirtualizedContainerService.HintSize="556,1808" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                <Sequence DisplayName="序列-打开eto文件" sap:VirtualizedContainerService.HintSize="556,2331" sap2010:WorkflowViewState.IdRef="Sequence_9">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="sd:DataTable" Name="byPO模板数据表" />
                     <Variable x:TypeArguments="x:String" Name="byPOSheet">
@@ -140,7 +140,7 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Sequence DisplayName="序列 - by PO template" sap:VirtualizedContainerService.HintSize="534,405" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                  <Sequence DisplayName="序列 - by PO template" sap:VirtualizedContainerService.HintSize="534,638" sap2010:WorkflowViewState.IdRef="Sequence_10">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="x:Int32" Name="lastRow" />
                       <Variable x:TypeArguments="x:String" Name="lastColName" />
@@ -151,12 +151,12 @@
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <boa:OfficeExcelGetLastRowIndexActivity LettersColumnIndex="{x:Null}" ActivityName="获取末行号" ColumnType="NumberColumn" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取末行号" sap:VirtualizedContainerService.HintSize="349,85" sap2010:WorkflowViewState.IdRef="OfficeExcelGetLastRowIndexActivity_4">
-                      <boa:OfficeExcelGetLastRowIndexActivity.ColumnIndex>
+                    <boa:OfficeExcelGetLastRowIndexActivity ColumnIndex="{x:Null}" LettersColumnIndex="{x:Null}" ActivityName="获取末行号" ColumnType="NumberColumn" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取末行号" sap:VirtualizedContainerService.HintSize="334,139" sap2010:WorkflowViewState.IdRef="OfficeExcelGetLastRowIndexActivity_4">
+                      <boa:OfficeExcelGetLastRowIndexActivity.ColumnNo>
                         <InArgument x:TypeArguments="x:Int32">
                           <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_34" Value="1" />
                         </InArgument>
-                      </boa:OfficeExcelGetLastRowIndexActivity.ColumnIndex>
+                      </boa:OfficeExcelGetLastRowIndexActivity.ColumnNo>
                       <boa:OfficeExcelGetLastRowIndexActivity.LastRowIndex>
                         <OutArgument x:TypeArguments="x:Int32">
                           <mca:CSharpReference x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpReference`1_22">lastRow</mca:CSharpReference>
@@ -168,7 +168,7 @@
                         </InArgument>
                       </boa:OfficeExcelGetLastRowIndexActivity.SheetName>
                     </boa:OfficeExcelGetLastRowIndexActivity>
-                    <boa:OfficeExcelGetLastColIndexActivity LastColumnIndex="{x:Null}" ActivityName="获取末列号" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取末列号" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="OfficeExcelGetLastColIndexActivity_4">
+                    <boa:OfficeExcelGetLastColIndexActivity LastColumnIndex="{x:Null}" ActivityName="获取末列号" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取末列号" sap:VirtualizedContainerService.HintSize="334,166" sap2010:WorkflowViewState.IdRef="OfficeExcelGetLastColIndexActivity_4">
                       <boa:OfficeExcelGetLastColIndexActivity.LastColumnLetter>
                         <OutArgument x:TypeArguments="x:String">
                           <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_23">lastColName</mca:CSharpReference>
@@ -185,7 +185,7 @@
                         </InArgument>
                       </boa:OfficeExcelGetLastColIndexActivity.SheetName>
                     </boa:OfficeExcelGetLastColIndexActivity>
-                    <boa:OfficeExcelReadRangeActivity ActivityName="读取区域" AddHeaders="True" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="读取区域-读取模板文件，获取列头" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="OfficeExcelReadRangeActivity_4" PreserveFormat="False" RepeatedColumn="False" UseFilter="False">
+                    <boa:OfficeExcelReadRangeActivity ActivityName="读取区域" AddHeaders="True" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="读取区域-读取模板文件，获取列头" sap:VirtualizedContainerService.HintSize="334,129" sap2010:WorkflowViewState.IdRef="OfficeExcelReadRangeActivity_4" PreserveFormat="False" RepeatedColumn="False" UseFilter="False">
                       <boa:OfficeExcelReadRangeActivity.Data>
                         <OutArgument x:TypeArguments="sd:DataTable">
                           <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_24">byPO模板数据表</mca:CSharpReference>
@@ -203,7 +203,7 @@
                       </boa:OfficeExcelReadRangeActivity.SheetName>
                     </boa:OfficeExcelReadRangeActivity>
                   </Sequence>
-                  <Sequence DisplayName="序列 -  by PO or Item Template" sap:VirtualizedContainerService.HintSize="534,405" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                  <Sequence DisplayName="序列 -  by PO or Item Template" sap:VirtualizedContainerService.HintSize="534,638" sap2010:WorkflowViewState.IdRef="Sequence_11">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="x:Int32" Name="lastRow" />
                       <Variable x:TypeArguments="x:String" Name="lastColName" />
@@ -214,12 +214,12 @@
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <boa:OfficeExcelGetLastRowIndexActivity LettersColumnIndex="{x:Null}" ActivityName="获取末行号" ColumnType="NumberColumn" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取末行号" sap:VirtualizedContainerService.HintSize="349,85" sap2010:WorkflowViewState.IdRef="OfficeExcelGetLastRowIndexActivity_5">
-                      <boa:OfficeExcelGetLastRowIndexActivity.ColumnIndex>
+                    <boa:OfficeExcelGetLastRowIndexActivity ColumnIndex="{x:Null}" LettersColumnIndex="{x:Null}" ActivityName="获取末行号" ColumnType="NumberColumn" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取末行号" sap:VirtualizedContainerService.HintSize="334,139" sap2010:WorkflowViewState.IdRef="OfficeExcelGetLastRowIndexActivity_5">
+                      <boa:OfficeExcelGetLastRowIndexActivity.ColumnNo>
                         <InArgument x:TypeArguments="x:Int32">
                           <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_36" Value="1" />
                         </InArgument>
-                      </boa:OfficeExcelGetLastRowIndexActivity.ColumnIndex>
+                      </boa:OfficeExcelGetLastRowIndexActivity.ColumnNo>
                       <boa:OfficeExcelGetLastRowIndexActivity.LastRowIndex>
                         <OutArgument x:TypeArguments="x:Int32">
                           <mca:CSharpReference x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpReference`1_25">lastRow</mca:CSharpReference>
@@ -231,7 +231,7 @@
                         </InArgument>
                       </boa:OfficeExcelGetLastRowIndexActivity.SheetName>
                     </boa:OfficeExcelGetLastRowIndexActivity>
-                    <boa:OfficeExcelGetLastColIndexActivity LastColumnIndex="{x:Null}" ActivityName="获取末列号" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取末列号" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="OfficeExcelGetLastColIndexActivity_5">
+                    <boa:OfficeExcelGetLastColIndexActivity LastColumnIndex="{x:Null}" ActivityName="获取末列号" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取末列号" sap:VirtualizedContainerService.HintSize="334,166" sap2010:WorkflowViewState.IdRef="OfficeExcelGetLastColIndexActivity_5">
                       <boa:OfficeExcelGetLastColIndexActivity.LastColumnLetter>
                         <OutArgument x:TypeArguments="x:String">
                           <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_26">lastColName</mca:CSharpReference>
@@ -248,7 +248,7 @@
                         </InArgument>
                       </boa:OfficeExcelGetLastColIndexActivity.SheetName>
                     </boa:OfficeExcelGetLastColIndexActivity>
-                    <boa:OfficeExcelReadRangeActivity ActivityName="读取区域" AddHeaders="True" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="读取区域-读取模板文件，获取列头" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="OfficeExcelReadRangeActivity_5" PreserveFormat="False" RepeatedColumn="False" UseFilter="False">
+                    <boa:OfficeExcelReadRangeActivity ActivityName="读取区域" AddHeaders="True" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="读取区域-读取模板文件，获取列头" sap:VirtualizedContainerService.HintSize="334,129" sap2010:WorkflowViewState.IdRef="OfficeExcelReadRangeActivity_5" PreserveFormat="False" RepeatedColumn="False" UseFilter="False">
                       <boa:OfficeExcelReadRangeActivity.Data>
                         <OutArgument x:TypeArguments="sd:DataTable">
                           <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_27">byPOorItem模板数据表</mca:CSharpReference>
@@ -290,7 +290,7 @@
                       </InArgument>
                     </bda:DataTableSaveToCSVActivity.SavePath>
                   </bda:DataTableSaveToCSVActivity>
-                  <boa:OfficeExcelSetRangeActivity ActivityName="写入区域" AddHeaders="False" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="写入区域 - 模板数据-不加列头" sap:VirtualizedContainerService.HintSize="534,85" sap2010:WorkflowViewState.IdRef="OfficeExcelSetRangeActivity_4">
+                  <boa:OfficeExcelSetRangeActivity ActivityName="写入区域" AddHeaders="False" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="写入区域 - 模板数据-不加列头" sap:VirtualizedContainerService.HintSize="534,112" sap2010:WorkflowViewState.IdRef="OfficeExcelSetRangeActivity_4">
                     <boa:OfficeExcelSetRangeActivity.InputDataTable>
                       <InArgument x:TypeArguments="sd:DataTable">
                         <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_66">byPO模板数据表</mca:CSharpValue>
@@ -307,7 +307,7 @@
                       </InArgument>
                     </boa:OfficeExcelSetRangeActivity.StartCell>
                   </boa:OfficeExcelSetRangeActivity>
-                  <boa:OfficeExcelSetRangeActivity ActivityName="写入区域" AddHeaders="False" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="写入区域 - 模板数据-不加列头" sap:VirtualizedContainerService.HintSize="534,85" sap2010:WorkflowViewState.IdRef="OfficeExcelSetRangeActivity_5">
+                  <boa:OfficeExcelSetRangeActivity ActivityName="写入区域" AddHeaders="False" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="写入区域 - 模板数据-不加列头" sap:VirtualizedContainerService.HintSize="534,112" sap2010:WorkflowViewState.IdRef="OfficeExcelSetRangeActivity_5">
                     <boa:OfficeExcelSetRangeActivity.InputDataTable>
                       <InArgument x:TypeArguments="sd:DataTable">
                         <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_68">byPOorItem模板数据表</mca:CSharpValue>
@@ -324,14 +324,14 @@
                       </InArgument>
                     </boa:OfficeExcelSetRangeActivity.StartCell>
                   </boa:OfficeExcelSetRangeActivity>
-                  <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 模板数据存在）" sap:VirtualizedContainerService.HintSize="534,315" sap2010:WorkflowViewState.IdRef="If_2" IsIgnore="False">
+                  <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 模板数据存在）" sap:VirtualizedContainerService.HintSize="534,318" sap2010:WorkflowViewState.IdRef="If_2" IsIgnore="False">
                     <bfa:If.Condition>
                       <InArgument x:TypeArguments="x:Boolean">
                         <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_81">(byPO模板数据表!=null &amp;&amp; byPO模板数据表.Rows.Count &gt; 0) || (byPOorItem模板数据表!=null &amp;&amp; byPOorItem模板数据表.Rows.Count &gt; 0)</mca:CSharpValue>
                       </InArgument>
                     </bfa:If.Condition>
                     <bfa:If.Then>
-                      <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - 存在异常数据" sap:VirtualizedContainerService.HintSize="323,55" sap2010:WorkflowViewState.IdRef="Assign_1" IsIgnore="False">
+                      <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - 存在异常数据" sap:VirtualizedContainerService.HintSize="323,58" sap2010:WorkflowViewState.IdRef="Assign_1" IsIgnore="False">
                         <bfa:Assign.To>
                           <OutArgument x:TypeArguments="x:Boolean">
                             <mca:CSharpReference x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpReference`1_29">存在异常数据</mca:CSharpReference>

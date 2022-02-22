@@ -32,7 +32,6 @@ public void Run()
 //在这里编写您的函数或者类
 public DateTime convertToLocalTime(DateTime sourceCSTdtime)
 {
-    
     TimeZoneInfo cstTimeZone = TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time");
     DateTime dtime = TimeZoneInfo.ConvertTime(sourceCSTdtime, cstTimeZone, TimeZoneInfo.Local);
     return dtime;
