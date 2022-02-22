@@ -2,11 +2,13 @@
 public void Run()
 {
     //在这里编写您的代码
-    ex2O增量订单 = 增量订单数据表.Clone();
-    foreach(DataRow dr in 增量订单数据表.Rows){
+    int totalRows = 增量订单数据表.Rows.Count;
+    for(int i=totalRows-1; i >= 0; i--){
+        DataRow dr = 增量订单数据表.Rows[i];
         string location = dr["location"].ToString();
-        if(WMLocationsList.Contains(location)){
-            ex2O增量订单.ImportRow(dr);
+        if(!WMLocationsList.Contains(location)){
+            // 增量订单数据表.Rows.Remove(dr);
+            不录单订单列表.Add(dr["order_number"].ToString());
         }
     }
 }

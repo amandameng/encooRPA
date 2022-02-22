@@ -85,7 +85,7 @@
           <av:PointCollection x:Key="ConnectorLocation">310,182.5 310,223.5</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <bfa:TryCatch ActivityName="错误捕获（Try Catch）" sap2010:Annotation.AnnotationText="excel" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获（Try Catch）" sap:VirtualizedContainerService.HintSize="574,849" sap2010:WorkflowViewState.IdRef="TryCatch_1" IsIgnore="False">
+      <bfa:TryCatch ActivityName="错误捕获（Try Catch）" sap2010:Annotation.AnnotationText="excel" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获（Try Catch）" sap:VirtualizedContainerService.HintSize="200,78" sap2010:WorkflowViewState.IdRef="TryCatch_1" IsIgnore="False">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -130,7 +130,7 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                   </baast:ExecuteCmd>
-                  <bfa:Delay DelayTimeSpan="00:00:00" DisplayName="延迟" sap:VirtualizedContainerService.HintSize="349,53" sap2010:WorkflowViewState.IdRef="Delay_4">
+                  <bfa:Delay DelayTimeSpan="00:00:00" DisplayName="延迟 - 3S" sap:VirtualizedContainerService.HintSize="349,53" sap2010:WorkflowViewState.IdRef="Delay_4">
                     <bfa:Delay.WaitTimeSpan>
                       <InArgument x:TypeArguments="x:TimeSpan">
                         <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_7" Value="00:00:03" />
@@ -143,7 +143,7 @@
           </Sequence>
         </bfa:TryCatch.Try>
         <bfa:TryCatch.Catches>
-          <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="475,23" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="560,23" sap2010:WorkflowViewState.IdRef="Catch`1_1">
             <bfa:Catch.Action>
               <ActivityAction x:TypeArguments="s:Exception">
                 <ActivityAction.Argument>
@@ -168,7 +168,7 @@
               <av:Size x:Key="ShapeSize">200,78</av:Size>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <bfa:TryCatch ActivityName="错误捕获（Try Catch）" sap2010:Annotation.AnnotationText="chrome" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获（Try Catch）" sap:VirtualizedContainerService.HintSize="200,78" sap2010:WorkflowViewState.IdRef="TryCatch_2" IsIgnore="False">
+          <bfa:TryCatch ActivityName="错误捕获（Try Catch）" sap2010:Annotation.AnnotationText="chrome" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获（Try Catch）" sap:VirtualizedContainerService.HintSize="574,849" sap2010:WorkflowViewState.IdRef="TryCatch_2" IsIgnore="False">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -176,29 +176,52 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <bfa:TryCatch.Try>
-              <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="371,182" sap2010:WorkflowViewState.IdRef="Sequence_4">
+              <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="556,587" sap2010:WorkflowViewState.IdRef="Sequence_4">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <baast:ExecuteCmd Output="{x:Null}" WorkingDirectory="{x:Null}" ActivityName="执行命令行" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行命令行" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="ExecuteCmd_5">
-                  <baast:ExecuteCmd.CommandLine>
-                    <InArgument x:TypeArguments="x:String">
-                      <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_37">(@"taskkill /f /t /im CHROME.exe").ToString()</mca:CSharpValue>
+                <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If）" sap:VirtualizedContainerService.HintSize="534,463" sap2010:WorkflowViewState.IdRef="If_4" IsIgnore="False">
+                  <bfa:If.Condition>
+                    <InArgument x:TypeArguments="x:Boolean">
+                      <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_38">关闭所有Chrome进程</mca:CSharpValue>
                     </InArgument>
-                  </baast:ExecuteCmd.CommandLine>
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </baast:ExecuteCmd>
+                  </bfa:If.Condition>
+                  <bfa:If.Then>
+                    <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="371,275" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <baast:ExecuteCmd Output="{x:Null}" WorkingDirectory="{x:Null}" ActivityName="执行命令行" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行命令行" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="ExecuteCmd_5">
+                        <baast:ExecuteCmd.CommandLine>
+                          <InArgument x:TypeArguments="x:String">
+                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_37">(@"taskkill /f /t /im CHROME.exe").ToString()</mca:CSharpValue>
+                          </InArgument>
+                        </baast:ExecuteCmd.CommandLine>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </baast:ExecuteCmd>
+                      <bfa:Delay DelayTimeSpan="00:00:00" DisplayName="延迟 - 3S" sap:VirtualizedContainerService.HintSize="349,53" sap2010:WorkflowViewState.IdRef="Delay_5">
+                        <bfa:Delay.WaitTimeSpan>
+                          <InArgument x:TypeArguments="x:TimeSpan">
+                            <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_8" Value="00:00:03" />
+                          </InArgument>
+                        </bfa:Delay.WaitTimeSpan>
+                      </bfa:Delay>
+                    </Sequence>
+                  </bfa:If.Then>
+                </bfa:If>
               </Sequence>
             </bfa:TryCatch.Try>
             <bfa:TryCatch.Catches>
-              <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="435,23" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+              <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="560,23" sap2010:WorkflowViewState.IdRef="Catch`1_2">
                 <bfa:Catch.Action>
                   <ActivityAction x:TypeArguments="s:Exception">
                     <ActivityAction.Argument>

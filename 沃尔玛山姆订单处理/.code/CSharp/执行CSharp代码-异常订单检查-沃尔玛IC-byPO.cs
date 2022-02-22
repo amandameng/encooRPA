@@ -62,6 +62,9 @@ public void Run()
         // 设置分仓明细表每行的信息
         setRowValueForDC(ref 分仓行, cleanExceptionDRow);
 
+        // EX2O是否包含当前订单，如果包含，则无需再次录单
+        setNotIntoEx2O(order_number);
+        
         /*
           有重复订单， MABD， 产品数量修改，等其他任意信息修改都要抓取
         */
@@ -94,19 +97,24 @@ public void Run()
         */
 
         // By Item
+        List<string> refItemExceptionList = new List<string>{};
+
         foreach(DataRow dr in curOrderDocLinkRows){
             string productCode = dr["customer_product_code"].ToString();
             DataRow byPOItemRow =  exceptionByPODT.NewRow();
             byPOItemRow.ItemArray = cleanExceptionDRow.ItemArray;
-            specialProductCheck(dr, ref 问题订单List, ref byPOItemRow, prevOrderDocLinkRows);
+            byPOItemRow["Customer order Item"] = dr["line_number"];
+            specialProductCheck(dr, ref refItemExceptionList, ref byPOItemRow, prevOrderDocLinkRows);
             if(!String.IsNullOrEmpty(byPOItemRow["Exception reason"].ToString())){ // 异常信息不为空
                 exceptionByPODT.Rows.Add(byPOItemRow);  // by Item 的异常订单 
             }
         }
 
         cleanExceptionDRow["Item Type"] = "Order";
-        cleanExceptionDRow["order category"] = (问题订单List.Count > 0) ? "exception" : "clean";
-        cleanExceptionDRow["Exception category"] = string.Join("; ", 问题订单List);
+        cleanExceptionDRow["order category"] = (问题订单List.Count > 0 || refItemExceptionList.Count > 0) ? "exception" : "clean";
+        string onlyItemException = (问题订单List.Count == 0 && refItemExceptionList.Count > 0) ? "1" : "0";
+        cleanExceptionDRow["onlyItemException"] = onlyItemException;
+        cleanExceptionDRow["Exception category"] = string.Join("; ", 问题订单List.Union(refItemExceptionList));
         cleanExceptionDRow["Exception reason"] = cleanExceptionDRow["Exception category"];
 
         exceptionByPODT.Rows.Add(cleanExceptionDRow);
@@ -115,6 +123,20 @@ public void Run()
     
     buildByPODT();
     buildByPOAndItemDT();
+}
+
+public void setNotIntoEx2O(string order_number){
+    if(existingEX2ODT!=null && orderJobHistoryDT!=null){
+        // bool inEX2O = existingEX2ODT.AsEnumerable().Cast<DataRow>().Any(dRow => dRow["Customer_Order_Number"].ToString() == order_number);
+        bool inEX2O = existingEX2ODT.AsEnumerable().Cast<DataRow>().Any(dRow => dRow["PO_Number"].ToString().Contains(order_number));
+
+        
+        bool inOrderJobHistory = orderJobHistoryDT.AsEnumerable().Cast<DataRow>().Any(dRow => dRow["order_number"].ToString() == order_number);
+
+        if(inEX2O && inOrderJobHistory){
+            不录单订单列表.Add(order_number);
+        }
+    }
 }
 
 public void addExceptionRow(DataRow cleanExceptionDRow){
@@ -137,7 +159,7 @@ public void buildByPODT(){
 
 public void buildByPOAndItemDT(){
     DataTable poItemDT = exceptionByPODT.Clone();
-    DataRow[] poItemDRows = exceptionByPODT.Select("`order category`= 'exception'");
+    DataRow[] poItemDRows = exceptionByPODT.Select("`order category`= 'exception' and `onlyItemException` <> '1'");
     foreach(DataRow dr in poItemDRows){
         poItemDT.ImportRow(dr);
     }
@@ -145,7 +167,7 @@ public void buildByPOAndItemDT(){
 }
 
 // 特殊产品by Item 检查
-public void specialProductCheck(DataRow dr, ref List<string> 问题订单List, ref DataRow byPOItemRow, DataRow[] prevOrderDocLinkRows){
+public void specialProductCheck(DataRow dr, ref List<string> refItemExceptionList, ref DataRow byPOItemRow, DataRow[] prevOrderDocLinkRows){
     List<string> itemExceptionList = new List<String>{};
     
     string remark = dr["Remark"].ToString();
@@ -191,9 +213,9 @@ public void specialProductCheck(DataRow dr, ref List<string> 问题订单List, r
     */
     
     
-   //  Console.WriteLine("问题订单List: {0}", string.Join("|", 问题订单List));
+   //  Console.WriteLine("refItemExceptionList: {0}", string.Join("|", refItemExceptionList));
     // 如果整个订单数量修改的话， 需要记录单个item变化的部分
-    string orderExceptionListStr = string.Join("|", 问题订单List);
+    string orderExceptionListStr = string.Join("|", refItemExceptionList);
     if(orderExceptionListStr.Contains("订单修改产品数量") || orderExceptionListStr.Contains("Total Order Amount")){
         string customerProductCode = dr["customer_product_code"].ToString();
         Console.WriteLine("customerProductCode: {0}", customerProductCode);
@@ -231,7 +253,7 @@ public void specialProductCheck(DataRow dr, ref List<string> 问题订单List, r
     foreach(string itemStr in itemExceptionList){
         
     }
-    问题订单List = 问题订单List.Union(itemExceptionList).ToList();
+    refItemExceptionList = refItemExceptionList.Union(itemExceptionList).ToList();
 }
 
 public void repeatedOrderException(DataRow curOrderRow, DataRow previousOrderRow, ref DataRow cleanExceptionDRow, ref List<string> 问题订单List, ref DataRow 分仓行, DataRowCollection prevOrderRows ){
@@ -306,10 +328,11 @@ public void AddMoreColumns(){
       Customer order Item => 客户原始订单行数
       Exception level => Order 或者 Item
     */
-    List<string> moreColumns = new List<string>{"Item Type", "Customer order Item", "原始MABD", "新MABD", "沃尔玛产品编码", "雀巢产品编码", "Material Description", "原单箱规", "原订单数量", "修改后订单数量", "雀巢数量", "雀巢价格", "沃尔玛价格", "Exception reason"};
+    List<string> moreColumns = new List<string>{"Item Type", "Customer order Item", "原始MABD", "新MABD", "沃尔玛产品编码", "雀巢产品编码", "Material Description", "原单箱规", "原订单数量", "修改后订单数量", "雀巢数量", "雀巢价格", "沃尔玛价格", "Exception reason", "onlyItemException"};
     foreach(string colName in moreColumns){
         exceptionByPODT.Columns.Add(colName, typeof(string));
     }
+    exceptionByPODT.Columns["onlyItemException"].DefaultValue = '0';
 }
 
 public void handleExceptionRow(DataRow dr, ref DataRow cleanExceptionDRow, ref List<string> 问题订单List, List<string> allitemInstructionsList, List<string> allitemproductCodesList, bool shipTo门店, int 此批订单序号){
@@ -428,7 +451,7 @@ public void handleExceptionRow(DataRow dr, ref DataRow cleanExceptionDRow, ref L
         除KM DC(昆明DC)之外的七个大仓当月订单的MABD显示在下个月的订单，判断为问题订单，备注原因跨月订单反馈
         */
         DateTime orderCreateDateTime = Convert.ToDateTime(dr["create_date_time"]);
-        bool mabdInNextMonth = MABDDate.Month == (orderCreateDateTime.Month + 1);
+        bool mabdInNextMonth = (MABDDate.ToString("yyyy-MM") == orderCreateDateTime.AddMonths(1).ToString("yyyy-MM"));
         
         if(!isKMDC && mabdInNextMonth){
             问题订单List.Add("跨月订单");
@@ -492,8 +515,7 @@ public void handleExceptionRow(DataRow dr, ref DataRow cleanExceptionDRow, ref L
     cleanExceptionDRow["Order qty"] = orderQty;
     cleanExceptionDRow["起送日"] = 起送日;
     cleanExceptionDRow["MABD"] = MABD;
-    cleanExceptionDRow["新MABD"] = MABD;   
-    cleanExceptionDRow["Customer order Item"] = dr["total_line_items"].ToString();
+    cleanExceptionDRow["新MABD"] = MABD;
 }
 //在这里编写您的函数或者类
 

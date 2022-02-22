@@ -1,34 +1,42 @@
 //代码执行入口，请勿修改或删除
 public void Run()
 {
-    initOrdersDT();
-    create_date_time = orderRow["Date"].ToString();
-    location = orderRow["location"].ToString();
-    orderLink = orderRow["order_link"].ToString();
-    DataRow newOrderRow = orderDT.NewRow();
-    parseOrder(ref newOrderRow);
-    parseOrderItems(ref newOrderRow);
-    
-    // 判断山姆流程，产品是否不属于山姆主产品，如果是，order置空
-    if(customer_name == "山姆" && 山姆水主产品数据 != null){
-        List<string> 山姆水主产品list = 山姆水主产品数据.Rows.Cast<DataRow>().Select<DataRow, string>(dr => dr["Customer_Material_No"].ToString()).ToList();
-        List<string> 订单产品List = orderItemsDT.Rows.Cast<DataRow>().Select<DataRow, string>(dr => dr["Item"].ToString()).ToList();
-        IEnumerable<string> intersectLs = 山姆水主产品list.Intersect(订单产品List);
-        if(intersectLs.Count() > 0){ // 是山姆水产品
-            foreach(DataRow samWaterDr in orderDT.Rows){
-                samWaterDr["customer_name"] = 山姆水客户名;
+    try{
+        initOrdersDT();
+        create_date_time = orderRow["Date"].ToString();
+        location = orderRow["location"].ToString();
+        orderLink = orderRow["order_link"].ToString();
+        DataRow newOrderRow = orderDT.NewRow();
+        parseOrder(ref newOrderRow);
+        parseOrderItems(ref newOrderRow);
+        
+        // 判断山姆流程，产品是否不属于山姆主产品，如果是，order置空
+        if(customer_name == "山姆" && 山姆水主产品数据 != null){
+            List<string> 山姆水主产品list = 山姆水主产品数据.Rows.Cast<DataRow>().Select<DataRow, string>(dr => dr["Customer_Material_No"].ToString()).ToList();
+            List<string> 订单产品List = orderItemsDT.Rows.Cast<DataRow>().Select<DataRow, string>(dr => dr["Item"].ToString()).ToList();
+            IEnumerable<string> intersectLs = 山姆水主产品list.Intersect(订单产品List);
+            if(intersectLs.Count() > 0){ // 是山姆水产品
+                foreach(DataRow samWaterDr in orderDT.Rows){
+                    samWaterDr["customer_name"] = 山姆水客户名;
+                }
+                foreach(DataRow samWaterItemDr in orderItemsDT.Rows){
+                    samWaterItemDr["customer_name"] = 山姆水客户名;
+                }
             }
-            foreach(DataRow samWaterItemDr in orderItemsDT.Rows){
-                samWaterItemDr["customer_name"] = 山姆水客户名;
-            }
-        }
+        }        
+    }catch(Exception e){
+        Console.WriteLine(e);
+        throw new Exception("订单抓取失败！请查看是否是网页结构发生变化");
     }
+
 }
 //在这里编写您的函数或者类
 
 public void initOrdersDT(){
     orderDT = new DataTable();
-    List<string> orderColumns = new List<string>{"order_number", "order_type", "create_date", "create_date_time", "document_link", "ship_date", "must_arrived_by", "promotional_event", "location", "allowance_or_charge", "allowance_description", "allowance_percent", "allowance_total", "total_order_amount_after_adjustments", "total_line_items", "total_units_ordered", "customer_name"};
+    List<string> orderColumns = new List<string>{"order_number", "order_type", "create_date", "create_date_time", "document_link", "ship_date",
+        "must_arrived_by", "promotional_event", "location", "allowance_or_charge", "allowance_description", "allowance_percent", "allowance_total",
+        "total_order_amount_after_adjustments", "total_line_items", "total_units_ordered", "customer_name", "file_path"};
     foreach(string item in orderColumns){
        orderDT.Columns.Add(item, typeof(string));
     }

@@ -434,6 +434,11 @@
         "display_name": "Customer Order Date"
       },
       {
+        "field": "Customer_Order_Number",
+        "type": "string",
+        "display_name": "Customer Order Number"
+      },
+      {
         "field": "Customer_Name",
         "type": "string",
         "display_name": "customer_name"
@@ -776,5 +781,41 @@
         "display_name": "备注"
       }
     ]
+  },
+  {
+    "name": "Order Job History",
+    "table_name": "order_job_history",
+    "columns": [
+      {
+        "field": "order_number",
+        "type": "string",
+        "display_name": "Customer Order Number"
+      },
+	        {
+        "field": "customer_order_date",
+        "type": "string",
+        "display_name": "Customer Order Date"
+      },
+	  {
+        "field": "customer_name",
+        "type": "string",
+        "display_name": "customer_name"
+      },
+	        {
+        "field": "report_type",
+        "type": "string",
+        "display_name": "report_type"
+      },
+	        {
+        "field": "email_sent",
+        "type": "string",
+        "display_name": "email_sent"
+      },
+	  {
+        "field": "email_sent_time",
+        "type": "string",
+        "display_name": "email_sent_time"
+      }
+	]
   }
 ]

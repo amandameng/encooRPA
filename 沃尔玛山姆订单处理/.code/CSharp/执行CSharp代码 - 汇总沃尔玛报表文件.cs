@@ -15,8 +15,13 @@ public void Run()
     if(散威化订单附件.Count > 0){
         沃尔玛山姆报表字典["沃尔玛订单pdf附件"] = 散威化订单附件; 
     }
+    
+    if(etoResultDT!=null && etoResultDT.Rows.Count > 0){
+        沃尔玛山姆报表字典["沃尔玛EX2ODT"] = etoResultDT;
+    }
+
     沃尔玛山姆报表字典["ex2oMailReceiver"] = etoMailReceiver;
     沃尔玛山姆报表字典["cleanExceptionMailReceiver"] = cleanExceptionOrderMailReceiver;
     沃尔玛山姆报表字典["分仓明细MailReceiver"] = 分仓明细MailReceiver;
+
 }
-//在这里编写您的函数或者类

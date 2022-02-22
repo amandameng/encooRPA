@@ -2,7 +2,6 @@
 public void Run()
 {
     exceptionByPODT = byPO模板数据表.Clone();
-    
     AddMoreColumns(); // Clean and Exceltion BY ORder and Item 全包括
 
     // 输出：exceptionByPODT
@@ -35,7 +34,9 @@ public void Run()
         
         // By Order的异常判断， 检查整托和起送量
         handleExceptionRow(curOrderRow, ref cleanExceptionDRow, ref 问题订单List, curOrderDocLinkRows);
-        
+
+        // 山姆水修改的订单也要进EX2O, 沃尔玛和山姆的订单只进最新订单
+        // setNotIntoEx2O(order_number);
         /*
           有重复订单， MABD， 产品数量修改，等其他任意信息修改都要抓取
         */
@@ -44,6 +45,7 @@ public void Run()
         DataRow[] prevOrderDocLinkRows = new DataRow[]{};
         // 有重复订单， by PO 【检查MABD，订单修改产品数量，特殊产品，其他问题】，by item【价差检查，特殊产品】
         if(ordersLength > 1){
+            // EX2O是否包含当前订单，如果包含，则无需再次录单
             prevOrderDocLinkRows = groupedOrderDocLinksList[1];
             DataRow prevOrderRow = prevOrderDocLinkRows[0]; // previous Order one Row，包含order全部信息
             DataTable tmpOrderDT = 增量订单关联数据表.Clone();
@@ -56,33 +58,34 @@ public void Run()
                 } 
             }
             tmpOrderDT = tmpOrderDT.DefaultView.ToTable(true, new string[]{"order_number", "order_type", "ship_date", "must_arrived_by", "promotional_event", "location", "allowance_or_charge", "allowance_description", "allowance_percent", "allowance_total", "total_order_amount_after_adjustments", "total_line_items", "total_units_ordered"});
-            foreach(DataRow dr in tmpOrderDT.Rows){
-                Console.WriteLine(string.Join("--", dr.ItemArray));
-            }
-            
             repeatedOrderException(curOrderRow, prevOrderRow, ref cleanExceptionDRow, ref 问题订单List, tmpOrderDT.Rows); 
         }
 
+        List<string> refItemExceptionList = new List<string>{};
         // By Item 检查exception, 检查整托和起送量
         foreach(DataRow dr in curOrderDocLinkRows){
             string productCode = dr["customer_product_code"].ToString();
             DataRow byPOItemRow =  exceptionByPODT.NewRow();
             byPOItemRow.ItemArray = cleanExceptionDRow.ItemArray;
-            specialProductCheck(dr, ref 问题订单List, ref byPOItemRow, prevOrderDocLinkRows);
+            byPOItemRow["Customer order Item"] = dr["line_number"];
+            specialProductCheck(dr, ref refItemExceptionList, ref byPOItemRow, prevOrderDocLinkRows);
             if(!String.IsNullOrEmpty(byPOItemRow["Exception reason"].ToString())){ // 异常信息不为空
                 exceptionByPODT.Rows.Add(byPOItemRow);  // by Item 的异常订单 
             }
         }
 
         cleanExceptionDRow["Item Type"] = "Order";
-        cleanExceptionDRow["order category"] = (问题订单List.Count > 0) ? "exception" : "clean";
-        cleanExceptionDRow["Exception category"] = string.Join("; ", 问题订单List);
+        cleanExceptionDRow["order category"] = (问题订单List.Count > 0 || refItemExceptionList.Count > 0) ? "exception" : "clean";
+        string onlyItemException = (问题订单List.Count == 0 && refItemExceptionList.Count > 0) ? "1" : "0";
+        cleanExceptionDRow["onlyItemException"] = onlyItemException;
+        cleanExceptionDRow["Exception category"] = string.Join("; ", 问题订单List.Union(refItemExceptionList));
         cleanExceptionDRow["Exception reason"] = cleanExceptionDRow["Exception category"];
 
         exceptionByPODT.Rows.Add(cleanExceptionDRow);
     }
     buildByPODT();
     buildByPOAndItemDT();
+    // Convert.ToInt32("asdas");
 }
 
 public void addExceptionRow(DataRow cleanExceptionDRow){
@@ -105,7 +108,7 @@ public void buildByPODT(){
 
 public void buildByPOAndItemDT(){
     DataTable poItemDT = exceptionByPODT.Clone();
-    DataRow[] poItemDRows = exceptionByPODT.Select("`order category`= 'exception'");
+    DataRow[] poItemDRows = exceptionByPODT.Select("`order category`= 'exception' and `onlyItemException` <> '1'");
     foreach(DataRow dr in poItemDRows){
         poItemDT.ImportRow(dr);
     }
@@ -122,7 +125,7 @@ public void buildByPOAndItemDT(){
 }
 
 // 产品行检查折扣
-public void specialProductCheck(DataRow dr, ref List<string> 问题订单List, ref DataRow byPOItemRow, DataRow[] prevOrderDocLinkRows){
+public void specialProductCheck(DataRow dr, ref List<string> refItemExceptionList, ref DataRow byPOItemRow, DataRow[] prevOrderDocLinkRows){
     List<string> itemExceptionList = new List<String>{};
     
     string remark = dr["Remark"].ToString();
@@ -152,7 +155,13 @@ public void specialProductCheck(DataRow dr, ref List<string> 问题订单List, r
     string 产品扣点 = dr["产品扣点"].ToString();
     if(string.IsNullOrEmpty(产品扣点)){
         decimal productDiscountRate = fetchRateInDecimal(产品扣点);
-        decimal 产品行折扣 = Math.Round(Convert.ToDecimal(dr["oli_allowance_total"])/Convert.ToDecimal(dr["oli_extended_cost"]), 2);
+        //Console.WriteLine("oli_extended_cost");
+        decimal oli_extended_cost = toDecimalConvert(dr["oli_extended_cost"]);
+        if(oli_extended_cost == 0){
+            oli_extended_cost = decimal.MaxValue;
+        }
+        //Console.WriteLine("产品行折扣");
+        decimal 产品行折扣 = Math.Round(toDecimalConvert(dr["oli_allowance_total"])/oli_extended_cost, 2);
         if(productDiscountRate != 产品行折扣){
             byPOItemRow["Item Type"] = "Item";
             itemExceptionList.Add(string.Format("产品行折扣率不等于扣点，产品行折扣: {0}, 雀巢产品扣点: {1}", 产品行折扣, productDiscountRate));
@@ -163,50 +172,52 @@ public void specialProductCheck(DataRow dr, ref List<string> 问题订单List, r
       山姆京东类型的订单如下单产品为氨糖奶粉，不录单作为exception order发给CSA取消
       Exception reason：不录单，山姆JD+氨糖奶粉
     */
-    if(remark.Contains("特殊产品") && remarkOption.Contains("订单类型Promotional Event为JD")){
+    if(remark.Contains("特殊产品") && remarkOption.Contains("订单类型Promotional Event为JD") && dr["promotional_event"].ToString().Contains("JD")){
         byPOItemRow["Item Type"] = "Item";
         itemExceptionList.Add("不录单，山姆JD+氨糖奶粉");
     }
     
     
     /* 整托和起送量判断 */
-    DataRow[] samWaterDeliveryDRs = samWaterDeliverySettingDT.Select(String.Format("WMDC='{0}' and Customer_Product_Code ='{1}'", dr["WMDC"].ToString(), dr["customer_product_code"].ToString()));
+    // WMDC = location
+    //Console.WriteLine("Nestle_Plant_No:{0}, customer_product_code:{1}, order_number: {2}",  dr["Nestle_Plant_No"].ToString(), dr["customer_product_code"].ToString(), dr["order_number"].ToString());
+    DataRow[] samWaterDeliveryDRs = samWaterDeliverySettingDT.Select(String.Format("WMDC='{0}' and Customer_Product_Code ='{1}'", dr["Nestle_Plant_No"].ToString(), dr["customer_product_code"].ToString()));
+    //Console.WriteLine("samWaterDeliveryDRs.Length: {0}", samWaterDeliveryDRs.Length);
     if(samWaterDeliveryDRs.Length > 0){
         DataRow samWaterDeliveryDR = samWaterDeliveryDRs[0];
-        packageAndDeliveryCheck(samWaterDeliveryDR, dr["quantity_ordered"].ToString(), ref 问题订单List);
+        packageAndDeliveryCheck(samWaterDeliveryDR, dr["quantity_ordered"].ToString(), ref refItemExceptionList);
     }
 
-     Console.WriteLine("问题订单List: {0}", string.Join("|", 问题订单List));
+     //Console.WriteLine("问题订单List: {0}", string.Join("|", refItemExceptionList));
     // 如果整个订单数量修改的话， 需要记录单个item变化的部分
-    if(string.Join("|", 问题订单List).Contains("订单修改产品数量")){
+    if(string.Join("|", refItemExceptionList).Contains("订单修改产品数量")){
         string customerProductCode = dr["customer_product_code"].ToString();
-        Console.WriteLine("customerProductCode: {0}", customerProductCode);
+        //Console.WriteLine("customerProductCode: {0}", customerProductCode);
         
         DataRow prevItemRow = null;
         foreach(DataRow prevDr in prevOrderDocLinkRows){
-            Console.WriteLine("prevDr customerProductCode: {0}", prevDr["customer_product_code"].ToString());
+            // Console.WriteLine("prevDr customerProductCode: {0}", prevDr["customer_product_code"].ToString());
             if(customerProductCode == prevDr["customer_product_code"].ToString()){ // 找到对应de 前一个order的item
                 prevItemRow = prevDr;
                 break;
             }
         }
-    
+
         // 之前item不等于当前item对应的数量
         if(prevItemRow!=null && prevItemRow["quantity_ordered"].ToString() != dr["quantity_ordered"].ToString()){
             byPOItemRow["原订单数量"] = prevItemRow["quantity_ordered"];
-            Console.WriteLine("原订单数量: {0}, 修改后订单数量: {1}", prevItemRow["quantity_ordered"], dr["quantity_ordered"]);
+            //Console.WriteLine("原订单数量: {0}, 修改后订单数量: {1}", prevItemRow["quantity_ordered"], dr["quantity_ordered"]);
             
             byPOItemRow["修改后订单数量"] = dr["quantity_ordered"];
             itemExceptionList.Add("订单修改产品数量");
         }
     }
-    // Console.WriteLine("Item Type: {0}", byPOItemRow["Item Type"].ToString());
-    // Convert.ToInt32("a.b");
+
     if(itemExceptionList.Count > 0){
         byPOItemRow["Exception reason"] = string.Join("; ", itemExceptionList);
         byPOItemRow["order category"] = "exception";
     } 
-    问题订单List = 问题订单List.Union(itemExceptionList).ToList();
+    refItemExceptionList = refItemExceptionList.Union(itemExceptionList).ToList();
 }
 
 public void repeatedOrderException(DataRow curOrderRow, DataRow previousOrderRow, ref DataRow cleanExceptionDRow, ref List<string> 问题订单List, DataRowCollection prevOrderRows ){
@@ -241,7 +252,7 @@ public void repeatedOrderException(DataRow curOrderRow, DataRow previousOrderRow
                 List<String> resultMabds = prevOrderRows.Cast<DataRow>().Select<DataRow, string>(dr => dr["total_units_ordered"].ToString()).ToList();
                 cleanExceptionDRow["原订单数量"] = resultMabds[0];
             }else{
-                Dictionary<string, string> webItemMapDic = new Dictionary<string, string>{{"promotional_event", "订单类型"}, {"allowance_percent", "仓租"}, {"total_line_items", "产品行数"}, {"total_order_amount_after_adjustments", "Total Order Amount (After Adjustments)"}};
+                Dictionary<string, string> webItemMapDic = new Dictionary<string, string>{{"ship_date", "起送日"}, {"promotional_event", "订单类型"}, {"allowance_percent", "仓租"}, {"total_line_items", "产品行数"}, {"total_order_amount_after_adjustments", "Total Order Amount (After Adjustments)"}};
                 
                 if(webItemMapDic.Keys.Contains(colName)){
                     string colNameDes = webItemMapDic[colName];
@@ -252,9 +263,12 @@ public void repeatedOrderException(DataRow curOrderRow, DataRow previousOrderRow
             }
         }
     }
-    Console.WriteLine("重复订单信息: {0}", String.Join("；", 重复订单信息));
+    //Console.WriteLine("重复订单信息: {0}", String.Join("；", 重复订单信息));
     if(重复订单信息.Count > 0){
        问题订单List.Add("重复订单：" + String.Join("；", 重复订单信息));
+    }
+    else{
+       问题订单List.Add("客户系统重复出单，订单无修改"); 
     }
    
 }
@@ -275,10 +289,12 @@ public void AddMoreColumns(){
       Customer order Item => 客户原始订单行数
       Exception level => Order 或者 Item
     */
-    List<string> moreColumns = new List<string>{"Item Type", "Customer order Item", "原始MABD", "新MABD", "沃尔玛产品编码", "雀巢产品编码", "Material Description", "原单箱规", "原订单数量", "修改后订单数量", "雀巢数量", "雀巢价格", "沃尔玛价格", "Exception reason"};
+    List<string> moreColumns = new List<string>{"Item Type", "Customer order Item", "原始MABD", "新MABD", "沃尔玛产品编码", "雀巢产品编码", "Material Description", "原单箱规", "原订单数量", "修改后订单数量", "雀巢数量", "雀巢价格", "沃尔玛价格", "Exception reason", "onlyItemException"};
     foreach(string colName in moreColumns){
         exceptionByPODT.Columns.Add(colName, typeof(string));
     }
+    exceptionByPODT.Columns["onlyItemException"].DefaultValue = '0';
+
 }
 
 // 整单异常检查
@@ -298,7 +314,7 @@ public void handleExceptionRow(DataRow dr, ref DataRow cleanExceptionDRow, ref L
     // nestleBU = dr["Nestle_BU"].ToString(); 山姆和山姆水，这一列先留空
     // JD 订单不处理
     if(promotionalEvent.Contains("JD")){
-        问题订单List.Add("JD订单不处理");
+        // 问题订单List.Add("JD订单不处理");
     }else if(promotionalEvent == "CANCEL PO"){
         问题订单List.Add("Cancel PO");
     }
@@ -332,9 +348,9 @@ public void handleExceptionRow(DataRow dr, ref DataRow cleanExceptionDRow, ref L
     /*
       整托和起送量判断， 如果一个订单里面包含2条产品的话，就在订单层级判断，否则在item层级判断
     */
-    int orderTotalLineItems = Convert.ToInt32(totalLineItems);
+    int orderTotalLineItems = toIntConvert(totalLineItems);
     if(orderTotalLineItems > 1){
-        DataRow[] samWaterDeliveryDRs = samWaterDeliverySettingDT.Select(string.Format("WMDC='{0}' and Customer_Product_Code ='{1}'", wmdc, "980080954+980085511"));
+        DataRow[] samWaterDeliveryDRs = samWaterDeliverySettingDT.Select(string.Format("WMDC='{0}' and Customer_Product_Code ='{1}'", dr["Nestle_Plant_No"].ToString(), "980080954+980085511"));
         if(samWaterDeliveryDRs.Length > 0){
             DataRow samWaterDeliveryDR = samWaterDeliveryDRs[0];
             packageAndDeliveryCheck(samWaterDeliveryDR, orderQty, ref 问题订单List);
@@ -363,7 +379,7 @@ public void handleExceptionRow(DataRow dr, ref DataRow cleanExceptionDRow, ref L
         
         string weekCondition = requestDeliveryDateArr[0];
         string dayAddedCondition = requestDeliveryDateArr[1];
-        string 周几 = CaculateWeekDay(MABDDate);
+        string 周几 = caculateWeekDay(MABDDate);
         int dayAdded = fetchNumber(requestDeliveryDate);
         
         if(!requestDeliveryDate.Contains(周几) || (DateTime.Compare(MABDDate, 读单日.AddDays(dayAdded)) < 0))
@@ -371,10 +387,31 @@ public void handleExceptionRow(DataRow dr, ref DataRow cleanExceptionDRow, ref L
             问题订单List.Add($"客户指定送货日不在行程日");
         }
     }else{
-        string[] requestDeliveryDateArr = requestDeliveryDate.Split(new string[]{"/"}, StringSplitOptions.RemoveEmptyEntries);
-        
-        bool validMABDDay = ifValidMABDDay(读单日, requestDeliveryDateArr, MABDDate);
-        if(!validMABDDay){
+        string 周几 = caculateWeekDay(MABDDate);
+        Console.WriteLine("周几: {0}", 周几);
+        List<string> dayStringList = shipLocationDic(requestDeliveryDate);
+        bool validDate = false;
+        foreach(string item in dayStringList){
+            //Console.WriteLine($"--- item:{item}");
+            if(item.Contains("下周")){
+                string weekDayStr = item.Replace("下", "");
+                Console.WriteLine("weekDayStr: {0}", weekDayStr);
+                DateTime 读单日日期 = Convert.ToDateTime(读单日.ToString("yyyy-MM-dd"));
+                DateTime nexWeekDayDate = nextWeekDate(读单日日期, weekDayMapping(weekDayStr));
+                Console.WriteLine("MABDDate: {0}, nexWeekDayDate: {1}", MABDDate, nexWeekDayDate);
+
+                if(周几 == weekDayStr && DateTime.Compare(MABDDate, nexWeekDayDate) >= 0){
+                    validDate = true;
+                    break; 
+                }
+            }else{
+                if(dayStringList.Contains(周几)){
+                    validDate = true;
+                    break;
+                }
+            }
+        }
+        if(!validDate){
             问题订单List.Add($"客户指定送货日不在行程日");
         }
     }
@@ -402,22 +439,28 @@ public void handleExceptionRow(DataRow dr, ref DataRow cleanExceptionDRow, ref L
 
     decimal walmartDiscountRate = customerDiscountRateM();
     decimal 不含扣点 = (1-walmartDiscountRate);
-    Decimal total_order_amount_after_adjustments = Convert.ToDecimal(dr["total_order_amount_after_adjustments"]);
+   
+    Decimal total_order_amount_after_adjustments = toDecimalConvert(dr["total_order_amount_after_adjustments"]);
     
     decimal sap_net_value = getSapNetValue(dr, allitemproductCodesList, curOrderDocLinkRows, 不含扣点);
+    //Console.WriteLine("sap_net_value: {0}, total_order_amount_after_adjustments: {1}", sap_net_value, total_order_amount_after_adjustments);
     decimal gapValue = sap_net_value - total_order_amount_after_adjustments;
 
     // 980080954 巴黎水, 且价差超出（-5，2）范围当作异常订单反馈CSA。 
     if(prodCode == 巴黎水产品码){
         if(gapValue < -5 || gapValue > 2 ){
-            问题订单List.Add($"价差检查, SAP NET Value: {Math.Round(sap_net_value, 2)}, 山姆订单扣点后未税金额: {Math.Round(total_order_amount_after_adjustments, 2)}");
+            问题订单List.Add($"价差检查, SAP NET Value: {Math.Round(sap_net_value, 2)}, 山姆订单扣点后未税金额: {Math.Round(total_order_amount_after_adjustments, 2)}, 价差为：{gapValue}");
         }
     }else if(prodCode == 圣培露产品码){
         // 雀巢价小于山姆价，每箱价（X列价格/订单箱数）差0.0052525元的差异可忽略
-        // 解释：雀巢价大 于山姆价，每箱价（X列价格/订单箱数）大于0.0052525元的差异为异常
-        decimal 每箱价差 = Math.Round(gapValue/Convert.ToInt32(orderQty), 8);
+        // 解释：雀巢价大于山姆价，每箱价（X列价格/订单箱数）大于0.0052525元的差异为异常
+        int intQty = toIntConvert(orderQty);
+        if(intQty == 0){
+            intQty = Int32.MaxValue;
+        }
+        decimal 每箱价差 = Math.Round(gapValue/intQty, 8);
         if(gapValue > 0m || Math.Abs(每箱价差) > 0.0052525m){
-            问题订单List.Add($"价差检查, SAP NET Value: {Math.Round(sap_net_value, 2)}, 山姆订单扣点后未税金额: {Math.Round(total_order_amount_after_adjustments, 2)}, 每箱价差：{每箱价差}");
+            问题订单List.Add($"价差检查, SAP NET Value: {Math.Round(sap_net_value, 2)}, 山姆订单扣点后未税金额: {Math.Round(total_order_amount_after_adjustments, 2)}, 价差为：{gapValue}, 每箱价差：{gapValue}/{intQty}={每箱价差}");
         }
     }
 
@@ -426,7 +469,7 @@ public void handleExceptionRow(DataRow dr, ref DataRow cleanExceptionDRow, ref L
     当月订单的MABD显示在下个月的订单，判断为问题订单，备注原因跨月订单反馈
     */
     DateTime orderCreateDateTime = Convert.ToDateTime(dr["create_date_time"]);
-    bool mabdInNextMonth = MABDDate.Month == (orderCreateDateTime.Month + 1);
+    bool mabdInNextMonth = (MABDDate.ToString("yyyy-MM") == orderCreateDateTime.AddMonths(1).ToString("yyyy-MM"));
     
     if(mabdInNextMonth){
         问题订单List.Add("跨月订单");
@@ -445,8 +488,7 @@ public void handleExceptionRow(DataRow dr, ref DataRow cleanExceptionDRow, ref L
     cleanExceptionDRow["Order qty"] = orderQty;
     cleanExceptionDRow["起送日"] = 起送日;
     cleanExceptionDRow["MABD"] = MABD;
-    cleanExceptionDRow["新MABD"] = MABD;   
-    cleanExceptionDRow["Customer order Item"] = dr["total_line_items"].ToString();    
+    cleanExceptionDRow["新MABD"] = MABD;       
 }
 
 
@@ -455,71 +497,33 @@ public int fetchNumber(string srcTxt){
     Match matchResult112 = 数字结尾正则.Match(srcTxt);
     string numberStr = matchResult112.Value;
     if(numberStr!= ""){
-       return Convert.ToInt32(numberStr); 
+       return toIntConvert(numberStr); 
     }else{
         return 0;
     }
 }
 
-public bool ifValidMABDDay(DateTime 读单日, string[] requestDeliveryDateArr, DateTime MABDDate){
-    int todayDayOfWeek = (int)读单日.DayOfWeek;
-    int saturdayDay = (int)DayOfWeek.Saturday;
-    bool validMABDDay = false;
-    if(todayDayOfWeek <= 6 && todayDayOfWeek != 0){
-        int gapToSaturday = saturdayDay - todayDayOfWeek;
-        foreach(string weekDay in requestDeliveryDateArr){
-            int gapToTargetDay = gapToSaturday;
-            switch(weekDay)
-            {
-                case "下周一":
-                    gapToTargetDay += 2;
-                    break;
-                case "下周二":
-                    gapToTargetDay += 3;
-                    break;
-                case "下周三":
-                    gapToTargetDay += 4;
-                    break;
-                case "下周四":
-                    gapToTargetDay += 5;
-                    break;
-                case "下周五":
-                    gapToTargetDay += 6;
-                    break;
-                case "下周六":
-                    gapToTargetDay += 7;
-                    break;
-                case "下周日":
-                    gapToTargetDay += 8;
-                    break;
-                default:
-                   gapToTargetDay += 1;
-                break;
-            }
-            if(DateTime.Compare(读单日.AddDays(gapToTargetDay), MABDDate) == 0){
-                validMABDDay = true;
-                break;
-            }
-        }
-    }
-    return validMABDDay;
-}
-
 
 public void packageAndDeliveryCheck(DataRow samWaterDeliveryDR, string orderQty, ref List<string> 问题订单List){
-    int startDeliveryCount = Convert.ToInt32(samWaterDeliveryDR["Start_Delivery_Count"]);  // 起送量
-    int packageMultiple = Convert.ToInt32(samWaterDeliveryDR["Package_Multiple"]); // 整托送货倍数
-    int orderQtyInt = Convert.ToInt32(orderQty); // 订单总量
+    int startDeliveryCount = toIntConvert(samWaterDeliveryDR["Start_Delivery_Count"]);  // 起送量
+    int packageMultiple = toIntConvert(samWaterDeliveryDR["Package_Multiple"]); // 整托送货倍数
+    if(packageMultiple == 0){
+        packageMultiple = int.MaxValue;
+    }
+    int orderQtyInt = toIntConvert(orderQty); // 订单总量
+    
+    decimal 托数 = Math.Round(orderQtyInt/Convert.ToDecimal(packageMultiple), 6);
+    int 托数整数 = orderQtyInt/packageMultiple;
+    //Console.WriteLine("托数: {0}, 托数整数: {1}", 托数, 托数整数);
+    if(托数整数 != 托数){ // 不是整托，不满足整托送货
+       问题订单List.Add($"不满足整托送货，托数：{托数}"); 
+    }
+
     string deliveryMethod = samWaterDeliveryDR["Delivery_Method"].ToString(); // 物流配送方式
     string 物流方式 = deliveryMethod.Contains("直送") ? "直送仓" : "集货仓";
+    //Console.WriteLine("orderQtyInt: {0}, startDeliveryCount: {1}", orderQtyInt, startDeliveryCount);
     if(orderQtyInt < startDeliveryCount){ // Exception reason：集货仓/直送仓数量未达到XXXX起送量
         问题订单List.Add($"{物流方式}数量未达到{startDeliveryCount}起送量");
-    }else{
-        decimal 托数 = Math.Round(orderQtyInt/Convert.ToDecimal(packageMultiple), 6);
-        int 托数整数 = orderQtyInt/packageMultiple;
-        if(托数整数 != 托数){ // 不是整托，不满足整托送货
-           问题订单List.Add($"不满足整托送货，托数：{托数}"); 
-        }
     }
 }
 
@@ -532,11 +536,12 @@ public decimal getSapNetValue(DataRow dr, List<string> allitemproductCodesList, 
 
     foreach(DataRow itemDR in curOrderDocLinkRows){
         string customerProdCode = itemDR["customer_product_code"].ToString();
-        int itemQuantityOrdered = Convert.ToInt32(itemDR["quantity_ordered"]);
+        int itemQuantityOrdered = toIntConvert(itemDR["quantity_ordered"]);
         decimal itemNestleNPS=0;
         if(!String.IsNullOrEmpty(itemDR["Nestle_NPS"].ToString())){
-            itemNestleNPS = Convert.ToDecimal(itemDR["Nestle_NPS"]);
+            itemNestleNPS = toDecimalConvert(itemDR["Nestle_NPS"]);
         }
+        //Console.WriteLine("itemNestleNPS: {0}, itemQuantityOrdered: {1}", itemNestleNPS, itemQuantityOrdered);
         sap_net_value += itemNestleNPS * itemQuantityOrdered * 不含扣点;
     }
  
@@ -545,14 +550,22 @@ public decimal getSapNetValue(DataRow dr, List<string> allitemproductCodesList, 
 
 public decimal customerDiscountRateM(){
     DataRowCollection etoConfigDrs = etoConfigDT.Rows;
-    string walmartDiscountRateStr = etoConfigDrs[0]["discount_rate"].ToString();
-    decimal walmartDiscountRate = fetchRateInDecimal(walmartDiscountRateStr);
-    return walmartDiscountRate;
+    
+    string EDLC百分比Str = etoConfigDrs[0]["EDLC百分比"].ToString().Trim();
+    string RTV百分比Str = etoConfigDrs[0]["RTV百分比"].ToString().Trim();
+    string 仓租百分比Str = etoConfigDrs[0]["仓租百分比"].ToString().Trim();
+    
+    
+    decimal EDLC百分比 = string.IsNullOrEmpty(EDLC百分比Str) ? 0 : fetchRateInDecimal(EDLC百分比Str);;
+    decimal RTV百分比 = string.IsNullOrEmpty(RTV百分比Str) ? 0 : fetchRateInDecimal(RTV百分比Str);
+    decimal 仓租百分比 = string.IsNullOrEmpty(仓租百分比Str) ? 0 : fetchRateInDecimal(仓租百分比Str);
+   //Console.WriteLine("EDLC百分比:{0}, RTV百分比:{1}, 仓租百分比:{2}", EDLC百分比, RTV百分比, 仓租百分比);
+    return EDLC百分比 + RTV百分比 + 仓租百分比;
 }
 
-public static decimal fetchRateInDecimal(string walmartDiscountRateStr)
+public decimal fetchRateInDecimal(string walmartDiscountRateStr)
 {
-    Regex 百分数正则 = new Regex(@"^\d+\.?\d{0,2}%$");
+    Regex 百分数正则 = new Regex(@"\d+(\.\d+)?%");
     Match matchResult = 百分数正则.Match(walmartDiscountRateStr);
     string 百分比 = matchResult.Value;
     decimal resutRate = 0;
@@ -560,13 +573,13 @@ public static decimal fetchRateInDecimal(string walmartDiscountRateStr)
     {
         if (!string.IsNullOrEmpty(百分比))
         {
-            resutRate = Convert.ToDecimal(百分比.Replace("%", "")) / 100m;
+            resutRate = toDecimalConvert(百分比.Replace("%", "")) / 100m;
         }
         else
         {
             if (!walmartDiscountRateStr.Contains("%"))
             { // 不包含%
-                resutRate = Convert.ToDecimal(walmartDiscountRateStr);
+                resutRate = toDecimalConvert(walmartDiscountRateStr);
             }
         }
     }
@@ -577,8 +590,64 @@ public static decimal fetchRateInDecimal(string walmartDiscountRateStr)
     return resutRate;
 }
 
-public string CaculateWeekDay(DateTime dtNow)
+public string caculateWeekDay(DateTime dtNow)
 {
     var weekdays = new string[] { "周日", "周一", "周二", "周三", "周四", "周五", "周六" };
     return weekdays[(int)dtNow.DayOfWeek];
+}
+
+
+public int weekDayMapping(string weekStr)
+{
+    string[] weekdays = new string[] { "周日", "周一", "周二", "周三", "周四", "周五", "周六" };
+    int index = 0;
+    foreach (string weekDay in weekdays)
+    {
+        if (weekStr == weekDay)
+        {
+            return index;
+        }
+        index += 1;
+    }
+    return -1;
+}
+
+public DateTime nextWeekDate(DateTime 参照日, int weekDay)
+{
+    DateTime 统计开始时间 = 参照日.AddDays(6);
+    var dayOfWeek = 统计开始时间.DayOfWeek;
+    DateTime nextWeekDay =  统计开始时间.AddDays(-(int)dayOfWeek + weekDay);
+    return nextWeekDay;
+}
+
+public List<string> shipLocationDic(string requestDeliveryDate){
+   string[] rddArr = requestDeliveryDate.Split(new string[]{"/"}, StringSplitOptions.RemoveEmptyEntries);
+  
+    List<string> dayStringList = new List<string> { };
+    foreach(string day in rddArr)
+    {
+        string newDay = day.Replace(" ", "");
+        dayStringList.Add(newDay);
+    }
+    return dayStringList;
+}
+
+public static decimal toDecimalConvert(object srcValue){
+    Decimal nestle_NPS = 0;
+    try{
+        nestle_NPS = Convert.ToDecimal(srcValue);
+    }catch(Exception e){
+        Console.WriteLine($"转换成decimal价格出错，{srcValue}");
+    }
+    return nestle_NPS;
+}
+
+public static int toIntConvert(object srcValue){
+    int intValue = 0;
+    try{
+        intValue = Convert.ToInt32(srcValue);
+    }catch(Exception e){
+        Console.WriteLine($"转换成int32出错，{srcValue}");
+    }
+    return intValue;
 }

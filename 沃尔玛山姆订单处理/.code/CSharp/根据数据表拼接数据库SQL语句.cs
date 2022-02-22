@@ -32,10 +32,10 @@ public void Run()
         }*/
         foreach(DataColumn dc in 源数据表.Columns)
         {
-            Console.WriteLine("----dc.ColumnName----{0}", dc.ColumnName);
+            // Console.WriteLine("----dc.ColumnName----{0}", dc.ColumnName);
             List<JToken> columnsMapping = columnArr.Where(t => t.Value<string>("display_name") == dc.ColumnName).ToList();
             
-            Console.WriteLine("----columnsMapping.Count----{0}", columnsMapping.Count);
+           // Console.WriteLine("----columnsMapping.Count----{0}", columnsMapping.Count);
             
             if(columnsMapping.Count == 1)
             {
@@ -78,13 +78,14 @@ public void Run()
                         if(columnType.Contains("decimal")){
                             cellValue = Convert.ToDecimal(cellValue).ToString();
                         }else if(columnType=="date" && !cellValue.Contains("-") && !cellValue.Contains("/")){
-                            // Console.WriteLine("---------cellValue:{0}", cellValue);
+                            Console.WriteLine("---------cellValue:{0}", cellValue);
                             cellValue = DateTime.ParseExact(cellValue, "yyyyMMdd", null).ToString("yyyy-MM-dd");
                         }else if(columnType=="mdy_date"){
                             cellValue = DateTime.ParseExact(cellValue, "MM/dd/yyyy", null).ToString("yyyy-MM-dd");
                         }else if(columnType=="datetime"){
                             cellValue = Convert.ToDateTime(cellValue).ToString();
                         }
+                       // Console.WriteLine("cellValue, {0}", cellValue);
                         sqlBuilder.Append("'" + cellValue + "',");
                     }else{
                       sqlBuilder.Append("null,");
@@ -96,7 +97,7 @@ public void Run()
         }
         sqlBuilder = sqlBuilder.Remove(sqlBuilder.Length - 1, 1);
     }
-    str_SQL = sqlBuilder.ToString();
+    str_SQL = string.Format(@"{0}", sqlBuilder.ToString());
    // System.Console.WriteLine(str_SQL);
     
 }

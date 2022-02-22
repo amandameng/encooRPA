@@ -2,6 +2,7 @@
 public void Run()
 {
     //在这里编写您的代码
+    Console.WriteLine("eto_file_path:{0}, clean_order_file_path:{1}, samWater_eto_file_path:{2}, samWater_clean_order_file_path: {3}", eto_file_path, clean_order_file_path,samWater_eto_file_path, samWater_clean_order_file_path );
     if(File.Exists(eto_file_path)){
         沃尔玛山姆报表字典["山姆EX2OFile"] = eto_file_path;
     }
@@ -47,6 +48,14 @@ public void Run()
 
     if(!沃尔玛山姆报表字典.ContainsKey("分仓明细MailReceiver")){
         沃尔玛山姆报表字典["分仓明细MailReceiver"] = 分仓明细MailReceiver;
+    }
+    
+    if(samEtoResultDT!=null && samEtoResultDT.Rows.Count > 0){
+        沃尔玛山姆报表字典["山姆EX2ODT"] = samEtoResultDT;
+    }
+        
+    if(samWaterEtoResultDT!=null && samWaterEtoResultDT.Rows.Count > 0){
+        沃尔玛山姆报表字典["山姆水EX2ODT"] = samWaterEtoResultDT;
     }
 }
 //在这里编写您的函数或者类

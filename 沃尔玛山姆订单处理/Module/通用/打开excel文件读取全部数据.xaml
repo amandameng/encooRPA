@@ -10,7 +10,7 @@
     </InArgument>
   </this:打开excel文件读取指定全部数据.startRow>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>511,556</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>596,559</sap:VirtualizedContainerService.HintSize>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="12">
       <x:String>System</x:String>
@@ -52,26 +52,26 @@
       <AssemblyReference>ParallelExtensionsExtras</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="471,476" sap2010:WorkflowViewState.IdRef="Sequence_16">
+  <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="556,479" sap2010:WorkflowViewState.IdRef="Sequence_16">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 文件存在）" sap:VirtualizedContainerService.HintSize="449,352" sap2010:WorkflowViewState.IdRef="If_1" IsIgnore="False">
+    <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 文件存在）" sap:VirtualizedContainerService.HintSize="534,355" sap2010:WorkflowViewState.IdRef="If_1" IsIgnore="False">
       <bfa:If.Condition>
         <InArgument x:TypeArguments="x:Boolean">
           <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_29">File.Exists(excel_file_path)</mca:CSharpValue>
         </InArgument>
       </bfa:If.Condition>
       <bfa:If.Then>
-        <boa:OfficeExcelOpenOrCreateActivity OfficeVersion="{x:Null}" Password="{x:Null}" SaveAs="{x:Null}" ActivityName="打开/新建" sap2010:Annotation.AnnotationText="读取数据，获取数据，拼凑SQL" AutoSave="True" ContinueOnError="No" CreateNewFile="False" DelayAfter="0" DelayBefore="0" DisplayName="打开 eto_file_path" EnableMacro="False" sap:VirtualizedContainerService.HintSize="200,95" sap2010:WorkflowViewState.IdRef="OfficeExcelOpenOrCreateActivity_1" ReadOnly="False" Visible="False" needRestoreKey="False">
+        <boa:OfficeExcelOpenOrCreateActivity OfficeVersion="{x:Null}" Password="{x:Null}" SaveAs="{x:Null}" ActivityName="打开/新建" sap2010:Annotation.AnnotationText="读取数据，获取数据，拼凑SQL" AutoSave="True" ContinueOnError="No" CreateNewFile="False" DelayAfter="0" DelayBefore="0" DisplayName="打开 excel 文件" EnableMacro="False" sap:VirtualizedContainerService.HintSize="451,695" sap2010:WorkflowViewState.IdRef="OfficeExcelOpenOrCreateActivity_1" ReadOnly="False" Visible="False" needRestoreKey="False">
           <boa:OfficeExcelOpenOrCreateActivity.Body>
             <ActivityAction x:TypeArguments="x:Object">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="x:Object" Name="XlWorkbook" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="序列-打开eto文件" sap:VirtualizedContainerService.HintSize="371,535" sap2010:WorkflowViewState.IdRef="Sequence_15">
+              <Sequence DisplayName="序列-打开eto文件" sap:VirtualizedContainerService.HintSize="371,562" sap2010:WorkflowViewState.IdRef="Sequence_15">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="x:Int32" Name="lastRow" />
                   <Variable x:TypeArguments="x:String" Name="lastColName" />
@@ -102,7 +102,7 @@
                     </InArgument>
                   </bfa:Assign.Value>
                 </bfa:Assign>
-                <boa:OfficeExcelGetLastRowIndexActivity ActivityName="获取末行号" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取末行号" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="OfficeExcelGetLastRowIndexActivity_1">
+                <boa:OfficeExcelGetLastRowIndexActivity LettersColumnIndex="{x:Null}" ActivityName="获取末行号" ColumnType="NumberColumn" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取末行号" sap:VirtualizedContainerService.HintSize="349,85" sap2010:WorkflowViewState.IdRef="OfficeExcelGetLastRowIndexActivity_1">
                   <boa:OfficeExcelGetLastRowIndexActivity.ColumnIndex>
                     <InArgument x:TypeArguments="x:Int32">
                       <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_16" Value="1" />

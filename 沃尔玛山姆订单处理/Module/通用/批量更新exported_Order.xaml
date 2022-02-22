@@ -109,6 +109,9 @@
                     <OutArgument x:TypeArguments="x:String" x:Key="str_SQL">
                       <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_2">insertWMExportedOrdersSQL</mca:CSharpReference>
                     </OutArgument>
+                    <InArgument x:TypeArguments="x:Boolean" x:Key="insertIgnore">
+                      <Literal x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="Literal`1_8" Value="True" />
+                    </InArgument>
                   </bfa:InvokeWorkflow.Arguments>
                   <bfa:InvokeWorkflow.WorkflowPath>
                     <InArgument x:TypeArguments="x:String">

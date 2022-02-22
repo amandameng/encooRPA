@@ -15,14 +15,15 @@ public void Run()
     
     // 以下文件夹只保留最近一个月的数据
     订单导出文件夹 = Path.Combine(导出文件夹, @"订单pdf\" + 流程名);
+    // string excel订单列表导出文件夹 = Path.Combine(导出文件夹, @"订单列表文件\" + 流程名);
     结果文件夹 = Path.Combine(流程工作目录, @"结果输出\" + 流程名);  // 文件夹
     
     配置文件夹 = Path.Combine(流程工作目录, "配置文件");  // 文件夹
     配置文件 = Path.Combine(配置文件夹, "配置文件.xlsx");
     // 配置文件不存在, 抛错指出配置文件不存在
-    if(!File.Exists(配置文件)){
+    /*if(!File.Exists(配置文件)){
         throw(new Exception(String.Format("配置文件不存在：{0}", 配置文件)));
-    }
+    }*/
     string 今日文件夹名称 = string.Format(timenow.ToString("yyyy-MM-dd"));
     当前结果文件夹 = Path.Combine(结果文件夹, 今日文件夹名称);
     
@@ -35,6 +36,10 @@ public void Run()
     if(!Directory.Exists(pdfFolder)){
         Directory.CreateDirectory(pdfFolder);
     }
+    /*
+    if(!Directory.Exists(excel订单列表导出文件夹)){
+         Directory.CreateDirectory(excel订单列表导出文件夹);
+    }*/
     
    // 截图文件路径 = Path.Combine(当前结果文件夹, timenowStr + ".png"); 
     string curProjectPath = Environment.GetEnvironmentVariable("CurrentProjectSourcePath");
@@ -42,7 +47,7 @@ public void Run()
     if(!Directory.Exists(tempFolder)){
         Directory.CreateDirectory(tempFolder);
     }
-    当前Listing文件 = Path.Combine(tempFolder, "listing.xls"); //  @"C:\RPA工作目录\雀巢_沃尔玛\导出文件\历史订单导出\雀巢沃尔玛订单\2021-11\2021-11-10\2021-11-10-16-31-25_listing.xls";
+    当前Listing文件 = Path.Combine(tempFolder, String.Format("listing_{0}.xls", timenowStr)); //  @"C:\RPA工作目录\雀巢_沃尔玛\导出文件\历史订单导出\雀巢沃尔玛订单\2021-11\2021-11-10\2021-11-10-16-31-25_listing.xls";
         
     // output files
     cleanAndExceptionTemplate = Path.Combine(配置文件夹, "Clean and Exception Template.xlsx");

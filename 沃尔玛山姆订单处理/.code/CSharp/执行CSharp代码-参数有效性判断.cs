@@ -13,7 +13,8 @@ public void Run()
             待运行模块.Add(模块);
         }
     }
-    
+    // 初始化文件夹
+    initFilePath();
 }
 //在这里编写您的函数或者类
 
@@ -31,10 +32,14 @@ public DateTime fetchvalidDate(string 参数日期){
     return resultDate;
 }
 
-public void mailRecipient(){
+/*public void mailRecipient(){
     string EX2O邮件标题 = string.Format("WM&Sam Excel to order list");
     string CleanException邮件标题 = string.Format("WM&Sam Clean + Exceptionorder list");
     string 分仓明细邮件标题 = string.Format("WM&Sam 分仓明细表");
-    
-    
+}*/
+
+public void initFilePath(){
+   分仓明细表模板文件 = @"C:\RPA工作目录\雀巢_沃尔玛\配置文件\分仓明细表 WM Template.xlsx";
+   分仓明细表文件 = string.Format(@"C:\RPA工作目录\雀巢_沃尔玛\结果输出\雀巢沃尔玛订单\{0}\分仓明细表_沃尔玛山姆_{1}.xlsx", DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"));
+   配置文件 = @"C:\RPA工作目录\雀巢_沃尔玛\配置文件\配置文件.xlsx"; 
 }

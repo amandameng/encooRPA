@@ -9,7 +9,7 @@ public void Run()
         }else if(key.Contains("CleanExceptionFile")){
             cleanException附件.Add(value);
         }else if(key.Contains("分仓明细表")){
-            分仓明细表附件.Add(value);
+            //分仓明细表附件.Add(value);
         }
     }
 
@@ -33,14 +33,52 @@ public void Run()
         订单pdf附件列表.Add(山姆水订单压缩文件);
     }
     
+    mergeEX2ODT();
+    setDeafultValueForJobHistoryDT(allEx2oDT);
 }
 
 public string zippedFilePath(List<string> 订单文件列表, string type){
-    string firstFile = 订单文件列表[0];
-    string dirName = Path.GetDirectoryName(firstFile);
-    string dirParent = Path.GetDirectoryName(dirName);
-    string zipName = type + "_" + Path.GetFileNameWithoutExtension(dirName) + ".zip";
+    string mainFolder = @"C:\RPA工作目录\雀巢_沃尔玛\导出文件\订单pdf\雀巢沃尔玛订单";
+    string dateStr = DateTime.Now.ToString("yyyy-MM-dd");
+    string dirParent = Path.Combine(mainFolder, dateStr);
+    string timeNowStr = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
+    string zipName = type + "_" + timeNowStr + ".zip";
     string 订单压缩文件 = Path.Combine(dirParent, zipName);
     Console.WriteLine(订单压缩文件);
     return 订单压缩文件;
+}
+
+public void mergeEX2ODT(){
+    mergeOneDT(ref allEx2oDT, "沃尔玛EX2ODT");
+    mergeOneDT(ref allEx2oDT, "山姆EX2ODT");
+    mergeOneDT(ref allEx2oDT, "山姆水EX2ODT");
+}
+
+public void mergeOneDT(ref DataTable allEx2oDT, string EX2ODTName){
+   if(沃尔玛山姆报表字典.ContainsKey(EX2ODTName)){
+        DataTable 沃尔玛EX2ODT = (DataTable)沃尔玛山姆报表字典[EX2ODTName];
+        if(allEx2oDT == null){
+            if(沃尔玛EX2ODT!=null && 沃尔玛EX2ODT.Rows.Count > 0){
+               allEx2oDT = 沃尔玛EX2ODT;
+            }
+        }else{
+            if(沃尔玛EX2ODT!=null && 沃尔玛EX2ODT.Rows.Count > 0){
+               allEx2oDT.Merge(沃尔玛EX2ODT);
+            }
+        }
+    }
+}
+
+public void setDeafultValueForJobHistoryDT(DataTable allEx2oDT){
+    if(allEx2oDT!=null && allEx2oDT.Rows.Count > 0){
+        orderJobHistoryDT = allEx2oDT.DefaultView.ToTable(true, new string[]{"Customer Order Number", "Customer Order Date", "customer_name"});
+        orderJobHistoryDT.Columns.Add("report_type", typeof(string));
+        orderJobHistoryDT.Columns.Add("email_sent", typeof(int));
+        orderJobHistoryDT.Columns.Add("email_sent_time", typeof(string));
+        foreach(DataRow dr in orderJobHistoryDT.Rows){
+            dr["report_type"] = "EX2O";
+            dr["email_sent"] = 1;
+            dr["email_sent_time"] = DateTime.Now.ToString();
+        }        
+    }
 }

@@ -30,8 +30,13 @@ public void setPdfForWMOrder(){
     }
     if(isBulkOrder){
         string orderNumber = orderDT.Rows[0]["order_number"].ToString();
+        Console.WriteLine("location: {0}", location);
         DataRow[] drs = curShipToDT.Select(String.Format("Nestle_Plant_No='{0}'", location));
-        string wmdc = drs[0]["WMDC"].ToString();
+        string wmdc = string.Empty;
+        if(drs.Length > 0){
+           wmdc = drs[0]["WMDC"].ToString();
+        }
+        
         string fileName = wmdc + orderNumber + ".pdf";
         pdfFilePath = System.IO.Path.Combine(pdfFolder, fileName); // C:\RPA工作目录\雀巢_沃尔玛\导出文件\订单pdf
     }
@@ -61,7 +66,10 @@ public void setPdfForSamOrder(string customer_name){
 
     string orderNumber = orderDT.Rows[0]["order_number"].ToString();
     DataRow[] drs = curShipToDT.Select(String.Format("Nestle_Plant_No='{0}'", orderDT.Rows[0]["location"].ToString()));
-    string wmdc = drs[0]["WMDC"].ToString();
+    string wmdc = string.Empty;
+    if(drs.Length > 0){
+       wmdc = drs[0]["WMDC"].ToString();
+    }
     string fileName = $"SAM{distributionChannel}-{wmdc}{orderNumber}.pdf";
     if(customer_name.Contains("Water")){
       fileName = $"SAM-IBU{distributionChannel}-{wmdc}{orderNumber}.pdf";
@@ -73,7 +81,10 @@ public void setPdfForSamOrder(string customer_name){
 public void walmartICFileName(){
     string orderNumber = orderDT.Rows[0]["order_number"].ToString();
     DataRow[] drs = curShipToDT.Select(String.Format("Nestle_Plant_No='{0}'", orderDT.Rows[0]["location"].ToString()));
-    string wmdc = drs[0]["WMDC"].ToString();
+    string wmdc = string.Empty;
+    if(drs.Length > 0){
+       wmdc = drs[0]["WMDC"].ToString();
+    }
     string mmdd = DateTime.Now.ToString("MMdd");
     // 4001014040-DGPDC-1021-1
     string fileName = $"{orderNumber}-{wmdc}-{mmdd}-{订单序号}.pdf";

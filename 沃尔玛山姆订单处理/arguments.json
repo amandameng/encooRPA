@@ -1,0 +1,1 @@
+{"Arguments":[{"Name":"结束日期","Type":"System.String","Direction":0,"Default":null,"ArgumentAssemblyLocation":"C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\mscorlib.dll"},{"Name":"沃尔玛流程模块","Type":"System.String","Direction":0,"Default":"沃尔玛|山姆","ArgumentAssemblyLocation":"C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\mscorlib.dll"}]}

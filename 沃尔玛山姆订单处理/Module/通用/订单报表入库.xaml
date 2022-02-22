@@ -94,32 +94,244 @@
           <av:Size x:Key="ShapeSize">200,53</av:Size>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Sequence DisplayName="序列 - 数据入库" sap:VirtualizedContainerService.HintSize="597,4398" sap2010:WorkflowViewState.IdRef="Sequence_1">
+      <Sequence DisplayName="序列 - 数据入库" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="Sequence_1">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="sd:DataTable" Name="cleanAndExceptionPODT" />
+          <Variable x:TypeArguments="sd:DataTable" Name="exceptionPODT" />
+          <Variable x:TypeArguments="sd:DataTable" Name="分仓明细结果数据表" />
+        </Sequence.Variables>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <bda:DatabaseConnectActivity ActivityName="连接数据库" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="连接数据库" sap:VirtualizedContainerService.HintSize="575,4274" sap2010:WorkflowViewState.IdRef="DatabaseConnectActivity_1" ProviderName="MySql">
+        <bfa:If ActivityName="条件（If）" sap2010:Annotation.AnnotationText="如果clean Exception 文件存在" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If clean_exception order_file_path 存在）" sap:VirtualizedContainerService.HintSize="534,380" sap2010:WorkflowViewState.IdRef="If_13" IsIgnore="False">
+          <bfa:If.Condition>
+            <InArgument x:TypeArguments="x:Boolean">
+              <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_88">File.Exists(clean_order_file_path)</mca:CSharpValue>
+            </InArgument>
+          </bfa:If.Condition>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <bfa:If.Then>
+            <boa:OfficeExcelOpenOrCreateActivity OfficeVersion="{x:Null}" Password="{x:Null}" SaveAs="{x:Null}" ActivityName="打开/新建" sap2010:Annotation.AnnotationText="读取数据，获取数据，拼凑SQL" AutoSave="True" ContinueOnError="No" CreateNewFile="False" DelayAfter="0" DelayBefore="0" DisplayName="打开 clean exception file" EnableMacro="False" sap:VirtualizedContainerService.HintSize="200,95" sap2010:WorkflowViewState.IdRef="OfficeExcelOpenOrCreateActivity_5" ReadOnly="False" Visible="False" needRestoreKey="False">
+              <boa:OfficeExcelOpenOrCreateActivity.Body>
+                <ActivityAction x:TypeArguments="x:Object">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="x:Object" Name="XlWorkbook" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="序列 - 打开 clean exception file" sap:VirtualizedContainerService.HintSize="393,974" sap2010:WorkflowViewState.IdRef="Sequence_33">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:String" Name="byPOSheet">
+                        <Variable.Default>
+                          <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_76">clean+exception（by PO)</Literal>
+                        </Variable.Default>
+                      </Variable>
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Sequence DisplayName="序列 - by PO template" sap:VirtualizedContainerService.HintSize="371,405" sap2010:WorkflowViewState.IdRef="Sequence_34">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="x:Int32" Name="lastRow" />
+                        <Variable x:TypeArguments="x:String" Name="lastColName" />
+                      </Sequence.Variables>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <boa:OfficeExcelGetLastRowIndexActivity LettersColumnIndex="{x:Null}" ActivityName="获取末行号" ColumnType="NumberColumn" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取末行号" sap:VirtualizedContainerService.HintSize="349,85" sap2010:WorkflowViewState.IdRef="OfficeExcelGetLastRowIndexActivity_6">
+                        <boa:OfficeExcelGetLastRowIndexActivity.ColumnIndex>
+                          <InArgument x:TypeArguments="x:Int32">
+                            <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_78" Value="1" />
+                          </InArgument>
+                        </boa:OfficeExcelGetLastRowIndexActivity.ColumnIndex>
+                        <boa:OfficeExcelGetLastRowIndexActivity.LastRowIndex>
+                          <OutArgument x:TypeArguments="x:Int32">
+                            <mca:CSharpReference x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpReference`1_46">lastRow</mca:CSharpReference>
+                          </OutArgument>
+                        </boa:OfficeExcelGetLastRowIndexActivity.LastRowIndex>
+                        <boa:OfficeExcelGetLastRowIndexActivity.SheetName>
+                          <InArgument x:TypeArguments="x:String">
+                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_91">(byPOSheet).ToString()</mca:CSharpValue>
+                          </InArgument>
+                        </boa:OfficeExcelGetLastRowIndexActivity.SheetName>
+                      </boa:OfficeExcelGetLastRowIndexActivity>
+                      <boa:OfficeExcelGetLastColIndexActivity LastColumnIndex="{x:Null}" ActivityName="获取末列号" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取末列号" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="OfficeExcelGetLastColIndexActivity_6">
+                        <boa:OfficeExcelGetLastColIndexActivity.LastColumnLetter>
+                          <OutArgument x:TypeArguments="x:String">
+                            <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_47">lastColName</mca:CSharpReference>
+                          </OutArgument>
+                        </boa:OfficeExcelGetLastColIndexActivity.LastColumnLetter>
+                        <boa:OfficeExcelGetLastColIndexActivity.RowIndex>
+                          <InArgument x:TypeArguments="x:Int32">
+                            <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_79" Value="1" />
+                          </InArgument>
+                        </boa:OfficeExcelGetLastColIndexActivity.RowIndex>
+                        <boa:OfficeExcelGetLastColIndexActivity.SheetName>
+                          <InArgument x:TypeArguments="x:String">
+                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_92">(byPOSheet).ToString()</mca:CSharpValue>
+                          </InArgument>
+                        </boa:OfficeExcelGetLastColIndexActivity.SheetName>
+                      </boa:OfficeExcelGetLastColIndexActivity>
+                      <boa:OfficeExcelReadRangeActivity ActivityName="读取区域" AddHeaders="True" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="读取区域-读取模板文件，获取列头" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="OfficeExcelReadRangeActivity_6" PreserveFormat="False" RepeatedColumn="False" UseFilter="False">
+                        <boa:OfficeExcelReadRangeActivity.Data>
+                          <OutArgument x:TypeArguments="sd:DataTable">
+                            <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_48">cleanAndExceptionPODT</mca:CSharpReference>
+                          </OutArgument>
+                        </boa:OfficeExcelReadRangeActivity.Data>
+                        <boa:OfficeExcelReadRangeActivity.Range>
+                          <InArgument x:TypeArguments="x:String">
+                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_94">(String.Format("A1:{0}{1}", lastColName, lastRow)).ToString()</mca:CSharpValue>
+                          </InArgument>
+                        </boa:OfficeExcelReadRangeActivity.Range>
+                        <boa:OfficeExcelReadRangeActivity.SheetName>
+                          <InArgument x:TypeArguments="x:String">
+                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_93">(byPOSheet).ToString()</mca:CSharpValue>
+                          </InArgument>
+                        </boa:OfficeExcelReadRangeActivity.SheetName>
+                      </boa:OfficeExcelReadRangeActivity>
+                    </Sequence>
+                    <Sequence DisplayName="序列 -  by PO or Item Template" sap:VirtualizedContainerService.HintSize="371,405" sap2010:WorkflowViewState.IdRef="Sequence_35">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="x:Int32" Name="lastRow" />
+                        <Variable x:TypeArguments="x:String" Name="lastColName" />
+                        <Variable x:TypeArguments="x:String" Name="byPOOrItemSheet">
+                          <Variable.Default>
+                            <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_77">exception（by PO or item)</Literal>
+                          </Variable.Default>
+                        </Variable>
+                      </Sequence.Variables>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <boa:OfficeExcelGetLastRowIndexActivity LettersColumnIndex="{x:Null}" ActivityName="获取末行号" ColumnType="NumberColumn" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取末行号" sap:VirtualizedContainerService.HintSize="349,85" sap2010:WorkflowViewState.IdRef="OfficeExcelGetLastRowIndexActivity_7">
+                        <boa:OfficeExcelGetLastRowIndexActivity.ColumnIndex>
+                          <InArgument x:TypeArguments="x:Int32">
+                            <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_80" Value="1" />
+                          </InArgument>
+                        </boa:OfficeExcelGetLastRowIndexActivity.ColumnIndex>
+                        <boa:OfficeExcelGetLastRowIndexActivity.LastRowIndex>
+                          <OutArgument x:TypeArguments="x:Int32">
+                            <mca:CSharpReference x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpReference`1_49">lastRow</mca:CSharpReference>
+                          </OutArgument>
+                        </boa:OfficeExcelGetLastRowIndexActivity.LastRowIndex>
+                        <boa:OfficeExcelGetLastRowIndexActivity.SheetName>
+                          <InArgument x:TypeArguments="x:String">
+                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_95">(byPOOrItemSheet).ToString()</mca:CSharpValue>
+                          </InArgument>
+                        </boa:OfficeExcelGetLastRowIndexActivity.SheetName>
+                      </boa:OfficeExcelGetLastRowIndexActivity>
+                      <boa:OfficeExcelGetLastColIndexActivity LastColumnIndex="{x:Null}" ActivityName="获取末列号" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取末列号" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="OfficeExcelGetLastColIndexActivity_7">
+                        <boa:OfficeExcelGetLastColIndexActivity.LastColumnLetter>
+                          <OutArgument x:TypeArguments="x:String">
+                            <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_50">lastColName</mca:CSharpReference>
+                          </OutArgument>
+                        </boa:OfficeExcelGetLastColIndexActivity.LastColumnLetter>
+                        <boa:OfficeExcelGetLastColIndexActivity.RowIndex>
+                          <InArgument x:TypeArguments="x:Int32">
+                            <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_81" Value="1" />
+                          </InArgument>
+                        </boa:OfficeExcelGetLastColIndexActivity.RowIndex>
+                        <boa:OfficeExcelGetLastColIndexActivity.SheetName>
+                          <InArgument x:TypeArguments="x:String">
+                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_96">(byPOOrItemSheet).ToString()</mca:CSharpValue>
+                          </InArgument>
+                        </boa:OfficeExcelGetLastColIndexActivity.SheetName>
+                      </boa:OfficeExcelGetLastColIndexActivity>
+                      <boa:OfficeExcelReadRangeActivity ActivityName="读取区域" AddHeaders="True" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="读取区域-读取模板文件，获取列头" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="OfficeExcelReadRangeActivity_7" PreserveFormat="False" RepeatedColumn="False" UseFilter="False">
+                        <boa:OfficeExcelReadRangeActivity.Data>
+                          <OutArgument x:TypeArguments="sd:DataTable">
+                            <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_51">exceptionPODT</mca:CSharpReference>
+                          </OutArgument>
+                        </boa:OfficeExcelReadRangeActivity.Data>
+                        <boa:OfficeExcelReadRangeActivity.Range>
+                          <InArgument x:TypeArguments="x:String">
+                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_98">(String.Format("A1:{0}{1}", lastColName, lastRow)).ToString()</mca:CSharpValue>
+                          </InArgument>
+                        </boa:OfficeExcelReadRangeActivity.Range>
+                        <boa:OfficeExcelReadRangeActivity.SheetName>
+                          <InArgument x:TypeArguments="x:String">
+                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_97">(byPOOrItemSheet).ToString()</mca:CSharpValue>
+                          </InArgument>
+                        </boa:OfficeExcelReadRangeActivity.SheetName>
+                      </boa:OfficeExcelReadRangeActivity>
+                    </Sequence>
+                  </Sequence>
+                </ActivityAction>
+              </boa:OfficeExcelOpenOrCreateActivity.Body>
+              <boa:OfficeExcelOpenOrCreateActivity.ExcelFile>
+                <InArgument x:TypeArguments="x:String">
+                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_89">(clean_order_file_path).ToString()</mca:CSharpValue>
+                </InArgument>
+              </boa:OfficeExcelOpenOrCreateActivity.ExcelFile>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </boa:OfficeExcelOpenOrCreateActivity>
+          </bfa:If.Then>
+        </bfa:If>
+        <bfa:InvokeWorkflow sap2010:Annotation.AnnotationText="读取 分仓明细 文件" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行流程 : 打开excel文件读取指定全部数据" sap:VirtualizedContainerService.HintSize="534,121" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_23" IsIgnore="False">
+          <bfa:InvokeWorkflow.Arguments>
+            <InArgument x:TypeArguments="x:String" x:Key="excel_file_path">
+              <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_90">(分仓明细表文件).ToString()</mca:CSharpValue>
+            </InArgument>
+            <OutArgument x:TypeArguments="sd:DataTable" x:Key="excelResultDT">
+              <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_45">分仓明细结果数据表</mca:CSharpReference>
+            </OutArgument>
+          </bfa:InvokeWorkflow.Arguments>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <bfa:InvokeWorkflow.WorkflowPath>
+            <InArgument x:TypeArguments="x:String">
+              <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_75">Module\通用\打开excel文件读取全部数据.xaml</Literal>
+            </InArgument>
+          </bfa:InvokeWorkflow.WorkflowPath>
+        </bfa:InvokeWorkflow>
+        <bda:DatabaseConnectActivity ActivityName="连接数据库" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="连接数据库" sap:VirtualizedContainerService.HintSize="534,891" sap2010:WorkflowViewState.IdRef="DatabaseConnectActivity_1" ProviderName="MySql">
           <bda:DatabaseConnectActivity.Body>
             <ActivityAction x:TypeArguments="x:Object">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="x:Object" Name="DataBaseScope" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="序列-链接数据库" sap:VirtualizedContainerService.HintSize="561,4166" sap2010:WorkflowViewState.IdRef="Sequence_4">
+              <Sequence DisplayName="序列 - 链接数据库" sap:VirtualizedContainerService.HintSize="436,783" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="x:String" Name="exceptionOrderSQL" />
+                  <Variable x:TypeArguments="x:String" Name="cleanExceptionSQL" />
+                </Sequence.Variables>
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <bda:ExecuteTransactionActivity ActivityName="执行事务" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行事务 - 插入Excel to Order" sap:VirtualizedContainerService.HintSize="539,4042" sap2010:WorkflowViewState.IdRef="ExecuteTransactionActivity_2">
+                <bda:ExecuteTransactionActivity ActivityName="执行事务" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行事务 - 插入Excel to Order" sap:VirtualizedContainerService.HintSize="414,659" sap2010:WorkflowViewState.IdRef="ExecuteTransactionActivity_2">
                   <bda:ExecuteTransactionActivity.Body>
                     <ActivityAction x:TypeArguments="x:Object">
                       <ActivityAction.Argument>
                         <DelegateInArgument x:TypeArguments="x:Object" Name="DataBaseTransactionScope" />
                       </ActivityAction.Argument>
-                      <Sequence DisplayName="序列 - 数据库事务" sap:VirtualizedContainerService.HintSize="525,3956" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                      <Sequence DisplayName="序列 - 数据库事务" sap:VirtualizedContainerService.HintSize="222,573" sap2010:WorkflowViewState.IdRef="Sequence_8">
                         <Sequence.Variables>
                           <Variable x:TypeArguments="x:Int32" Name="作用行数" />
                         </Sequence.Variables>
@@ -129,7 +341,7 @@
                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <bfa:If ActivityName="条件（If）" sap2010:Annotation.AnnotationText="拼接excel to order 查询语句&#xA;插入数据库" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 存在EX2O 数据 ）" sap:VirtualizedContainerService.HintSize="503,607" sap2010:WorkflowViewState.IdRef="If_7" IsIgnore="False">
+                        <bfa:If ActivityName="条件（If）" sap2010:Annotation.AnnotationText="拼接excel to order 查询语句&#xA;插入数据库" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 存在EX2O 数据 ）" sap:VirtualizedContainerService.HintSize="200,95" sap2010:WorkflowViewState.IdRef="If_7" IsIgnore="False">
                           <bfa:If.Condition>
                             <InArgument x:TypeArguments="x:Boolean">
                               <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_58">etoResultDT != null &amp;&amp; etoResultDT.Rows.Count &gt; 0</mca:CSharpValue>
@@ -137,7 +349,7 @@
                           </bfa:If.Condition>
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                               <x:Boolean x:Key="IsPinned">False</x:Boolean>
                               <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                             </scg:Dictionary>
@@ -201,367 +413,167 @@
                             </Sequence>
                           </bfa:If.Then>
                         </bfa:If>
-                        <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If clean_order_file_path 存在）" sap:VirtualizedContainerService.HintSize="503,2245" sap2010:WorkflowViewState.IdRef="If_12" IsIgnore="False">
+                        <bfa:If ActivityName="条件（If）" sap2010:Annotation.AnnotationText="clean and Exception Data" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If cleanAndExceptionPODT 不为空）" sap:VirtualizedContainerService.HintSize="200,78" sap2010:WorkflowViewState.IdRef="If_9" IsIgnore="False">
                           <bfa:If.Condition>
                             <InArgument x:TypeArguments="x:Boolean">
-                              <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_85">File.Exists(clean_order_file_path)</mca:CSharpValue>
+                              <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_66">cleanAndExceptionPODT != null &amp;&amp; cleanAndExceptionPODT.Rows.Count &gt; 0</mca:CSharpValue>
                             </InArgument>
                           </bfa:If.Condition>
-                          <bfa:If.Then>
-                            <boa:OfficeExcelOpenOrCreateActivity OfficeVersion="{x:Null}" Password="{x:Null}" SaveAs="{x:Null}" ActivityName="打开/新建" sap2010:Annotation.AnnotationText="读取数据，获取数据，拼凑SQL" AutoSave="True" ContinueOnError="No" CreateNewFile="False" DelayAfter="0" DelayBefore="0" DisplayName="打开 clean exception file" EnableMacro="False" sap:VirtualizedContainerService.HintSize="485,1988" sap2010:WorkflowViewState.IdRef="OfficeExcelOpenOrCreateActivity_4" ReadOnly="False" Visible="False" needRestoreKey="False">
-                              <boa:OfficeExcelOpenOrCreateActivity.Body>
-                                <ActivityAction x:TypeArguments="x:Object">
-                                  <ActivityAction.Argument>
-                                    <DelegateInArgument x:TypeArguments="x:Object" Name="XlWorkbook" />
-                                  </ActivityAction.Argument>
-                                  <Sequence DisplayName="序列 - 打开 clean exception file" sap:VirtualizedContainerService.HintSize="471,1855" sap2010:WorkflowViewState.IdRef="Sequence_28">
-                                    <Sequence.Variables>
-                                      <Variable x:TypeArguments="x:String" Name="byPOSheet">
-                                        <Variable.Default>
-                                          <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_53">clean+exception（by PO)</Literal>
-                                        </Variable.Default>
-                                      </Variable>
-                                      <Variable x:TypeArguments="x:String" Name="cleanExceptionSQL" />
-                                      <Variable x:TypeArguments="x:String" Name="exceptionOrderSQL" />
-                                      <Variable x:TypeArguments="sd:DataTable" Name="cleanAndExceptionPODT" />
-                                      <Variable x:TypeArguments="sd:DataTable" Name="exceptionPODT" />
-                                    </Sequence.Variables>
-                                    <sap:WorkflowViewStateService.ViewState>
-                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                      </scg:Dictionary>
-                                    </sap:WorkflowViewStateService.ViewState>
-                                    <Sequence DisplayName="序列 - by PO template" sap:VirtualizedContainerService.HintSize="449,53" sap2010:WorkflowViewState.IdRef="Sequence_29">
-                                      <Sequence.Variables>
-                                        <Variable x:TypeArguments="x:Int32" Name="lastRow" />
-                                        <Variable x:TypeArguments="x:String" Name="lastColName" />
-                                      </Sequence.Variables>
-                                      <sap:WorkflowViewStateService.ViewState>
-                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                        </scg:Dictionary>
-                                      </sap:WorkflowViewStateService.ViewState>
-                                      <boa:OfficeExcelGetLastRowIndexActivity ActivityName="获取末行号" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取末行号" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="OfficeExcelGetLastRowIndexActivity_4">
-                                        <boa:OfficeExcelGetLastRowIndexActivity.ColumnIndex>
-                                          <InArgument x:TypeArguments="x:Int32">
-                                            <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_54" Value="1" />
-                                          </InArgument>
-                                        </boa:OfficeExcelGetLastRowIndexActivity.ColumnIndex>
-                                        <boa:OfficeExcelGetLastRowIndexActivity.LastRowIndex>
-                                          <OutArgument x:TypeArguments="x:Int32">
-                                            <mca:CSharpReference x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpReference`1_34">lastRow</mca:CSharpReference>
-                                          </OutArgument>
-                                        </boa:OfficeExcelGetLastRowIndexActivity.LastRowIndex>
-                                        <boa:OfficeExcelGetLastRowIndexActivity.SheetName>
-                                          <InArgument x:TypeArguments="x:String">
-                                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_68">(byPOSheet).ToString()</mca:CSharpValue>
-                                          </InArgument>
-                                        </boa:OfficeExcelGetLastRowIndexActivity.SheetName>
-                                      </boa:OfficeExcelGetLastRowIndexActivity>
-                                      <boa:OfficeExcelGetLastColIndexActivity LastColumnIndex="{x:Null}" ActivityName="获取末列号" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取末列号" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="OfficeExcelGetLastColIndexActivity_4">
-                                        <boa:OfficeExcelGetLastColIndexActivity.LastColumnLetter>
-                                          <OutArgument x:TypeArguments="x:String">
-                                            <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_35">lastColName</mca:CSharpReference>
-                                          </OutArgument>
-                                        </boa:OfficeExcelGetLastColIndexActivity.LastColumnLetter>
-                                        <boa:OfficeExcelGetLastColIndexActivity.RowIndex>
-                                          <InArgument x:TypeArguments="x:Int32">
-                                            <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_55" Value="1" />
-                                          </InArgument>
-                                        </boa:OfficeExcelGetLastColIndexActivity.RowIndex>
-                                        <boa:OfficeExcelGetLastColIndexActivity.SheetName>
-                                          <InArgument x:TypeArguments="x:String">
-                                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_69">(byPOSheet).ToString()</mca:CSharpValue>
-                                          </InArgument>
-                                        </boa:OfficeExcelGetLastColIndexActivity.SheetName>
-                                      </boa:OfficeExcelGetLastColIndexActivity>
-                                      <boa:OfficeExcelReadRangeActivity ActivityName="读取区域" AddHeaders="True" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="读取区域-读取模板文件，获取列头" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="OfficeExcelReadRangeActivity_4" PreserveFormat="False" RepeatedColumn="False" UseFilter="False">
-                                        <boa:OfficeExcelReadRangeActivity.Data>
-                                          <OutArgument x:TypeArguments="sd:DataTable">
-                                            <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_36">cleanAndExceptionPODT</mca:CSharpReference>
-                                          </OutArgument>
-                                        </boa:OfficeExcelReadRangeActivity.Data>
-                                        <boa:OfficeExcelReadRangeActivity.Range>
-                                          <InArgument x:TypeArguments="x:String">
-                                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_71">(String.Format("A1:{0}{1}", lastColName, lastRow)).ToString()</mca:CSharpValue>
-                                          </InArgument>
-                                        </boa:OfficeExcelReadRangeActivity.Range>
-                                        <boa:OfficeExcelReadRangeActivity.SheetName>
-                                          <InArgument x:TypeArguments="x:String">
-                                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_70">(byPOSheet).ToString()</mca:CSharpValue>
-                                          </InArgument>
-                                        </boa:OfficeExcelReadRangeActivity.SheetName>
-                                      </boa:OfficeExcelReadRangeActivity>
-                                    </Sequence>
-                                    <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If cleanAndExceptionPODT 不为空）" sap:VirtualizedContainerService.HintSize="449,590" sap2010:WorkflowViewState.IdRef="If_9" IsIgnore="False">
-                                      <bfa:If.Condition>
-                                        <InArgument x:TypeArguments="x:Boolean">
-                                          <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_66">cleanAndExceptionPODT != null &amp;&amp; cleanAndExceptionPODT.Rows.Count &gt; 0</mca:CSharpValue>
-                                        </InArgument>
-                                      </bfa:If.Condition>
-                                      <sap:WorkflowViewStateService.ViewState>
-                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                        </scg:Dictionary>
-                                      </sap:WorkflowViewStateService.ViewState>
-                                      <bfa:If.Then>
-                                        <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="371,405" sap2010:WorkflowViewState.IdRef="Sequence_26">
-                                          <sap:WorkflowViewStateService.ViewState>
-                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                            </scg:Dictionary>
-                                          </sap:WorkflowViewStateService.ViewState>
-                                          <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: 根据数据表拼接数据库SQL语句" sap:VirtualizedContainerService.HintSize="349,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_19" IsIgnore="False">
-                                            <bfa:InvokeWorkflow.Arguments>
-                                              <InArgument x:TypeArguments="x:String" x:Key="str_TableName">
-                                                <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_69">clean_exception_order_WM</Literal>
-                                              </InArgument>
-                                              <InArgument x:TypeArguments="sd:DataTable" x:Key="源数据表">
-                                                <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_61">cleanAndExceptionPODT</mca:CSharpValue>
-                                              </InArgument>
-                                              <OutArgument x:TypeArguments="x:String" x:Key="str_SQL">
-                                                <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_32">cleanExceptionSQL</mca:CSharpReference>
-                                              </OutArgument>
-                                              <InArgument x:TypeArguments="x:Boolean" x:Key="addCustomerName">
-                                                <Literal x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="Literal`1_48" Value="True" />
-                                              </InArgument>
-                                              <InArgument x:TypeArguments="x:String" x:Key="customerName">
-                                                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_60">(customer_name).ToString()</mca:CSharpValue>
-                                              </InArgument>
-                                            </bfa:InvokeWorkflow.Arguments>
-                                            <bfa:InvokeWorkflow.WorkflowPath>
-                                              <InArgument x:TypeArguments="x:String">
-                                                <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_58">Module\通用\根据数据表拼接数据库SQL语句.xaml</Literal>
-                                              </InArgument>
-                                            </bfa:InvokeWorkflow.WorkflowPath>
-                                          </bfa:InvokeWorkflow>
-                                          <bda:ExecuteSqlActivity ActivityName="执行语句" sap2010:Annotation.AnnotationText="clean and Exception" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行语句 - 插入 clean and Exception" sap:VirtualizedContainerService.HintSize="349,47" sap2010:WorkflowViewState.IdRef="ExecuteSqlActivity_5">
-                                            <bda:ExecuteSqlActivity.AffectedRows>
-                                              <OutArgument x:TypeArguments="x:Int32">
-                                                <mca:CSharpReference x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpReference`1_40">作用行数</mca:CSharpReference>
-                                              </OutArgument>
-                                            </bda:ExecuteSqlActivity.AffectedRows>
-                                            <bda:ExecuteSqlActivity.ExecuteTimeOut>
-                                              <InArgument x:TypeArguments="x:TimeSpan">
-                                                <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_59" Value="00:00:30" />
-                                              </InArgument>
-                                            </bda:ExecuteSqlActivity.ExecuteTimeOut>
-                                            <bda:ExecuteSqlActivity.Sql>
-                                              <InArgument x:TypeArguments="x:String">
-                                                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_76">(cleanExceptionSQL).ToString()</mca:CSharpValue>
-                                              </InArgument>
-                                            </bda:ExecuteSqlActivity.Sql>
-                                            <sap:WorkflowViewStateService.ViewState>
-                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                                              </scg:Dictionary>
-                                            </sap:WorkflowViewStateService.ViewState>
-                                          </bda:ExecuteSqlActivity>
-                                          <baast:LogActivity ActivityName="写入日志" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="写入日志 - 作用行数 clean and Exception" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="LogActivity_6" Level="Info">
-                                            <baast:LogActivity.LogContent>
-                                              <InArgument x:TypeArguments="x:String">
-                                                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_77">(作用行数).ToString()</mca:CSharpValue>
-                                              </InArgument>
-                                            </baast:LogActivity.LogContent>
-                                          </baast:LogActivity>
-                                        </Sequence>
-                                      </bfa:If.Then>
-                                    </bfa:If>
-                                    <Sequence DisplayName="序列 -  by PO or Item Template" sap:VirtualizedContainerService.HintSize="449,378" sap2010:WorkflowViewState.IdRef="Sequence_30">
-                                      <Sequence.Variables>
-                                        <Variable x:TypeArguments="x:Int32" Name="lastRow" />
-                                        <Variable x:TypeArguments="x:String" Name="lastColName" />
-                                        <Variable x:TypeArguments="x:String" Name="byPOOrItemSheet">
-                                          <Variable.Default>
-                                            <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_62">exception（by PO or item)</Literal>
-                                          </Variable.Default>
-                                        </Variable>
-                                      </Sequence.Variables>
-                                      <sap:WorkflowViewStateService.ViewState>
-                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                        </scg:Dictionary>
-                                      </sap:WorkflowViewStateService.ViewState>
-                                      <boa:OfficeExcelGetLastRowIndexActivity ActivityName="获取末行号" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取末行号" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="OfficeExcelGetLastRowIndexActivity_5">
-                                        <boa:OfficeExcelGetLastRowIndexActivity.ColumnIndex>
-                                          <InArgument x:TypeArguments="x:Int32">
-                                            <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_56" Value="1" />
-                                          </InArgument>
-                                        </boa:OfficeExcelGetLastRowIndexActivity.ColumnIndex>
-                                        <boa:OfficeExcelGetLastRowIndexActivity.LastRowIndex>
-                                          <OutArgument x:TypeArguments="x:Int32">
-                                            <mca:CSharpReference x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpReference`1_37">lastRow</mca:CSharpReference>
-                                          </OutArgument>
-                                        </boa:OfficeExcelGetLastRowIndexActivity.LastRowIndex>
-                                        <boa:OfficeExcelGetLastRowIndexActivity.SheetName>
-                                          <InArgument x:TypeArguments="x:String">
-                                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_72">(byPOOrItemSheet).ToString()</mca:CSharpValue>
-                                          </InArgument>
-                                        </boa:OfficeExcelGetLastRowIndexActivity.SheetName>
-                                      </boa:OfficeExcelGetLastRowIndexActivity>
-                                      <boa:OfficeExcelGetLastColIndexActivity LastColumnIndex="{x:Null}" ActivityName="获取末列号" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取末列号" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="OfficeExcelGetLastColIndexActivity_5">
-                                        <boa:OfficeExcelGetLastColIndexActivity.LastColumnLetter>
-                                          <OutArgument x:TypeArguments="x:String">
-                                            <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_38">lastColName</mca:CSharpReference>
-                                          </OutArgument>
-                                        </boa:OfficeExcelGetLastColIndexActivity.LastColumnLetter>
-                                        <boa:OfficeExcelGetLastColIndexActivity.RowIndex>
-                                          <InArgument x:TypeArguments="x:Int32">
-                                            <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_57" Value="1" />
-                                          </InArgument>
-                                        </boa:OfficeExcelGetLastColIndexActivity.RowIndex>
-                                        <boa:OfficeExcelGetLastColIndexActivity.SheetName>
-                                          <InArgument x:TypeArguments="x:String">
-                                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_73">(byPOOrItemSheet).ToString()</mca:CSharpValue>
-                                          </InArgument>
-                                        </boa:OfficeExcelGetLastColIndexActivity.SheetName>
-                                      </boa:OfficeExcelGetLastColIndexActivity>
-                                      <boa:OfficeExcelReadRangeActivity ActivityName="读取区域" AddHeaders="True" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="读取区域-读取模板文件，获取列头" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="OfficeExcelReadRangeActivity_5" PreserveFormat="False" RepeatedColumn="False" UseFilter="False">
-                                        <boa:OfficeExcelReadRangeActivity.Data>
-                                          <OutArgument x:TypeArguments="sd:DataTable">
-                                            <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_39">exceptionPODT</mca:CSharpReference>
-                                          </OutArgument>
-                                        </boa:OfficeExcelReadRangeActivity.Data>
-                                        <boa:OfficeExcelReadRangeActivity.Range>
-                                          <InArgument x:TypeArguments="x:String">
-                                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_75">(String.Format("A1:{0}{1}", lastColName, lastRow)).ToString()</mca:CSharpValue>
-                                          </InArgument>
-                                        </boa:OfficeExcelReadRangeActivity.Range>
-                                        <boa:OfficeExcelReadRangeActivity.SheetName>
-                                          <InArgument x:TypeArguments="x:String">
-                                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_74">(byPOOrItemSheet).ToString()</mca:CSharpValue>
-                                          </InArgument>
-                                        </boa:OfficeExcelReadRangeActivity.SheetName>
-                                      </boa:OfficeExcelReadRangeActivity>
-                                    </Sequence>
-                                    <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If exceptionPODT）" sap:VirtualizedContainerService.HintSize="449,590" sap2010:WorkflowViewState.IdRef="If_10" IsIgnore="False">
-                                      <bfa:If.Condition>
-                                        <InArgument x:TypeArguments="x:Boolean">
-                                          <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_67">exceptionPODT != null&amp;&amp; exceptionPODT.Rows.Count &gt; 0</mca:CSharpValue>
-                                        </InArgument>
-                                      </bfa:If.Condition>
-                                      <sap:WorkflowViewStateService.ViewState>
-                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                        </scg:Dictionary>
-                                      </sap:WorkflowViewStateService.ViewState>
-                                      <bfa:If.Then>
-                                        <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="371,405" sap2010:WorkflowViewState.IdRef="Sequence_27">
-                                          <sap:WorkflowViewStateService.ViewState>
-                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                            </scg:Dictionary>
-                                          </sap:WorkflowViewStateService.ViewState>
-                                          <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: 根据数据表拼接数据库SQL语句" sap:VirtualizedContainerService.HintSize="349,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_20" IsIgnore="False">
-                                            <bfa:InvokeWorkflow.Arguments>
-                                              <InArgument x:TypeArguments="x:String" x:Key="str_TableName">
-                                                <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_68">exception_order_WM</Literal>
-                                              </InArgument>
-                                              <InArgument x:TypeArguments="sd:DataTable" x:Key="源数据表">
-                                                <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_62">exceptionPODT</mca:CSharpValue>
-                                              </InArgument>
-                                              <OutArgument x:TypeArguments="x:String" x:Key="str_SQL">
-                                                <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_33">exceptionOrderSQL</mca:CSharpReference>
-                                              </OutArgument>
-                                              <InArgument x:TypeArguments="x:Boolean" x:Key="addCustomerName">
-                                                <Literal x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="Literal`1_50" Value="True" />
-                                              </InArgument>
-                                              <InArgument x:TypeArguments="x:String" x:Key="customerName">
-                                                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_63">(customer_name).ToString()</mca:CSharpValue>
-                                              </InArgument>
-                                            </bfa:InvokeWorkflow.Arguments>
-                                            <bfa:InvokeWorkflow.WorkflowPath>
-                                              <InArgument x:TypeArguments="x:String">
-                                                <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_60">Module\通用\根据数据表拼接数据库SQL语句.xaml</Literal>
-                                              </InArgument>
-                                            </bfa:InvokeWorkflow.WorkflowPath>
-                                          </bfa:InvokeWorkflow>
-                                          <bda:ExecuteSqlActivity ActivityName="执行语句" sap2010:Annotation.AnnotationText="exception only" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行语句 - 插入  exception" sap:VirtualizedContainerService.HintSize="349,47" sap2010:WorkflowViewState.IdRef="ExecuteSqlActivity_6">
-                                            <bda:ExecuteSqlActivity.AffectedRows>
-                                              <OutArgument x:TypeArguments="x:Int32">
-                                                <mca:CSharpReference x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpReference`1_41">作用行数</mca:CSharpReference>
-                                              </OutArgument>
-                                            </bda:ExecuteSqlActivity.AffectedRows>
-                                            <bda:ExecuteSqlActivity.ExecuteTimeOut>
-                                              <InArgument x:TypeArguments="x:TimeSpan">
-                                                <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_61" Value="00:00:30" />
-                                              </InArgument>
-                                            </bda:ExecuteSqlActivity.ExecuteTimeOut>
-                                            <bda:ExecuteSqlActivity.Sql>
-                                              <InArgument x:TypeArguments="x:String">
-                                                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_78">(exceptionOrderSQL).ToString()</mca:CSharpValue>
-                                              </InArgument>
-                                            </bda:ExecuteSqlActivity.Sql>
-                                            <sap:WorkflowViewStateService.ViewState>
-                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                                              </scg:Dictionary>
-                                            </sap:WorkflowViewStateService.ViewState>
-                                          </bda:ExecuteSqlActivity>
-                                          <baast:LogActivity ActivityName="写入日志" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="写入日志 - 作用行数 exception" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="LogActivity_7" Level="Info">
-                                            <baast:LogActivity.LogContent>
-                                              <InArgument x:TypeArguments="x:String">
-                                                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_79">(作用行数).ToString()</mca:CSharpValue>
-                                              </InArgument>
-                                            </baast:LogActivity.LogContent>
-                                          </baast:LogActivity>
-                                        </Sequence>
-                                      </bfa:If.Then>
-                                    </bfa:If>
-                                  </Sequence>
-                                </ActivityAction>
-                              </boa:OfficeExcelOpenOrCreateActivity.Body>
-                              <boa:OfficeExcelOpenOrCreateActivity.ExcelFile>
-                                <InArgument x:TypeArguments="x:String">
-                                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_64">(clean_order_file_path).ToString()</mca:CSharpValue>
-                                </InArgument>
-                              </boa:OfficeExcelOpenOrCreateActivity.ExcelFile>
-                              <sap:WorkflowViewStateService.ViewState>
-                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                                </scg:Dictionary>
-                              </sap:WorkflowViewStateService.ViewState>
-                            </boa:OfficeExcelOpenOrCreateActivity>
-                          </bfa:If.Then>
-                        </bfa:If>
-                        <Sequence sap2010:Annotation.AnnotationText="拼接分仓明细表查询语句" DisplayName="序列 - 分仓明细表" sap:VirtualizedContainerService.HintSize="503,900" sap2010:WorkflowViewState.IdRef="Sequence_31">
-                          <Sequence.Variables>
-                            <Variable x:TypeArguments="sd:DataTable" Name="分仓明细结果数据表" />
-                          </Sequence.Variables>
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
                               <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <bfa:InvokeWorkflow sap2010:Annotation.AnnotationText="读取 分仓明细 文件" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行流程 : 打开excel文件读取指定全部数据" sap:VirtualizedContainerService.HintSize="449,121" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_21" IsIgnore="False">
-                            <bfa:InvokeWorkflow.Arguments>
-                              <InArgument x:TypeArguments="x:String" x:Key="excel_file_path">
-                                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_81">(分仓明细表文件).ToString()</mca:CSharpValue>
-                              </InArgument>
-                              <OutArgument x:TypeArguments="sd:DataTable" x:Key="excelResultDT">
-                                <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_42">分仓明细结果数据表</mca:CSharpReference>
-                              </OutArgument>
-                            </bfa:InvokeWorkflow.Arguments>
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <bfa:InvokeWorkflow.WorkflowPath>
-                              <InArgument x:TypeArguments="x:String">
-                                <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_63">Module\通用\打开excel文件读取全部数据.xaml</Literal>
-                              </InArgument>
-                            </bfa:InvokeWorkflow.WorkflowPath>
-                          </bfa:InvokeWorkflow>
-                          <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 分仓明细结果数据表 存在）" sap:VirtualizedContainerService.HintSize="449,590" sap2010:WorkflowViewState.IdRef="If_11" IsIgnore="False">
+                          <bfa:If.Then>
+                            <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="371,405" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: 根据数据表拼接数据库SQL语句" sap:VirtualizedContainerService.HintSize="349,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_19" IsIgnore="False">
+                                <bfa:InvokeWorkflow.Arguments>
+                                  <InArgument x:TypeArguments="x:String" x:Key="str_TableName">
+                                    <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_69">clean_exception_order_WM</Literal>
+                                  </InArgument>
+                                  <InArgument x:TypeArguments="sd:DataTable" x:Key="源数据表">
+                                    <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_61">cleanAndExceptionPODT</mca:CSharpValue>
+                                  </InArgument>
+                                  <OutArgument x:TypeArguments="x:String" x:Key="str_SQL">
+                                    <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_32">cleanExceptionSQL</mca:CSharpReference>
+                                  </OutArgument>
+                                  <InArgument x:TypeArguments="x:Boolean" x:Key="addCustomerName">
+                                    <Literal x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="Literal`1_48" Value="True" />
+                                  </InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="customerName">
+                                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_60">(customer_name).ToString()</mca:CSharpValue>
+                                  </InArgument>
+                                </bfa:InvokeWorkflow.Arguments>
+                                <bfa:InvokeWorkflow.WorkflowPath>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_58">Module\通用\根据数据表拼接数据库SQL语句.xaml</Literal>
+                                  </InArgument>
+                                </bfa:InvokeWorkflow.WorkflowPath>
+                              </bfa:InvokeWorkflow>
+                              <bda:ExecuteSqlActivity ActivityName="执行语句" sap2010:Annotation.AnnotationText="clean and Exception" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行语句 - 插入 clean and Exception" sap:VirtualizedContainerService.HintSize="349,47" sap2010:WorkflowViewState.IdRef="ExecuteSqlActivity_5">
+                                <bda:ExecuteSqlActivity.AffectedRows>
+                                  <OutArgument x:TypeArguments="x:Int32">
+                                    <mca:CSharpReference x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpReference`1_40">作用行数</mca:CSharpReference>
+                                  </OutArgument>
+                                </bda:ExecuteSqlActivity.AffectedRows>
+                                <bda:ExecuteSqlActivity.ExecuteTimeOut>
+                                  <InArgument x:TypeArguments="x:TimeSpan">
+                                    <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_59" Value="00:00:30" />
+                                  </InArgument>
+                                </bda:ExecuteSqlActivity.ExecuteTimeOut>
+                                <bda:ExecuteSqlActivity.Sql>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_76">(cleanExceptionSQL).ToString()</mca:CSharpValue>
+                                  </InArgument>
+                                </bda:ExecuteSqlActivity.Sql>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </bda:ExecuteSqlActivity>
+                              <baast:LogActivity ActivityName="写入日志" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="写入日志 - 作用行数 clean and Exception" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="LogActivity_6" Level="Info">
+                                <baast:LogActivity.LogContent>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_77">(作用行数).ToString()</mca:CSharpValue>
+                                  </InArgument>
+                                </baast:LogActivity.LogContent>
+                              </baast:LogActivity>
+                            </Sequence>
+                          </bfa:If.Then>
+                        </bfa:If>
+                        <bfa:If ActivityName="条件（If）" sap2010:Annotation.AnnotationText="exception data" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If exceptionPODT）" sap:VirtualizedContainerService.HintSize="200,78" sap2010:WorkflowViewState.IdRef="If_10" IsIgnore="False">
+                          <bfa:If.Condition>
+                            <InArgument x:TypeArguments="x:Boolean">
+                              <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_67">exceptionPODT != null&amp;&amp; exceptionPODT.Rows.Count &gt; 0</mca:CSharpValue>
+                            </InArgument>
+                          </bfa:If.Condition>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <bfa:If.Then>
+                            <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="371,405" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: 根据数据表拼接数据库SQL语句" sap:VirtualizedContainerService.HintSize="349,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_20" IsIgnore="False">
+                                <bfa:InvokeWorkflow.Arguments>
+                                  <InArgument x:TypeArguments="x:String" x:Key="str_TableName">
+                                    <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_68">exception_order_WM</Literal>
+                                  </InArgument>
+                                  <InArgument x:TypeArguments="sd:DataTable" x:Key="源数据表">
+                                    <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_62">exceptionPODT</mca:CSharpValue>
+                                  </InArgument>
+                                  <OutArgument x:TypeArguments="x:String" x:Key="str_SQL">
+                                    <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_33">exceptionOrderSQL</mca:CSharpReference>
+                                  </OutArgument>
+                                  <InArgument x:TypeArguments="x:Boolean" x:Key="addCustomerName">
+                                    <Literal x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="Literal`1_50" Value="True" />
+                                  </InArgument>
+                                  <InArgument x:TypeArguments="x:String" x:Key="customerName">
+                                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_63">(customer_name).ToString()</mca:CSharpValue>
+                                  </InArgument>
+                                </bfa:InvokeWorkflow.Arguments>
+                                <bfa:InvokeWorkflow.WorkflowPath>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_60">Module\通用\根据数据表拼接数据库SQL语句.xaml</Literal>
+                                  </InArgument>
+                                </bfa:InvokeWorkflow.WorkflowPath>
+                              </bfa:InvokeWorkflow>
+                              <bda:ExecuteSqlActivity ActivityName="执行语句" sap2010:Annotation.AnnotationText="exception only" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行语句 - 插入  exception" sap:VirtualizedContainerService.HintSize="349,47" sap2010:WorkflowViewState.IdRef="ExecuteSqlActivity_6">
+                                <bda:ExecuteSqlActivity.AffectedRows>
+                                  <OutArgument x:TypeArguments="x:Int32">
+                                    <mca:CSharpReference x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpReference`1_41">作用行数</mca:CSharpReference>
+                                  </OutArgument>
+                                </bda:ExecuteSqlActivity.AffectedRows>
+                                <bda:ExecuteSqlActivity.ExecuteTimeOut>
+                                  <InArgument x:TypeArguments="x:TimeSpan">
+                                    <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_61" Value="00:00:30" />
+                                  </InArgument>
+                                </bda:ExecuteSqlActivity.ExecuteTimeOut>
+                                <bda:ExecuteSqlActivity.Sql>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_78">(exceptionOrderSQL).ToString()</mca:CSharpValue>
+                                  </InArgument>
+                                </bda:ExecuteSqlActivity.Sql>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                              </bda:ExecuteSqlActivity>
+                              <baast:LogActivity ActivityName="写入日志" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="写入日志 - 作用行数 exception" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="LogActivity_7" Level="Info">
+                                <baast:LogActivity.LogContent>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_79">(作用行数).ToString()</mca:CSharpValue>
+                                  </InArgument>
+                                </baast:LogActivity.LogContent>
+                              </baast:LogActivity>
+                            </Sequence>
+                          </bfa:If.Then>
+                        </bfa:If>
+                        <Sequence sap2010:Annotation.AnnotationText="拼接分仓明细表查询语句" DisplayName="序列 - 分仓明细表" sap:VirtualizedContainerService.HintSize="200,78" sap2010:WorkflowViewState.IdRef="Sequence_31">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 分仓明细结果数据表 存在）" sap:VirtualizedContainerService.HintSize="534,593" sap2010:WorkflowViewState.IdRef="If_11" IsIgnore="False">
                             <bfa:If.Condition>
                               <InArgument x:TypeArguments="x:Boolean">
                                 <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_80">分仓明细结果数据表 != null &amp;&amp; 分仓明细结果数据表.Rows.Count &gt; 0</mca:CSharpValue>

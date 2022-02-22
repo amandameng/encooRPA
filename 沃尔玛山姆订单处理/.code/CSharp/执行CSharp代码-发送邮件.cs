@@ -2,7 +2,20 @@
 public void Run()
 {
     //在这里编写您的代码
-    SendMailUse();
+    foreach(int i in new int[1,2,3]){
+        try{
+            mailSentMessage = string.Empty;
+            System.Threading.Thread.Sleep(5000);
+            SendMailUse();
+            break;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("发送邮件异常：" + e.Message);
+            mailSentMessage = string.Format("【邮件发送失败】 {0}：{1}", 邮件主题, e.Message);
+        }
+    }
+    
 }
 //在这里编写您的函数或者类
 
@@ -20,7 +33,6 @@ public void SendMailUse()
     client.EnableSsl = true;
     client.Credentials = new System.Net.NetworkCredential(userName, password);//用户名、密码
 
-    //////////////////////////////////////
     string strfrom = userName;
 
     string[] strtoArr = 收件人.Split(new string[]{";"}, StringSplitOptions.RemoveEmptyEntries);
@@ -44,17 +56,17 @@ public void SendMailUse()
     // string[] fileAttachemnts = new string[] { @"C:\RPA工作目录\雀巢_沃尔玛\结果输出\雀巢山姆订单\2021-12\2021-12-02\Copy of Excel To Order_2021-12-02-15-25-32.xlsx", @"C:\RPA工作目录\雀巢_沃尔玛\导出文件\订单pdf\雀巢沃尔玛订单\KMDC4900581930.pdf" };
     foreach(string file in 附件)
     {
-        Attachment fileAttch = new Attachment(file);
-        msg.Attachments.Add(fileAttch);
+        Console.WriteLine("------附件----{0}", file);
+        if(System.IO.File.Exists(file)){
+            Attachment fileAttch = new Attachment(file);
+            msg.Attachments.Add(fileAttch);
+        }else{
+            Console.WriteLine("附件文件不存在：{0}", file);
+        }
+        
     }
 
-    try
-    {
-        client.Send(msg);
-        Console.WriteLine("发送成功");
-    }
-    catch (System.Net.Mail.SmtpException ex)
-    {
-        Console.WriteLine(ex.Message, "发送邮件出错");
-    }
+    client.Send(msg);
+    Console.WriteLine("发送成功");
+   
 }

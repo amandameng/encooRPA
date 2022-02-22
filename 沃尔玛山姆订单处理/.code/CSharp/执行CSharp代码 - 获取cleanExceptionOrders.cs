@@ -26,10 +26,13 @@ public void Run()
                     where ods.customer_name='{0}' and ods.order_number in ({1})
                     group by ods.order_number, ods.document_link, oli.product_code
                     order by ods.order_number, ods.create_date_time desc";
-    
-  
-    
+
     selectSql = String.Format(srcSql, curCustomerName, 订单编号字符串);
-    Console.WriteLine(selectSql);    
+    Console.WriteLine(selectSql);
+    
+    // 一年内的excel to Order
+    existingEX2OSql = String.Format("SELECT distinct PO_Number from excel_to_order where Customer_Name='{0}' and created_time > date_sub(CURDATE(), INTERVAL 360 DAY) limit 10000;", curCustomerName);
+    noPriceCheckSql = string.Format("select * from walmart_skip_price_check where customer_name='{0}'", curCustomerName);
+    orderJobHistorySql = string.Format("select * from order_job_history where customer_name='{0}' and email_sent=1 and report_type='{1}'", curCustomerName, "EX2O");
 }
 //在这里编写您的函数或者类
