@@ -39,7 +39,10 @@ public DateTime fetchvalidDate(string 参数日期){
 }*/
 
 public void initFilePath(){
-   分仓明细表模板文件 = @"C:\RPA工作目录\雀巢_沃尔玛\配置文件\分仓明细表 WM Template.xlsx";
-   分仓明细表文件 = string.Format(@"C:\RPA工作目录\雀巢_沃尔玛\结果输出\雀巢沃尔玛订单\{0}\分仓明细表_沃尔玛山姆_{1}.xlsx", DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"));
-   配置文件 = @"C:\RPA工作目录\雀巢_沃尔玛\配置文件\配置文件.xlsx"; 
+    string projectWorkDir = @"C:\RPA工作目录\雀巢_沃尔玛";
+    分仓明细表模板文件 = Path.Combine(projectWorkDir , @"配置文件\分仓明细表 WM Template.xlsx");
+    分仓明细表文件 = Path.Combine(projectWorkDir , string.Format(@"结果输出\雀巢沃尔玛订单\{0}\分仓明细表_沃尔玛山姆_{1}.xlsx", DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss")));
+    配置文件 = Path.Combine(projectWorkDir, @"配置文件\配置文件.xlsx"); 
+    string curProjectPath = Environment.GetEnvironmentVariable("CurrentProjectSourcePath");
+    tempFolder = Path.Combine(curProjectPath, "Temp");
 }

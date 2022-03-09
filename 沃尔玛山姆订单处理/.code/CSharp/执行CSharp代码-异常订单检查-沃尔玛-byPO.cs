@@ -49,6 +49,8 @@ public void Run()
         // By Order的异常判断
         handleExceptionRow(curOrderRow, ref cleanExceptionDRow, ref 问题订单List, curOrderDocLinkRows, shipTo门店);
         
+       
+  
         // 门店订单不判断item异常
         if(shipTo门店){
             cleanExceptionDRow["Item Type"] = "Order";
@@ -113,7 +115,8 @@ public void Run()
         List<string> refItemExceptionList = new List<string>{};
 
         // 如果问题订单包含POS REPLEN，则不用判断检查价差和送货日检查等问题
-        if(!问题订单List.Contains("POS REPLEN")){
+         string 问题订单字符 = string.Join(";", 问题订单List);
+        if(!问题订单字符.Contains("POS REPLEN")){
             decimal sapNetValue = 0;
             decimal total_order_amount_after_adjustments = toDecimalConvert(curOrderDocLinkRows[0]["total_order_amount_after_adjustments"]);
             bool 散威化订单 = false;
@@ -142,7 +145,10 @@ public void Run()
                 问题订单List.Add(string.Format("价格差异，sapNetValue: {0}, total_order_amount_after_adjustments: {1}", Math.Round(sapNetValue, 2), Math.Round(total_order_amount_after_adjustments, 2)));
             }
         }
-
+        
+        //Console.WriteLine(string.Join("@", 问题订单List));
+        //Convert.ToInt16("aa33");
+        
         cleanExceptionDRow["Item Type"] = "Order";
         cleanExceptionDRow["order category"] = (问题订单List.Count > 0 || refItemExceptionList.Count > 0) ? "exception" : "clean";
         string onlyItemException = (问题订单List.Count == 0 && refItemExceptionList.Count > 0) ? "1" : "0";
@@ -571,7 +577,8 @@ public void handleExceptionRow(DataRow dr, ref DataRow cleanExceptionDRow, ref L
     DateTime timeNow =  DateTime.Now; //orderCreateDateTime;
     string wmdc = dr["WMDC"].ToString(); // 3
     bool isKMDC = (wmdc == "KMDC");
-    string promotionalEvent = dr["promotional_event"].ToString(); // 4
+    Console.WriteLine("=promotional_event=={0}===", dr["promotional_event"].ToString());
+    string promotionalEvent = dr["promotional_event"].ToString().Trim(); // 4
     bool isReq = promotionalEvent.Contains("REQ");
     string nestleBU = string.Empty;
     string MABD = Convert.ToDateTime(dr["must_arrived_by"]).ToString("yyyy/MM/dd"); // 10
@@ -872,8 +879,9 @@ public void setRowValueForDC(ref DataRow 分仓行, DataRow cleanExceptionDRow){
     分仓行["是否为手工单"] = cleanExceptionDRow["是否为手工单"];
     分仓行["是否为稳定库存"] = cleanExceptionDRow["是否为稳定库存"];
     分仓行["数量"] = cleanExceptionDRow["Order qty"];
-    分仓行["起送日"] = Convert.ToDateTime(cleanExceptionDRow["起送日"]).ToString("yyyy/MM/dd");;
-    分仓行["MABD"] = Convert.ToDateTime(cleanExceptionDRow["MABD"]).ToString("yyyy/MM/dd");;
+    分仓行["起送日"] = Convert.ToDateTime(cleanExceptionDRow["起送日"]).ToString("yyyy/MM/dd");
+    分仓行["MABD"] = Convert.ToDateTime(cleanExceptionDRow["MABD"]).ToString("yyyy/MM/dd");
+    分仓行["客户名称"] = curCustomerName;
 }
 
 public static decimal toDecimalConvert(object srcValue){

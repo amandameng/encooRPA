@@ -78,7 +78,7 @@ public void Run()
                         if(columnType.Contains("decimal")){
                             cellValue = Convert.ToDecimal(cellValue).ToString();
                         }else if(columnType=="date" && !cellValue.Contains("-") && !cellValue.Contains("/")){
-                            Console.WriteLine("---------cellValue:{0}", cellValue);
+                            // Console.WriteLine("---------cellValue:{0}", cellValue);
                             cellValue = DateTime.ParseExact(cellValue, "yyyyMMdd", null).ToString("yyyy-MM-dd");
                         }else if(columnType=="mdy_date"){
                             cellValue = DateTime.ParseExact(cellValue, "MM/dd/yyyy", null).ToString("yyyy-MM-dd");
