@@ -847,7 +847,7 @@
                                             <av:PointCollection x:Key="ConnectorLocation">330,1243 330,1310.5</av:PointCollection>
                                           </scg:Dictionary>
                                         </sap:WorkflowViewStateService.ViewState>
-                                        <bfa:If ActivityName="条件（If）" sap2010:Annotation.AnnotationText="1、输出数据到Excel&#xA;2、数据存入数据库&#xA;3、提取订单附件" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 增量订单数据表 存在）" sap:VirtualizedContainerService.HintSize="200,112" sap2010:WorkflowViewState.IdRef="If_27" IsIgnore="False">
+                                        <bfa:If ActivityName="条件（If）" sap2010:Annotation.AnnotationText="1、输出数据到Excel&#xA;2、数据存入数据库&#xA;3、提取订单附件" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 增量订单数据表 存在）" sap:VirtualizedContainerService.HintSize="630,3065" sap2010:WorkflowViewState.IdRef="If_27" IsIgnore="False">
                                           <bfa:If.Condition>
                                             <InArgument x:TypeArguments="x:Boolean">
                                               <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_528">增量订单数据表 != null &amp;&amp; 增量订单数据表.Rows.Count &gt; 0</mca:CSharpValue>

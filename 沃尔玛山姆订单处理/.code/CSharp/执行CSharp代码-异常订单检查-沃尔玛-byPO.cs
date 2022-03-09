@@ -48,7 +48,6 @@ public void Run()
         
         // By Order的异常判断
         handleExceptionRow(curOrderRow, ref cleanExceptionDRow, ref 问题订单List, curOrderDocLinkRows, shipTo门店);
-
         // 门店订单不判断item异常
         if(shipTo门店){
             cleanExceptionDRow["Item Type"] = "Order";

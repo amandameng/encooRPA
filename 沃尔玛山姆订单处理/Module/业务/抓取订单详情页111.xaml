@@ -107,7 +107,7 @@
           <av:PointCollection x:Key="ConnectorLocation">310,336.5 310,381</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Sequence DisplayName="序列 - order items info" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <Sequence DisplayName="序列 - order items info" sap:VirtualizedContainerService.HintSize="517,1275" sap2010:WorkflowViewState.IdRef="Sequence_2">
         <Sequence.Variables>
           <Variable x:TypeArguments="sd:DataTable" Name="additionalDetailsDT" />
           <Variable x:TypeArguments="sd:DataTable" Name="orderBasicDT" />
