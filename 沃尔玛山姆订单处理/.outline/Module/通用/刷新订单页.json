@@ -1,0 +1,30 @@
+{
+  "Md5CheckSum": "e5483c65d7c76240f99a8b7f45fdaade",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Flowchart_1",
+        "Name": "流程图_Root",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "BrowserAttach_1",
+            "Name": "绑定浏览器",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "BrowserRefresh_1",
+                "Name": "刷新浏览器",
+                "IsActivity": true,
+                "SubItems": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

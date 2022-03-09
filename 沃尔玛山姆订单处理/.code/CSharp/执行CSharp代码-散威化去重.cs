@@ -2,9 +2,11 @@
 public void Run()
 {
     //在这里编写您的代码
-    foreach(String item in 散威化订单附件){
-        if(!eto附件.Contains(item)){
-            eto附件.Add(item);
+    if(散威化订单附件!= null && 散威化订单附件.Count > 0){
+        foreach(String item in 散威化订单附件){
+            if(!eto附件.Contains(item)){
+                eto附件.Add(item);
+            }
         }
     }
 }

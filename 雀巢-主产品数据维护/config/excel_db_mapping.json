@@ -1,0 +1,108 @@
+[
+  {
+    "name": "主产品数据",
+    "table_name": "material_master_data",
+    "columns": [
+      {
+        "field": "Sold_to_Code",
+        "type": "string",
+        "display_name": "Sold to"
+      },
+      {
+        "field": "Ship_to_Code",
+        "type": "string",
+        "display_name": "Ship to"
+      },
+      {
+        "field": "Nestle_Plant_No",
+        "type": "string",
+        "display_name": "Nestle Plant No"
+      },
+      {
+        "field": "Region",
+        "type": "string",
+        "display_name": "Region"
+      },
+      {
+        "field": "Customer_Name",
+        "type": "string",
+        "display_name": "Customer Name"
+      },
+      {
+        "field": "Customer_Material_No",
+        "type": "string",
+        "display_name": "Customer Material No"
+      },
+      {
+        "field": "Nestle_Material_No",
+        "type": "string",
+        "display_name": "Nestle Material No"
+      },
+      {
+        "field": "Material_Description",
+        "type": "string",
+        "display_name": "Material Description"
+      },
+      {
+        "field": "Nestle_BU",
+        "type": "string",
+        "display_name": "Nestle BU"
+      },
+      {
+        "field": "Nestle_NPS",
+        "type": "string",
+        "display_name": "Nestle NPS"
+      },
+      {
+        "field": "Nestle_Case_Configuration",
+        "type": "string",
+        "display_name": "Nestle Case Configuration"
+      },
+      {
+        "field": "Adjustive_Price",
+        "type": "string",
+        "display_name": "Adjustive Price"
+      },
+      {
+        "field": "Tax_Point",
+        "type": "string",
+        "display_name": "Tax Point"
+      },
+      {
+        "field": "Remark",
+        "type": "string",
+        "display_name": "Remark"
+      },
+      {
+        "field": "Modify_Type",
+        "type": "string",
+        "display_name": "Modify Type"
+      },
+      {
+        "field": "Remark_Option",
+        "type": "string",
+        "display_name": "Remark Option"
+      },
+      {
+        "field": "Distribution_Channel",
+        "type": "string",
+        "display_name": "Distribution Channel"
+      },
+      {
+        "field": "WMDC",
+        "type": "string",
+        "display_name": "WMDC"
+      },
+	  {
+        "field": "Discount_Rate",
+        "type": "string",
+        "display_name": "Discount Rate"
+      },
+      {
+        "field": "User_Remark",
+        "type": "string",
+        "display_name": "User Remark"
+      }
+    ]
+  }
+]

@@ -50,7 +50,7 @@
         <x:Boolean x:Key="IsExpanded">False</x:Boolean>
         <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
         <av:Size x:Key="ShapeSize">80,48</av:Size>
-        <av:PointCollection x:Key="ConnectorLocation">310,50.5 310,80.5 320,80.5 320,163.5</av:PointCollection>
+        <av:PointCollection x:Key="ConnectorLocation">310,50.5 310,153.5</av:PointCollection>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <Flowchart.StartNode>
@@ -59,11 +59,11 @@
     <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <av:Point x:Key="ShapeLocation">220,163.5</av:Point>
+          <av:Point x:Key="ShapeLocation">210,153.5</av:Point>
           <av:Size x:Key="ShapeSize">200,53</av:Size>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Sequence DisplayName="序列 - 数据入库" sap:VirtualizedContainerService.HintSize="587,2837" sap2010:WorkflowViewState.IdRef="Sequence_1">
+      <Sequence DisplayName="序列 - 数据入库" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="Sequence_1">
         <Sequence.Variables>
           <Variable x:TypeArguments="x:String" Name="cleanOrderInsertSql" />
           <Variable x:TypeArguments="x:String" Name="etoInsertSql" />
@@ -75,13 +75,13 @@
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <bda:DatabaseConnectActivity ActivityName="连接数据库" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="连接数据库" sap:VirtualizedContainerService.HintSize="565,2713" sap2010:WorkflowViewState.IdRef="DatabaseConnectActivity_1" ProviderName="MySql">
+        <bda:DatabaseConnectActivity ActivityName="连接数据库" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="连接数据库" sap:VirtualizedContainerService.HintSize="650,2716" sap2010:WorkflowViewState.IdRef="DatabaseConnectActivity_1" ProviderName="MySql">
           <bda:DatabaseConnectActivity.Body>
             <ActivityAction x:TypeArguments="x:Object">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="x:Object" Name="DataBaseScope" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="序列-链接数据库" sap:VirtualizedContainerService.HintSize="551,2605" sap2010:WorkflowViewState.IdRef="Sequence_4">
+              <Sequence DisplayName="序列-链接数据库" sap:VirtualizedContainerService.HintSize="636,2608" sap2010:WorkflowViewState.IdRef="Sequence_4">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="sd:DataTable" Name="maxOrderIDDT" />
                 </Sequence.Variables>
@@ -90,13 +90,13 @@
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <bda:ExecuteTransactionActivity ActivityName="执行事务" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行事务 - 插入Excel to Order" sap:VirtualizedContainerService.HintSize="529,2481" sap2010:WorkflowViewState.IdRef="ExecuteTransactionActivity_2">
+                <bda:ExecuteTransactionActivity ActivityName="执行事务" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行事务 - 插入Excel to Order" sap:VirtualizedContainerService.HintSize="614,2484" sap2010:WorkflowViewState.IdRef="ExecuteTransactionActivity_2">
                   <bda:ExecuteTransactionActivity.Body>
                     <ActivityAction x:TypeArguments="x:Object">
                       <ActivityAction.Argument>
                         <DelegateInArgument x:TypeArguments="x:Object" Name="DataBaseTransactionScope" />
                       </ActivityAction.Argument>
-                      <Sequence DisplayName="序列 - 数据库事务" sap:VirtualizedContainerService.HintSize="515,2395" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                      <Sequence DisplayName="序列 - 数据库事务" sap:VirtualizedContainerService.HintSize="600,2398" sap2010:WorkflowViewState.IdRef="Sequence_8">
                         <Sequence.Variables>
                           <Variable x:TypeArguments="x:Int32" Name="作用行数" />
                         </Sequence.Variables>
@@ -106,20 +106,20 @@
                             <x:Boolean x:Key="IsPinned">False</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="493,1542" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                        <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="578,1545" sap2010:WorkflowViewState.IdRef="Sequence_11">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <Sequence DisplayName="序列 - 插入Excel To Order" sap:VirtualizedContainerService.HintSize="471,689" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                          <Sequence DisplayName="序列 - 插入Excel To Order" sap:VirtualizedContainerService.HintSize="556,692" sap2010:WorkflowViewState.IdRef="Sequence_5">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If excelToOrder 数据表存在）" sap:VirtualizedContainerService.HintSize="449,565" sap2010:WorkflowViewState.IdRef="If_4" IsIgnore="False">
+                            <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If excelToOrder 数据表存在）" sap:VirtualizedContainerService.HintSize="534,568" sap2010:WorkflowViewState.IdRef="If_4" IsIgnore="False">
                               <bfa:If.Condition>
                                 <InArgument x:TypeArguments="x:Boolean">
                                   <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_15">etoResultDT!=null &amp;&amp; etoResultDT.Rows.Count &gt; 0</mca:CSharpValue>
@@ -187,7 +187,7 @@
                               </bfa:If.Then>
                             </bfa:If>
                           </Sequence>
-                          <Sequence DisplayName="序列 - 插入Clean Order" sap:VirtualizedContainerService.HintSize="471,689" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                          <Sequence DisplayName="序列 - 插入Clean Order" sap:VirtualizedContainerService.HintSize="556,689" sap2010:WorkflowViewState.IdRef="Sequence_7">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>

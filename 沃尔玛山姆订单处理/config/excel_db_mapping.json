@@ -702,7 +702,7 @@
 	  {
         "field": "Customer_Name",
         "type": "string",
-        "display_name": "customer_name"
+        "display_name": "客户名称"
       }
     ]
   },

@@ -60,8 +60,8 @@ public void parseOrderItems(ref DataRow newOrderRow){
     {
         DataRow OrderItemDRow = orderItemsDT.NewRow();
         List<string> ItemList = row.SelectNodes("td").Select(td => td.InnerText.Trim()).ToList();
-        // orderItemsDT.Rows.Add(OrderItemDRow);
-    
+        string lineNumber = ItemList[1];
+       
         if(rowIndex== 1)
         {
             orderItemsDT.Columns.Add("itemDescription", typeof(string));
@@ -88,8 +88,9 @@ public void parseOrderItems(ref DataRow newOrderRow){
             orderItemsDT.Columns.Add("document_link", typeof(string));
             orderItemsDT.Columns.Add("customer_name", typeof(string));
         }
-        string detailBodyId = rowIndex.ToString().PadLeft(3, '0') + "lineDetailbody";
-    
+        string detailBodyId = lineNumber + "lineDetailbody";
+        // string detailBodyId = rowIndex.ToString().PadLeft(3, '0') + "lineDetailbody";
+
         // HtmlNode itemBodyNode = doc.DocumentNode.SelectSingleNode();
         string detailBodyNode = String.Format("//tr[@id=\"{0}\"]", detailBodyId);
         HtmlNode itemDescription = doc.DocumentNode.SelectSingleNode(String.Format("{0}//table//td[text()=\"Item Description\"]/following-sibling::td", detailBodyNode));

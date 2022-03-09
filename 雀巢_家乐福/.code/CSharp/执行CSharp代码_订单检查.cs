@@ -248,7 +248,7 @@ public bool 检查价差(DataRow orderItemDRow, ref DataRow exceptionDRow, decim
     if(bu == "NPP" && NPP跳过价差价差 == "1"){ // NPP 订单是否跳过价差检查
         return false;
     }
-    Console.WriteLine("雀巢产品箱价: {0}", orderItemDRow["雀巢产品箱价"].ToString());
+    Console.WriteLine("雀巢产品箱价: {0}， order_number：{1}, customer_product_code: {2}", orderItemDRow["雀巢产品箱价"].ToString(), orderItemDRow["order_number"].ToString(), orderItemDRow["product_code"].ToString());
     decimal NPS价 = 0;
     decimal 雀巢产品调价 = 0;
     try{
@@ -273,7 +273,7 @@ public bool 检查价差(DataRow orderItemDRow, ref DataRow exceptionDRow, decim
     string userRemark = orderItemDRow["User_Remark"].ToString().Trim();
 	decimal TPP扣点= 0;
     decimal NET价 = 0;
-    if(!string.IsNullOrEmpty(userRemark) && userRemark.Contains("tpp扣点")){
+    if(!string.IsNullOrEmpty(userRemark) && userRemark.Contains("tpp")){
         TPP扣点 = fetchRateInDecimal(userRemark);
         NET价 = 雀巢产品调价 * 箱数 * (刨去扣点 - TPP扣点);
     }else{

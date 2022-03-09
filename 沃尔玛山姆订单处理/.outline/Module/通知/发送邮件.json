@@ -1,0 +1,76 @@
+{
+  "Md5CheckSum": "90beb3e7e8eb0dc04628e5f8a78ca663",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Flowchart_1",
+        "Name": "Root",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "TryCatch_1",
+            "Name": "错误捕获 - 控制台获取发件人密码",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": null,
+                "Name": "TryCatch.Try",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "AcquireAssetsActivity_1",
+                    "Name": "获取资产 - 发件人密码",
+                    "IsActivity": true,
+                    "SubItems": []
+                  }
+                ]
+              },
+              {
+                "RefId": null,
+                "Name": "TryCatch.Catches",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "Assign_2",
+                    "Name": "赋值 - 发件人密码",
+                    "IsActivity": true,
+                    "SubItems": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "RefId": "InvokeCSharpCodeActivity_1",
+            "Name": "执行C#代码 - 发送邮件",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "If_1",
+            "Name": "条件（If mailSentMessage 为空，则抛出异常）",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": null,
+                "Name": "If.Then",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "Throw_1",
+                    "Name": "抛出异常",
+                    "IsActivity": true,
+                    "SubItems": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

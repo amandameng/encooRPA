@@ -1,0 +1,69 @@
+{
+  "Md5CheckSum": "8fd669a80494a42f869d549f5840fce3",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "DatabaseConnectActivity_8",
+        "Name": "连接数据库 - 更新exported Order",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "Sequence_1",
+            "Name": "序列 - 更新导出的订单",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "If_1",
+                "Name": "条件（If 实际增量订单数据表 不为空）",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": null,
+                    "Name": "If.Then",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "Sequence_2",
+                        "Name": "序列",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": "InvokeCSharpCodeActivity_1",
+                            "Name": "执行C#代码 - 筛选入库成功原始导出订单",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "InvokeWorkflow_1",
+                            "Name": "调用子流程: 根据数据表拼接数据库SQL语句",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "ExecuteSqlActivity_1",
+                            "Name": "执行语句",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "LogActivity_1",
+                            "Name": "写入日志 - 最终有效处理的订单行数",
+                            "IsActivity": true,
+                            "SubItems": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

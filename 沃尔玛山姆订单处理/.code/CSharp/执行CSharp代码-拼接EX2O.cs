@@ -279,7 +279,7 @@ public void initEtoRow(ref DataRow etoRow, DataRow dr, int quantity_ordered, str
    //  DataRow etoRow = etoResultDT.NewRow();
    
     etoRow["Order Type"] = "OR";
-    etoRow["Sales Org"] = "CN26";
+    etoRow["Sales Org"] = ((customer_name == "沃尔玛IC") ? "CN23" : "CN26");
     etoRow["Distribution channel"] = string.IsNullOrEmpty(dr["Distribution_Channel"].ToString()) ? "01" : dr["Distribution_Channel"].ToString();
     etoRow["Sold to"] = dr["sold_to_code"].ToString();
     etoRow["Ship to"] = dr["ship_to_code"].ToString();

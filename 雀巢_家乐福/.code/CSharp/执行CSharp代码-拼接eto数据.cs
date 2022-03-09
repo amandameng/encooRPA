@@ -7,6 +7,8 @@ public void Run()
     etoResultDT = 模板数据表.Clone();
     etoResultToDBDT = etoResultDT.Clone();
     etoResultToDBDT.Columns.Add("Customer Order Date");
+    etoResultToDBDT.Columns.Add("Customer Order Number");
+
     string globalOrderType = etoConfigDT.Rows[0]["order_type"].ToString();
     string globalSalesOrg = etoConfigDT.Rows[0]["sales_org"].ToString();
     string globalDisChannel = etoConfigDT.Rows[0]["distribution_channel"].ToString();
@@ -57,6 +59,7 @@ public void Run()
             
             etoResultToDbRow.ItemArray = etoRow.ItemArray;
             etoResultToDbRow["Customer Order Date"] = dr["create_date"]; // !!! not in excel template
+            etoResultToDbRow["Customer Order Number"] = dr["order_number"].ToString(); // !!! not in excel template
             etoResultToDBDT.Rows.Add(etoResultToDbRow);
         }
     }

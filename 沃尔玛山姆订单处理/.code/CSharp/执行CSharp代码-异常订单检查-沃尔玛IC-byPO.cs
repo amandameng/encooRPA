@@ -74,6 +74,9 @@ public void Run()
         // 有重复订单， by PO 【检查MABD，订单修改产品数量，特殊产品，其他问题】，by item【价差检查，特殊产品】
         if(ordersLength > 1){
             prevOrderDocLinkRows = groupedOrderDocLinksList[1];
+            // 产品行增减的判断
+            compareOrderItem(curOrderDocLinkRows, prevOrderDocLinkRows, cleanExceptionDRow);
+
             DataRow prevOrderRow = prevOrderDocLinkRows[0]; // previous Order one Row，包含order全部信息
             DataTable tmpOrderDT = 增量订单关联数据表.Clone();
             
@@ -104,6 +107,11 @@ public void Run()
             DataRow byPOItemRow =  exceptionByPODT.NewRow();
             byPOItemRow.ItemArray = cleanExceptionDRow.ItemArray;
             byPOItemRow["Customer order Item"] = dr["line_number"];
+
+            int quantity_ordered = toIntConvert(dr["quantity_ordered"]);
+            if(quantity_ordered == 0){
+                refItemExceptionList.Add("产品数量为0");
+            }
             specialProductCheck(dr, ref refItemExceptionList, ref byPOItemRow, prevOrderDocLinkRows);
             if(!String.IsNullOrEmpty(byPOItemRow["Exception reason"].ToString())){ // 异常信息不为空
                 exceptionByPODT.Rows.Add(byPOItemRow);  // by Item 的异常订单 
@@ -123,6 +131,67 @@ public void Run()
     
     buildByPODT();
     buildByPOAndItemDT();
+}
+
+public void compareOrderItem(DataRow[] curOrderDocLinkRows, DataRow[] prevOrderDocLinkRows, DataRow cleanExceptionDRow){
+    string[] currentProductCodeArr = curOrderDocLinkRows.Cast<DataRow>().Select<DataRow, string>(dr => dr["customer_product_code"].ToString()).ToArray();
+    string[] previousProductCodeArr = prevOrderDocLinkRows.Cast<DataRow>().Select<DataRow, string>(dr => dr["customer_product_code"].ToString()).ToArray();
+    string[] 新增产品码数组 = currentProductCodeArr.Except(previousProductCodeArr).ToArray();
+    string[] 删除产品码数组 = previousProductCodeArr.Except(currentProductCodeArr).ToArray();
+    if(新增产品码数组.Length > 0){
+        foreach(string productCode in 新增产品码数组){
+            foreach(DataRow dr in curOrderDocLinkRows){
+                if(productCode == dr["customer_product_code"].ToString()){
+                    // Order Date	PO No.	Customer order Item   沃尔玛产品编码	雀巢产品编码	Material Description	Nestle BU		原订单数量	修改后订单数量	雀巢数量 Exception category  
+                   //  byPOItemRow["Item Type"] = "Item";
+                  //  byPOItemRow["order category"] = "exception";
+                    DataRow itemExceptionRow =  exceptionByPODT.NewRow();
+                    itemExceptionRow.ItemArray = cleanExceptionDRow.ItemArray;
+                    initExceptionItemRow(ref itemExceptionRow, dr);
+                    
+                    itemExceptionRow["原订单数量"] = 0;
+                    itemExceptionRow["修改后订单数量"] = dr["quantity_ordered"];
+                    itemExceptionRow["雀巢数量"] = dr["quantity_ordered"];
+                    itemExceptionRow["Exception reason"] = "订单修改产品数量,新增产品行";
+                    exceptionByPODT.Rows.Add(itemExceptionRow);
+                }
+            }
+        }
+    }
+    
+    if(删除产品码数组.Length > 0){
+        foreach(string productCode in 删除产品码数组){
+            foreach(DataRow dr in prevOrderDocLinkRows){
+                if(productCode == dr["customer_product_code"].ToString()){
+                    // Order Date	PO No.	Customer order Item   沃尔玛产品编码	雀巢产品编码	Material Description	Nestle BU		原订单数量	修改后订单数量	雀巢数量 Exception category  
+                   //  byPOItemRow["Item Type"] = "Item";
+                  //  byPOItemRow["order category"] = "exception";
+                    DataRow itemExceptionRow =  exceptionByPODT.NewRow();
+                    itemExceptionRow.ItemArray = cleanExceptionDRow.ItemArray;
+                    initExceptionItemRow(ref itemExceptionRow, dr);
+                    
+                    itemExceptionRow["原订单数量"] = dr["quantity_ordered"];
+                    itemExceptionRow["修改后订单数量"] =0 ;
+                   itemExceptionRow["Exception reason"] = "订单修改产品数量,删除产品行";
+
+                    // itemExceptionRow["雀巢数量"] = dr["quantity_ordered"];
+                    exceptionByPODT.Rows.Add(itemExceptionRow);
+                }
+            }
+        }
+    }
+
+}
+
+public void initExceptionItemRow(ref DataRow itemExceptionRow, DataRow dr){
+    itemExceptionRow["Item Type"] = "Item";
+    itemExceptionRow["order category"] = "exception";
+    itemExceptionRow["Exception category"] = "订单修改产品数量";
+    itemExceptionRow["Customer order Item"] = dr["line_number"];
+    itemExceptionRow["沃尔玛产品编码"] = dr["customer_product_code"];
+    itemExceptionRow["雀巢产品编码"] = dr["Nestle_Material_No"];
+    itemExceptionRow["Material Description"] = dr["Material_Description"];
+    itemExceptionRow["Nestle BU"] = dr["Nestle_BU"];    
 }
 
 public void setNotIntoEx2O(string order_number){
@@ -353,6 +422,14 @@ public void handleExceptionRow(DataRow dr, ref DataRow cleanExceptionDRow, ref L
     DateTime MABDDate = Convert.ToDateTime(dr["must_arrived_by"]);
     string 是否为手工单 = string.Empty;  // 6
     
+    if(string.IsNullOrEmpty(dr["Sold_to_Code"].ToString())){
+        问题订单List.Add("Sold to 为空");
+    }
+
+    if(string.IsNullOrEmpty(dr["Ship_to_Code"].ToString())){
+        问题订单List.Add("Ship to 为空");
+    }
+    
     if(shipTo门店)
     {
         问题订单List.Add("Ship to为门店订单");
@@ -362,90 +439,7 @@ public void handleExceptionRow(DataRow dr, ref DataRow cleanExceptionDRow, ref L
             问题订单List.Add("Cancel PO");
         }
     
-        /*
-        5. 是否为手工单：通过订单沃尔玛产品编码来判断：
-        当沃尔玛产品编码 = 21779181  普通散威，在F列填入：散威化
-        当沃尔玛产品编码含21402419  吉林散威，在F列填入：散威化-吉林X件
-        */
         string prodCode = allitemproductCodesList[0];
-        /*
-        foreach(DataRow bulkWalferDR in bulkWalferConfigDT.Rows){
-            string 散威化产品码 = bulkWalferDR["customer_product_code"].ToString();
-            string bulk_walfer_type = bulkWalferDR["bulk_walfer_type"].ToString();
-            if(prodCode == 散威化产品码){
-                if(bulk_walfer_type == "散威化"){
-                    是否为手工单 = "散威化";
-                }else{
-                    是否为手工单 = bulk_walfer_type;
-                }
-                break;
-            }
-        }
-       */
-        
-        /* 
-        新增暂时检查点（不定期取消此检查点）：
-        散威化订单录单后反馈Exception
-        Exception　reason：散威化请确认是否出单
-        */
-        /*
-        if(是否为手工单.Contains("散威化") && checkBulkWaferException == "1"){
-            问题订单List.Add("散威化请确认是否出单");
-        }
-        
-        // Console.WriteLine("Request_Delivery_Date {0}", dr["Request_Delivery_Date"].ToString());
-        
-        string requestDeliveryDate = dr["Request_Delivery_Date"].ToString(); // ship to表里面获取的。周一/周四, 【7400 KMDC 下周一/下周三】特殊处理
-        */
-        /*
-        2.整张订单的折扣1.3%
-        Handling
-        
-        整张订单的折扣不等于1.3%，就反馈Exception
-        */
-        /*
-        string allowancePercent = dr["allowance_percent"].ToString();
-        bool 整单折扣 = allowancePercent.Split(new string[]{","}, StringSplitOptions.RemoveEmptyEntries).Contains("1.3%");
-        if(!整单折扣){
-            问题订单List.Add("仓租不为1.3%订单");
-        }
-        */
-        /*
-        2.问题订单的判断及登记
-        问题订单，SAP会自动屏蔽，不会进入Idoc和SAP，需反馈给Facing加折扣重新推单
-        判断条件：
-        1.订单产品明细部分没有4.0% EDLC 0.7% Not RTV的折扣信息，只有13%税率和1.3%的仓佣
-        2.沃尔玛订单Promotional Event字段为POS REPLEN
-        
-        满足判断条件其中一个即为问题订单，一般会同时出现，将订单号，没有折扣
-        */
-        // string allitemInstructions = dr["all_item_instructions"].ToString();
-        /*
-        bool 无折扣 = allitemInstructionsList.Contains("4.0% EDLC  0.7% Not RTV");
-        if(promotionalEvent == "POS REPLEN"){
-            问题订单List.Add("问题订单,POS REPLEN");
-        }
-        if(!无折扣){
-            问题订单List.Add("问题订单,无折扣");
-        }
-        */
-        /*
-          客户指定送货日不在行程日
-          1. Promotional Event为REQ时 
-          2. ship to地址为7400KMDC时
-          1和2满足任意一个，都需要检查，1和2都不含的都不用检查行程
-        */
-        /*
-        if(isReq || isKMDC){
-            string 周几 = CaculateWeekDay(MABDDate);
-            List<string> dayStringList = shipLocationDic(requestDeliveryDate);
-            
-            if(!dayStringList.Contains(周几)){
-                问题订单List.Add("客户指定送货日不在行程日");
-            }
-        }
-        
-        */
         /*  
         跨月订单， MABD为下个月
         除KM DC(昆明DC)之外的七个大仓当月订单的MABD显示在下个月的订单，判断为问题订单，备注原因跨月订单反馈
@@ -456,50 +450,6 @@ public void handleExceptionRow(DataRow dr, ref DataRow cleanExceptionDRow, ref L
         if(!isKMDC && mabdInNextMonth){
             问题订单List.Add("跨月订单");
         }
-        
-        /*
-        ！！！【以读单时间为准，不以订单时间为准】
-        二，过期订单（判断订单是否在有效期内可以预约上物流）
-        1.当KMDC满足MABD=送货行程时，还要判断是否能预约成功。
-        周二17:30前读到的订单，最早下周一可满足；即订单MABD≥下周一为Clean，否则为Exception. 是否要改成23：59：59？
-        周五17:30前读到的订单，最早下周三可满足；即订单MABD≥下周三为Clean，否则为Exception
-        
-        2.除开KMDC其他7个DC，中午12:00前读到的订单，最早可以满足Day+1的送货日
-        即订单MABD≥读单当天+1为Clean，否则为Exception，属于无法满足的送货日。
-        Exception reason：客户指定送货日无法满足
-        */
-        // 
-        /*
-        DateTime timeNow =  DateTime.Now; //orderCreateDateTime;
-        if(wmdc == "KMDC"){
-            // 周五17:30之后 到 下周二17：30之间的订单，送货日 最早需要在下周一
-            // 周二17：30到周五17：30读到的单，送货日 最早需要下周三
-            int todayDayOfWeek = (int)timeNow.DayOfWeek;
-            
-            //周二17：30到周五17：30读到的单，送货日 最早需要下周三
-            // 先判断dayofWeek是否是周二到周五
-        
-            if(todayDayOfWeek >= 2 && todayDayOfWeek <= 5){ //  周二当天17:30前读到的订单已经包含在这里面
-                bool invalidRDD = beforeFriday17Judge(timeNow, MABDDate);
-                问题订单List.Add("客户指定送货日无法满足");
-            }else if(todayDayOfWeek == 1 ){ // 周二17:30前读到的订单，最早下周一可满足；即订单MABD≥下周一为Clean，否则为Exception
-                bool invalidRDD = beforeTuesday17Judge(timeNow, MABDDate);
-                if(invalidRDD){
-                    问题订单List.Add("客户指定送货日无法满足");
-                }
-            }
-        }
-        else{ // 中午12:00前读到的订单，最早可以满足Day+1的送货日, 即订单MABD≥读单当天+1为Clean，否则为Exception，属于无法满足的送货日。
-            DateTime noonTime = DateTime.Parse(timeNow.ToString("yyyy-MM-dd 12:00:00"));
-            DateTime timeNowDate = DateTime.Parse(timeNow.ToString("yyyy-MM-dd"));
-            bool beforeNoonNotValid = DateTime.Compare(timeNow, noonTime) <= 0 && MABDDate < timeNowDate.AddDays(1);  // 12点前 and MABD < T+1
-            bool afterNoonNotValid = DateTime.Compare(timeNow, noonTime) == 1 && MABDDate < timeNowDate.AddDays(2);  // 12点后 and MABD < T+2
-        
-            if(beforeNoonNotValid || afterNoonNotValid){
-                问题订单List.Add("客户指定送货日无法满足");
-            }
-        }
-        */
     }
 
     cleanExceptionDRow["Order Date"] = 读单当天日期;

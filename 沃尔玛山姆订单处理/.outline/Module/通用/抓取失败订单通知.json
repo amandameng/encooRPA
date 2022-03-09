@@ -1,0 +1,43 @@
+{
+  "Md5CheckSum": "75de24ece8311629bec2c16dff83fba0",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Flowchart_10",
+        "Name": "流程图",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "InvokeCSharpCodeActivity_13",
+            "Name": "执行C#代码 - 判断下载或者抓取失败订单",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "If_28",
+            "Name": "条件（If 存在异常订单，下载或抓取失败）",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": null,
+                "Name": "If.Then",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "InvokeWorkflow_46",
+                    "Name": "调用子流程: 发送邮件 - 存在异常订单",
+                    "IsActivity": true,
+                    "SubItems": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

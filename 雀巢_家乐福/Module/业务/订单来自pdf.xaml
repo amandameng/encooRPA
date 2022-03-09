@@ -4,6 +4,7 @@
     <x:Property Name="结束时间" Type="InArgument(x:String)" />
     <x:Property Name="采购单文件" Type="OutArgument(x:String)" />
     <x:Property Name="采购单号类型list" Type="OutArgument(scg:List(scg:Dictionary(x:String, x:String)))" />
+    <x:Property Name="解析失败文件列表" Type="OutArgument(scg:List(x:String))" />
   </x:Members>
   <this:Main.压缩pdf文件>
     <InArgument x:TypeArguments="x:String">
@@ -71,7 +72,7 @@
         <x:Boolean x:Key="IsExpanded">False</x:Boolean>
         <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
         <av:Size x:Key="ShapeSize">80,48</av:Size>
-        <av:PointCollection x:Key="ConnectorLocation">270,26.5 248.5,26.5 248.5,82.5</av:PointCollection>
+        <av:PointCollection x:Key="ConnectorLocation">310,50.5 310,83.5</av:PointCollection>
         <x:Double x:Key="Width">1012</x:Double>
         <x:Double x:Key="Height">1305</x:Double>
       </scg:Dictionary>
@@ -83,11 +84,11 @@
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <av:Point x:Key="ShapeLocation">210,282.5</av:Point>
-          <av:Size x:Key="ShapeSize">200,95</av:Size>
-          <av:PointCollection x:Key="ConnectorLocation">310,377.5 310,413.5</av:PointCollection>
+          <av:Size x:Key="ShapeSize">200,89</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">310,371.5 310,413.5</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <baasf:DeCompresseFileActivity Password="{x:Null}" ActivityName="解压缩文件" sap2010:Annotation.AnnotationText="解压缩后文件应该包括一个excel，多个pdf订单文件" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="解压缩文件" sap:VirtualizedContainerService.HintSize="200,95" sap2010:WorkflowViewState.IdRef="DeCompresseFileActivity_1" Overwrite="True">
+      <baasf:DeCompresseFileActivity Password="{x:Null}" ActivityName="解压缩文件" sap2010:Annotation.AnnotationText="解压缩后文件应该包括一个excel，多个pdf订单文件" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="解压缩文件" sap:VirtualizedContainerService.HintSize="200,89" sap2010:WorkflowViewState.IdRef="DeCompresseFileActivity_1" Overwrite="True">
         <baasf:DeCompresseFileActivity.CompressedFilePath>
           <InArgument x:TypeArguments="x:String">
             <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_3">(压缩pdf文件).ToString()</mca:CSharpValue>
@@ -110,11 +111,11 @@
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <av:Point x:Key="ShapeLocation">210,413.5</av:Point>
-              <av:Size x:Key="ShapeSize">200,53</av:Size>
-              <av:PointCollection x:Key="ConnectorLocation">310,466.5 310,533.5</av:PointCollection>
+              <av:Size x:Key="ShapeSize">200,51</av:Size>
+              <av:PointCollection x:Key="ConnectorLocation">310,464.5 310,533.5</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <baasf:GetFileListActivity ActivityName="获取文件/文件夹列表" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取文件 列表 - excel 文件" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="GetFileListActivity_1" InputType="File" SearchAllDirectories="True">
+          <baasf:GetFileListActivity ActivityName="获取文件/文件夹列表" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取文件 列表 - excel 文件" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="GetFileListActivity_1" InputType="File" SearchAllDirectories="True">
             <baasf:GetFileListActivity.GetFileListFilter>
               <InArgument x:TypeArguments="x:String">
                 <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_3">*.xls</Literal>
@@ -141,11 +142,11 @@
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <av:Point x:Key="ShapeLocation">210,533.5</av:Point>
-                  <av:Size x:Key="ShapeSize">200,53</av:Size>
-                  <av:PointCollection x:Key="ConnectorLocation">310,586.5 310,633.5</av:PointCollection>
+                  <av:Size x:Key="ShapeSize">200,51</av:Size>
+                  <av:PointCollection x:Key="ConnectorLocation">310,584.5 310,633.5</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If excel 文件 != 1）" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="If_1" IsIgnore="False">
+              <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If excel 文件 != 1）" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="If_1" IsIgnore="False">
                 <bfa:If.Condition>
                   <InArgument x:TypeArguments="x:Boolean">
                     <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_8">excelFileArr.Length != 1</mca:CSharpValue>
@@ -183,11 +184,11 @@
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <av:Point x:Key="ShapeLocation">210,633.5</av:Point>
-                      <av:Size x:Key="ShapeSize">200,53</av:Size>
-                      <av:PointCollection x:Key="ConnectorLocation">310,686.5 310,733.5</av:PointCollection>
+                      <av:Size x:Key="ShapeSize">200,51</av:Size>
+                      <av:PointCollection x:Key="ConnectorLocation">310,684.5 310,733.5</av:PointCollection>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <baasf:GetFileListActivity ActivityName="获取文件/文件夹列表" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取文件 列表 - pdf 文件" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="GetFileListActivity_2" InputType="File" SearchAllDirectories="True">
+                  <baasf:GetFileListActivity ActivityName="获取文件/文件夹列表" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取文件 列表 - pdf 文件" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="GetFileListActivity_2" InputType="File" SearchAllDirectories="True">
                     <baasf:GetFileListActivity.GetFileListFilter>
                       <InArgument x:TypeArguments="x:String">
                         <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_4">*.pdf</Literal>
@@ -214,11 +215,11 @@
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <av:Point x:Key="ShapeLocation">210,733.5</av:Point>
-                          <av:Size x:Key="ShapeSize">200,53</av:Size>
-                          <av:PointCollection x:Key="ConnectorLocation">310,786.5 310,863.5</av:PointCollection>
+                          <av:Size x:Key="ShapeSize">200,51</av:Size>
+                          <av:PointCollection x:Key="ConnectorLocation">310,784.5 310,863.5</av:PointCollection>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If pdf 文件不存在）" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="If_2" IsIgnore="False">
+                      <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If pdf 文件不存在）" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="If_2" IsIgnore="False">
                         <bfa:If.Condition>
                           <InArgument x:TypeArguments="x:Boolean">
                             <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_23">pdfFileArr.Length == 0</mca:CSharpValue>
@@ -242,16 +243,16 @@
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <av:Point x:Key="ShapeLocation">210,863.5</av:Point>
-                              <av:Size x:Key="ShapeSize">200,53</av:Size>
+                              <av:Size x:Key="ShapeSize">200,51</av:Size>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <boa:OfficeExcelOpenOrCreateActivity OfficeVersion="{x:Null}" Password="{x:Null}" SaveAs="{x:Null}" ActivityName="打开/新建" AutoSave="True" ContinueOnError="No" CreateNewFile="False" DelayAfter="0" DelayBefore="0" DisplayName="打开 采购单文件" EnableMacro="False" sap:VirtualizedContainerService.HintSize="486,1510" sap2010:WorkflowViewState.IdRef="OfficeExcelOpenOrCreateActivity_1" ReadOnly="False" Visible="False" needRestoreKey="False">
+                          <boa:OfficeExcelOpenOrCreateActivity OfficeVersion="{x:Null}" Password="{x:Null}" SaveAs="{x:Null}" ActivityName="打开/新建" AutoSave="True" ContinueOnError="No" CreateNewFile="False" DelayAfter="0" DelayBefore="0" DisplayName="打开 采购单文件" EnableMacro="False" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="OfficeExcelOpenOrCreateActivity_1" ReadOnly="False" Visible="False" needRestoreKey="False">
                             <boa:OfficeExcelOpenOrCreateActivity.Body>
                               <ActivityAction x:TypeArguments="x:Object">
                                 <ActivityAction.Argument>
                                   <DelegateInArgument x:TypeArguments="x:Object" Name="XlWorkbook" />
                                 </ActivityAction.Argument>
-                                <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="472,1402" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                                <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="556,2033" sap2010:WorkflowViewState.IdRef="Sequence_2">
                                   <Sequence.Variables>
                                     <Variable x:TypeArguments="scg:List(x:String)" Name="allSheetsNames" />
                                     <Variable x:TypeArguments="x:String" Name="sourceSheetName" />
@@ -266,14 +267,14 @@
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
-                                  <boa:OfficeExcelGetAllSheetsActivity ActivityName="获取所有工作表名" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取所有工作表名" sap:VirtualizedContainerService.HintSize="450,22" sap2010:WorkflowViewState.IdRef="OfficeExcelGetAllSheetsActivity_1">
+                                  <boa:OfficeExcelGetAllSheetsActivity ActivityName="获取所有工作表名" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取所有工作表名" sap:VirtualizedContainerService.HintSize="534,80" sap2010:WorkflowViewState.IdRef="OfficeExcelGetAllSheetsActivity_1">
                                     <boa:OfficeExcelGetAllSheetsActivity.SheetNames>
                                       <OutArgument x:TypeArguments="scg:List(x:String)">
                                         <mca:CSharpReference x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_7">allSheetsNames</mca:CSharpReference>
                                       </OutArgument>
                                     </boa:OfficeExcelGetAllSheetsActivity.SheetNames>
                                   </boa:OfficeExcelGetAllSheetsActivity>
-                                  <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - 源数据表" sap:VirtualizedContainerService.HintSize="450,55" sap2010:WorkflowViewState.IdRef="Assign_4" IsIgnore="False">
+                                  <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - 源数据表" sap:VirtualizedContainerService.HintSize="534,54" sap2010:WorkflowViewState.IdRef="Assign_4" IsIgnore="False">
                                     <bfa:Assign.To>
                                       <OutArgument x:TypeArguments="x:String">
                                         <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_8">sourceSheetName</mca:CSharpReference>
@@ -285,7 +286,7 @@
                                       </InArgument>
                                     </bfa:Assign.Value>
                                   </bfa:Assign>
-                                  <boa:OfficeExcelReadRangeActivity Range="{x:Null}" ActivityName="读取区域" AddHeaders="True" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="读取区域 - all data" sap:VirtualizedContainerService.HintSize="450,58" sap2010:WorkflowViewState.IdRef="OfficeExcelReadRangeActivity_1" PreserveFormat="False" RepeatedColumn="False" UseFilter="False">
+                                  <boa:OfficeExcelReadRangeActivity Range="{x:Null}" ActivityName="读取区域" AddHeaders="True" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="读取区域 - all data" sap:VirtualizedContainerService.HintSize="534,129" sap2010:WorkflowViewState.IdRef="OfficeExcelReadRangeActivity_1" PreserveFormat="False" RepeatedColumn="False" UseFilter="False">
                                     <boa:OfficeExcelReadRangeActivity.Data>
                                       <OutArgument x:TypeArguments="sd:DataTable">
                                         <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_9">allOrdersDT</mca:CSharpReference>
@@ -297,14 +298,21 @@
                                       </InArgument>
                                     </boa:OfficeExcelReadRangeActivity.SheetName>
                                   </boa:OfficeExcelReadRangeActivity>
-                                  <ecaac:InitializeCollectionActivity ActivityName="初始化集合" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="初始化集合-采购单号类型list" sap:VirtualizedContainerService.HintSize="450,22" sap2010:WorkflowViewState.IdRef="InitializeCollectionActivity_1">
+                                  <ecaac:InitializeCollectionActivity ActivityName="初始化集合" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="初始化集合-采购单号类型list" sap:VirtualizedContainerService.HintSize="534,22" sap2010:WorkflowViewState.IdRef="InitializeCollectionActivity_1">
                                     <ecaac:InitializeCollectionActivity.Collection>
                                       <InOutArgument x:TypeArguments="scg:List(scg:Dictionary(x:String, x:String))">
                                         <mca:CSharpReference x:TypeArguments="scg:List(scg:Dictionary(x:String, x:String))" sap2010:WorkflowViewState.IdRef="CSharpReference`1_13">采购单号类型list</mca:CSharpReference>
                                       </InOutArgument>
                                     </ecaac:InitializeCollectionActivity.Collection>
                                   </ecaac:InitializeCollectionActivity>
-                                  <bfa:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" ActivityName="循环操作（For Each)" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="循环操作 - 解析pdf文件" sap:VirtualizedContainerService.HintSize="450,384" sap2010:WorkflowViewState.IdRef="ForEach`1_3" IsIgnore="False">
+                                  <ecaac:InitializeCollectionActivity ActivityName="初始化集合" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="初始化集合 - 解析失败文件列表" sap:VirtualizedContainerService.HintSize="534,22" sap2010:WorkflowViewState.IdRef="InitializeCollectionActivity_2">
+                                    <ecaac:InitializeCollectionActivity.Collection>
+                                      <InOutArgument x:TypeArguments="scg:List(x:String)">
+                                        <mca:CSharpReference x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_14">解析失败文件列表</mca:CSharpReference>
+                                      </InOutArgument>
+                                    </ecaac:InitializeCollectionActivity.Collection>
+                                  </ecaac:InitializeCollectionActivity>
+                                  <bfa:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" ActivityName="循环操作（For Each)" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="循环操作 - 解析pdf文件" sap:VirtualizedContainerService.HintSize="534,682" sap2010:WorkflowViewState.IdRef="ForEach`1_3" IsIgnore="False">
                                     <bfa:ForEach.Values>
                                       <InArgument x:TypeArguments="s:String[]">
                                         <mca:CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_16">pdfFileArr</mca:CSharpValue>
@@ -320,43 +328,76 @@
                                       <ActivityAction.Argument>
                                         <DelegateInArgument x:TypeArguments="x:String" Name="item" />
                                       </ActivityAction.Argument>
-                                      <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="371,282" sap2010:WorkflowViewState.IdRef="Sequence_3">
-                                        <sap:WorkflowViewStateService.ViewState>
-                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                          </scg:Dictionary>
-                                        </sap:WorkflowViewStateService.ViewState>
-                                        <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: 解析pdf" sap:VirtualizedContainerService.HintSize="349,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_2" IsIgnore="False">
-                                          <bfa:InvokeWorkflow.Arguments>
-                                            <InArgument x:TypeArguments="x:String" x:Key="pdfFilePath">
-                                              <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_22">(item).ToString()</mca:CSharpValue>
-                                            </InArgument>
-                                            <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="采购单类型字典">
-                                              <mca:CSharpReference x:TypeArguments="scg:Dictionary(x:String, x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_11">采购单类型字典</mca:CSharpReference>
-                                            </OutArgument>
-                                          </bfa:InvokeWorkflow.Arguments>
-                                          <bfa:InvokeWorkflow.WorkflowPath>
-                                            <InArgument x:TypeArguments="x:String">
-                                              <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_8">Module\通用\解析pdf.xaml</Literal>
-                                            </InArgument>
-                                          </bfa:InvokeWorkflow.WorkflowPath>
-                                        </bfa:InvokeWorkflow>
-                                        <ecaac:AddToCollectionActivity ActivityName="添加对象" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="添加对象 - List.Add" sap:VirtualizedContainerService.HintSize="349,22" sap2010:WorkflowViewState.IdRef="AddToCollectionActivity_2">
-                                          <ecaac:AddToCollectionActivity.Collection>
-                                            <InOutArgument x:TypeArguments="scg:List(scg:Dictionary(x:String, x:String))">
-                                              <mca:CSharpReference x:TypeArguments="scg:List(scg:Dictionary(x:String, x:String))" sap2010:WorkflowViewState.IdRef="CSharpReference`1_12">采购单号类型list</mca:CSharpReference>
-                                            </InOutArgument>
-                                          </ecaac:AddToCollectionActivity.Collection>
-                                          <ecaac:AddToCollectionActivity.Item>
-                                            <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">
-                                              <mca:CSharpValue x:TypeArguments="scg:Dictionary(x:String, x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_21">采购单类型字典</mca:CSharpValue>
-                                            </InArgument>
-                                          </ecaac:AddToCollectionActivity.Item>
-                                        </ecaac:AddToCollectionActivity>
-                                      </Sequence>
+                                      <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 - 解析pdf 代码捕获" sap:VirtualizedContainerService.HintSize="449,509" sap2010:WorkflowViewState.IdRef="TryCatch_1" IsIgnore="False">
+                                        <bfa:TryCatch.Try>
+                                          <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="371,282" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: 解析pdf" sap:VirtualizedContainerService.HintSize="349,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_2" IsIgnore="False">
+                                              <bfa:InvokeWorkflow.Arguments>
+                                                <InArgument x:TypeArguments="x:String" x:Key="pdfFilePath">
+                                                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_22">(item).ToString()</mca:CSharpValue>
+                                                </InArgument>
+                                                <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="采购单类型字典">
+                                                  <mca:CSharpReference x:TypeArguments="scg:Dictionary(x:String, x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_11">采购单类型字典</mca:CSharpReference>
+                                                </OutArgument>
+                                              </bfa:InvokeWorkflow.Arguments>
+                                              <bfa:InvokeWorkflow.WorkflowPath>
+                                                <InArgument x:TypeArguments="x:String">
+                                                  <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_8">Module\通用\解析pdf.xaml</Literal>
+                                                </InArgument>
+                                              </bfa:InvokeWorkflow.WorkflowPath>
+                                            </bfa:InvokeWorkflow>
+                                            <ecaac:AddToCollectionActivity ActivityName="添加对象" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="添加对象 - List.Add" sap:VirtualizedContainerService.HintSize="349,22" sap2010:WorkflowViewState.IdRef="AddToCollectionActivity_2">
+                                              <ecaac:AddToCollectionActivity.Collection>
+                                                <InOutArgument x:TypeArguments="scg:List(scg:Dictionary(x:String, x:String))">
+                                                  <mca:CSharpReference x:TypeArguments="scg:List(scg:Dictionary(x:String, x:String))" sap2010:WorkflowViewState.IdRef="CSharpReference`1_12">采购单号类型list</mca:CSharpReference>
+                                                </InOutArgument>
+                                              </ecaac:AddToCollectionActivity.Collection>
+                                              <ecaac:AddToCollectionActivity.Item>
+                                                <InArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">
+                                                  <mca:CSharpValue x:TypeArguments="scg:Dictionary(x:String, x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_21">采购单类型字典</mca:CSharpValue>
+                                                </InArgument>
+                                              </ecaac:AddToCollectionActivity.Item>
+                                            </ecaac:AddToCollectionActivity>
+                                          </Sequence>
+                                        </bfa:TryCatch.Try>
+                                        <bfa:TryCatch.Catches>
+                                          <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="435,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                                            <bfa:Catch.Action>
+                                              <ActivityAction x:TypeArguments="s:Exception">
+                                                <ActivityAction.Argument>
+                                                  <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                                </ActivityAction.Argument>
+                                                <ecaac:AddToCollectionActivity ActivityName="添加对象" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="添加对象 - pdf 文件" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollectionActivity_3">
+                                                  <ecaac:AddToCollectionActivity.Collection>
+                                                    <InOutArgument x:TypeArguments="scg:List(x:String)">
+                                                      <mca:CSharpReference x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_15">解析失败文件列表</mca:CSharpReference>
+                                                    </InOutArgument>
+                                                  </ecaac:AddToCollectionActivity.Collection>
+                                                  <ecaac:AddToCollectionActivity.Item>
+                                                    <InArgument x:TypeArguments="x:String">
+                                                      <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_26">item</mca:CSharpValue>
+                                                    </InArgument>
+                                                  </ecaac:AddToCollectionActivity.Item>
+                                                </ecaac:AddToCollectionActivity>
+                                              </ActivityAction>
+                                            </bfa:Catch.Action>
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                          </bfa:Catch>
+                                        </bfa:TryCatch.Catches>
+                                      </bfa:TryCatch>
                                     </ActivityAction>
                                   </bfa:ForEach>
-                                  <ecaac1:InvokeCSharpCodeActivity ActivityName="执行C#代码" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行C#代码 - 更新pdf订单类型" sap:VirtualizedContainerService.HintSize="450,93" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_2">
+                                  <ecaac1:InvokeCSharpCodeActivity ActivityName="执行C#代码" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行C#代码 - 根据pdf订单数据更新订单类型" sap:VirtualizedContainerService.HintSize="534,93" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_2">
                                     <ecaac1:InvokeCSharpCodeActivity.CodeFilePath>
                                       <InArgument x:TypeArguments="x:String">
                                         <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_6">.code\CSharp\执行CSharp代码-pdf更新订单类型.cs</Literal>
@@ -368,14 +409,14 @@
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
                                   </ecaac1:InvokeCSharpCodeActivity>
-                                  <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If）" sap:VirtualizedContainerService.HintSize="450,279" sap2010:WorkflowViewState.IdRef="If_3" IsIgnore="False">
+                                  <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If）" sap:VirtualizedContainerService.HintSize="534,395" sap2010:WorkflowViewState.IdRef="If_3" IsIgnore="False">
                                     <bfa:If.Condition>
                                       <InArgument x:TypeArguments="x:Boolean">
                                         <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_17">!allSheetsNames.Contains(newSheetName)</mca:CSharpValue>
                                       </InArgument>
                                     </bfa:If.Condition>
                                     <bfa:If.Then>
-                                      <boa:OfficeExcelInsertSheetActivity OriginSheetName="{x:Null}" ActivityName="插入工作表" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="插入工作表" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="OfficeExcelInsertSheetActivity_1" Mode="Create">
+                                      <boa:OfficeExcelInsertSheetActivity OriginSheetName="{x:Null}" ActivityName="插入工作表" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="插入工作表" sap:VirtualizedContainerService.HintSize="334,139" sap2010:WorkflowViewState.IdRef="OfficeExcelInsertSheetActivity_1" Mode="Create">
                                         <boa:OfficeExcelInsertSheetActivity.InsertPosition>
                                           <InArgument x:TypeArguments="s:Nullable(x:Int32)">
                                             <Literal x:TypeArguments="s:Nullable(x:Int32)" sap2010:WorkflowViewState.IdRef="Literal`1_7" Value="1" />
@@ -389,7 +430,7 @@
                                       </boa:OfficeExcelInsertSheetActivity>
                                     </bfa:If.Then>
                                   </bfa:If>
-                                  <boa:OfficeExcelSetRangeActivity ActivityName="写入区域" AddHeaders="True" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="写入区域- new sheet" sap:VirtualizedContainerService.HintSize="450,85" sap2010:WorkflowViewState.IdRef="OfficeExcelSetRangeActivity_1">
+                                  <boa:OfficeExcelSetRangeActivity ActivityName="写入区域" AddHeaders="True" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="写入区域- new sheet" sap:VirtualizedContainerService.HintSize="534,112" sap2010:WorkflowViewState.IdRef="OfficeExcelSetRangeActivity_1">
                                     <boa:OfficeExcelSetRangeActivity.InputDataTable>
                                       <InArgument x:TypeArguments="sd:DataTable">
                                         <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_19">allOrdersDT</mca:CSharpValue>
@@ -434,12 +475,12 @@
     <FlowStep x:Name="__ReferenceID7" sap2010:WorkflowViewState.IdRef="FlowStep_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <av:Point x:Key="ShapeLocation">148.5,82.5</av:Point>
-          <av:Size x:Key="ShapeSize">200,53</av:Size>
-          <av:PointCollection x:Key="ConnectorLocation">248.5,135.5 248.5,165.5 310,165.5 310,182.5</av:PointCollection>
+          <av:Point x:Key="ShapeLocation">210,83.5</av:Point>
+          <av:Size x:Key="ShapeSize">200,51</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">310,134.5 310,182.5</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <eae:CommentActivity DisplayName="注释掉" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="CommentActivity_1">
+      <eae:CommentActivity DisplayName="注释掉" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="CommentActivity_1">
         <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - 桌面路径" sap:VirtualizedContainerService.HintSize="323,55" sap2010:WorkflowViewState.IdRef="Assign_1" IsIgnore="False">
           <bfa:Assign.To>
             <OutArgument x:TypeArguments="x:String">
@@ -463,11 +504,11 @@
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <av:Point x:Key="ShapeLocation">148.5,182.5</av:Point>
-              <av:Size x:Key="ShapeSize">323,55</av:Size>
+              <av:Size x:Key="ShapeSize">323,54</av:Size>
               <av:PointCollection x:Key="ConnectorLocation">310,237.5 310,282.5</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - pdf结果文件夹" sap:VirtualizedContainerService.HintSize="323,55" sap2010:WorkflowViewState.IdRef="Assign_2" IsIgnore="False">
+          <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - pdf结果文件夹" sap:VirtualizedContainerService.HintSize="323,54" sap2010:WorkflowViewState.IdRef="Assign_2" IsIgnore="False">
             <bfa:Assign.To>
               <OutArgument x:TypeArguments="x:String">
                 <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_2">结果文件夹</mca:CSharpReference>

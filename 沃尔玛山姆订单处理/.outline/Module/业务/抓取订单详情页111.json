@@ -1,0 +1,216 @@
+{
+  "Md5CheckSum": "924df745f7cc9f5f1e67fb511530a413",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Flowchart_1",
+        "Name": "Root",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "Sequence_2",
+            "Name": "序列 - order items info",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "TryCatch_1",
+                "Name": "错误捕获（Try Catch）",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": null,
+                    "Name": "TryCatch.Try",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "Sequence_13",
+                        "Name": "序列",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": "Retry_1",
+                            "Name": "重试- 获取订单结构化数据",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": "GetStructuredDataActivity_2",
+                                "Name": "获取结构化数据 - PO Number & Dates",
+                                "IsActivity": true,
+                                "SubItems": []
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "RefId": null,
+                    "Name": "TryCatch.Catches",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "Throw_1",
+                        "Name": "抛出异常",
+                        "IsActivity": true,
+                        "SubItems": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "RefId": "GetStructuredDataActivity_3",
+                "Name": "获取结构化数据 - Additional Details",
+                "IsActivity": true,
+                "SubItems": []
+              },
+              {
+                "RefId": "GetStructuredDataActivity_4",
+                "Name": "获取结构化数据 - order total info",
+                "IsActivity": true,
+                "SubItems": []
+              },
+              {
+                "RefId": "GetElementPropertyValueActivity_1",
+                "Name": "获取元素属性值 - order items",
+                "IsActivity": true,
+                "SubItems": []
+              },
+              {
+                "RefId": "InvokeCSharpCodeActivity_4",
+                "Name": "执行C#代码 - 整合order and items",
+                "IsActivity": true,
+                "SubItems": []
+              }
+            ]
+          },
+          {
+            "RefId": "If_2",
+            "Name": "条件（If orderDT 不为空）",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": null,
+                "Name": "If.Then",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "Sequence_5",
+                    "Name": "序列 - 下载订单pdf",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "InvokeCSharpCodeActivity_7",
+                        "Name": "执行C#代码 - 确定订单文件名",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "If_3",
+                        "Name": "条件 if pdfFilePath 不为空",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": null,
+                            "Name": "If.Then",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": "Sequence_6",
+                                "Name": "序列",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "Sequence_8",
+                                    "Name": "序列",
+                                    "IsActivity": true,
+                                    "SubItems": [
+                                      {
+                                        "RefId": "InvokeWorkflow_2",
+                                        "Name": "调用子流程: 下载订单pdf",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      },
+                                      {
+                                        "RefId": "If_5",
+                                        "Name": "条件（If 订单文件存在）",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": null,
+                                            "Name": "If.Then",
+                                            "IsActivity": true,
+                                            "SubItems": [
+                                              {
+                                                "RefId": "Sequence_9",
+                                                "Name": "序列",
+                                                "IsActivity": true,
+                                                "SubItems": [
+                                                  {
+                                                    "RefId": "If_6",
+                                                    "Name": "条件（If 订单文件未添加至列表）",
+                                                    "IsActivity": true,
+                                                    "SubItems": [
+                                                      {
+                                                        "RefId": null,
+                                                        "Name": "If.Then",
+                                                        "IsActivity": true,
+                                                        "SubItems": [
+                                                          {
+                                                            "RefId": "Sequence_11",
+                                                            "Name": "序列",
+                                                            "IsActivity": true,
+                                                            "SubItems": [
+                                                              {
+                                                                "RefId": "InvokeCSharpCodeActivity_8",
+                                                                "Name": "执行C#代码 - 订单路径赋值",
+                                                                "IsActivity": true,
+                                                                "SubItems": []
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "RefId": "BuildDataTableActivity_1",
+            "Name": "搭建数据表",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "Assign_2",
+            "Name": "赋值",
+            "IsActivity": true,
+            "SubItems": []
+          }
+        ]
+      }
+    ]
+  }
+}

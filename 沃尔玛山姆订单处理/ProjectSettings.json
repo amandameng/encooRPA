@@ -4,150 +4,12 @@
   ],
   "ProjectBreakpoints": {
     "Value": {
-      "Module\\业务\\抓取订单并入库1.xaml": [
-        {
-          "ActivityId": "1.30",
-          "IsEnabled": false,
-          "IdRef": "InvokeCSharpCodeActivity_6",
-          "DisplayName": "执行C#代码 - 提取采集失败订单"
-        },
-        {
-          "ActivityId": "1.2957",
-          "IsEnabled": false,
-          "IdRef": "InvokeWorkflow_17",
-          "DisplayName": "调用子流程: JS打开新窗口"
-        },
-        {
-          "ActivityId": "1.3117",
-          "IsEnabled": false,
-          "IdRef": "Assign_43",
-          "DisplayName": "赋值 - existingRows"
-        },
-        {
-          "ActivityId": "1.2059",
-          "IsEnabled": false,
-          "IdRef": "ClickActivity_3",
-          "DisplayName": "点击 - 关闭弹出modal"
-        }
-      ],
-      "Main.xaml": [
-        {
-          "ActivityId": "1.48",
-          "IsEnabled": false,
-          "IdRef": "If_27",
-          "DisplayName": "条件（If 有运行失败的模块）"
-        },
-        {
-          "ActivityId": "1.2000",
-          "IsEnabled": false,
-          "IdRef": "InvokeCSharpCodeActivity_6",
-          "DisplayName": "执行C#代码 - 整理邮件报表"
-        },
-        {
-          "ActivityId": "1.1166",
-          "IsEnabled": false,
-          "IdRef": "If_33",
-          "DisplayName": "条件（If orderJobHistoryDT）"
-        },
-        {
-          "ActivityId": "1.1409",
-          "IsEnabled": false,
-          "IdRef": "InvokeWorkflow_19",
-          "DisplayName": "调用子流程: 发送邮件 - ex2o有数据"
-        },
-        {
-          "ActivityId": "1.2389",
-          "IsEnabled": false,
-          "IdRef": "InvokeWorkflow_6",
-          "DisplayName": "调用子流程: 初始化环境"
-        }
-      ],
-      "Module\\通知\\发送邮件.xaml": [
-        {
-          "ActivityId": "1.18",
-          "IsEnabled": false,
-          "IdRef": "InvokeCSharpCodeActivity_1",
-          "DisplayName": "执行C#代码 - 发送邮件"
-        }
-      ],
-      "Module\\业务\\山姆水单\\输出cleanException-山姆水单.xaml": [
-        {
-          "ActivityId": "1.46",
-          "IsEnabled": false,
-          "IdRef": "OfficeExcelSetRangeActivity_4",
-          "DisplayName": "写入区域 - 模板数据-不加列头"
-        }
-      ],
       "Module\\通用\\订单报表入库.xaml": [
         {
-          "ActivityId": "1.61",
+          "ActivityId": "1.43",
           "IsEnabled": false,
-          "IdRef": "InvokeWorkflow_22",
-          "DisplayName": "调用子流程: 根据数据表拼接数据库SQL语句-插入分仓明细"
-        }
-      ],
-      "Module\\业务\\沃尔玛.xaml": [
-        {
-          "ActivityId": "1.1096",
-          "IsEnabled": false,
-          "IdRef": "InvokeCSharpCodeActivity_15",
-          "DisplayName": "执行C#代码 -  汇总待更新exportedOrders"
-        },
-        {
-          "ActivityId": "1.1672",
-          "IsEnabled": false,
-          "IdRef": "InvokeWorkflow_64",
-          "DisplayName": "调用子流程: 订单报表入库"
-        },
-        {
-          "ActivityId": "1.1098",
-          "IsEnabled": false,
-          "IdRef": "InvokeWorkflow_59",
-          "DisplayName": "执行流程 : 抓取失败订单通知"
-        },
-        {
-          "ActivityId": "1.4081",
-          "IsEnabled": true,
-          "IdRef": "InvokeCSharpCodeActivity_17",
-          "DisplayName": "执行C#代码 - 筛选当前location订单-沃尔玛.cs"
-        }
-      ],
-      "Module\\业务\\订单发往多个门店.xaml": [
-        {
-          "ActivityId": "1.19",
-          "IsEnabled": false,
-          "IdRef": "InvokeCSharpCodeActivity_1",
-          "DisplayName": "执行C#代码-门店订单格式化"
-        }
-      ],
-      "Module\\业务\\山姆.xaml": [
-        {
-          "ActivityId": "1.3456",
-          "IsEnabled": false,
-          "IdRef": "InvokeWorkflow_61",
-          "DisplayName": "调用子流程: 输出EX2O模板 - 山姆"
-        },
-        {
-          "ActivityId": "1.1188",
-          "IsEnabled": false,
-          "IdRef": "InvokeCSharpCodeActivity_22",
-          "DisplayName": "执行C#代码 - 汇总山姆报表文件"
-        }
-      ],
-      "Module\\业务\\沃尔玛\\输出cleanException-沃尔玛.xaml": [
-        {
-          "ActivityId": "1.748",
-          "IsEnabled": false,
-          "IdRef": "InvokeCSharpCodeActivity_3",
-          "DisplayName": "执行C#代码 - 异常订单检查-沃尔玛-byPO"
-        }
-      ],
-      "Module\\业务\\沃尔玛IC.xaml": [
-        {
-          "ActivityId": "1.1466",
-          "IsEnabled": false,
-          "IdRef": "InvokeCSharpCodeActivity_16",
-          "DisplayName": "执行C#代码 -  汇总待更新exportedOrders"
+          "IdRef": "ExecuteSqlActivity_7",
+          "DisplayName": "执行语句 - 插入分仓明细"
         }
       ],
       "Module\\通用\\导出订单_读取订单数据.xaml": [
@@ -158,12 +20,20 @@
           "DisplayName": "错误捕获 - 重试打开listing文件"
         }
       ],
-      "Module\\通用\\输出增量订单.xaml": [
+      "Module\\业务\\山姆水单\\输出cleanException-山姆水单.xaml": [
         {
-          "ActivityId": "1.277",
+          "ActivityId": "1.257",
+          "IsEnabled": false,
+          "IdRef": "InvokeCSharpCodeActivity_7",
+          "DisplayName": "执行C#代码 - 异常订单检查-山姆水单-byPO"
+        }
+      ],
+      "Module\\业务\\沃尔玛\\输出cleanException-沃尔玛.xaml": [
+        {
+          "ActivityId": "1.676",
           "IsEnabled": true,
-          "IdRef": "InvokeWorkflow_48",
-          "DisplayName": "调用子流程: 根据数据表拼接数据库SQL语句"
+          "IdRef": "DataTableSaveToCSVActivity_1",
+          "DisplayName": "保存为CSV文件"
         }
       ]
     }

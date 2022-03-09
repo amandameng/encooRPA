@@ -340,7 +340,12 @@
         "field": "OTC_Check",
         "type": "string",
         "display_name": "OTC Check"
-      }
+      },
+	  {
+	    "field": "Customer_Order_Number",
+        "type": "string",
+        "display_name": "Customer Order Number"
+	  }
     ]
   },
   {

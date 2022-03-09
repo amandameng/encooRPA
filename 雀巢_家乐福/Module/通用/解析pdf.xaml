@@ -92,7 +92,7 @@
         </sap:WorkflowViewStateService.ViewState>
       </epaa:GetTextOfPdfActivity>
       <FlowStep.Next>
-        <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_11">
+        <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_11">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <av:Point x:Key="ShapeLocation">148.5,192.5</av:Point>
@@ -118,12 +118,12 @@
             </sap:WorkflowViewStateService.ViewState>
           </bfa:Assign>
           <FlowStep.Next>
-            <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_12">
+            <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_12">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <av:Point x:Key="ShapeLocation">148.5,292.5</av:Point>
                   <av:Size x:Key="ShapeSize">323,55</av:Size>
-                  <av:PointCollection x:Key="ConnectorLocation">310,347.5 310,393.5</av:PointCollection>
+                  <av:PointCollection x:Key="ConnectorLocation">310,347.5 310,383.5</av:PointCollection>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - 采购单类型字典" sap:VirtualizedContainerService.HintSize="323,55" sap2010:WorkflowViewState.IdRef="Assign_2" IsIgnore="False">
@@ -147,9 +147,9 @@
                 <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_8">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <av:Point x:Key="ShapeLocation">210,393.5</av:Point>
+                      <av:Point x:Key="ShapeLocation">210,383.5</av:Point>
                       <av:Size x:Key="ShapeSize">200,53</av:Size>
-                      <av:PointCollection x:Key="ConnectorLocation">310,446.5 310,493.5</av:PointCollection>
+                      <av:PointCollection x:Key="ConnectorLocation">310,436.5 310,483.5</av:PointCollection>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <baasf:WriteTextFile ActivityName="写入文件" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="写入文件" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" WriteOptions="OverwriteContent">
@@ -170,17 +170,17 @@
                     </sap:WorkflowViewStateService.ViewState>
                   </baasf:WriteTextFile>
                   <FlowStep.Next>
-                    <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_10">
+                    <FlowStep x:Name="__ReferenceID3">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <av:Point x:Key="ShapeLocation">135.5,493.5</av:Point>
+                          <av:Point x:Key="ShapeLocation">135.5,483.5</av:Point>
                           <av:Size x:Key="ShapeSize">349,93</av:Size>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ecaac:InvokeCSharpCodeActivity ActivityName="执行C#代码" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行C#代码 - 解析订单pdf" sap:VirtualizedContainerService.HintSize="349,93" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_1">
+                      <ecaac:InvokeCSharpCodeActivity ActivityName="执行C#代码" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行C#代码 - 解析订单pdf" sap:VirtualizedContainerService.HintSize="349,93" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_2">
                         <ecaac:InvokeCSharpCodeActivity.CodeFilePath>
                           <InArgument x:TypeArguments="x:String">
-                            <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_9">.code\CSharp\执行CSharp代码-解析订单pdf.cs</Literal>
+                            <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_12">.code\CSharp\执行CSharp代码-解析订单pdf.cs</Literal>
                           </InArgument>
                         </ecaac:InvokeCSharpCodeActivity.CodeFilePath>
                         <sap:WorkflowViewStateService.ViewState>

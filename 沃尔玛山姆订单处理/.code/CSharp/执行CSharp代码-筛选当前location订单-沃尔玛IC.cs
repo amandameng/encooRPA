@@ -28,16 +28,15 @@ public DateTime convertToLocalTime(DateTime sourceCSTdtime)
 public bool timeValid(string receivedDateStr)
 {
     DateTime receivedDateTime = Convert.ToDateTime(receivedDateStr);
-    // 经调查，导出文件的的订单timestamp跟网站显示的日期有时间差。导出文件里的订单时间 + 14hours = 网站展示订单时间
-    DateTime receivedDate = Convert.ToDateTime(receivedDateTime.ToString("yyyy-MM-dd"));
-    DateTime onSiteDateTime = convertToLocalTime(receivedDate);
-    
+    // 经调查，导出文件的的订单timestamp跟网站显示的日期有时间差。导出文件里的订单时间 + （13后入式夏令时， 14hours其他） = 网站展示订单时间
+    DateTime onSiteDateTime = convertToLocalTime(receivedDateTime); // 2022-1-26 3:04:47  => 2022-1-26 17:04:47
+    DateTime receivedDate = Convert.ToDateTime(onSiteDateTime.ToString("yyyy-MM-dd"));
     DateTime 结束日期date = Convert.ToDateTime(结束日期);
     DateTime 开始日期date = Convert.ToDateTime(开始日期);        
     // onSiteDateTime <= 结束日期date
     
-    // Console.WriteLine("receivedDateStr: {0}, onSiteDateTime: {1}, 结束日期date:{2}, Document Number: {3}", receivedDateStr, onSiteDateTime, 结束日期date, dr["Document Number"].ToString());
+     //Console.WriteLine("receivedDate: {0}, onSiteDateTime: {1}, 结束日期date:{2}", receivedDate, onSiteDateTime, 结束日期date);
     
-    bool 时间有效 = DateTime.Compare(onSiteDateTime, 结束日期date) <= 0 && DateTime.Compare(onSiteDateTime, 开始日期date) >= 0;
+    bool 时间有效 = DateTime.Compare(receivedDate, 结束日期date) <= 0 && DateTime.Compare(receivedDate, 开始日期date) >= 0;
     return 时间有效;
 }

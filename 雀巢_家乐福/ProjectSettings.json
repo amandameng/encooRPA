@@ -4,33 +4,47 @@
   ],
   "ProjectBreakpoints": {
     "Value": {
-      "Main.xaml": [
+      "Module\\通用\\采购单存入数据库临时表.xaml": [
         {
-          "ActivityId": "1.5459",
-          "IsEnabled": false,
-          "IdRef": "Sequence_34",
-          "DisplayName": "序列 - 导出默认时间段内(7 天)的采购单"
-        },
+          "ActivityId": "1.93",
+          "IsEnabled": true,
+          "IdRef": "OfficeExcelOpenOrCreateActivity_1",
+          "DisplayName": "打开 采购单文件路径"
+        }
+      ],
+      "Module\\通用\\执行C_代码_输出增量order.xaml": [
         {
-          "ActivityId": "1.236",
-          "IsEnabled": false,
-          "IdRef": "If_22",
-          "DisplayName": "条件（If 增量订单存在？做订单回滚）"
-        },
+          "ActivityId": "1.1",
+          "IsEnabled": true,
+          "IdRef": "InvokeCSharpCodeActivity_3",
+          "DisplayName": "执行C#代码 - 输出增量order"
+        }
+      ],
+      "Module\\业务\\订单来自pdf.xaml": [
         {
-          "ActivityId": "1.2069",
-          "IsEnabled": false,
-          "IdRef": "InvokeWorkflow_49",
-          "DisplayName": "调用子流程 - 订单报表入库"
-        },
-        {
-          "ActivityId": "1.7666",
+          "ActivityId": "1.74",
           "IsEnabled": true,
           "IdRef": "InvokeCSharpCodeActivity_2",
-          "DisplayName": "执行C#代码 - 流程初始化"
+          "DisplayName": "执行C#代码 - 根据pdf订单数据更新订单类型"
+        }
+      ],
+      "Module\\通用\\解析pdf.xaml": [
+        {
+          "ActivityId": "1.2",
+          "IsEnabled": true,
+          "IdRef": "InvokeCSharpCodeActivity_2",
+          "DisplayName": "执行C#代码 - 解析订单pdf"
+        }
+      ],
+      "Main.xaml": [
+        {
+          "ActivityId": "1.4163",
+          "IsEnabled": true,
+          "IdRef": "InvokeCSharpCodeActivity_18",
+          "DisplayName": "执行C#代码-提取pdf订单数据表"
         },
         {
-          "ActivityId": "1.2553",
+          "ActivityId": "1.3408",
           "IsEnabled": true,
           "IdRef": "InvokeWorkflow_48",
           "DisplayName": "执行流程 : 结果ETO文件输出"
@@ -38,48 +52,10 @@
       ],
       "Module\\业务\\结果文件输出.xaml": [
         {
-          "ActivityId": "1.1369",
-          "IsEnabled": false,
-          "IdRef": "InvokeCSharpCodeActivity_8",
-          "DisplayName": "执行C#代码 - 合并 Exception Order"
-        },
-        {
-          "ActivityId": "1.1405",
-          "IsEnabled": false,
-          "IdRef": "FilterDataTableActivity_4",
-          "DisplayName": "筛选 - 异常订单模板数据表"
-        }
-      ],
-      "Module\\通用\\数据表提取异常订单.xaml": [
-        {
-          "ActivityId": "1.2",
+          "ActivityId": "1.1491",
           "IsEnabled": true,
-          "IdRef": "InvokeCSharpCodeActivity_1",
-          "DisplayName": "执行C#代码 - 订单检查"
-        }
-      ],
-      "Module\\通知\\发送邮件.xaml": [
-        {
-          "ActivityId": "1.2",
-          "IsEnabled": true,
-          "IdRef": "SendSmtpMailActivity_1",
-          "DisplayName": "发送邮件(SMTP)"
-        }
-      ],
-      "Module\\业务\\01_指定送货日异常.xaml": [
-        {
-          "ActivityId": "1.2",
-          "IsEnabled": true,
-          "IdRef": "InvokeCSharpCodeActivity_8",
-          "DisplayName": "执行C#代码 验证交期.cs"
-        }
-      ],
-      "登录苏宁.xaml": [
-        {
-          "ActivityId": "1.218",
-          "IsEnabled": true,
-          "IdRef": "Sequence_1",
-          "DisplayName": "序列-账密登录"
+          "IdRef": "If_9",
+          "DisplayName": "条件（If 增量订单数据存在）"
         }
       ]
     }

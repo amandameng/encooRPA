@@ -14,7 +14,14 @@ public void Run()
         return;
     }
     int daysCount = Convert.ToInt32(etoConfigDT.Rows[0]["daysCount"].ToString());
-    开始日期 = DateTime.Parse(结束日期).AddDays(-(daysCount == 0 ? 7 : daysCount)).ToString("yyyy-MM-dd");
+    DateTime 开始日期_日期 = DateTime.Parse(结束日期).AddDays(-(daysCount == 0 ? 7 : daysCount));
+    if(maxCreatedTimeDT!=null && maxCreatedTimeDT.Rows.Count > 0){ // 订单最近一次获取时间跟默认设定的时间比较，取两者之间较小的值
+        DateTime maxCreatedTime = Convert.ToDateTime(maxCreatedTimeDT.Rows[0]["max_created_time"].ToString()).AddDays(-1);
+        if(DateTime.Compare(maxCreatedTime, 开始日期_日期) < 0){
+            开始日期_日期 = maxCreatedTime;
+        }
+    }
+    开始日期 = 开始日期_日期.ToString("yyyy-MM-dd");
     账号 = rpaAccountsDT.Rows[0]["User Name"].ToString();
     密码 = rpaAccountsDT.Rows[0]["Password"].ToString();
     网站 = rpaAccountsDT.Rows[0]["Customer Login URL"].ToString();

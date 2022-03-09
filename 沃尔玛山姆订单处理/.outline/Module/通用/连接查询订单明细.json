@@ -1,0 +1,62 @@
+{
+  "Md5CheckSum": "38f73a8cd692f8a63e7bf4ff84a1d758",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Flowchart_1",
+        "Name": "Root",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "FlowDecision_1",
+            "Name": "目标订单数据表 有数据",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": null,
+                "Name": "FlowDecision.True",
+                "IsActivity": true,
+                "SubItems": []
+              },
+              {
+                "RefId": null,
+                "Name": "FlowDecision.False",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "Assign_3",
+                    "Name": "赋值 - 联结查询数据表 = 空表",
+                    "IsActivity": true,
+                    "SubItems": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "RefId": "InvokeCSharpCodeActivity_1",
+            "Name": "执行C#代码 - orders连接查询",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "DatabaseConnectActivity_1",
+            "Name": "连接数据库",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "QueryTableActivity_1",
+                "Name": "查询- join 查询订单相关联数据",
+                "IsActivity": true,
+                "SubItems": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

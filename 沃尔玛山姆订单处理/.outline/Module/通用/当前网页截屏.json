@@ -1,0 +1,62 @@
+{
+  "Md5CheckSum": "9f8529c905309f3c4bdfeb1a702561c5",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Flowchart_1",
+        "Name": "流程图_Root",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "TryCatch_1",
+            "Name": "错误捕获  - 截屏",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": null,
+                "Name": "TryCatch.Try",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "Sequence_1",
+                    "Name": "序列 - 截屏",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "Assign_1",
+                        "Name": "赋值 - 错误图片路径",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "ScreenshotActivity_1",
+                        "Name": "截屏",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "AddToCollectionActivity_1",
+                        "Name": "添加对象",
+                        "IsActivity": true,
+                        "SubItems": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "RefId": null,
+                "Name": "TryCatch.Catches",
+                "IsActivity": true,
+                "SubItems": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

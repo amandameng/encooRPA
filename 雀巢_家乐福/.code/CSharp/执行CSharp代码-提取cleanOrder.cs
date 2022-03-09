@@ -22,7 +22,7 @@ public void Run()
                             FROM orders ods 
                             join order_line_items oli on ods.order_number = oli.order_number
                             left join sold_to_ship_to stst on stst.`Customer_Logistics_Warehouse` = ods.logistics_warehouse and ods.customer_name = stst.`Customer_Name`
-                            left join material_master_data npmd on npmd.`Customer_Material_No` = oli.product_code and npmd.`Customer_Name` = ods.customer_name and npmd.`Nestle_Plant_No`= `stst`.`Nestle_Plant_No`
+                            left join material_master_data npmd on npmd.`Customer_Material_No` = oli.product_code and npmd.`Customer_Name` = ods.customer_name and replace(npmd.`Nestle_Plant_No`, ' ', '') = replace(`stst`.`Nestle_Plant_No`, ' ', '')
                             where ods.customer_name='{0}' and ods.order_number in ({1})
                             group by ods.order_number
                             order by ods.id asc";

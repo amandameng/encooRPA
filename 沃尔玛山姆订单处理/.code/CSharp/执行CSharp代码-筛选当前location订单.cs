@@ -10,7 +10,7 @@ public void Run()
         string receivedDateStr = dr["Received Date"].ToString();
         // Console.WriteLine(" --{0}- ", dr["Document Number"].ToString());
         bool 时间有效 = timeValid(receivedDateStr);
-        
+        // Console.WriteLine(" -时间有效-{0}- location{1}", 时间有效, location);
         // 只取当前沃尔玛8大仓订单或者 不属于WM，SAM，SAM-Water的订单
         if((locationList.Contains(location) || !WMLocationsList.Contains(location)) && 时间有效){
             curOrdersDT.ImportRow(dr);
@@ -18,6 +18,7 @@ public void Run()
        // i++;
     }
     
+   
 }
 //在这里编写您的函数或者类'
 public DateTime convertToLocalTime(DateTime sourceCSTdtime)
@@ -38,8 +39,8 @@ public bool timeValid(string receivedDateStr)
     DateTime 开始日期date = Convert.ToDateTime(开始日期);        
     // onSiteDateTime <= 结束日期date
     
-    // Console.WriteLine("receivedDate: {0}, onSiteDateTime: {1}, 结束日期date:{2}", receivedDate, onSiteDateTime, 结束日期date);
-    
+   // Console.WriteLine("receivedDate: {0}, onSiteDateTime: {1}, 结束日期date:{2}，开始日期date：{3}", receivedDate, onSiteDateTime, 结束日期date, 开始日期date);
+    // 转换为中国时区的日期跟开始结束日期比较
     bool 时间有效 = DateTime.Compare(receivedDate, 结束日期date) <= 0 && DateTime.Compare(receivedDate, 开始日期date) >= 0;
     return 时间有效;
 }

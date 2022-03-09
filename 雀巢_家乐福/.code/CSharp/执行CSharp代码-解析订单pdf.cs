@@ -6,15 +6,16 @@ public void Run()
     NestleOrder.Run(txtFilePath, out orderDT);
 
     string 采购单号 = orderDT.Rows[0]["采购单号"].ToString();
-   
+   Console.WriteLine("采购单号++:{0}", 采购单号);
     string 订单类型 = "标准采购订单";
 
     if(采购单号.Contains("越库")){
        订单类型 += " 越库";
     }
     采购单号 = 采购单号.Split(new string[]{" "}, StringSplitOptions.RemoveEmptyEntries)[0];
-    Console.WriteLine("采购单号--:{0}", 采购单号);
+    Console.WriteLine("采购单号--:{0} 订单类型：{1}", 采购单号, 订单类型);
     采购单类型字典["采购单号"] = 采购单号;
+    //Convert.ToInt16("qqq");
     采购单类型字典["采购单类型"] = 订单类型;
 }
 //在这里编写您的函数或者类

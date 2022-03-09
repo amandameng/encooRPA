@@ -1,0 +1,331 @@
+{
+  "Md5CheckSum": "c52cb2c892606e6f186043bba0240443",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Flowchart_1",
+        "Name": "Root",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "InvokeCSharpCodeActivity_8",
+            "Name": "执行C#代码  - 获取clean Exception Orders相关 - 山姆",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "Flowchart_2",
+            "Name": "流程图 - By PO",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "OfficeExcelOpenOrCreateActivity_3",
+                "Name": "打开 分仓明细表文件",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "Sequence_5",
+                    "Name": "序列 - by 分仓明细",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "OfficeExcelGetAllSheetsActivity_1",
+                        "Name": "获取所有工作表名",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "Assign_1",
+                        "Name": "赋值 - firstSheet",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "OfficeExcelGetLastRowIndexActivity_3",
+                        "Name": "获取末行号",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "OfficeExcelGetLastColIndexActivity_3",
+                        "Name": "获取末列号",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "OfficeExcelReadRangeActivity_3",
+                        "Name": "读取区域-读取模板文件，获取列头",
+                        "IsActivity": true,
+                        "SubItems": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "RefId": "OfficeExcelOpenOrCreateActivity_2",
+                "Name": "打开 clean exception file",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "Sequence_1",
+                    "Name": "序列-打开eto文件",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "Sequence_2",
+                        "Name": "序列 - by PO template",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": "OfficeExcelGetLastRowIndexActivity_1",
+                            "Name": "获取末行号",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "OfficeExcelGetLastColIndexActivity_1",
+                            "Name": "获取末列号",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "OfficeExcelReadRangeActivity_1",
+                            "Name": "读取区域-读取模板文件，获取列头",
+                            "IsActivity": true,
+                            "SubItems": []
+                          }
+                        ]
+                      },
+                      {
+                        "RefId": "Sequence_4",
+                        "Name": "序列 -  by PO or Item Template",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": "OfficeExcelGetLastRowIndexActivity_2",
+                            "Name": "获取末行号",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "OfficeExcelGetLastColIndexActivity_2",
+                            "Name": "获取末列号",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "OfficeExcelReadRangeActivity_2",
+                            "Name": "读取区域-读取模板文件，获取列头",
+                            "IsActivity": true,
+                            "SubItems": []
+                          }
+                        ]
+                      },
+                      {
+                        "RefId": "InvokeCSharpCodeActivity_5",
+                        "Name": "执行C#代码 - 异常订单检查-山姆-byPO",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "OfficeExcelSetRangeActivity_1",
+                        "Name": "写入区域 - 模板数据-不加列头",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "OfficeExcelSetRangeActivity_2",
+                        "Name": "写入区域 - 模板数据-不加列头",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "If_1",
+                        "Name": "条件（If 模板数据存在）",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": null,
+                            "Name": "If.Then",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": "Assign_3",
+                                "Name": "赋值 - 存在异常数据",
+                                "IsActivity": true,
+                                "SubItems": []
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "RefId": "OfficeExcelOpenOrCreateActivity_4",
+                "Name": "打开 分仓明细表文件",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "Sequence_6",
+                    "Name": "序列 - by 分仓明细",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "OfficeExcelGetAllSheetsActivity_2",
+                        "Name": "获取所有工作表名",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "Assign_2",
+                        "Name": "赋值 - firstSheet",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "OfficeExcelSetRangeActivity_3",
+                        "Name": "写入区域 - 添加列头",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "If_2",
+                        "Name": "条件（If 分仓明细数据存在）",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": null,
+                            "Name": "If.Then",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": "Assign_4",
+                                "Name": "赋值 - 存在分仓明细数据",
+                                "IsActivity": true,
+                                "SubItems": []
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "RefId": "If_4",
+            "Name": "条件（If 不存在异常数据）",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": null,
+                "Name": "If.Then",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "DeleteActivity_2",
+                    "Name": "删除文件 - 无数据的时候，删除空文件夹",
+                    "IsActivity": true,
+                    "SubItems": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "RefId": "If_3",
+            "Name": "条件（If 不存在分仓明细数据）",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": null,
+                "Name": "If.Then",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "DeleteActivity_1",
+                    "Name": "删除文件 - 无数据的时候，删除空文件夹",
+                    "IsActivity": true,
+                    "SubItems": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "RefId": "FileCopyMoveActivity_2",
+            "Name": "复制文件-分仓明细表文件",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "FileCopyMoveActivity_3",
+            "Name": "复制文件-clean and exception模板",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "FlowDecision_1",
+            "Name": "增量订单关联数据表 不为空",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": null,
+                "Name": "FlowDecision.True",
+                "IsActivity": true,
+                "SubItems": []
+              }
+            ]
+          },
+          {
+            "RefId": "DatabaseConnectActivity_3",
+            "Name": "连接数据库  - 获取增量订单关联信息",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "Sequence_8",
+                "Name": "序列",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "QueryTableActivity_4",
+                    "Name": "查询语句 - orders join others",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "QueryTableActivity_7",
+                    "Name": "查询语句 - 不用价差检查的产品",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "QueryTableActivity_5",
+                    "Name": "查询语句 - 当前订单是否已在excel orders",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "QueryTableActivity_6",
+                    "Name": "查询语句 - 订单是否已经send_email",
+                    "IsActivity": true,
+                    "SubItems": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

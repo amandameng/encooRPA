@@ -77,18 +77,24 @@
       "AutoUpgrade": false,
       "UpgradeVersionPattern": "1.*.*.*",
       "Type": "ActivityOrCode"
+    },
+    {
+      "Id": "ChaojiyingOCR",
+      "AutoUpgrade": false,
+      "UpgradeVersionPattern": null,
+      "Type": "ActivityOrCode"
     }
   ],
   "ProjectDependencyItems": [
     {
       "Id": "BotTime.Flow.Activities",
-      "Version": "1.4.2111.3",
+      "Version": "1.5.2112.2",
       "Title": "BotTime.Flow.Activities",
       "InnerDependencies": []
     },
     {
       "Id": "BotTime.Office.Activity",
-      "Version": "1.8.2111.2",
+      "Version": "1.9.2112.4",
       "Title": "BotTime.Office.Activity",
       "InnerDependencies": [
         {
@@ -186,13 +192,13 @@
     },
     {
       "Id": "BotTime.DataBase.Activity",
-      "Version": "1.6.2111.3",
+      "Version": "1.8.2112.5",
       "Title": "BotTime.DataBase.Activity",
       "InnerDependencies": []
     },
     {
       "Id": "Encoo.Console.Activity",
-      "Version": "1.8.2111.8",
+      "Version": "1.8.2112.3",
       "Title": "Encoo.Console.Activity",
       "InnerDependencies": [
         {
@@ -243,7 +249,7 @@
     },
     {
       "Id": "BotTime.ActivityLibrary",
-      "Version": "1.6.2111.1",
+      "Version": "1.7.2112.2",
       "Title": "BotTime.ActivityLibrary",
       "InnerDependencies": [
         {
@@ -645,7 +651,7 @@
     },
     {
       "Id": "BotTime.DataTableActivity",
-      "Version": "1.6.2111.1",
+      "Version": "1.6.2112.2",
       "Title": "BotTime.DataTable.Activity",
       "InnerDependencies": [
         {
@@ -706,7 +712,7 @@
     },
     {
       "Id": "Encoo.CodeTool.Activity",
-      "Version": "1.4.2111.3",
+      "Version": "1.5.2112.2",
       "Title": "Encoo.CodeTool.Activity",
       "InnerDependencies": [
         {
@@ -839,7 +845,7 @@
     },
     {
       "Id": "BotTime.Mail.Activity",
-      "Version": "1.6.2111.1",
+      "Version": "1.7.2112.1",
       "Title": "BotTime.Mail.Activity",
       "InnerDependencies": [
         {
@@ -920,6 +926,12 @@
       "InnerDependencies": []
     },
     {
+      "Id": "ChaojiyingOCR",
+      "Version": "2.0.0",
+      "Title": "超级鹰OCR",
+      "InnerDependencies": []
+    },
+    {
       "Id": "Encoo.Automation.MobileActivity",
       "Version": "1.4.2111.7",
       "Title": "Encoo.Automation.MobileActivity Package",
@@ -930,5 +942,5 @@
   "ProjectReferences": [],
   "TerminationHandler": null,
   "ExceptionHandler": null,
-  "ParallelWorkflows": null
+  "ParallelWorkflows": []
 }

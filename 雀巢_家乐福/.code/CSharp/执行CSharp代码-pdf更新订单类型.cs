@@ -7,7 +7,7 @@ public void Run()
         string order_number = dr["采购平台订单号"].ToString();        
         
         List<Dictionary<string, string>> findCode = 采购单号类型list.Where(item => item["采购单号"] == order_number).ToList();
-        Console.WriteLine("count: {0}", findCode.Count);
+        // Console.WriteLine("count: {0}", findCode.Count);
         if(findCode.Count > 0)
         {
             string 订单类型 = findCode[0]["采购单类型"];

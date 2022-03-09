@@ -14,7 +14,7 @@ public void Run()
         }
     }
 
-    string 订单编号字符串 = String.Join(",", 订单编号列表.ToArray());
+    string 订单编号字符串 = String.Join(",", 订单编号列表);
     
     string rawSelectSql = @"SELECT oli.*, ods.order_type, ods.create_date, eo.order_expire_date as request_delivery_date, ods.logistics_warehouse,
                             `stst`.`Sold_To_Code` as sold_to_code, `stst`.`Ship_To_Code` as ship_to_code, `stst`.`Order_Type_Short` as order_type_short,
@@ -26,7 +26,7 @@ public void Run()
                             join (select distinct order_number, order_expire_date from exported_orders) eo on eo.order_number=ods.order_number
                             join order_line_items oli on ods.order_number = oli.order_number
                             left join sold_to_ship_to stst on stst.`Customer_Logistics_Warehouse` = ods.logistics_warehouse and ods.customer_name = stst.`Customer_Name`
-                            left join material_master_data npmd on npmd.`Customer_Material_No` = oli.product_code and npmd.`Customer_Name` = ods.customer_name and npmd.`Nestle_Plant_No`= `stst`.`Nestle_Plant_No`
+                            left join material_master_data npmd on npmd.`Customer_Material_No` = oli.product_code and npmd.`Customer_Name` = ods.customer_name and replace(npmd.`Nestle_Plant_No`, ' ', '') = replace(`stst`.`Nestle_Plant_No`, ' ', '')
                             where ods.customer_name='{0}' and ods.order_number in ({1})
                             order by ods.create_date asc, cast(line_number as signed) asc";
     string 客户平台 = Convert.ToString(GlobalVariable.VariableHelper.GetVariableValue("客户平台"));

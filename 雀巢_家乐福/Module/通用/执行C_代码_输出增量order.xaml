@@ -13,6 +13,7 @@
   </this:执行C_代码_输出增量order.targetOrderCol>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
   <sap:VirtualizedContainerService.HintSize>389,245</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>执行C_代码_输出增量order_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="13">
       <x:String>System.Xml</x:String>
@@ -53,11 +54,9 @@
       <AssemblyReference>GlobalVariable</AssemblyReference>
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
       <AssemblyReference>BotTime.Flow.Activities</AssemblyReference>
-      
-      
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <ecaac:InvokeCSharpCodeActivity ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行C#代码 - 输出增量order" sap:VirtualizedContainerService.HintSize="349,93" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_3">
+  <ecaac:InvokeCSharpCodeActivity ActivityName="执行C#代码" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行C#代码 - 输出增量order" sap:VirtualizedContainerService.HintSize="349,93" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_3">
     <ecaac:InvokeCSharpCodeActivity.CodeFilePath>
       <InArgument x:TypeArguments="x:String">
         <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_12">.code\CSharp\执行CSharp代码-输出增量订单.cs</Literal>

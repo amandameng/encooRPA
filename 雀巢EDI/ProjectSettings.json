@@ -1,0 +1,69 @@
+{
+  "QuickOpenItems": [
+    "Main.xaml"
+  ],
+  "ProjectBreakpoints": {
+    "Value": {
+      "Main.xaml": [
+        {
+          "ActivityId": "1.2643",
+          "IsEnabled": true,
+          "IdRef": "QueryTableActivity_14",
+          "DisplayName": "查询语句 - pending orders"
+        },
+        {
+          "ActivityId": "1.2277",
+          "IsEnabled": true,
+          "IdRef": "InvokeCSharpCodeActivity_11",
+          "DisplayName": "执行C#代码 - 选择ei_sent=-1的当前active客户的订单"
+        },
+        {
+          "ActivityId": "1.2790",
+          "IsEnabled": true,
+          "IdRef": "QueryTableActivity_10",
+          "DisplayName": "查询语句 - ex2oToEdi"
+        },
+        {
+          "ActivityId": "1.2370",
+          "IsEnabled": true,
+          "IdRef": "AddDictionaryActivity_1",
+          "DisplayName": "添加键值对 - 分客户EDI Exception反馈文件"
+        },
+        {
+          "ActivityId": "1.560",
+          "IsEnabled": true,
+          "IdRef": "If_13",
+          "DisplayName": "条件  根据 ediStatus判断邮件内容"
+        },
+        {
+          "ActivityId": "1.3855",
+          "IsEnabled": true,
+          "IdRef": "InvokeCSharpCodeActivity_12",
+          "DisplayName": "执行C#代码: 执行CSharp代码_buildEditDT-allMapping"
+        },
+        {
+          "ActivityId": "1.5382",
+          "IsEnabled": true,
+          "IdRef": "InvokeCSharpCodeActivity_6",
+          "DisplayName": "执行C#代码 - 校验邮箱信息"
+        }
+      ],
+      "执行C_代码_更新edi的状态.xaml": [
+        {
+          "ActivityId": "1.23",
+          "IsEnabled": true,
+          "IdRef": "ExecuteSqlActivity_2",
+          "DisplayName": "执行语句 - update order_job_history"
+        }
+      ],
+      "发送邮件.xaml": [
+        {
+          "ActivityId": null,
+          "IsEnabled": true,
+          "IdRef": "InvokeCSharpCodeActivity_1",
+          "DisplayName": "执行C#代码 - 发送邮件"
+        }
+      ]
+    }
+  }
+}

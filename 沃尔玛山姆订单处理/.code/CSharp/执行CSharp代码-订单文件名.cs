@@ -18,6 +18,9 @@ public void Run()
 // 沃尔玛订单文件路径
 // 只下载散威化订单pdf, 命名规则：仓库代码＋订单号（渠道原始订单号）命名
 public void setPdfForWMOrder(){
+    if(bulkWalferConfigDT==null){
+        return;
+    }
     List<string> bulkWalferCodes = bulkWalferConfigDT.Rows.Cast<DataRow>().Select<DataRow, string>(dr => dr["customer_product_code"].ToString()).ToList();
     
     foreach(DataRow dr in orderItemsDT.Rows){

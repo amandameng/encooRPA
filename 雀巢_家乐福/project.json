@@ -37,7 +37,6 @@
     "Module\\业务\\获取增量订单_dup.xaml",
     "Module\\通用\\网页全部订单查询.xaml",
     "Module\\通用\\网页待预约订单查询.xaml",
-    "Module\\通知\\发送邮件.xaml",
     "Module\\通用\\连接查询订单明细.xaml",
     "Module\\业务\\01_指定送货日异常.xaml",
     "Module\\通用\\数据表提取异常订单.xaml",
@@ -49,7 +48,6 @@
     "Module\\业务\\订单修改RDD或取消.xaml",
     "Module\\业务\\订单来自pdf.xaml",
     ".code\\CSharp",
-    ".code\\CSharp\\执行CSharp代码(1).cs",
     ".code\\CSharp\\执行CSharp代码-importOneRow.cs",
     ".code\\CSharp\\执行CSharp代码-notRepeatedOrders.cs",
     ".code\\CSharp\\执行CSharp代码-pdf更新订单类型.cs",
@@ -76,7 +74,14 @@
     ".code\\CSharp\\执行CSharp代码-清空展示用异常.cs",
     ".code\\CSharp\\执行CSharp代码-查询待处理orders.cs",
     ".code\\CSharp\\执行CSharp代码-订单回滚.cs",
-    ".code\\CSharp\\执行CSharp代码-配置转化.cs"
+    ".code\\CSharp\\执行CSharp代码-配置转化.cs",
+    "Module\\通用\\超级鹰拼图滑块.xaml",
+    ".code\\CSharp\\执行CSharp代码-超级鹰.cs",
+    ".code\\CSharp\\执行CSharp代码-发送邮件.cs",
+    "Module\\通知\\发送邮件_dup.xaml",
+    "Module\\通知\\发送邮件.xaml",
+    ".code\\CSharp\\执行CSharp代码-excel提取pdf中订单.cs",
+    ".code\\CSharp\\执行CSharp代码-提取pdf订单数据表.cs"
   ],
   "TargetFramework": ".NETFramework,Version=v4.6.1",
   "ProjectDependencies": [
@@ -181,9 +186,33 @@
       "AutoUpgrade": false,
       "UpgradeVersionPattern": "",
       "Type": "ActivityOrCode"
+    },
+    {
+      "Id": "ChaojiyingOCR",
+      "AutoUpgrade": false,
+      "UpgradeVersionPattern": null,
+      "Type": "ActivityOrCode"
     }
   ],
   "ProjectDependencyItems": [
+    {
+      "Id": "AutomationActivity",
+      "Version": "1.6.2111.8",
+      "Title": "BotTime.Automation.Activity",
+      "InnerDependencies": []
+    },
+    {
+      "Id": "Encoo.Text.Activity",
+      "Version": "1.4.2111.1",
+      "Title": "Encoo.Text.Activity",
+      "InnerDependencies": [
+        {
+          "Id": "Panuon.UI.Silver",
+          "MaxVersion": null,
+          "MinVersion": "1.0.8.7"
+        }
+      ]
+    },
     {
       "Id": "Encoo.Trigger.Activity",
       "Version": "1.2.2109.1",
@@ -205,6 +234,47 @@
           "MinVersion": "15.0.4797.1003"
         }
       ]
+    },
+    {
+      "Id": "Encoo.Pdf.Activity",
+      "Version": "1.2.2111.1",
+      "Title": "Encoo.Pdf.Activity",
+      "InnerDependencies": [
+        {
+          "Id": "BitMiracle.Docotic.Pdf",
+          "MaxVersion": null,
+          "MinVersion": "7.5.11645"
+        }
+      ]
+    },
+    {
+      "Id": "BitMiracle.Docotic.Pdf",
+      "Version": "7.5.11645",
+      "Title": "Docotic.Pdf library",
+      "InnerDependencies": []
+    },
+    {
+      "Id": "Encoo.AIHub.Activity",
+      "Version": "1.3.2111.1",
+      "Title": "Encoo.AIHub.Activity",
+      "InnerDependencies": [
+        {
+          "Id": "Newtonsoft.Json",
+          "MaxVersion": null,
+          "MinVersion": "12.0.3"
+        },
+        {
+          "Id": "RestSharp",
+          "MaxVersion": null,
+          "MinVersion": "106.6.10"
+        }
+      ]
+    },
+    {
+      "Id": "Encoo.Automation.MobileActivity",
+      "Version": "1.4.2111.7",
+      "Title": "Encoo.Automation.MobileActivity Package",
+      "InnerDependencies": []
     },
     {
       "Id": "Encoo.Resource.Activity",
@@ -236,14 +306,53 @@
       "InnerDependencies": []
     },
     {
-      "Id": "AutomationActivity",
-      "Version": "1.6.2111.8",
-      "Title": "BotTime.Automation.Activity",
+      "Id": "ChaojiyingOCR",
+      "Version": "2.0.0",
+      "Title": "超级鹰OCR",
+      "InnerDependencies": []
+    },
+    {
+      "Id": "Encoo.Console.Activity",
+      "Version": "1.8.2112.3",
+      "Title": "Encoo.Console.Activity",
+      "InnerDependencies": [
+        {
+          "Id": "NamedPipeWrapper",
+          "MaxVersion": null,
+          "MinVersion": "1.5.0"
+        },
+        {
+          "Id": "Newtonsoft.Json",
+          "MaxVersion": null,
+          "MinVersion": "12.0.3"
+        },
+        {
+          "Id": "RestSharp",
+          "MaxVersion": null,
+          "MinVersion": "106.6.10"
+        },
+        {
+          "Id": "System.ValueTuple",
+          "MaxVersion": null,
+          "MinVersion": "4.5.0"
+        }
+      ]
+    },
+    {
+      "Id": "NamedPipeWrapper",
+      "Version": "1.5.0",
+      "Title": "Named Pipe Wrapper",
+      "InnerDependencies": []
+    },
+    {
+      "Id": "RestSharp",
+      "Version": "106.6.10",
+      "Title": "RestSharp",
       "InnerDependencies": []
     },
     {
       "Id": "BotTime.ActivityLibrary",
-      "Version": "1.6.2111.1",
+      "Version": "1.7.2112.2",
       "Title": "BotTime.ActivityLibrary",
       "InnerDependencies": [
         {
@@ -468,13 +577,13 @@
     },
     {
       "Id": "BotTime.DataBase.Activity",
-      "Version": "1.6.2111.3",
+      "Version": "1.8.2112.5",
       "Title": "BotTime.DataBase.Activity",
       "InnerDependencies": []
     },
     {
       "Id": "BotTime.DataTableActivity",
-      "Version": "1.6.2111.1",
+      "Version": "1.6.2112.2",
       "Title": "BotTime.DataTable.Activity",
       "InnerDependencies": [
         {
@@ -523,13 +632,13 @@
     },
     {
       "Id": "BotTime.Flow.Activities",
-      "Version": "1.4.2111.3",
+      "Version": "1.5.2112.2",
       "Title": "BotTime.Flow.Activities",
       "InnerDependencies": []
     },
     {
       "Id": "BotTime.Mail.Activity",
-      "Version": "1.6.2111.1",
+      "Version": "1.7.2112.1",
       "Title": "BotTime.Mail.Activity",
       "InnerDependencies": [
         {
@@ -593,7 +702,7 @@
     },
     {
       "Id": "BotTime.Office.Activity",
-      "Version": "1.8.2111.2",
+      "Version": "1.9.2112.4",
       "Title": "BotTime.Office.Activity",
       "InnerDependencies": [
         {
@@ -649,7 +758,7 @@
     },
     {
       "Id": "BotTime.WPS.Activity",
-      "Version": "1.3.2111.1",
+      "Version": "1.3.2112.2",
       "Title": "BotTime.WPS.Activity",
       "InnerDependencies": [
         {
@@ -727,20 +836,8 @@
       "InnerDependencies": []
     },
     {
-      "Id": "Encoo.Text.Activity",
-      "Version": "1.4.2111.1",
-      "Title": "Encoo.Text.Activity",
-      "InnerDependencies": [
-        {
-          "Id": "Panuon.UI.Silver",
-          "MaxVersion": null,
-          "MinVersion": "1.0.8.7"
-        }
-      ]
-    },
-    {
       "Id": "Encoo.CodeTool.Activity",
-      "Version": "1.4.2111.3",
+      "Version": "1.5.2112.2",
       "Title": "Encoo.CodeTool.Activity",
       "InnerDependencies": [
         {
@@ -860,6 +957,12 @@
           "MinVersion": "4.5.0"
         }
       ]
+    },
+    {
+      "Id": "System.ValueTuple",
+      "Version": "4.5.0",
+      "Title": "System.ValueTuple",
+      "InnerDependencies": []
     },
     {
       "Id": "Microsoft.CodeAnalysis.CSharp.Scripting",
@@ -1055,107 +1158,21 @@
       "InnerDependencies": []
     },
     {
-      "Id": "Panuon.UI.Silver",
-      "Version": "1.0.8.7",
-      "Title": "Panuon.UI.Silver",
-      "InnerDependencies": []
-    },
-    {
-      "Id": "Encoo.Console.Activity",
-      "Version": "1.8.2111.8",
-      "Title": "Encoo.Console.Activity",
-      "InnerDependencies": [
-        {
-          "Id": "NamedPipeWrapper",
-          "MaxVersion": null,
-          "MinVersion": "1.5.0"
-        },
-        {
-          "Id": "Newtonsoft.Json",
-          "MaxVersion": null,
-          "MinVersion": "12.0.3"
-        },
-        {
-          "Id": "RestSharp",
-          "MaxVersion": null,
-          "MinVersion": "106.6.10"
-        },
-        {
-          "Id": "System.ValueTuple",
-          "MaxVersion": null,
-          "MinVersion": "4.5.0"
-        }
-      ]
-    },
-    {
-      "Id": "NamedPipeWrapper",
-      "Version": "1.5.0",
-      "Title": "Named Pipe Wrapper",
-      "InnerDependencies": []
-    },
-    {
-      "Id": "System.ValueTuple",
-      "Version": "4.5.0",
-      "Title": "System.ValueTuple",
-      "InnerDependencies": []
-    },
-    {
-      "Id": "Encoo.Pdf.Activity",
-      "Version": "1.2.2111.1",
-      "Title": "Encoo.Pdf.Activity",
-      "InnerDependencies": [
-        {
-          "Id": "BitMiracle.Docotic.Pdf",
-          "MaxVersion": null,
-          "MinVersion": "7.5.11645"
-        }
-      ]
-    },
-    {
-      "Id": "BitMiracle.Docotic.Pdf",
-      "Version": "7.5.11645",
-      "Title": "Docotic.Pdf library",
-      "InnerDependencies": []
-    },
-    {
-      "Id": "Encoo.AIHub.Activity",
-      "Version": "1.3.2111.1",
-      "Title": "Encoo.AIHub.Activity",
-      "InnerDependencies": [
-        {
-          "Id": "Newtonsoft.Json",
-          "MaxVersion": null,
-          "MinVersion": "12.0.3"
-        },
-        {
-          "Id": "RestSharp",
-          "MaxVersion": null,
-          "MinVersion": "106.6.10"
-        }
-      ]
-    },
-    {
       "Id": "Newtonsoft.Json",
       "Version": "12.0.3",
       "Title": "Json.NET",
       "InnerDependencies": []
     },
     {
-      "Id": "RestSharp",
-      "Version": "106.6.10",
-      "Title": "RestSharp",
-      "InnerDependencies": []
-    },
-    {
-      "Id": "Encoo.Automation.MobileActivity",
-      "Version": "1.4.2111.7",
-      "Title": "Encoo.Automation.MobileActivity Package",
+      "Id": "Panuon.UI.Silver",
+      "Version": "1.0.8.7",
+      "Title": "Panuon.UI.Silver",
       "InnerDependencies": []
     }
   ],
-  "LastModifyTime": "2021-12-09T09:36:16.8592582+08:00",
+  "LastModifyTime": "2022-02-08T17:13:51.131566+08:00",
   "ProjectReferences": [],
   "TerminationHandler": null,
   "ExceptionHandler": null,
-  "ParallelWorkflows": null
+  "ParallelWorkflows": []
 }

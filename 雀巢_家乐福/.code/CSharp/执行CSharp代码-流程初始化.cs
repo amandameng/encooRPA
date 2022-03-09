@@ -36,20 +36,7 @@ public void Run()
     
     GlobalVariable.VariableHelper.SetVariableValue("是否打印订单", false); // 当前订单pdf文件模板
     
-    // 时间范围是2天，防止漏单
-    // 如果参数设置了，则使用参数，否则使用当天时间
-    
-    //DateTime 待预约开始日期Obj = fetchvalidDate(true, 开始日期);
-   // DateTime 待预约结束日期Obj = fetchvalidDate(false, 结束日期);
-    
-    /*if(待预约开始日期Obj > 待预约结束日期Obj){
-        throw(new Exception("日期输入有误，开始日期不能大于结束日期"));
-    }*/
-    // 7 天数据查询的结束日期
-    // 结束日期  = 创建结束日期;
-    //待预约开始时间 = 待预约开始日期Obj.ToString("yyyy-MM-dd");
-    //待预约结束时间 = 待预约结束日期Obj.ToString("yyyy-MM-dd");
-   // 结束日期 = 待预约结束日期Obj.ToString("yyyy-MM-dd");
+    initFolders();
 }
 //在这里编写您的函数或者类
 
@@ -65,4 +52,10 @@ public DateTime fetchvalidDate(string 参数日期){
         }
     }
     return resultDate;
+}
+
+public void initFolders(){
+    if(!Directory.Exists(当前结果文件夹)){
+        Directory.CreateDirectory(当前结果文件夹);
+    }
 }

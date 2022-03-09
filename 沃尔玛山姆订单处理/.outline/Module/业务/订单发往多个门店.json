@@ -1,0 +1,176 @@
+{
+  "Md5CheckSum": "a5223475367e94488a94c0982ebe1690",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Flowchart_1",
+        "Name": "流程图_Root",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "ForEach`1_4",
+            "Name": "循环操作 - 门店订单采集重试2下次",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "TryCatch_1",
+                "Name": "错误捕获 - 采集当前门店订单",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": null,
+                    "Name": "TryCatch.Try",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "Sequence_4",
+                        "Name": "序列",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": "Sequence_3",
+                            "Name": "序列 - 点击订单号使其弹出框",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": "ClickActivity_2",
+                                "Name": "点击 - Document",
+                                "IsActivity": true,
+                                "SubItems": []
+                              },
+                              {
+                                "RefId": "ForEach`1_5",
+                                "Name": "循环操作（For Each)",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "Sequence_7",
+                                    "Name": "序列",
+                                    "IsActivity": true,
+                                    "SubItems": [
+                                      {
+                                        "RefId": "GetStructuredDataActivity_1",
+                                        "Name": "获取结构化数据",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      },
+                                      {
+                                        "RefId": "If_3",
+                                        "Name": "条件（If 数据表不为空）",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": null,
+                                            "Name": "If.Then",
+                                            "IsActivity": true,
+                                            "SubItems": [
+                                              {
+                                                "RefId": "Break_2",
+                                                "Name": "终止循环",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "RefId": "DataTablePreviewActivity_1",
+                                "Name": "预览数据表",
+                                "IsActivity": true,
+                                "SubItems": []
+                              },
+                              {
+                                "RefId": "If_2",
+                                "Name": "条件（If 多店铺数据表仍然为空，则关闭弹框重新点击）",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": null,
+                                    "Name": "If.Then",
+                                    "IsActivity": true,
+                                    "SubItems": [
+                                      {
+                                        "RefId": "Sequence_6",
+                                        "Name": "序列",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": "ClickActivity_3",
+                                            "Name": "点击 - 关闭弹框",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          },
+                                          {
+                                            "RefId": "Throw_2",
+                                            "Name": "抛出异常",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "RefId": null,
+                                    "Name": "If.Else",
+                                    "IsActivity": true,
+                                    "SubItems": [
+                                      {
+                                        "RefId": "Sequence_5",
+                                        "Name": "序列",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": "InvokeCSharpCodeActivity_1",
+                                            "Name": "执行C#代码-门店订单格式化",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "RefId": "Break_1",
+                            "Name": "终止循环",
+                            "IsActivity": true,
+                            "SubItems": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "RefId": null,
+                    "Name": "TryCatch.Catches",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "LogActivity_1",
+                        "Name": "写入日志 - 订单采集失败信息",
+                        "IsActivity": true,
+                        "SubItems": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
