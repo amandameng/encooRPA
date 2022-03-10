@@ -181,6 +181,7 @@ public void Run()
 public void sendMsg(MailMessage msg){
     string curMsg = string.Empty;
     // 邮件重试发送3次
+    msg.To.Add(devMailReceiver); // 添加默认报表接收人
     foreach(int i in new int[1,2,3]){
         try{
             curMsg = string.Empty;

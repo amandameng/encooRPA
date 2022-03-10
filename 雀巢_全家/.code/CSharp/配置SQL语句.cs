@@ -184,8 +184,8 @@ public void Run()
                 ordersTable.Rows.Remove(orderItem);
                 continue;
             }
-            string itemValues = string.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')",
-                                    orderItem["OrderNumber"], orderItem["OrderType"],orderItem["OrderDate"],orderItem["ShipDate"],orderItem["ShipAddress"],orderItem["ShipFrom"],orderItem["TotalUnit"],datetime);
+            string itemValues = string.Format("('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}')",
+                                    orderItem["OrderNumber"], orderItem["OrderType"],orderItem["OrderDate"],orderItem["ShipDate"],orderItem["ShipAddress"], orderItem["WMDC"], orderItem["ShipFrom"],orderItem["TotalUnit"],datetime);
             orderInsertlist.Add(itemValues);
         }
         orderInsertStr = string.Join(",", orderInsertlist);
@@ -197,6 +197,7 @@ public void Run()
                 OrderDate,
                 ShipDate,
                 ShipAddress,
+                WMDC,
                 ShipFrom,
                 TotalUnit,
                 CreatedTime

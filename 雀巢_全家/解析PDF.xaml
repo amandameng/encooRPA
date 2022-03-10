@@ -12,8 +12,9 @@
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
   <sap:VirtualizedContainerService.HintSize>866,716</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>解析PDF_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="25">
+    <scg:List x:TypeArguments="x:String" Capacity="21">
       <x:String>System</x:String>
       <x:String>System.Xml</x:String>
       <x:String>System.Linq</x:String>
@@ -22,15 +23,12 @@
       <x:String>BotTime.Flow.Activities</x:String>
       <x:String>Microsoft.CSharp.Activities</x:String>
       <x:String>System.Data</x:String>
-      <x:String>BotTime.DataTableActivity.Activities</x:String>
       <x:String>Encoo.CodeTool.Activity.Activities.CSharp</x:String>
-      <x:String>BotTime.DataTableActivity.ActivityDesigners.Models</x:String>
       <x:String>Encootech.AutomationActivity</x:String>
       <x:String>Encootech.AutomationActivity.WebAction</x:String>
       <x:String>Encoo.DataType</x:String>
       <x:String>Encoo.Pdf.Activity.Activities</x:String>
       <x:String>System.Text.RegularExpressions</x:String>
-      <x:String>BotTime.DataBase.Activity</x:String>
       <x:String>BotTime.Office.Activity</x:String>
       <x:String>System.Net.Mail</x:String>
       <x:String>System.Net</x:String>
@@ -60,13 +58,11 @@
       <AssemblyReference>System.Data</AssemblyReference>
       <AssemblyReference>BotTime.Flow.Activities</AssemblyReference>
       <AssemblyReference>System.Activities</AssemblyReference>
-      <AssemblyReference>BotTime.DataTableActivity</AssemblyReference>
       <AssemblyReference>Encoo.CodeTool.Activity</AssemblyReference>
       <AssemblyReference>AutomationActivity</AssemblyReference>
       <AssemblyReference>Encoo.DataType</AssemblyReference>
       <AssemblyReference>BotTime.ActivityLibrary</AssemblyReference>
       <AssemblyReference>Encoo.Pdf.Activity</AssemblyReference>
-      <AssemblyReference>BotTime.DataBase.Activity</AssemblyReference>
       <AssemblyReference>BotTime.Office.Activity</AssemblyReference>
       <AssemblyReference>Encoo.Console.Activity</AssemblyReference>
     </sco:Collection>
@@ -130,7 +126,7 @@
               <av:Size x:Key="ShapeSize">200,53</av:Size>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <bfa:While ActivityName="循环操作（While)" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="循环操作（While 依次解析每一页)" sap:VirtualizedContainerService.HintSize="491,733" sap2010:WorkflowViewState.IdRef="While_21" IsIgnore="False">
+          <bfa:While ActivityName="循环操作（While)" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="循环操作（While 依次解析每一页)" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="While_21" IsIgnore="False">
             <bfa:While.Variables>
               <Variable x:TypeArguments="x:String" Name="pdfStr" />
             </bfa:While.Variables>
@@ -144,7 +140,7 @@
                 <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_411">currentPage &lt;= pageCount</mca:CSharpValue>
               </InArgument>
             </bfa:While.Condition>
-            <Sequence DisplayName="序列 - 解析每一页订单" sap:VirtualizedContainerService.HintSize="471,624" sap2010:WorkflowViewState.IdRef="Sequence_42">
+            <Sequence DisplayName="序列 - 解析每一页订单" sap:VirtualizedContainerService.HintSize="471,676" sap2010:WorkflowViewState.IdRef="Sequence_42">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -172,15 +168,22 @@
                   </InArgument>
                 </epaa:GetTextOfPdfActivity.StartPage>
               </epaa:GetTextOfPdfActivity>
-              <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 - 订单解析捕获异常" sap:VirtualizedContainerService.HintSize="449,402" sap2010:WorkflowViewState.IdRef="TryCatch_1" IsIgnore="False">
+              <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 - 订单解析捕获异常" sap:VirtualizedContainerService.HintSize="449,454" sap2010:WorkflowViewState.IdRef="TryCatch_1" IsIgnore="False">
                 <bfa:TryCatch.Try>
-                  <ecaac:InvokeCSharpCodeActivity ActivityName="执行C#代码" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行C#代码: 解析PDF数据" sap:VirtualizedContainerService.HintSize="349,93" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_18">
-                    <ecaac:InvokeCSharpCodeActivity.CodeFilePath>
-                      <InArgument x:TypeArguments="x:String">
-                        <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_193">.code\CSharp\解析PDF数据.cs</Literal>
-                      </InArgument>
-                    </ecaac:InvokeCSharpCodeActivity.CodeFilePath>
-                  </ecaac:InvokeCSharpCodeActivity>
+                  <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="371,217" sap2010:WorkflowViewState.IdRef="Sequence_53">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ecaac:InvokeCSharpCodeActivity ActivityName="执行C#代码" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行C#代码: 解析PDF数据" sap:VirtualizedContainerService.HintSize="349,93" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_18">
+                      <ecaac:InvokeCSharpCodeActivity.CodeFilePath>
+                        <InArgument x:TypeArguments="x:String">
+                          <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_193">.code\CSharp\解析PDF数据.cs</Literal>
+                        </InArgument>
+                      </ecaac:InvokeCSharpCodeActivity.CodeFilePath>
+                    </ecaac:InvokeCSharpCodeActivity>
+                  </Sequence>
                 </bfa:TryCatch.Try>
                 <bfa:TryCatch.Catches>
                   <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="435,23" sap2010:WorkflowViewState.IdRef="Catch`1_1">
@@ -250,11 +253,11 @@
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <av:Point x:Key="ShapeLocation">148.5,112.5</av:Point>
-          <av:Size x:Key="ShapeSize">323,55</av:Size>
-          <av:PointCollection x:Key="ConnectorLocation">310,167.5 310,223.5</av:PointCollection>
+          <av:Size x:Key="ShapeSize">323,58</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">310,170.5 310,223.5</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - pdfFile" sap:VirtualizedContainerService.HintSize="323,55" sap2010:WorkflowViewState.IdRef="Assign_71" IsIgnore="False">
+      <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - pdfFile" sap:VirtualizedContainerService.HintSize="323,58" sap2010:WorkflowViewState.IdRef="Assign_71" IsIgnore="False">
         <bfa:Assign.To>
           <OutArgument x:TypeArguments="x:String">
             <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_160">pdfFile</mca:CSharpReference>
@@ -279,11 +282,11 @@
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <av:Point x:Key="ShapeLocation">488.5,112.5</av:Point>
-          <av:Size x:Key="ShapeSize">323,55</av:Size>
-          <av:PointCollection x:Key="ConnectorLocation">650,167.5 650,250 410,250</av:PointCollection>
+          <av:Size x:Key="ShapeSize">323,58</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">650,170.5 650,250 410,250</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - pdfFile 测试" sap:VirtualizedContainerService.HintSize="323,55" sap2010:WorkflowViewState.IdRef="Assign_72" IsIgnore="False">
+      <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - pdfFile 测试" sap:VirtualizedContainerService.HintSize="323,58" sap2010:WorkflowViewState.IdRef="Assign_72" IsIgnore="False">
         <bfa:Assign.To>
           <OutArgument x:TypeArguments="x:String">
             <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_161">pdfFile</mca:CSharpReference>

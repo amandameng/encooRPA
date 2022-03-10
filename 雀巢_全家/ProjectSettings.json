@@ -30,12 +30,6 @@
           "DisplayName": "执行C#代码:发送邮件"
         },
         {
-          "ActivityId": "1.533",
-          "IsEnabled": true,
-          "IdRef": "InvokeCSharpCodeActivity_20",
-          "DisplayName": "执行C#代码: 配置SQL语句"
-        },
-        {
           "ActivityId": "1.452",
           "IsEnabled": true,
           "IdRef": "If_24",
