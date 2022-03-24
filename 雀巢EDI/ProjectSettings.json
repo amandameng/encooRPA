@@ -58,7 +58,7 @@
       ],
       "发送邮件.xaml": [
         {
-          "ActivityId": null,
+          "ActivityId": "1.18",
           "IsEnabled": true,
           "IdRef": "InvokeCSharpCodeActivity_1",
           "DisplayName": "执行C#代码 - 发送邮件"

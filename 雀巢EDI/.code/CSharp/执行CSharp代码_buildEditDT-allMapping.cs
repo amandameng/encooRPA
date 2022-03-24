@@ -213,7 +213,7 @@ public DataRow buildEdiOrderRow(DataRow orderRow, ref List<string> orderExceptio
     }
     ediRow["F"] = orderRow["Sold_to_Name"];
     ediRow["H"] = orderRow["Ship_to_Name"];
-    ediRow["I"] = orderRow["PO_Number"];  // mandatory
+    ediRow["I"] = is_Online ? orderRow["PO_Number"] : (orderRow["PO_Number"].ToString() + "-test");  // mandatory
     string Reqd_Del_Date = orderRow["Reqd_Del_Date"].ToString().Trim();
     ediRow["J"] = string.IsNullOrEmpty(Reqd_Del_Date) ? "" : Convert.ToDateTime(orderRow["Reqd_Del_Date"]).ToString("yyyyMMdd"); // mandatory
     ediRow["K"] = orderRow["Delivery_note_text"];
