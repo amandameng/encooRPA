@@ -88,13 +88,13 @@
   "ProjectDependencyItems": [
     {
       "Id": "BotTime.Flow.Activities",
-      "Version": "1.5.2112.2",
+      "Version": "1.5.2201.2",
       "Title": "BotTime.Flow.Activities",
       "InnerDependencies": []
     },
     {
       "Id": "BotTime.Office.Activity",
-      "Version": "1.9.2112.4",
+      "Version": "1.9.2202.1",
       "Title": "BotTime.Office.Activity",
       "InnerDependencies": [
         {
@@ -192,13 +192,13 @@
     },
     {
       "Id": "BotTime.DataBase.Activity",
-      "Version": "1.8.2112.5",
+      "Version": "1.8.2201.4",
       "Title": "BotTime.DataBase.Activity",
       "InnerDependencies": []
     },
     {
       "Id": "Encoo.Console.Activity",
-      "Version": "1.8.2112.3",
+      "Version": "1.8.2201.3",
       "Title": "Encoo.Console.Activity",
       "InnerDependencies": [
         {
@@ -249,7 +249,7 @@
     },
     {
       "Id": "BotTime.ActivityLibrary",
-      "Version": "1.7.2112.2",
+      "Version": "1.7.2201.3",
       "Title": "BotTime.ActivityLibrary",
       "InnerDependencies": [
         {
@@ -651,7 +651,7 @@
     },
     {
       "Id": "BotTime.DataTableActivity",
-      "Version": "1.6.2112.2",
+      "Version": "1.6.2201.3",
       "Title": "BotTime.DataTable.Activity",
       "InnerDependencies": [
         {
@@ -706,13 +706,13 @@
     },
     {
       "Id": "AutomationActivity",
-      "Version": "1.6.2111.8",
+      "Version": "1.7.2201.6",
       "Title": "BotTime.Automation.Activity",
       "InnerDependencies": []
     },
     {
       "Id": "Encoo.CodeTool.Activity",
-      "Version": "1.5.2112.2",
+      "Version": "1.5.2201.4",
       "Title": "Encoo.CodeTool.Activity",
       "InnerDependencies": [
         {
@@ -845,7 +845,7 @@
     },
     {
       "Id": "BotTime.Mail.Activity",
-      "Version": "1.7.2112.1",
+      "Version": "1.7.2201.2",
       "Title": "BotTime.Mail.Activity",
       "InnerDependencies": [
         {
@@ -909,7 +909,7 @@
     },
     {
       "Id": "Encoo.Pdf.Activity",
-      "Version": "1.2.2111.1",
+      "Version": "1.2.2201.3",
       "Title": "Encoo.Pdf.Activity",
       "InnerDependencies": [
         {
@@ -933,7 +933,7 @@
     },
     {
       "Id": "Encoo.Automation.MobileActivity",
-      "Version": "1.4.2111.7",
+      "Version": "1.5.2201.5",
       "Title": "Encoo.Automation.MobileActivity Package",
       "InnerDependencies": []
     }

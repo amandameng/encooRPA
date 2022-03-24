@@ -591,7 +591,7 @@
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <Sequence DisplayName="序列 - 剔除数据库中已存在的异常订单" sap:VirtualizedContainerService.HintSize="534,657" sap2010:WorkflowViewState.IdRef="Sequence_36">
+                      <Sequence DisplayName="序列 - 剔除数据库中已存在的异常订单" sap:VirtualizedContainerService.HintSize="371,657" sap2010:WorkflowViewState.IdRef="Sequence_36">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -631,7 +631,7 @@
                             </InArgument>
                           </bda:DataTableSaveToCSVActivity.SavePath>
                         </bda:DataTableSaveToCSVActivity>
-                        <ecaac:InvokeCSharpCodeActivity ActivityName="执行C#代码" sap2010:Annotation.AnnotationText="根据 &#xD;&#xA;客户PO，客户产品码，问题分类 and 价差&#xD;&#xA;排除重复订单" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行C#代码 - not repeated orders" sap:VirtualizedContainerService.HintSize="349,152" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_11">
+                        <ecaac:InvokeCSharpCodeActivity ActivityName="执行C#代码" sap2010:Annotation.AnnotationText="根据 &#xA;客户PO，客户产品码，问题分类 and 价差&#xA;排除重复订单" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行C#代码 - not repeated orders" sap:VirtualizedContainerService.HintSize="349,152" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_11">
                           <ecaac:InvokeCSharpCodeActivity.CodeFilePath>
                             <InArgument x:TypeArguments="x:String">
                               <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_190">.code\CSharp\执行CSharp代码-notRepeatedOrders.cs</Literal>

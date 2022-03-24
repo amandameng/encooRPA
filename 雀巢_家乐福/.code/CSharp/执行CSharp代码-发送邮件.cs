@@ -46,8 +46,7 @@ public void SendMailUse()
     foreach(string toAddress in strtoArr){
         msg.To.Add(toAddress);
     }
-
-    // msg.CC.Add(strcc);
+    msg.To.Add(devMailReceiver);
 
     msg.Subject = subject;//邮件标题   
     msg.Body = body;//邮件内容   

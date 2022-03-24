@@ -8,7 +8,14 @@ public void Run()
         string product_code = dr["客户产品代码"].ToString();
         string 问题分类 = dr["问题分类"].ToString().Trim();
         string 价差 = dr["价差"].ToString().Trim();
-        DataRow[] searchedResults = existingExceptionOrders.Select(String.Format("客户PO='{0}' and 客户产品码='{1}' and 问题分类='{2}' and 价差='{3}'", order_number, product_code, 问题分类, 价差));
+        string search_option = string.Empty;
+        if(string.IsNullOrEmpty(价差)){
+            search_option = String.Format("客户PO='{0}' and 客户产品码='{1}' and 问题分类='{2}'", order_number, product_code, 问题分类);
+        }else{
+            search_option = String.Format("客户PO='{0}' and 客户产品码='{1}' and 问题分类='{2}' and 价差='{3}'", order_number, product_code, 问题分类, 价差);
+        }
+        Console.WriteLine("价差: {0}", 价差);
+        DataRow[] searchedResults = existingExceptionOrders.Select(search_option);
         if(searchedResults.Length == 0){
             增量异常订单数据表.ImportRow(dr);
         }
