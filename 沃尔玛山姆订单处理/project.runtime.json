@@ -37,6 +37,12 @@
       "Type": "ActivityOrCode"
     },
     {
+      "Id": "GlobalVariable",
+      "AutoUpgrade": false,
+      "UpgradeVersionPattern": null,
+      "Type": "ActivityOrCode"
+    },
+    {
       "Id": "BotTime.ActivityLibrary",
       "AutoUpgrade": false,
       "UpgradeVersionPattern": "1.*.*.*",
@@ -64,12 +70,6 @@
       "Id": "BotTime.Mail.Activity",
       "AutoUpgrade": false,
       "UpgradeVersionPattern": "1.*.*.*",
-      "Type": "ActivityOrCode"
-    },
-    {
-      "Id": "GlobalVariable",
-      "AutoUpgrade": false,
-      "UpgradeVersionPattern": null,
       "Type": "ActivityOrCode"
     }
   ],
@@ -227,6 +227,12 @@
       "Id": "BotTime.DataBase.Activity",
       "Version": "1.8.2201.4",
       "Title": "BotTime.DataBase.Activity",
+      "InnerDependencies": []
+    },
+    {
+      "Id": "GlobalVariable",
+      "Version": "1.0.3",
+      "Title": "全局变量管理",
       "InnerDependencies": []
     },
     {
@@ -887,12 +893,6 @@
       "Id": "Microsoft.Office.Interop.Outlook",
       "Version": "15.0.4797.1003",
       "Title": "Microsoft.Office.Interop.Outlook",
-      "InnerDependencies": []
-    },
-    {
-      "Id": "GlobalVariable",
-      "Version": "1.0.3",
-      "Title": "全局变量管理",
       "InnerDependencies": []
     },
     {

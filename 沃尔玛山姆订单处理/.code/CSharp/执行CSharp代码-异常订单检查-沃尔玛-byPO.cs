@@ -336,9 +336,10 @@ public void checkBulkWalferPrice(DataRow dr, ref List<string> refItemExceptionLi
         }
 
         decimal nestle_NPS = toDecimalConvert(bulkProductDrs[0]["Nestle_NPS"]);
-
+        string matefial_description = bulkProductDrs[0]["Material_Description"].ToString();
         if(dr["Remark_Option"].ToString().Contains("检查价差")){
             DataRow byPOItemRow = priceExceptionRow(dr, 雀巢产品编码, nestle_NPS, cleanExceptionDRow, quantity_ordered);
+            byPOItemRow["Material Description"] = matefial_description;
             exceptionByPODT.Rows.Add(byPOItemRow);
         }
         sapNetValue += sapNetValueFormular(nestle_NPS * quantity_ordered);
@@ -365,11 +366,13 @@ public void checkBulkWalferPrice(DataRow dr, ref List<string> refItemExceptionLi
                continue;
             }
             decimal nestle_NPS = toDecimalConvert(bulkProductDrs[0]["Nestle_NPS"]);
+            string matefial_description = bulkProductDrs[0]["Material_Description"].ToString();
 
             int curQuantity_ordered = qtyArr[i];
             sapNetValue += sapNetValueFormular(nestle_NPS * curQuantity_ordered);
             if(dr["Remark_Option"].ToString().Contains("检查价差")){
                 DataRow byPOItemRow = priceExceptionRow(dr, 雀巢产品编码, nestle_NPS, cleanExceptionDRow, curQuantity_ordered);
+                byPOItemRow["Material Description"] = matefial_description;
                 exceptionByPODT.Rows.Add(byPOItemRow);
             }
         } 

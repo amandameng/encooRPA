@@ -102,7 +102,7 @@ public void Run()
             if(quantity_ordered == 0){
                 refItemExceptionList.Add("产品数量为0");
             }
-            specialProductCheck(dr, ref refItemExceptionList, ref byPOItemRow, prevOrderDocLinkRows);
+            specialProductCheck(dr, ref refItemExceptionList, ref byPOItemRow, prevOrderDocLinkRows, 问题订单List);
             if(!String.IsNullOrEmpty(byPOItemRow["Exception reason"].ToString())){ // 异常信息不为空
                 exceptionByPODT.Rows.Add(byPOItemRow);  // by Item 的异常订单 
             }
@@ -119,8 +119,10 @@ public void Run()
     }
     buildByPODT();
     buildByPOAndItemDT();
+    // Convert.ToInt32("a.b");
 }
 
+// TODO, 雀巢数量转换后
 public void compareOrderItem(DataRow[] curOrderDocLinkRows, DataRow[] prevOrderDocLinkRows, DataRow cleanExceptionDRow){
     string[] currentProductCodeArr = curOrderDocLinkRows.Cast<DataRow>().Select<DataRow, string>(dr => dr["customer_product_code"].ToString()).ToArray();
     string[] previousProductCodeArr = prevOrderDocLinkRows.Cast<DataRow>().Select<DataRow, string>(dr => dr["customer_product_code"].ToString()).ToArray();
@@ -139,7 +141,7 @@ public void compareOrderItem(DataRow[] curOrderDocLinkRows, DataRow[] prevOrderD
                     
                     itemExceptionRow["原订单数量"] = 0;
                     itemExceptionRow["修改后订单数量"] = dr["quantity_ordered"];
-                    itemExceptionRow["雀巢数量"] = dr["quantity_ordered"];
+                    itemExceptionRow["雀巢数量"] =fetchQty( dr["quantity_ordered"], dr["customer_product_code"].ToString(), dr["Nestle_Material_No"].ToString(), samQtyMappingDT);
                     itemExceptionRow["Exception reason"] = "订单修改产品数量,新增产品行";
                     exceptionByPODT.Rows.Add(itemExceptionRow);
                 }
@@ -245,7 +247,7 @@ public void buildByPOAndItemDT(){
 }
 
 // 产品行检查折扣
-public void specialProductCheck(DataRow dr, ref List<string> refItemExceptionList, ref DataRow byPOItemRow, DataRow[] prevOrderDocLinkRows){
+public void specialProductCheck(DataRow dr, ref List<string> refItemExceptionList, ref DataRow byPOItemRow, DataRow[] prevOrderDocLinkRows, List<string> 问题订单list){
     List<string> itemExceptionList = new List<String>{};
     
     string remark = dr["Remark"].ToString();
@@ -325,16 +327,18 @@ public void specialProductCheck(DataRow dr, ref List<string> refItemExceptionLis
       产品行的折扣率不等于各产品扣点[产品主数据有维护]（有一个产品不符合就是exception） ，反馈Exception，同时也要放入excel to Order
     */
     string 产品扣点 = dr["产品扣点"].ToString();
-    if(string.IsNullOrEmpty(产品扣点)){
-        decimal productDiscountRate = fetchRateInDecimal(产品扣点);
+    if(!string.IsNullOrEmpty(产品扣点)){
+        decimal productDiscountRate = Math.Round(fetchRateInDecimal(产品扣点), 3);
         decimal oli_extended_cost = toDecimalConvert(dr["oli_extended_cost"]);
         if(oli_extended_cost == 0){
             oli_extended_cost = decimal.MaxValue;
         }
-        decimal 产品行折扣 = Math.Round(toDecimalConvert(dr["oli_allowance_total"])/oli_extended_cost, 2);
-        if(productDiscountRate != 产品行折扣){
+        // Console.WriteLine("oli_allowance_total:{0}, oli_extended_cost: {1}", dr["oli_allowance_total"].ToString(), oli_extended_cost);
+        decimal 产品行折扣 = Math.Round(toDecimalConvert(dr["oli_allowance_total"])/oli_extended_cost, 3);
+        if(Math.Abs(productDiscountRate) != Math.Abs(产品行折扣)){
             byPOItemRow["Item Type"] = "Item";
             byPOItemRow["雀巢数量"] = dr["quantity_ordered"];
+            Console.WriteLine(string.Format("产品行折扣率不等于扣点，产品行折扣: {0}, 产品扣点: {1}", 产品行折扣, productDiscountRate));
             itemExceptionList.Add(string.Format("产品行折扣率不等于扣点，产品行折扣: {0}, 产品扣点: {1}", 产品行折扣, productDiscountRate));
         }
     }
@@ -354,12 +358,14 @@ public void specialProductCheck(DataRow dr, ref List<string> refItemExceptionLis
     2, 其余产品换算雀巢数量不为整数的情况不录单反馈Exception
     */
     // 存在数据转换的话，就去检查箱数是否为整数
+    decimal final_quantity = toDecimalConvert(dr["quantity_ordered"]);
+    DataRow qtyMappingRow = null;
     if(samQtyMappingDT!=null){
         DataRow[] qtyMappingRows = samQtyMappingDT.Select(string.Format("Sam_Product_Code='{0}' and Nestle_Product_Code='{1}'", dr["customer_product_code"].ToString(), dr["Nestle_Material_No"].ToString()));
         if(qtyMappingRows.Length > 0){
-            DataRow qtyMappingRow = qtyMappingRows[0];
+            qtyMappingRow = qtyMappingRows[0];
         
-            decimal final_quantity = fetchQty(dr["quantity_ordered"], qtyMappingRow, ref itemExceptionList);
+             final_quantity = fetchQty(dr["quantity_ordered"], qtyMappingRow, ref itemExceptionList, true);
             byPOItemRow["雀巢数量"] = final_quantity;
             
             Decimal cost = toDecimalConvert(dr["cost"]);
@@ -386,9 +392,9 @@ public void specialProductCheck(DataRow dr, ref List<string> refItemExceptionLis
         }
     }
 
-     Console.WriteLine("问题订单List: {0}", string.Join("|", refItemExceptionList));
+     Console.WriteLine("--------------------问题订单List: {0}", string.Join("|", 问题订单list));
     // 如果整个订单数量修改的话， 需要记录单个item变化的部分
-    if(string.Join("|", refItemExceptionList).Contains("订单修改产品数量")){
+    if(string.Join("|", 问题订单list).Contains("订单修改产品数量")){
         string customerProductCode = dr["customer_product_code"].ToString();
         //Console.WriteLine("customerProductCode: {0}", customerProductCode);
         
@@ -404,10 +410,13 @@ public void specialProductCheck(DataRow dr, ref List<string> refItemExceptionLis
         // 之前item不等于当前item对应的数量
         if(prevItemRow!=null && prevItemRow["quantity_ordered"].ToString() != dr["quantity_ordered"].ToString()){
             byPOItemRow["原订单数量"] = prevItemRow["quantity_ordered"];
-            //Console.WriteLine("原订单数量: {0}, 修改后订单数量: {1}", prevItemRow["quantity_ordered"], dr["quantity_ordered"]);
+            decimal finalPrevQuantity = qtyMappingRow!=null ? fetchQty(prevItemRow["quantity_ordered"], qtyMappingRow, ref itemExceptionList, false) : toDecimalConvert(prevItemRow["quantity_ordered"]);
+            Console.WriteLine("---------原订单数量: {0}, 修改后订单数量: {1}", prevItemRow["quantity_ordered"], dr["quantity_ordered"]);
             
             byPOItemRow["修改后订单数量"] = dr["quantity_ordered"];
-            itemExceptionList.Add("订单修改产品数量");
+            itemExceptionList.Add($"订单修改产品数量 ，原订单雀巢数量：{toIntConvert(finalPrevQuantity)}， 改单后雀巢数量：{toIntConvert(final_quantity)}");
+        }else{
+            byPOItemRow["原订单数量"] = "";
         }
     }
     refItemExceptionList = refItemExceptionList.Union(itemExceptionList).ToList();
@@ -419,22 +428,23 @@ public void specialProductCheck(DataRow dr, ref List<string> refItemExceptionLis
     }
 }
 
-public decimal fetchQty(object originalQty, DataRow qtyMappingRow, ref List<string> itemExceptionList){
+public decimal fetchQty(object originalQty, DataRow qtyMappingRow, ref List<string> itemExceptionList, bool intoException){
     decimal customerOrderQty = toDecimalConvert(originalQty);
     
     string Not_Integer_Still_Into_EX2O = qtyMappingRow["Not_Integer_Still_Into_EX2O"].ToString();
     decimal nestleQty_m = customerOrderQty * toDecimalConvert(qtyMappingRow["Nestle_Qty"]);
-    int nestleQtyInt = Convert.ToInt32(nestleQty_m);
+    int nestleQtyInt = toIntConvert(nestleQty_m);
     // 换算不为整数则，看产品设定是否录单,反馈exception
     if((nestleQtyInt != nestleQty_m)){
         if(Not_Integer_Still_Into_EX2O == "1"){
             int 山姆整层箱数 = 30;
-            int 层数 = Convert.ToInt32(customerOrderQty/山姆整层箱数);
+            int 层数 = toIntConvert(Math.Floor(customerOrderQty/山姆整层箱数));   // TODO: Math.Floor 还是 Math.Round，进位还是去除小数
             decimal quantity_ordered = 层数 * 山姆整层箱数;
-            itemExceptionList.Add($"山姆订单箱数不为整数仍然录单，原订单数量：{customerOrderQty}， 录单后数量：{quantity_ordered}");
-            return quantity_ordered;
+            nestleQtyInt = toIntConvert(quantity_ordered * toDecimalConvert(qtyMappingRow["Nestle_Qty"]));
+            if(intoException) itemExceptionList.Add($"山姆订单箱数不为整数仍然录单"); // ，原订单雀巢数量：{customerOrderQty}， 改单后雀巢数量：{nestleQtyInt}
+            return nestleQtyInt;
         }else{
-            itemExceptionList.Add($"山姆订单箱数不为整数不录单，原订单数量：{customerOrderQty}， 雀巢对应数量：{nestleQty_m}");
+            if(intoException) itemExceptionList.Add($"山姆订单箱数不为整数不录单");  // ，原订单雀巢数量：{customerOrderQty}， 雀巢对应数量：{nestleQty_m}
             return nestleQty_m;
         }
     }else{
@@ -451,12 +461,13 @@ public decimal fetchQty(object originalQty, string customerProdCode, string nest
         
         string Not_Integer_Still_Into_EX2O = qtyMappingRow["Not_Integer_Still_Into_EX2O"].ToString();
         decimal nestleQty_m = customerOrderQty * toDecimalConvert(qtyMappingRow["Nestle_Qty"]);
-        int nestleQtyInt = Convert.ToInt32(nestleQty_m);
+        int nestleQtyInt = toIntConvert(nestleQty_m);
         // 换算不为整数则，看产品设定是否录单,反馈exception
         if((nestleQtyInt != nestleQty_m)){
             if(Not_Integer_Still_Into_EX2O == "1"){
                 int 山姆整层箱数 = 30;
-                int 层数 = Convert.ToInt32(customerOrderQty/山姆整层箱数);
+                int 层数 = toIntConvert(Math.Floor(customerOrderQty/山姆整层箱数));             // TODO: Math.Floor 还是 Math.Round，进位还是去除小数
+
                 decimal quantity_ordered = 层数 * 山姆整层箱数;
                 return quantity_ordered;
             }else{

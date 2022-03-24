@@ -277,16 +277,16 @@ public void specialProductCheck(DataRow dr, ref List<string> refItemExceptionLis
       产品行的折扣率不等于各产品扣点[产品主数据有维护]（有一个产品不符合就是exception） ，反馈Exception，【不录单】
     */
     string 产品扣点 = dr["产品扣点"].ToString();
-    if(string.IsNullOrEmpty(产品扣点)){
-        decimal productDiscountRate = fetchRateInDecimal(产品扣点);
+    if(!string.IsNullOrEmpty(产品扣点)){
+        decimal productDiscountRate = Math.Round(fetchRateInDecimal(产品扣点), 3);
         //Console.WriteLine("oli_extended_cost");
         decimal oli_extended_cost = toDecimalConvert(dr["oli_extended_cost"]);
         if(oli_extended_cost == 0){
             oli_extended_cost = decimal.MaxValue;
         }
         //Console.WriteLine("产品行折扣");
-        decimal 产品行折扣 = Math.Round(toDecimalConvert(dr["oli_allowance_total"])/oli_extended_cost, 2);
-        if(productDiscountRate != 产品行折扣){
+        decimal 产品行折扣 = Math.Round(toDecimalConvert(dr["oli_allowance_total"])/oli_extended_cost, 3);
+        if(Math.Abs(productDiscountRate) != Math.Abs(产品行折扣)){
             byPOItemRow["Item Type"] = "Item";
             itemExceptionList.Add(string.Format("产品行折扣率不等于扣点，产品行折扣: {0}, 雀巢产品扣点: {1}", 产品行折扣, productDiscountRate));
         }

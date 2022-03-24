@@ -34,9 +34,9 @@ public void Run()
            
             foreach(DataRow dr in orderItemRows){
                 string productCode = dr["product_code"].ToString();
-                int quantity_ordered = Convert.ToInt32(dr["quantity_ordered"]);
+                int quantity_ordered = toIntConvert(dr["quantity_ordered"]);
                 string 雀巢产品编码 = dr["雀巢产品编码"].ToString();
-                int lineNumber = Convert.ToInt32(dr["line_number"]);
+                int lineNumber = toIntConvert(dr["line_number"]);
                 Console.WriteLine("雀巢产品编码: {0}", 雀巢产品编码);
                 // 山姆水单，仓租不为1.3%或者产品行折扣，不录单
                 if(customer_name == "山姆-IB Water" && exceptionPODT!=null && exceptionPODT.Rows.Count >0 ){
@@ -161,14 +161,14 @@ public decimal fetchQty(object originalQty, DataRow qtyMappingRow, ref bool 是�
     
     string Not_Integer_Still_Into_EX2O = qtyMappingRow["Not_Integer_Still_Into_EX2O"].ToString();
     decimal nestleQty_m = customerOrderQty * toDecimalConvert(qtyMappingRow["Nestle_Qty"]);
-    int nestleQtyInt = Convert.ToInt32(nestleQty_m);
+    int nestleQtyInt = toIntConvert(nestleQty_m);
     // 换算不为整数则，看产品设定是否录单,反馈exception。
     // 1、如果计算后箱数不为整数，但是【Not_Integer_Still_Into_EX2O】为1，则计算出整数录单，否则不录单。
     // 2、如果计算后箱数为整数，则都录单
     if((nestleQtyInt != nestleQty_m)){
         if(Not_Integer_Still_Into_EX2O == "1"){
             int 山姆整层箱数 = 30;
-            int 层数 = Convert.ToInt32(customerOrderQty/山姆整层箱数);
+            int 层数 = toIntConvert(customerOrderQty/山姆整层箱数);
             decimal quantity_ordered = 层数 * 山姆整层箱数;
             是否录单 = true;
             return quantity_ordered;
@@ -244,7 +244,7 @@ public void samOneToManyProcess(string productCode, int quantity_ordered, string
 public int[] reAllocateQty(string[] allocationRatioArr, int quantity_ordered){
     List<int> initQtyList = new List<int> {};
     foreach(string ratioStr in allocationRatioArr){
-        int rationValue = Convert.ToInt32(ratioStr);
+        int rationValue = toIntConvert(ratioStr);
         int curQuantity_ordered = quantity_ordered * rationValue;
         initQtyList.Add(curQuantity_ordered);
     }
@@ -262,8 +262,8 @@ public int[] splitQtyByRatio(string[] allocationRatioArr, int quantity_ordered){
     List<int> initQtyList = new List<int> {};
     int totalRequltQty = 0;
     foreach(string ratioStr in allocationRatioArr){
-        int rationValue = Convert.ToInt32(ratioStr);
-        int curQuantity_ordered = Convert.ToInt32(Math.Round(quantity_ordered * (rationValue/total_ratio)));
+        int rationValue = toIntConvert(ratioStr);
+        int curQuantity_ordered = toIntConvert(Math.Round(quantity_ordered * (rationValue/total_ratio)));
         totalRequltQty += curQuantity_ordered;
         initQtyList.Add(curQuantity_ordered);
     }

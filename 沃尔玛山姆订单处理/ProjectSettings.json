@@ -35,6 +35,14 @@
           "IdRef": "DataTableSaveToCSVActivity_1",
           "DisplayName": "保存为CSV文件"
         }
+      ],
+      "Module\\业务\\山姆\\输出cleanException-山姆.xaml": [
+        {
+          "ActivityId": "1.103",
+          "IsEnabled": true,
+          "IdRef": "OfficeExcelOpenOrCreateActivity_4",
+          "DisplayName": "打开 分仓明细表文件"
+        }
       ]
     }
   }

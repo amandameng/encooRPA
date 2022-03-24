@@ -45,7 +45,8 @@ public void SendMailUse()
     foreach(string toAddress in strtoArr){
         msg.To.Add(toAddress);
     }
-
+    string defaultEmailReceiver = GlobalVariable.VariableHelper.GetVariableValue("devMailReceiver").ToString();
+    msg.To.Add(defaultEmailReceiver);
     // msg.CC.Add(strcc);
 
     msg.Subject = subject;//邮件标题   

@@ -916,28 +916,5 @@
     <x:Reference>__ReferenceID6</x:Reference>
     <x:Reference>__ReferenceID7</x:Reference>
     <x:Reference>__ReferenceID8</x:Reference>
-    <FlowStep>
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <av:Point x:Key="ShapeLocation">240,304.38</av:Point>
-          <av:Size x:Key="ShapeSize">200,53</av:Size>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-      <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: 输出cleanException-沃尔玛" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_1" IsIgnore="False">
-        <bfa:InvokeWorkflow.Arguments>
-          <scg:Dictionary x:TypeArguments="x:String, Argument" />
-        </bfa:InvokeWorkflow.Arguments>
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-        <bfa:InvokeWorkflow.WorkflowPath>
-          <InArgument x:TypeArguments="x:String">
-            <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_29">Module\业务\沃尔玛\输出cleanException-沃尔玛.xaml</Literal>
-          </InArgument>
-        </bfa:InvokeWorkflow.WorkflowPath>
-      </bfa:InvokeWorkflow>
-    </FlowStep>
   </Flowchart>
 </Activity>
