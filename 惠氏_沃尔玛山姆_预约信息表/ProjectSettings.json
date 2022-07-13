@@ -1,0 +1,101 @@
+{
+  "QuickOpenItems": [
+    "Main.xaml"
+  ],
+  "ProjectBreakpoints": {
+    "Value": {
+      "通用\\输出增量订单.xaml": [
+        {
+          "ActivityId": "1.2",
+          "IsEnabled": false,
+          "IdRef": "If_29",
+          "DisplayName": "条件 If str_SQL 不为空"
+        },
+        {
+          "ActivityId": "1.94",
+          "IsEnabled": false,
+          "IdRef": "If_30",
+          "DisplayName": "条件（If existingCount == 0）"
+        },
+        {
+          "ActivityId": "1.214",
+          "IsEnabled": false,
+          "IdRef": "ExecuteSqlActivity_1",
+          "DisplayName": "执行语句 - 插入初始订单"
+        }
+      ],
+      "业务\\山姆.xaml": [
+        {
+          "ActivityId": "1.1617",
+          "IsEnabled": false,
+          "IdRef": "InvokeWorkflow_61",
+          "DisplayName": "执行流程 : 输出增量订单"
+        },
+        {
+          "ActivityId": "1.1254",
+          "IsEnabled": false,
+          "IdRef": "InvokeWorkflow_56",
+          "DisplayName": "调用子流程: 抓取订单并入库"
+        },
+        {
+          "ActivityId": "1.227",
+          "IsEnabled": false,
+          "IdRef": "ForEach`1_5",
+          "DisplayName": "循环操作  - 失败重试一次"
+        }
+      ],
+      "业务\\抓取订单详情页111.xaml": [
+        {
+          "ActivityId": "1.250",
+          "IsEnabled": false,
+          "IdRef": "TryCatch_1",
+          "DisplayName": "错误捕获（Try Catch）"
+        }
+      ],
+      "业务\\采集每张订单.xaml": [
+        {
+          "ActivityId": "1.67",
+          "IsEnabled": false,
+          "IdRef": "If_33",
+          "DisplayName": "条件（If pdfFile 值不为空但是文件不存在，说明下载失败）"
+        },
+        {
+          "ActivityId": "1.160",
+          "IsEnabled": false,
+          "IdRef": "Retry_6",
+          "DisplayName": "重试 - 抓取订单数据"
+        }
+      ],
+      "业务\\WM客户平台.xaml": [
+        {
+          "ActivityId": "1.34",
+          "IsEnabled": true,
+          "IdRef": "ForEach`1_3",
+          "DisplayName": "循环操作 - 遍历彩箱装和预约信息表"
+        },
+        {
+          "ActivityId": "1.310",
+          "IsEnabled": true,
+          "IdRef": "AddToCollectionActivity_6",
+          "DisplayName": "添加对象 - excel附件"
+        }
+      ],
+      "通知\\发送邮件.xaml": [
+        {
+          "ActivityId": "1.27",
+          "IsEnabled": true,
+          "IdRef": "DeserializeObjectActivity_1",
+          "DisplayName": "反序列化"
+        }
+      ],
+      "Main.xaml": [
+        {
+          "ActivityId": "1.15",
+          "IsEnabled": true,
+          "IdRef": "If_38",
+          "DisplayName": "条件（If dr_ProjectSetting 异常邮件接收人已设置）"
+        }
+      ]
+    }
+  }
+}

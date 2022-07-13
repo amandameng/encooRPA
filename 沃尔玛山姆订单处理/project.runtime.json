@@ -906,5 +906,7 @@
   "ProjectReferences": [],
   "TerminationHandler": null,
   "ExceptionHandler": null,
-  "ParallelWorkflows": null
+  "ParallelWorkflows": null,
+  "CreatedStudioVersion": null,
+  "LastStudioVersion": null
 }

@@ -85,7 +85,7 @@
       <Variable x:TypeArguments="x:String" Name="配置文件" />
       <Variable x:TypeArguments="x:String" Name="当前主产品文件">
         <Variable.Default>
-          <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_50">C:\Users\mengf\Desktop\export.xlsx</Literal>
+          <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_51">C:\Users\mengf\Desktop\沃尔玛SKU list-RPA20220330.xlsx</Literal>
         </Variable.Default>
       </Variable>
       <Variable x:TypeArguments="scg:List(x:String)" Name="流程初始化异常信息">
@@ -631,7 +631,7 @@ RPA流程执行异常，详细信息如下：&lt;br/&gt;{0}", string.Join("; &lt
                       </InArgument>
                     </bfa:Assign.Value>
                   </bfa:Assign>
-                  <boa:OfficeExcelGetLastRowIndexActivity LettersColumnIndex="{x:Null}" ActivityName="获取末行号" ColumnType="NumberColumn" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取末行号" sap:VirtualizedContainerService.HintSize="349,85" sap2010:WorkflowViewState.IdRef="OfficeExcelGetLastRowIndexActivity_1">
+                  <boa:OfficeExcelGetLastRowIndexActivity ColumnNo="{x:Null}" LettersColumnIndex="{x:Null}" ActivityName="获取末行号" ColumnType="NumberColumn" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取末行号" sap:VirtualizedContainerService.HintSize="349,85" sap2010:WorkflowViewState.IdRef="OfficeExcelGetLastRowIndexActivity_1">
                     <boa:OfficeExcelGetLastRowIndexActivity.ColumnIndex>
                       <InArgument x:TypeArguments="x:Int32">
                         <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_30" Value="1" />

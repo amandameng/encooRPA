@@ -1,0 +1,182 @@
+<Activity mc:Ignorable="sap sap2010 sads" x:Class="更新exported_Order" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:baast="clr-namespace:BotTime.ActivityLibrary.Activities.System.Tool;assembly=BotTime.ActivityLibrary" xmlns:bda="clr-namespace:BotTime.DataBase.Activity;assembly=BotTime.DataBase.Activity" xmlns:bfa="clr-namespace:BotTime.Flow.Activities;assembly=BotTime.Flow.Activities" xmlns:ecaac="clr-namespace:Encoo.CodeTool.Activity.Activities.CSharp;assembly=Encoo.CodeTool.Activity" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger">
+  <x:Members>
+    <x:Property Name="待更新exportedOrders" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="dtRow_ProjectSettings" Type="InArgument(sd:DataRow)" />
+  </x:Members>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap:VirtualizedContainerService.HintSize>596,1221</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>更新exported_Order_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="21">
+      <x:String>System</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>Encoo.CodeTool.Activity.Activities.CSharp</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>BotTime.DataBase.Activity</x:String>
+      <x:String>BotTime.Flow.Activities</x:String>
+      <x:String>BotTime.Office.Activity</x:String>
+      <x:String>Encootech.ActivityCommon.EncooCommonActivity</x:String>
+      <x:String>Microsoft.CSharp.Activities</x:String>
+      <x:String>Encootech.AutomationActivity.WebAction</x:String>
+      <x:String>Encoo.DataType</x:String>
+      <x:String>BotTime.ActivityLibrary.Activities.System.Tool</x:String>
+      <x:String>Encootech.AutomationActivity</x:String>
+      <x:String>BotTime.ActivityLibrary.Activities.System.File</x:String>
+      <x:String>BotTime.DataTableActivity.Activities</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>System.Text</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>Encoo.CodeTool.Activity</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>ParallelExtensionsExtras</AssemblyReference>
+      <AssemblyReference>BotTime.ActivityLibrary</AssemblyReference>
+      <AssemblyReference>BotTime.DataBase.Activity</AssemblyReference>
+      <AssemblyReference>BotTime.Flow.Activities</AssemblyReference>
+      <AssemblyReference>BotTime.Office.Activity</AssemblyReference>
+      <AssemblyReference>ActivityCommon</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>AutomationActivity</AssemblyReference>
+      <AssemblyReference>Encoo.DataType</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Globalization.Extensions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Net.WebSockets.Client.Managed</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>BotTime.DataTableActivity</AssemblyReference>
+      <AssemblyReference>System.Text.Encoding.CodePages</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="序列 - 更新导出的订单" sap:VirtualizedContainerService.HintSize="556,1141" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="insertWMExportedOrdersSQL" />
+      <Variable x:TypeArguments="x:Int32" Name="作用行数" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 实际增量订单数据表 不为空）" sap:VirtualizedContainerService.HintSize="534,1017" sap2010:WorkflowViewState.IdRef="If_2" IsIgnore="False">
+      <bfa:If.Condition>
+        <InArgument x:TypeArguments="x:Boolean">
+          <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_11">待更新exportedOrders!=null &amp;&amp; 待更新exportedOrders.Rows.Count &gt; 0</mca:CSharpValue>
+        </InArgument>
+      </bfa:If.Condition>
+      <bfa:If.Then>
+        <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="471,829" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="sd:DataTable" Name="待更新exportedOrdersDB" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ecaac:InvokeCSharpCodeActivity ActivityName="执行C#代码" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行C#代码 - 筛选入库成功原始导出订单" sap:VirtualizedContainerService.HintSize="449,93" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_2">
+            <ecaac:InvokeCSharpCodeActivity.CodeFilePath>
+              <InArgument x:TypeArguments="x:String">
+                <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_11">.code\CSharp\业务\执行CSharp代码-筛选入库成功原始导出订单.cs</Literal>
+              </InArgument>
+            </ecaac:InvokeCSharpCodeActivity.CodeFilePath>
+          </ecaac:InvokeCSharpCodeActivity>
+          <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: Excel数据表转数据库数据表表" sap:VirtualizedContainerService.HintSize="449,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_4" IsIgnore="False">
+            <bfa:InvokeWorkflow.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="str_TableName">
+                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_18">System.Convert.ToString(dtRow_ProjectSettings["订单列表数据表名"].ToString())</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="sd:DataTable" x:Key="源数据表">
+                <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_17">待更新exportedOrders</mca:CSharpValue>
+              </InArgument>
+              <OutArgument x:TypeArguments="sd:DataTable" x:Key="dbDataTable">
+                <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_6">待更新exportedOrdersDB</mca:CSharpReference>
+              </OutArgument>
+            </bfa:InvokeWorkflow.Arguments>
+            <bfa:InvokeWorkflow.WorkflowPath>
+              <InArgument x:TypeArguments="x:String">
+                <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_14">通用\Excel数据表转数据库数据表表.xaml</Literal>
+              </InArgument>
+            </bfa:InvokeWorkflow.WorkflowPath>
+          </bfa:InvokeWorkflow>
+          <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: 根据数据表拼接SQL语句" sap:VirtualizedContainerService.HintSize="449,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_3" IsIgnore="False">
+            <bfa:InvokeWorkflow.Arguments>
+              <InArgument x:TypeArguments="sd:DataTable" x:Key="dbDataTable">
+                <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_19">待更新exportedOrdersDB</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="入库表名">
+                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_15">dtRow_ProjectSettings["订单列表数据表名"].ToString()</mca:CSharpValue>
+              </InArgument>
+              <OutArgument x:TypeArguments="x:String" x:Key="str_SQL">
+                <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_4">insertWMExportedOrdersSQL</mca:CSharpReference>
+              </OutArgument>
+            </bfa:InvokeWorkflow.Arguments>
+            <bfa:InvokeWorkflow.WorkflowPath>
+              <InArgument x:TypeArguments="x:String">
+                <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_12">通用\根据数据表拼接SQL语句.xaml</Literal>
+              </InArgument>
+            </bfa:InvokeWorkflow.WorkflowPath>
+          </bfa:InvokeWorkflow>
+          <bda:DatabaseConnectActivity ActivityName="连接数据库" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="连接数据库 - 更新exported Order" sap:VirtualizedContainerService.HintSize="449,202" sap2010:WorkflowViewState.IdRef="DatabaseConnectActivity_10" ProviderName="MySql">
+            <bda:DatabaseConnectActivity.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="DataBaseScope" />
+                </ActivityAction.Argument>
+                <bda:ExecuteSqlActivity ActivityName="执行语句" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行语句" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="ExecuteSqlActivity_3">
+                  <bda:ExecuteSqlActivity.AffectedRows>
+                    <OutArgument x:TypeArguments="x:Int32">
+                      <mca:CSharpReference x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpReference`1_5">作用行数</mca:CSharpReference>
+                    </OutArgument>
+                  </bda:ExecuteSqlActivity.AffectedRows>
+                  <bda:ExecuteSqlActivity.ExecuteTimeOut>
+                    <InArgument x:TypeArguments="x:TimeSpan">
+                      <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_13" Value="00:00:30" />
+                    </InArgument>
+                  </bda:ExecuteSqlActivity.ExecuteTimeOut>
+                  <bda:ExecuteSqlActivity.Sql>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_16">(insertWMExportedOrdersSQL).ToString()</mca:CSharpValue>
+                    </InArgument>
+                  </bda:ExecuteSqlActivity.Sql>
+                </bda:ExecuteSqlActivity>
+              </ActivityAction>
+            </bda:DatabaseConnectActivity.Body>
+            <bda:DatabaseConnectActivity.ConnectionString>
+              <InArgument x:TypeArguments="x:String">
+                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_12">System.Convert.ToString(dtRow_ProjectSettings["数据库连接"].ToString())</mca:CSharpValue>
+              </InArgument>
+            </bda:DatabaseConnectActivity.ConnectionString>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </bda:DatabaseConnectActivity>
+          <baast:LogActivity ActivityName="写入日志" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="写入日志 - 最终有效处理的订单行数" sap:VirtualizedContainerService.HintSize="449,58" sap2010:WorkflowViewState.IdRef="LogActivity_2" Level="Info">
+            <baast:LogActivity.LogContent>
+              <InArgument x:TypeArguments="x:String">
+                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_13">(作用行数).ToString()</mca:CSharpValue>
+              </InArgument>
+            </baast:LogActivity.LogContent>
+          </baast:LogActivity>
+        </Sequence>
+      </bfa:If.Then>
+    </bfa:If>
+  </Sequence>
+</Activity>

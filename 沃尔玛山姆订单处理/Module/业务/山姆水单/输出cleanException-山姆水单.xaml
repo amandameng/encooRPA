@@ -65,6 +65,7 @@
       <Variable x:TypeArguments="x:String" Name="orderJobHistorySql" />
       <Variable x:TypeArguments="x:String" Name="noPriceCheckSql" />
       <Variable x:TypeArguments="sd:DataTable" Name="沃尔玛跳过产品检查数据表" />
+      <Variable x:TypeArguments="sd:DataTable" Name="orderJobHistoryDT" />
     </Flowchart.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -109,11 +110,11 @@
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <av:Point x:Key="ShapeLocation">210,655.5</av:Point>
-              <av:Size x:Key="ShapeSize">200,129</av:Size>
-              <av:PointCollection x:Key="ConnectorLocation">310,784.5 310,853.5</av:PointCollection>
+              <av:Size x:Key="ShapeSize">200,112</av:Size>
+              <av:PointCollection x:Key="ConnectorLocation">310,767.5 310,853.5</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <boa:OfficeExcelOpenOrCreateActivity OfficeVersion="{x:Null}" Password="{x:Null}" SaveAs="{x:Null}" ActivityName="打开/新建" sap2010:Annotation.AnnotationText="异常检查逻辑在此！！&#xA;&#xA;写入异常数据&#xA;" AutoSave="True" ContinueOnError="No" CreateNewFile="False" DelayAfter="0" DelayBefore="0" DisplayName="打开 clean exception file" EnableMacro="False" sap:VirtualizedContainerService.HintSize="650,2515" sap2010:WorkflowViewState.IdRef="OfficeExcelOpenOrCreateActivity_5" ReadOnly="False" Visible="False" needRestoreKey="False">
+          <boa:OfficeExcelOpenOrCreateActivity OfficeVersion="{x:Null}" Password="{x:Null}" SaveAs="{x:Null}" ActivityName="打开/新建" sap2010:Annotation.AnnotationText="异常检查逻辑在此！！&#xA;写入异常数据" AutoSave="True" ContinueOnError="No" CreateNewFile="False" DelayAfter="0" DelayBefore="0" DisplayName="打开 clean exception file" EnableMacro="False" sap:VirtualizedContainerService.HintSize="650,2481" sap2010:WorkflowViewState.IdRef="OfficeExcelOpenOrCreateActivity_5" ReadOnly="False" Visible="False" needRestoreKey="False">
             <boa:OfficeExcelOpenOrCreateActivity.Body>
               <ActivityAction x:TypeArguments="x:Object">
                 <ActivityAction.Argument>
@@ -403,13 +404,13 @@
           <av:PointCollection x:Key="ConnectorLocation">310,337.5 310,386.5</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <bda1:DatabaseConnectActivity ActivityName="连接数据库" sap2010:Annotation.AnnotationText="获取订单连接数据&#xA;获取散威化产品" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="连接数据库  - 获取增量订单关联信息" sap:VirtualizedContainerService.HintSize="449,434" sap2010:WorkflowViewState.IdRef="DatabaseConnectActivity_3" ProviderName="MySql">
+      <bda1:DatabaseConnectActivity ActivityName="连接数据库" sap2010:Annotation.AnnotationText="获取订单连接数据&#xA;获取散威化产品" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="连接数据库  - 获取增量订单关联信息" sap:VirtualizedContainerService.HintSize="200,95" sap2010:WorkflowViewState.IdRef="DatabaseConnectActivity_3" ProviderName="MySql">
         <bda1:DatabaseConnectActivity.Body>
           <ActivityAction x:TypeArguments="x:Object">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="x:Object" Name="DataBaseScope" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="222,284" sap2010:WorkflowViewState.IdRef="Sequence_8">
+            <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="222,492" sap2010:WorkflowViewState.IdRef="Sequence_8">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -446,6 +447,50 @@
                 <bda1:QueryTableActivity.Sql>
                   <InArgument x:TypeArguments="x:String">
                     <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_83">System.Convert.ToString(noPriceCheckSql)</mca:CSharpValue>
+                  </InArgument>
+                </bda1:QueryTableActivity.Sql>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </bda1:QueryTableActivity>
+              <bda1:QueryTableActivity ActivityName="查询语句" sap2010:Annotation.AnnotationText="当前订单是否已存在于excel to order" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="查询语句 - 当前订单是否已在excel orders" sap:VirtualizedContainerService.HintSize="200,64" sap2010:WorkflowViewState.IdRef="QueryTableActivity_7">
+                <bda1:QueryTableActivity.DataTable>
+                  <OutArgument x:TypeArguments="sd:DataTable">
+                    <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_31">existingEX2ODT</mca:CSharpReference>
+                  </OutArgument>
+                </bda1:QueryTableActivity.DataTable>
+                <bda1:QueryTableActivity.ExecuteTimeOut>
+                  <InArgument x:TypeArguments="x:TimeSpan">
+                    <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_42" Value="00:00:30" />
+                  </InArgument>
+                </bda1:QueryTableActivity.ExecuteTimeOut>
+                <bda1:QueryTableActivity.Sql>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_84">existingEX2OSql</mca:CSharpValue>
+                  </InArgument>
+                </bda1:QueryTableActivity.Sql>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </bda1:QueryTableActivity>
+              <bda1:QueryTableActivity ActivityName="查询语句" sap2010:Annotation.AnnotationText="查询订单发送记录表，如果已经发送过就不再发送" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="查询语句 - 订单是否已经send_email" sap:VirtualizedContainerService.HintSize="200,64" sap2010:WorkflowViewState.IdRef="QueryTableActivity_8">
+                <bda1:QueryTableActivity.DataTable>
+                  <OutArgument x:TypeArguments="sd:DataTable">
+                    <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_32">orderJobHistoryDT</mca:CSharpReference>
+                  </OutArgument>
+                </bda1:QueryTableActivity.DataTable>
+                <bda1:QueryTableActivity.ExecuteTimeOut>
+                  <InArgument x:TypeArguments="x:TimeSpan">
+                    <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_43" Value="00:00:30" />
+                  </InArgument>
+                </bda1:QueryTableActivity.ExecuteTimeOut>
+                <bda1:QueryTableActivity.Sql>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_85">System.Convert.ToString(orderJobHistorySql)</mca:CSharpValue>
                   </InArgument>
                 </bda1:QueryTableActivity.Sql>
                 <sap:WorkflowViewStateService.ViewState>

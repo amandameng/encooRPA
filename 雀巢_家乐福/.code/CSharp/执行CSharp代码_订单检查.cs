@@ -91,7 +91,8 @@ public void handleExceptionRow(DataRow orderItemDRow, string orderFirstBU, ref D
     decimal 箱数= 产品确认数量 / 订单箱规数字;
     int 箱数整数 = Convert.ToInt32(箱数);
     exceptionDRow["数量"] = 箱数.Equals(箱数整数) ? 箱数整数 : 箱数;
-    
+    DateTime todayDate = DateTime.Today;
+
     // Console.WriteLine("----订单箱规----{0}", 订单箱规);
     // Console.WriteLine("=====问题分类====={0}=========", exceptionDRow["问题分类"].ToString());
     /* 
@@ -112,7 +113,7 @@ public void handleExceptionRow(DataRow orderItemDRow, string orderFirstBU, ref D
     }
     // 订单RDD落在订单创建时间的第二天或者当天
    // Console.WriteLine("requestDeliveryDate: {0}, orderCreateDateTime:{1}", requestDeliveryDate, orderCreateDateTime.AddDays(1));
-    if(requestDeliveryDate <= orderCreateDateTime.AddDays(1)){
+    if(requestDeliveryDate <= todayDate.AddDays(1)){
         Dictionary<string, string> 问题字典1 = new  Dictionary<string, string>{};
         问题字典1["问题分类"] = "送货日异常";
         问题字典1["问题描述"] = "送货日异常";
@@ -142,7 +143,15 @@ public void handleExceptionRow(DataRow orderItemDRow, string orderFirstBU, ref D
         问题字典2["问题描述"] = "客户网站交货日期不符合车期";
         问题分类描述.Add(问题字典2);
     }
-   // }
+
+    // 跨月订单
+    bool mabdInNextMonth = (requestDeliveryDate.ToString("yyyy-MM") == todayDate.AddMonths(1).ToString("yyyy-MM"));
+    if(mabdInNextMonth){
+        Dictionary<string, string> 问题字典_指定送货日= new  Dictionary<string, string>{};
+        问题字典_指定送货日["问题分类"] = "跨月订单";
+        问题字典_指定送货日["问题描述"] = "跨月订单";
+        问题分类描述.Add(问题字典_指定送货日);
+    }
     
     // 特殊产品异常判断
     string remark = orderItemDRow["Remark"].ToString();

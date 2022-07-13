@@ -58,7 +58,7 @@
           <av:Size x:Key="ShapeSize">200,53</av:Size>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获  - 截屏" sap:VirtualizedContainerService.HintSize="449,584" sap2010:WorkflowViewState.IdRef="TryCatch_1" IsIgnore="False">
+      <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获  - 截屏" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="TryCatch_1" IsIgnore="False">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>

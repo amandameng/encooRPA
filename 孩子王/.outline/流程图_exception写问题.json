@@ -1,0 +1,103 @@
+{
+  "Md5CheckSum": "c15c0154e0d5015841ed388b098bedcd",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Flowchart_56",
+        "Name": "流程图-exception写问题",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "LogActivity_1",
+            "Name": "写入日志",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "MultipleAssign_124",
+            "Name": "赋值（多个）",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": null,
+                "Name": "MultipleAssign.AssignModels",
+                "IsActivity": true,
+                "SubItems": []
+              }
+            ]
+          },
+          {
+            "RefId": "ForEach_33",
+            "Name": "遍历行-exception写问题",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "Flowchart_57",
+                "Name": "修改数据表dt",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "MultipleAssign_125",
+                    "Name": "赋值（多个）",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": null,
+                        "Name": "MultipleAssign.AssignModels",
+                        "IsActivity": true,
+                        "SubItems": []
+                      }
+                    ]
+                  },
+                  {
+                    "RefId": null,
+                    "Name": "商品编码",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": null,
+                        "Name": "FlowDecision.True",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": "MultipleAssign_126",
+                            "Name": "赋值（多个）",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": null,
+                                "Name": "MultipleAssign.AssignModels",
+                                "IsActivity": true,
+                                "SubItems": []
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "RefId": null,
+                        "Name": "FlowDecision.False",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": "Break_31",
+                            "Name": "终止循环",
+                            "IsActivity": true,
+                            "SubItems": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "QuickOpenItems": [
+    "Main.xaml"
+  ],
+  "ProjectBreakpoints": {
+    "Value": {
+      "Main.xaml": [
+        {
+          "ActivityId": "1.225",
+          "IsEnabled": false,
+          "IdRef": "BrowserClose_1",
+          "DisplayName": "关闭浏览器"
+        },
+        {
+          "ActivityId": "1.9201",
+          "IsEnabled": false,
+          "IdRef": "Flowchart_14",
+          "DisplayName": "流程图 - 读取模板文件输出到DT"
+        },
+        {
+          "ActivityId": "1.7611",
+          "IsEnabled": false,
+          "IdRef": "OfficeExcelOpenOrCreateActivity_3",
+          "DisplayName": "打开 - orderListFilePath"
+        }
+      ]
+    }
+  }
+}

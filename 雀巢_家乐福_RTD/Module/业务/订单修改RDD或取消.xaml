@@ -1,0 +1,206 @@
+<Activity mc:Ignorable="sap sap2010 sads" x:Class="EncooWorkflow.Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:baast="clr-namespace:BotTime.ActivityLibrary.Activities.System.Tool;assembly=BotTime.ActivityLibrary" xmlns:bda="clr-namespace:BotTime.DataBase.Activity;assembly=BotTime.DataBase.Activity" xmlns:bfa="clr-namespace:BotTime.Flow.Activities;assembly=BotTime.Flow.Activities" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger">
+  <x:Members>
+    <x:Property Name="开始日期" Type="InArgument(x:String)" />
+    <x:Property Name="sqlConn" Type="InArgument(x:String)" />
+    <x:Property Name="customer_name" Type="InArgument(x:String)" />
+    <x:Property Name="rdd异常订单数据表" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="已取消异常订单数据表" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="结束日期" Type="InArgument(x:String)" />
+  </x:Members>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap:VirtualizedContainerService.HintSize>654,716</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>EncooWorkflow.Workflow_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="10">
+      <x:String>System</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>BotTime.DataBase.Activity</x:String>
+      <x:String>BotTime.Flow.Activities</x:String>
+      <x:String>Microsoft.CSharp.Activities</x:String>
+      <x:String>BotTime.ActivityLibrary.Activities.System.Tool</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>BotTime.DataBase.Activity</AssemblyReference>
+      <AssemblyReference>BotTime.Flow.Activities</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>BotTime.ActivityLibrary</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Flowchart DisplayName="Root" sap:VirtualizedContainerService.HintSize="614,636" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+        <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
+        <av:Size x:Key="ShapeSize">80,48</av:Size>
+        <av:PointCollection x:Key="ConnectorLocation">310,50.5 310,123.5</av:PointCollection>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Flowchart.StartNode>
+      <x:Reference>__ReferenceID0</x:Reference>
+    </Flowchart.StartNode>
+    <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <av:Point x:Key="ShapeLocation">210,123.5</av:Point>
+          <av:Size x:Key="ShapeSize">200,53</av:Size>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="Sequence_1">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <bda:DatabaseConnectActivity ActivityName="连接数据库" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="连接数据库" sap:VirtualizedContainerService.HintSize="449,834" sap2010:WorkflowViewState.IdRef="DatabaseConnectActivity_1" ProviderName="MySql">
+          <bda:DatabaseConnectActivity.Body>
+            <ActivityAction x:TypeArguments="x:Object">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="x:Object" Name="DataBaseScope" />
+              </ActivityAction.Argument>
+              <Sequence DisplayName="序列 - 订单修改RDD" sap:VirtualizedContainerService.HintSize="371,726" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="x:String" Name="searchQuery" />
+                  <Variable x:TypeArguments="x:String" Name="已取消query" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <bfa:Assign ActivityName="赋值" sap2010:Annotation.AnnotationText="join exported_orders 和 orders 查找修改了RDD的订单" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - RDD query" sap:VirtualizedContainerService.HintSize="349,100" sap2010:WorkflowViewState.IdRef="Assign_1" IsIgnore="False">
+                  <bfa:Assign.To>
+                    <OutArgument x:TypeArguments="x:String">
+                      <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1">searchQuery</mca:CSharpReference>
+                    </OutArgument>
+                  </bfa:Assign.To>
+                  <bfa:Assign.Value>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_18" xml:space="preserve">String.Format(@"SELECT orders.order_number, exos.order_expire_date FROM exported_orders exos
+join orders on exos.order_number = orders.order_number and orders.customer_name = exos.customer_name
+where exos.Logistics_warehouse not like '家乐福%店' 
+and date_format(orders.create_date, '%Y-%m-%d') &gt;= '{0}' and date_format(orders.create_date, '%Y-%m-%d') &lt;= '{1}' 
+and date_format(orders.request_delivery_date, '%Y-%m-%d') != date_format(exos.order_expire_date, '%Y-%m-%d')
+and orders.customer_name = '{2}'
+group by orders.order_number", 开始日期, 结束日期, customer_name)</mca:CSharpValue>
+                    </InArgument>
+                  </bfa:Assign.Value>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </bfa:Assign>
+                <baast:LogActivity ActivityName="写入日志" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="写入日志 - RDD query" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="LogActivity_1" Level="Info">
+                  <baast:LogActivity.LogContent>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_10">(searchQuery).ToString()</mca:CSharpValue>
+                    </InArgument>
+                  </baast:LogActivity.LogContent>
+                </baast:LogActivity>
+                <bda:QueryTableActivity ActivityName="查询语句" sap2010:Annotation.AnnotationText="create_date：开始日期 - 结束日期之间&#xA;customer_name：全局变量" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="查询 - 订单修改RDD" sap:VirtualizedContainerService.HintSize="349,81" sap2010:WorkflowViewState.IdRef="QueryTableActivity_1">
+                  <bda:QueryTableActivity.DataTable>
+                    <OutArgument x:TypeArguments="sd:DataTable">
+                      <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_2">rdd异常订单数据表</mca:CSharpReference>
+                    </OutArgument>
+                  </bda:QueryTableActivity.DataTable>
+                  <bda:QueryTableActivity.ExecuteTimeOut>
+                    <InArgument x:TypeArguments="x:TimeSpan">
+                      <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_3" Value="00:00:30" />
+                    </InArgument>
+                  </bda:QueryTableActivity.ExecuteTimeOut>
+                  <bda:QueryTableActivity.Sql>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_3">(searchQuery).ToString()</mca:CSharpValue>
+                    </InArgument>
+                  </bda:QueryTableActivity.Sql>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </bda:QueryTableActivity>
+                <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - 已取消query" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="Assign_2" IsIgnore="False">
+                  <bfa:Assign.To>
+                    <OutArgument x:TypeArguments="x:String">
+                      <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_3">已取消query</mca:CSharpReference>
+                    </OutArgument>
+                  </bfa:Assign.To>
+                  <bfa:Assign.Value>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_9" xml:space="preserve">String.Format(@"select o1.order_number from (SELECT count(1) as total_items_count, order_number FROM exported_orders exos
+where 
+exos.Logistics_warehouse not like '家乐福%店' 
+and exos.customer_name = '{0}'
+group by exos.order_number) o1 join (SELECT count(1) as canceled_items_count, order_number FROM exported_orders exos
+where 
+exos.Logistics_warehouse not like '家乐福%店' 
+and exos.customer_name = '{1}'
+and order_status='已取消'
+group by exos.order_number) o2
+
+on o1.order_number = o2.order_number
+and o1.total_items_count= o2.canceled_items_count", customer_name, customer_name)</mca:CSharpValue>
+                    </InArgument>
+                  </bfa:Assign.Value>
+                </bfa:Assign>
+                <baast:LogActivity ActivityName="写入日志" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="写入日志 - 已取消 query" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="LogActivity_2" Level="Info">
+                  <baast:LogActivity.LogContent>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_12">(已取消query).ToString()</mca:CSharpValue>
+                    </InArgument>
+                  </baast:LogActivity.LogContent>
+                </baast:LogActivity>
+                <bda:QueryTableActivity ActivityName="查询语句" sap2010:Annotation.AnnotationText="customer_name：全局变量" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="查询 - 已取消订单" sap:VirtualizedContainerService.HintSize="349,47" sap2010:WorkflowViewState.IdRef="QueryTableActivity_2">
+                  <bda:QueryTableActivity.DataTable>
+                    <OutArgument x:TypeArguments="sd:DataTable">
+                      <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_4">已取消异常订单数据表</mca:CSharpReference>
+                    </OutArgument>
+                  </bda:QueryTableActivity.DataTable>
+                  <bda:QueryTableActivity.ExecuteTimeOut>
+                    <InArgument x:TypeArguments="x:TimeSpan">
+                      <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_4" Value="00:00:30" />
+                    </InArgument>
+                  </bda:QueryTableActivity.ExecuteTimeOut>
+                  <bda:QueryTableActivity.Sql>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_5">(已取消query).ToString()</mca:CSharpValue>
+                    </InArgument>
+                  </bda:QueryTableActivity.Sql>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </bda:QueryTableActivity>
+              </Sequence>
+            </ActivityAction>
+          </bda:DatabaseConnectActivity.Body>
+          <bda:DatabaseConnectActivity.ConnectionString>
+            <InArgument x:TypeArguments="x:String">
+              <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">(sqlConn).ToString()</mca:CSharpValue>
+            </InArgument>
+          </bda:DatabaseConnectActivity.ConnectionString>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </bda:DatabaseConnectActivity>
+      </Sequence>
+    </FlowStep>
+  </Flowchart>
+</Activity>

@@ -564,7 +564,7 @@
                             <av:Point x:Key="ShapeLocation">230,244.5</av:Point>
                             <av:Size x:Key="ShapeSize">160,231</av:Size>
                             <av:PointCollection x:Key="TrueConnector">230,360 180,360 180,502.5</av:PointCollection>
-                            <av:PointCollection x:Key="FalseConnector">390,360 420,360 420,410 530,410</av:PointCollection>
+                            <av:PointCollection x:Key="FalseConnector">390,360 630,360 630,371</av:PointCollection>
                             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
@@ -1048,7 +1048,7 @@
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <av:Point x:Key="ShapeLocation">530,371</av:Point>
                                 <av:Size x:Key="ShapeSize">200,78</av:Size>
-                                <av:PointCollection x:Key="ConnectorLocation">630,449 630,502.5</av:PointCollection>
+                                <av:PointCollection x:Key="ConnectorLocation">630,449 630,512.5</av:PointCollection>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                             <Sequence sap2010:Annotation.AnnotationText="网页登录" DisplayName="序列 - 登录" sap:VirtualizedContainerService.HintSize="200,78" sap2010:WorkflowViewState.IdRef="Sequence_68">
@@ -1172,9 +1172,9 @@
                               <FlowStep x:Name="__ReferenceID15" sap2010:WorkflowViewState.IdRef="FlowStep_27">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                    <av:Point x:Key="ShapeLocation">530,502.5</av:Point>
+                                    <av:Point x:Key="ShapeLocation">530,512.5</av:Point>
                                     <av:Size x:Key="ShapeSize">200,95</av:Size>
-                                    <av:PointCollection x:Key="ConnectorLocation">630,597.5 630,681</av:PointCollection>
+                                    <av:PointCollection x:Key="ConnectorLocation">630,607.5 630,681</av:PointCollection>
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
                                 <bfa:InvokeWorkflow sap2010:Annotation.AnnotationText="网页导出订单excel文件，打开excel文件" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行流程 : 导出订单_读取订单数据" sap:VirtualizedContainerService.HintSize="200,95" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_69" IsIgnore="False">
@@ -1374,9 +1374,9 @@
                   <FlowStep sap2010:WorkflowViewState.IdRef="FlowStep_16">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <av:Point x:Key="ShapeLocation">340,773.5</av:Point>
+                        <av:Point x:Key="ShapeLocation">300,683.5</av:Point>
                         <av:Size x:Key="ShapeSize">200,53</av:Size>
-                        <av:PointCollection x:Key="ConnectorLocation">440,826.5 440,860 530,860</av:PointCollection>
+                        <av:PointCollection x:Key="ConnectorLocation">400,736.5 400,860 530,860</av:PointCollection>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                     <bda:DatabaseConnectActivity ActivityName="连接数据库" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="连接数据库 - 测试用" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="DatabaseConnectActivity_7" ProviderName="MySql">
@@ -1404,7 +1404,7 @@
                               </bda:QueryTableActivity.ExecuteTimeOut>
                               <bda:QueryTableActivity.Sql>
                                 <InArgument x:TypeArguments="x:String">
-                                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_638">System.Convert.ToString(@"SELECT * FROM vicode_nestle.walmart_exported_orders_tmp where order_number = '4500881782'")</mca:CSharpValue>
+                                  <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_279">SELECT * FROM walmart_exported_orders_tmp where order_number = '9950320323'</Literal>
                                 </InArgument>
                               </bda:QueryTableActivity.Sql>
                               <sap:WorkflowViewStateService.ViewState>

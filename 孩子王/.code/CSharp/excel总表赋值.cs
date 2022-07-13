@@ -1,0 +1,39 @@
+//代码执行入口，请勿修改或删除
+public void Run()
+{
+    //在这里编写您的代码    
+    新1行row["Customer_Order_Date"]=当前年月日;
+    新1行row["Customer_Name"]=渠道名称;
+    新1行row["Sales_Order_Type"]=sales_order_type;
+    新1行row["Sales_Org"]=sales_org;
+    新1行row["Distribution_channel"]=d_c;
+    新1行row["Sold_to"]=sold_to;
+    //新1行row["Sold_to_Name"]="";
+    新1行row["Ship_to"]=ship_to;
+    //新1行row["Ship_to_Name"]="";
+    新1行row["PO"]=序号;
+    新1行row["PO_Number"]=订单号;
+    新1行row["Reqd_Del_Date"]=有效日期带横线;
+    新1行row["SAP_Material"]=SAP_Material;
+    新1行row["SAP_Description"]=SAP_Description;
+    新1行row["Qty"]=整件;
+    新1行row["UoM"]=uom;
+    //新1行row["SLoc"]="";
+    //新1行row["Batch"]="";
+    //新1行row["Plant"]="";
+    //新1行row["WBS"]="";
+    //新1行row["Item_Category"]="";
+    //新1行row["Delivery_note_text"]="";
+    //新1行row["Language"]="";
+    //新1行row["Order_Reason"]="";
+    //新1行row["Cost_Center"]="";
+    //新1行row["OTC_Name"]="";
+    //新1行row["OTC_Street"]="";
+    //新1行row["OTC_City_Name"]="";
+    //新1行row["Route"]="";
+    //新1行row["OTC_Check"]="";
+    新1行row["created_time"]=当前时间;
+    
+    excel_to_order_dt.Rows.Add(新1行row);
+}
+//在这里编写您的函数或者类

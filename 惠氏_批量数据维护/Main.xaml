@@ -1,0 +1,247 @@
+<Activity mc:Ignorable="sap sap2010 sads" x:Class="EncooWorkflow.Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:bfa="clr-namespace:BotTime.Flow.Activities;assembly=BotTime.Flow.Activities" xmlns:eca="clr-namespace:Encoo.Console.Activity;assembly=Encoo.Console.Activity" xmlns:ecaac="clr-namespace:Encoo.CodeTool.Activity.Activities.CSharp;assembly=Encoo.CodeTool.Activity" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:this="clr-namespace:EncooWorkflow" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="&quot;Server=127.0.0.1;Database=vicode_wyeth; Uid=root;Password=123456Q&quot;" Name="数据库连接" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="产品主数据或特殊产品" Name="数据模型" Type="InArgument(x:String)" />
+    <x:Property Name="dev" Type="InArgument(x:String)" />
+    <x:Property Name="待处理文件路径" Type="InArgument(x:String)" />
+    <x:Property Name="mailRecipient" Type="InArgument(x:String)" />
+    <x:Property Name="客户名称" Type="InArgument(x:String)" />
+  </x:Members>
+  <this:Main.数据库连接>
+    <InArgument x:TypeArguments="x:String">
+      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_13">Server=127.0.0.1;Database=vicode_wyeth; Uid=root;Password=123456Q</Literal>
+    </InArgument>
+  </this:Main.数据库连接>
+  <this:Main.数据模型>
+    <InArgument x:TypeArguments="x:String">
+      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_16">特殊产品</Literal>
+    </InArgument>
+  </this:Main.数据模型>
+  <this:Main.dev>
+    <InArgument x:TypeArguments="x:String">
+      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_3">dev</Literal>
+    </InArgument>
+  </this:Main.dev>
+  <this:Main.待处理文件路径>
+    <InArgument x:TypeArguments="x:String">
+      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_14">C:\RPA工作目录\批量数据维护\特殊品.xlsx</Literal>
+    </InArgument>
+  </this:Main.待处理文件路径>
+  <this:Main.mailRecipient>
+    <InArgument x:TypeArguments="x:String">
+      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_11">mengfanling@encootech.com</Literal>
+    </InArgument>
+  </this:Main.mailRecipient>
+  <this:Main.客户名称>
+    <InArgument x:TypeArguments="x:String">
+      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_15">沃尔玛</Literal>
+    </InArgument>
+  </this:Main.客户名称>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap:VirtualizedContainerService.HintSize>654,726</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>EncooWorkflow.Workflow_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="11">
+      <x:String>System</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>Encoo.CodeTool.Activity.Activities.CSharp</x:String>
+      <x:String>BotTime.Flow.Activities</x:String>
+      <x:String>Microsoft.CSharp.Activities</x:String>
+      <x:String>Encoo.Console.Activity</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>ParallelExtensionsExtras</AssemblyReference>
+      <AssemblyReference>Encoo.CodeTool.Activity</AssemblyReference>
+      <AssemblyReference>BotTime.Flow.Activities</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Globalization.Extensions</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Net.WebSockets.Client.Managed</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>Encoo.Console.Activity</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Flowchart DisplayName="流程图_Root" sap:VirtualizedContainerService.HintSize="614,646" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <Flowchart.Variables>
+      <Variable x:TypeArguments="x:String" Name="下载文件路径" />
+      <Variable x:TypeArguments="x:Boolean" Name="isDev" />
+      <Variable x:TypeArguments="x:String" Name="数据库表名" />
+    </Flowchart.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+        <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
+        <av:Size x:Key="ShapeSize">80,48</av:Size>
+        <av:PointCollection x:Key="ConnectorLocation">310,50.5 310,123.5</av:PointCollection>
+        <x:Double x:Key="Height">609.5</x:Double>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Flowchart.StartNode>
+      <x:Reference>__ReferenceID3</x:Reference>
+    </Flowchart.StartNode>
+    <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_1">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <av:Point x:Key="ShapeLocation">135.5,123.5</av:Point>
+          <av:Size x:Key="ShapeSize">349,93</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">310,216.5 310,273.5</av:PointCollection>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ecaac:InvokeCSharpCodeActivity ActivityName="执行C#代码" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行C#代码 - 初始化" sap:VirtualizedContainerService.HintSize="349,93" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_1">
+        <ecaac:InvokeCSharpCodeActivity.CodeFilePath>
+          <InArgument x:TypeArguments="x:String">
+            <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_4">.code\CSharp\执行CSharp代码-初始化.cs</Literal>
+          </InArgument>
+        </ecaac:InvokeCSharpCodeActivity.CodeFilePath>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ecaac:InvokeCSharpCodeActivity>
+      <FlowStep.Next>
+        <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_3">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">210,273.5</av:Point>
+              <av:Size x:Key="ShapeSize">200,53</av:Size>
+              <av:PointCollection x:Key="ConnectorLocation">310,326.5 310,406.5</av:PointCollection>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If is from 控制台）" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="If_1" IsIgnore="False">
+            <bfa:If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_5">!isDev</mca:CSharpValue>
+              </InArgument>
+            </bfa:If.Condition>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <bfa:If.Then>
+              <eca:FileDownloadActivity LocalDirectory="{x:Null}" ActivityName="下载文件" ConsoleVersion="V4Console" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="下载文件" sap:VirtualizedContainerService.HintSize="349,85" sap2010:WorkflowViewState.IdRef="FileDownloadActivity_1" IsOverwrite="True">
+                <eca:FileDownloadActivity.ConsolePath>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_6">System.Convert.ToString(待处理文件路径)</mca:CSharpValue>
+                  </InArgument>
+                </eca:FileDownloadActivity.ConsolePath>
+                <eca:FileDownloadActivity.LocalFilePath>
+                  <OutArgument x:TypeArguments="x:String">
+                    <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1">下载文件路径</mca:CSharpReference>
+                  </OutArgument>
+                </eca:FileDownloadActivity.LocalFilePath>
+                <eca:FileDownloadActivity.ResourceGroupName>
+                  <InArgument x:TypeArguments="x:String">
+                    <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_5">雀巢（中国）有限公司/惠氏</Literal>
+                  </InArgument>
+                </eca:FileDownloadActivity.ResourceGroupName>
+                <eca:FileDownloadActivity.Timeout>
+                  <InArgument x:TypeArguments="x:TimeSpan">
+                    <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_6" />
+                  </InArgument>
+                </eca:FileDownloadActivity.Timeout>
+              </eca:FileDownloadActivity>
+            </bfa:If.Then>
+          </bfa:If>
+          <FlowStep.Next>
+            <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_2">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <av:Point x:Key="ShapeLocation">210,406.5</av:Point>
+                  <av:Size x:Key="ShapeSize">200,95</av:Size>
+                  <av:PointCollection x:Key="ConnectorLocation">310,501.5 310,556.5</av:PointCollection>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <bfa:InvokeWorkflow sap2010:Annotation.AnnotationText="目前实现了以下数据模型：&#xA;- 产品主数据" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: 数据模型 子流程" sap:VirtualizedContainerService.HintSize="349,138" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_1" IsIgnore="False">
+                <bfa:InvokeWorkflow.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="下载文件路径">
+                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_4">System.Convert.ToString(下载文件路径)</mca:CSharpValue>
+                  </InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="数据库连接">
+                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_2">System.Convert.ToString(数据库连接)</mca:CSharpValue>
+                  </InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="客户名称">
+                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_10">System.Convert.ToString(客户名称)</mca:CSharpValue>
+                  </InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="数据库表名">
+                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_11">System.Convert.ToString(数据库表名)</mca:CSharpValue>
+                  </InArgument>
+                </bfa:InvokeWorkflow.Arguments>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <bfa:InvokeWorkflow.WorkflowPath>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_3">[System.Convert.ToString(string.Format("数据模型\\{0}.xaml", 数据模型))]</mca:CSharpValue>
+                  </InArgument>
+                </bfa:InvokeWorkflow.WorkflowPath>
+              </bfa:InvokeWorkflow>
+              <FlowStep.Next>
+                <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_4">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <av:Point x:Key="ShapeLocation">210,556.5</av:Point>
+                      <av:Size x:Key="ShapeSize">200,53</av:Size>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: 发送邮件" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_2" IsIgnore="False">
+                    <bfa:InvokeWorkflow.Arguments>
+                      <InArgument x:TypeArguments="scg:List(x:String)" x:Key="附件">
+                        <mca:CSharpValue x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">new List&lt;string&gt;{}</mca:CSharpValue>
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="邮件正文">
+                        <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_8">System.Convert.ToString(string.Format("Hi {0}, &lt;br/&gt;此次【{1}】批量维护成功。&lt;br/&gt; Encoo RPA", mailRecipient, 数据模型))</mca:CSharpValue>
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="邮件主题">
+                        <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_9">System.Convert.ToString(string.Format("惠氏【{0}】批量维护成功", 数据模型))</mca:CSharpValue>
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="收件人">
+                        <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_7">System.Convert.ToString(mailRecipient)</mca:CSharpValue>
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="抄送人" />
+                    </bfa:InvokeWorkflow.Arguments>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <bfa:InvokeWorkflow.WorkflowPath>
+                      <InArgument x:TypeArguments="x:String">
+                        <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_8">通知\发送邮件.xaml</Literal>
+                      </InArgument>
+                    </bfa:InvokeWorkflow.WorkflowPath>
+                  </bfa:InvokeWorkflow>
+                </FlowStep>
+              </FlowStep.Next>
+            </FlowStep>
+          </FlowStep.Next>
+        </FlowStep>
+      </FlowStep.Next>
+    </FlowStep>
+    <x:Reference>__ReferenceID0</x:Reference>
+    <x:Reference>__ReferenceID1</x:Reference>
+    <x:Reference>__ReferenceID2</x:Reference>
+  </Flowchart>
+</Activity>

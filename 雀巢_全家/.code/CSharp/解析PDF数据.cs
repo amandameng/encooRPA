@@ -116,7 +116,7 @@ public void Run()
                             订购倍数 = toIntConvert(pdfItem.Trim());
                             break;
                         case 13 : //总订个数
-                            总订个数 = pdfItem.Trim();
+                            总订个数 = pdfItem.Trim().Replace(",","").Replace("-","");
                             break;
                         case 15 : //商品条码
                             商品条码 = pdfItem;
@@ -189,7 +189,7 @@ public void Run()
                         orderItemRow["Batch"] = 规格;
                         orderItemRow["Unit"] = 单位;
                         orderItemRow["Quantity"] = 订购倍数;
-                        orderItemRow["TotalQuantity"] = Convert.ToInt32(总订个数.Replace(",",""));
+                        orderItemRow["TotalQuantity"] = Convert.ToInt32(总订个数);
                         orderItemTable.Rows.Add(orderItemRow);
                         
                         tableDataIndex = 0;
@@ -462,7 +462,7 @@ public void Run()
                             单位 = pdfItem;
                             break;
                         case 11 : //总订个数
-                            总订个数 = pdfItem.Trim();
+                            总订个数 = pdfItem.Trim().Replace(",","");
                             break;
                         case 13 : {//商品条码
                             if(pdfItem == "见商品包装"){
@@ -506,7 +506,8 @@ public void Run()
                         exceptionRow["雀巢箱规"] = 产品关系表.AsEnumerable().Cast<DataRow>().Any(s => s["Customer_Material_No"].ToString() == 商品货号) ? 产品关系表.AsEnumerable().Cast<DataRow>().FirstOrDefault(s => s["Customer_Material_No"].ToString() == 商品货号)["Nestle_Case_Configuration"].ToString() : "";
                          
                         exceptionRow["BU"]="IB water";
-                        exceptionRow["数量"] = Convert.ToInt32(总订个数);
+                        int 总订个数整数 = Convert.ToInt32(总订个数);
+                        exceptionRow["数量"] = 总订个数整数;
                         exceptionRow["客户要求送货日"] = 退货截止日期;
                         exceptionRow["问题分类"] = "退货订单";
                         exceptionRow["问题详情描述"] = "订单为退货单";
@@ -521,7 +522,7 @@ public void Run()
                         orderItemRow["Batch"] = 规格;
                         orderItemRow["Unit"] = 单位;
                         orderItemRow["Quantity"] = 0;
-                        orderItemRow["TotalQuantity"] = Convert.ToInt32(总订个数.Replace(",","").Replace("-",""));
+                        orderItemRow["TotalQuantity"] = Convert.ToInt32(总订个数整数);
                         orderItemTable.Rows.Add(orderItemRow);
                         
                         if(pdfArray[index + 4].IndexOf("备注") > -1){

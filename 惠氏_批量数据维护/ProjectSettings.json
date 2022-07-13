@@ -1,0 +1,33 @@
+{
+  "QuickOpenItems": [
+    "Main.xaml"
+  ],
+  "ProjectBreakpoints": {
+    "Value": {
+      "数据模型\\产品主数据.xaml": [
+        {
+          "ActivityId": "1.18",
+          "IsEnabled": true,
+          "IdRef": "InvokeWorkflow_4",
+          "DisplayName": "调用子流程: 数据库操作 - 存入一批数据"
+        }
+      ],
+      "通用\\Excel数据表转数据库数据表表.xaml": [
+        {
+          "ActivityId": "1.10",
+          "IsEnabled": true,
+          "IdRef": "If_4",
+          "DisplayName": "条件（If 存在存在信息）"
+        }
+      ],
+      "数据模型\\特殊产品.xaml": [
+        {
+          "ActivityId": "1.19",
+          "IsEnabled": true,
+          "IdRef": "InvokeWorkflow_4",
+          "DisplayName": "调用子流程: 数据库操作 - 存入一批数据"
+        }
+      ]
+    }
+  }
+}

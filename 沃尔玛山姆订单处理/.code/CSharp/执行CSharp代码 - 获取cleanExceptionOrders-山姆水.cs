@@ -32,7 +32,7 @@ public void Run()
     noPriceCheckSql = string.Format("select * from walmart_skip_price_check where customer_name='{0}'", curCustomerName);
 
     // 一年内的excel to Order
-    // existingEX2OSql = String.Format("SELECT distinct PO_Number from excel_to_order where Customer_Name='{0}' and created_time > date_sub(CURDATE(), INTERVAL 360 DAY) limit 10000;", curCustomerName);
-    // orderJobHistorySql = string.Format("select * from order_job_history where customer_name='{0}' and email_sent=1", curCustomerName);
+    existingEX2OSql = String.Format("SELECT distinct PO_Number from excel_to_order where Customer_Name='{0}' and created_time > date_sub(CURDATE(), INTERVAL 360 DAY) limit 10000;", curCustomerName);
+    orderJobHistorySql = string.Format("select * from order_job_history where customer_name='{0}' and email_sent=1", curCustomerName);
 }
 //在这里编写您的函数或者类

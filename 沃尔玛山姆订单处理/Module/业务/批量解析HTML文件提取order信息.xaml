@@ -47,8 +47,6 @@
       <AssemblyReference>HtmlAgilityPack</AssemblyReference>
       <AssemblyReference>System.ServiceModel</AssemblyReference>
       <AssemblyReference>ParallelExtensionsExtras</AssemblyReference>
-      
-      
       <AssemblyReference>ActivityCommon</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
@@ -95,22 +93,24 @@
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <av:Point x:Key="ShapeLocation">210,489</av:Point>
-              <av:Size x:Key="ShapeSize">200,22</av:Size>
-              <av:PointCollection x:Key="ConnectorLocation">310,511 310,559</av:PointCollection>
+              <av:Size x:Key="ShapeSize">200,53</av:Size>
+              <av:PointCollection x:Key="ConnectorLocation">310,542 310,559</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <bda:DataTablePreviewActivity ActivityName="预览数据表" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="预览数据表" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="DataTablePreviewActivity_1">
-            <bda:DataTablePreviewActivity.DataTable>
-              <InArgument x:TypeArguments="sd:DataTable">
-                <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_4">增量订单数据表</mca:CSharpValue>
-              </InArgument>
-            </bda:DataTablePreviewActivity.DataTable>
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-          </bda:DataTablePreviewActivity>
+          <eae:CommentActivity DisplayName="注释掉" sap:VirtualizedContainerService.HintSize="455,177" sap2010:WorkflowViewState.IdRef="CommentActivity_2">
+            <bda:DataTablePreviewActivity ActivityName="预览数据表" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="预览数据表" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="DataTablePreviewActivity_1">
+              <bda:DataTablePreviewActivity.DataTable>
+                <InArgument x:TypeArguments="sd:DataTable">
+                  <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_4">增量订单数据表</mca:CSharpValue>
+                </InArgument>
+              </bda:DataTablePreviewActivity.DataTable>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </bda:DataTablePreviewActivity>
+          </eae:CommentActivity>
           <FlowStep.Next>
             <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_4">
               <sap:WorkflowViewStateService.ViewState>
@@ -119,7 +119,7 @@
                   <av:Size x:Key="ShapeSize">200,53</av:Size>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <eae:CommentActivity DisplayName="注释掉" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="CommentActivity_1">
+              <eae:CommentActivity DisplayName="注释掉" sap:VirtualizedContainerService.HintSize="455,177" sap2010:WorkflowViewState.IdRef="CommentActivity_1">
                 <bda:DataTablePreviewActivity ActivityName="预览数据表" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="预览数据表" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="DataTablePreviewActivity_2">
                   <bda:DataTablePreviewActivity.DataTable>
                     <InArgument x:TypeArguments="sd:DataTable">

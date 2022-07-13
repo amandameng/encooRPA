@@ -23,6 +23,9 @@ public void Run()
             string 客户产品码 = dr["Customer Material No"].ToString().Trim();
             string 雀巢产品码 = dr["Nestle Material No"].ToString().Trim();
             string 渠道名称 = dr["Customer Name"].ToString().Trim();
+            if(string.IsNullOrEmpty(修改类型)){
+                continue;
+            }
             // 如果是特殊1:N产品，则加入异常订单
             if(特殊客户产品码列表.Contains(客户产品码)){
                 addExceptionRow(ref 异常数据表, "此客户产品码对应雀巢多条产品码，跳过", dr);
@@ -88,11 +91,19 @@ public void Run()
                         {"Nestle_NPS", "Nestle NPS"},
                         {"Nestle_Case_Configuration", "Nestle Case Configuration"},
                         {"Adjustive_Price", "Adjustive Price"},
-                        {"Tax_Point", "Tax Point"}
+                        {"Tax_Point", "Tax Point"},
+                        {"Remark", "Remark"},
+                        {"Remark_Option", "Remark Option"},
+                        {"User_Remark", "User Remark"}
                     };
                     List<string> updateColList = new List<string>{};
                     foreach(var colDic in colMapingDic){
-                        updateColList.Add(string.Format("{0}='{1}'", colDic.Key, dr[colDic.Value].ToString()));
+                        string fieldValue = dr[colDic.Value].ToString().Trim();
+                        if(string.IsNullOrEmpty(fieldValue)){
+                            updateColList.Add(string.Format("{0}=null", colDic.Key));
+                        }else{
+                            updateColList.Add(string.Format("{0}='{1}'", colDic.Key, fieldValue));
+                        }
                     }
                     updateColList.Add(string.Format("Update_Time='{0}'", timeNowStr));
                     updateColList.Add(string.Format("Modify_Type='{0}'", ModifyType.修改其他.ToString()));

@@ -1,7 +1,7 @@
 {
   "ProjectName": "雀巢EDI",
   "Version": "1.0.0",
-  "SchemaVersion": "3.0",
+  "SchemaVersion": "4.0",
   "ProjectType": "Workflow",
   "Description": null,
   "Author": "孟凡玲",
@@ -680,7 +680,7 @@
     },
     {
       "Id": "BotTime.WPS.Activity",
-      "Version": "1.3.2201.2",
+      "Version": "1.4.2204.4",
       "Title": "BotTime.WPS.Activity",
       "InnerDependencies": [
         {
@@ -1092,9 +1092,11 @@
       "InnerDependencies": []
     }
   ],
-  "LastModifyTime": "2022-03-22T16:22:50.851123+08:00",
+  "LastModifyTime": "2022-05-09T15:23:29.8246602+08:00",
   "ProjectReferences": [],
   "TerminationHandler": null,
   "ExceptionHandler": null,
-  "ParallelWorkflows": null
+  "ParallelWorkflows": null,
+  "CreatedStudioVersion": null,
+  "LastStudioVersion": "1.1.2204.10"
 }

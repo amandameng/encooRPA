@@ -1,0 +1,81 @@
+{
+  "Md5CheckSum": "c36a4ab83d74476acbc5398937b8c35c",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Flowchart_1",
+        "Name": "流程图_Root",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "MultipleAssign_1",
+            "Name": "赋值（多个）",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": null,
+                "Name": "MultipleAssign.AssignModels",
+                "IsActivity": true,
+                "SubItems": []
+              }
+            ]
+          },
+          {
+            "RefId": "FlowDecision_1",
+            "Name": "附件为空",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": null,
+                "Name": "FlowDecision.True",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "SendSmtpMailActivity_2",
+                    "Name": "发送邮件(SMTP)",
+                    "IsActivity": true,
+                    "SubItems": []
+                  }
+                ]
+              },
+              {
+                "RefId": null,
+                "Name": "FlowDecision.False",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "KillProcessActivity_1",
+                    "Name": "关闭进程excel",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "InitializeCollectionActivity_1",
+                    "Name": "初始化集合",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "AddToCollectionActivity_1",
+                    "Name": "添加对象",
+                    "IsActivity": true,
+                    "SubItems": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "RefId": "SendSmtpMailActivity_1",
+            "Name": "发送邮件(SMTP)",
+            "IsActivity": true,
+            "SubItems": []
+          }
+        ]
+      }
+    ]
+  }
+}

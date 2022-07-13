@@ -330,6 +330,11 @@
         "field": "Customer_Name",
         "type": "string",
         "display_name": "customer_name"
+      },
+      {
+        "field": "Is_New",
+        "type": "string",
+        "display_name": "是否新单"
       }
     ]
   },

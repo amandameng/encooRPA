@@ -1,21 +1,23 @@
 //代码执行入口，请勿修改或删除
 public SmtpClient smtp = new SmtpClient();
+
 public void Run()
 {
     #region 配置SMTP信息
-    smtp.Port = 587;  
-    smtp.Host = "smtp.office365.com";
+    smtp.Port = Convert.ToInt32(发件箱配置jsonObj["port"]);  
+    smtp.Host = 发件箱配置jsonObj["smtpServer"].ToString();
     smtp.EnableSsl = true;  
     smtp.UseDefaultCredentials = false;  
-    smtp.Credentials = new NetworkCredential("rpa@owntrust.cn", "test@2021");  
+    smtp.Credentials = new System.Net.NetworkCredential(发件箱配置jsonObj["email"].ToString(), 发件箱配置jsonObj["password"].ToString());  
     smtp.DeliveryMethod = SmtpDeliveryMethod.Network;  
     #endregion
     
+    string fromAddress = 发件箱配置jsonObj["email"].ToString();
     #region 配置Clean List邮件内容
     //For Clean Mail
     try {
         MailMessage cleanMsg = new MailMessage();  
-        cleanMsg.From = new MailAddress("rpa@owntrust.cn");
+        cleanMsg.From = new MailAddress(fromAddress);
         if(mailSettingTable.AsEnumerable().Cast<DataRow>().Any(s => s["Order_Category"].ToString() == "Clean Order")){
             string toStr = mailSettingTable.AsEnumerable().Cast<DataRow>().FirstOrDefault(s => s["Order_Category"].ToString() == "Clean Order")["Mail_Receipt_Address"].ToString();
             if(toStr.IndexOf("/") > -1){
@@ -31,7 +33,7 @@ public void Run()
         }
         cleanMsg.Subject = "雀巢全家Clean order list";  
         cleanMsg.IsBodyHtml = true; //to make message body as html    
-
+       cleanMsg.From = new MailAddress(fromAddress, "云扩RPA");
         if(!string.IsNullOrEmpty(cleanSQL)){
             cleanMsg.Body = string.Format(@"<p>Dear All，</p>
                                     <p>附件为本时段全家clean order list，请参协助处理，谢谢。</p>
@@ -61,7 +63,7 @@ public void Run()
     //For Exception Mail
     try {
         MailMessage exceptionMsg = new MailMessage();  
-        exceptionMsg.From = new MailAddress("rpa@owntrust.cn");  
+        exceptionMsg.From = new MailAddress(fromAddress);  
         if(mailSettingTable.AsEnumerable().Cast<DataRow>().Any(s => s["Order_Category"].ToString() == "Exception Order")){
             string toStr = mailSettingTable.AsEnumerable().Cast<DataRow>().FirstOrDefault(s => s["Order_Category"].ToString() == "Exception Order")["Mail_Receipt_Address"].ToString();
             if(toStr.IndexOf("/") > -1){
@@ -76,7 +78,9 @@ public void Run()
             throw new Exception("全家Exception Order邮件未填写收件人");
         }
         exceptionMsg.Subject = "雀巢全家Exception order list";  
-        exceptionMsg.IsBodyHtml = true; //to make message body as html    
+        exceptionMsg.IsBodyHtml = true; //to make message body as html
+       exceptionMsg.From = new MailAddress(fromAddress, "云扩RPA");
+
         if(!string.IsNullOrEmpty(exceptionSQL)){
             exceptionMsg.Body = string.Format(@"<p>Dear All，</p>
                                     <p>附件为本时段全家exception order list，请参协助处理，谢谢。</p>
@@ -107,7 +111,7 @@ public void Run()
     //For Excel To Mail
     try {
         MailMessage excelMsg = new MailMessage();  
-        excelMsg.From = new MailAddress("rpa@owntrust.cn");  
+        excelMsg.From = new MailAddress(fromAddress);  
         if(mailSettingTable.AsEnumerable().Cast<DataRow>().Any(s => s["Order_Category"].ToString() == "Excel To Order")){
             string toStr = mailSettingTable.AsEnumerable().Cast<DataRow>().FirstOrDefault(s => s["Order_Category"].ToString() == "Excel To Order")["Mail_Receipt_Address"].ToString();
             if(toStr.IndexOf("/") > -1){
@@ -123,7 +127,7 @@ public void Run()
         }
         excelMsg.Subject = "雀巢全家Excel to order list";  
         excelMsg.IsBodyHtml = true; //to make message body as html    
-
+        excelMsg.From = new MailAddress(fromAddress, "云扩RPA");
         if(!string.IsNullOrEmpty(excelSQL)){
             excelMsg.Body = string.Format(@"<p>Dear All，</p>
                                     <p>附件为本时段全家excel to order list，请参协助处理，谢谢。</p>
@@ -153,7 +157,7 @@ public void Run()
     try{
         if(解析失败订单!=null && 解析失败订单.Count > 0){
             MailMessage parseFailedMsg = new MailMessage();  
-            parseFailedMsg.From = new MailAddress("rpa@owntrust.cn");
+            parseFailedMsg.From = new MailAddress(fromAddress);
             parseFailedMsg.Subject = "雀巢全家 解析异常订单";
             parseFailedMsg.Body = string.Format(@"<p>Dear All，</p>
                                     <p>以下为本次解析失败订单：</p><br/>
@@ -166,6 +170,8 @@ public void Run()
                 }
             }else parseFailedMsg.To.Add(new MailAddress(flowAlertReceiverEmailAddress));
             parseFailedMsg.IsBodyHtml = true; //to make message body as html
+            parseFailedMsg.From = new MailAddress(fromAddress, "云扩RPA");
+
             sendMsg(parseFailedMsg);
             //smtp.Send(parseFailedMsg);  
         }

@@ -1,0 +1,1875 @@
+{
+  "Md5CheckSum": "4c06435040c03b2e0d40a391cec96d27",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Flowchart_1",
+        "Name": "最外层",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "SetLogLevelActivity_1",
+            "Name": "设置日志级别",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "Flowchart_3",
+            "Name": "环境初始化",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "ExecuteCmd_3",
+                "Name": "关闭Chrome进程",
+                "IsActivity": true,
+                "SubItems": []
+              },
+              {
+                "RefId": "ExecuteCmd_4",
+                "Name": "关闭Excel进程",
+                "IsActivity": true,
+                "SubItems": []
+              },
+              {
+                "RefId": "DeleteActivity_1",
+                "Name": "删除文件/文件夹",
+                "IsActivity": true,
+                "SubItems": []
+              },
+              {
+                "RefId": "MultipleAssign_37",
+                "Name": "赋值（多个）",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": null,
+                    "Name": "MultipleAssign.AssignModels",
+                    "IsActivity": true,
+                    "SubItems": []
+                  }
+                ]
+              },
+              {
+                "RefId": "CreateActivity_1",
+                "Name": "新建文件/文件夹",
+                "IsActivity": true,
+                "SubItems": []
+              },
+              {
+                "RefId": "AcquireAssetsActivity_1",
+                "Name": "获取资产",
+                "IsActivity": true,
+                "SubItems": []
+              },
+              {
+                "RefId": "CommentActivity_2",
+                "Name": "注释掉",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "Assign_1",
+                    "Name": "赋值",
+                    "IsActivity": true,
+                    "SubItems": []
+                  }
+                ]
+              },
+              {
+                "RefId": "FileDownloadActivity_5",
+                "Name": "下载文件",
+                "IsActivity": true,
+                "SubItems": []
+              },
+              {
+                "RefId": "DeCompresseFileActivity_1",
+                "Name": "解压缩文件",
+                "IsActivity": true,
+                "SubItems": []
+              },
+              {
+                "RefId": "GetFileListActivity_1",
+                "Name": "获取文件/文件夹列表",
+                "IsActivity": true,
+                "SubItems": []
+              },
+              {
+                "RefId": "FileDownloadActivity_6",
+                "Name": "下载文件",
+                "IsActivity": true,
+                "SubItems": []
+              },
+              {
+                "RefId": "FileDownloadActivity_7",
+                "Name": "下载文件",
+                "IsActivity": true,
+                "SubItems": []
+              },
+              {
+                "RefId": "FileDownloadActivity_8",
+                "Name": "下载文件",
+                "IsActivity": true,
+                "SubItems": []
+              },
+              {
+                "RefId": "RenameActivity_1",
+                "Name": "重命名文件/文件夹",
+                "IsActivity": true,
+                "SubItems": []
+              },
+              {
+                "RefId": "RenameActivity_2",
+                "Name": "重命名文件/文件夹",
+                "IsActivity": true,
+                "SubItems": []
+              },
+              {
+                "RefId": "RenameActivity_3",
+                "Name": "重命名文件/文件夹",
+                "IsActivity": true,
+                "SubItems": []
+              },
+              {
+                "RefId": "MultipleAssign_36",
+                "Name": "赋值（多个）",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": null,
+                    "Name": "MultipleAssign.AssignModels",
+                    "IsActivity": true,
+                    "SubItems": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "RefId": "DatabaseConnectActivity_5",
+            "Name": "连接数据库",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "Flowchart_32",
+                "Name": "数据库连接后",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "DatabaseQueryDataActivity_21",
+                    "Name": "查询-构建dt写入excel",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "DatabaseQueryDataActivity_22",
+                    "Name": "查询-构建dt写入excel",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "DatabaseQueryDataActivity_23",
+                    "Name": "查询-构建dt写入excel",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "QueryTableActivity_2",
+                    "Name": "查询语句",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "ForEach`1_6",
+                    "Name": "循环操作（For Each)",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "TryCatch_1",
+                        "Name": "错误捕获（Try Catch）",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": null,
+                            "Name": "TryCatch.Try",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": "Flowchart_40",
+                                "Name": "处理1个表",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "LogActivity_58",
+                                    "Name": "写入日志",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  },
+                                  {
+                                    "RefId": "If_1",
+                                    "Name": "条件（If）",
+                                    "IsActivity": true,
+                                    "SubItems": [
+                                      {
+                                        "RefId": null,
+                                        "Name": "If.Else",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": "Throw_4",
+                                            "Name": "抛出异常",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "RefId": "OfficeExcelOpenOrCreateActivity_4",
+                                    "Name": "打开/新建",
+                                    "IsActivity": true,
+                                    "SubItems": [
+                                      {
+                                        "RefId": "Sequence_6",
+                                        "Name": "序列",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": "OfficeExcelReadCellActivity_23",
+                                            "Name": "读取单元格",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          },
+                                          {
+                                            "RefId": "OfficeExcelReadCellActivity_24",
+                                            "Name": "读取单元格",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          },
+                                          {
+                                            "RefId": "OfficeExcelReadCellActivity_25",
+                                            "Name": "读取单元格",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          },
+                                          {
+                                            "RefId": "OfficeExcelReadCellActivity_26",
+                                            "Name": "读取单元格",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          },
+                                          {
+                                            "RefId": "OfficeExcelGetLastRowIndexActivity_5",
+                                            "Name": "获取末行号",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          },
+                                          {
+                                            "RefId": "OfficeExcelGetLastRowIndexActivity_6",
+                                            "Name": "获取末行号",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          },
+                                          {
+                                            "RefId": "OfficeExcelReadCellActivity_27",
+                                            "Name": "读取单元格",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          },
+                                          {
+                                            "RefId": "OfficeExcelReadCellActivity_28",
+                                            "Name": "读取单元格",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          },
+                                          {
+                                            "RefId": "OfficeExcelReadCellActivity_29",
+                                            "Name": "读取单元格",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          },
+                                          {
+                                            "RefId": "OfficeExcelReadCellActivity_30",
+                                            "Name": "读取单元格",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          },
+                                          {
+                                            "RefId": "OfficeExcelReadCellActivity_31",
+                                            "Name": "读取单元格",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          },
+                                          {
+                                            "RefId": "OfficeExcelReadCellActivity_32",
+                                            "Name": "读取单元格",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          },
+                                          {
+                                            "RefId": "OfficeExcelReadCellActivity_33",
+                                            "Name": "读取单元格",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          },
+                                          {
+                                            "RefId": "OfficeExcelReadCellActivity_34",
+                                            "Name": "读取单元格",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          },
+                                          {
+                                            "RefId": "OfficeExcelReadCellActivity_35",
+                                            "Name": "读取单元格",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          },
+                                          {
+                                            "RefId": "OfficeExcelReadRangeActivity_3",
+                                            "Name": "读取区域",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "RefId": "MultipleAssign_60",
+                                    "Name": "赋值（多个）",
+                                    "IsActivity": true,
+                                    "SubItems": [
+                                      {
+                                        "RefId": null,
+                                        "Name": "MultipleAssign.AssignModels",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "RefId": "MultipleAssign_61",
+                                    "Name": "赋值（多个）",
+                                    "IsActivity": true,
+                                    "SubItems": [
+                                      {
+                                        "RefId": null,
+                                        "Name": "MultipleAssign.AssignModels",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "RefId": "LogActivity_59",
+                                    "Name": "写入日志",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  },
+                                  {
+                                    "RefId": "DataTableAddColumnActivity_14",
+                                    "Name": "添加数据列",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  },
+                                  {
+                                    "RefId": "DataTableAddColumnActivity_12",
+                                    "Name": "添加数据列",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  },
+                                  {
+                                    "RefId": "DataTableAddColumnActivity_13",
+                                    "Name": "添加数据列",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  },
+                                  {
+                                    "RefId": "Flowchart_41",
+                                    "Name": "主要操作",
+                                    "IsActivity": true,
+                                    "SubItems": [
+                                      {
+                                        "RefId": "DatabaseQueryDataActivity_30",
+                                        "Name": "查询-仓库dt",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      },
+                                      {
+                                        "RefId": "FlowDecision_21",
+                                        "Name": "仓库dt",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": null,
+                                            "Name": "FlowDecision.True",
+                                            "IsActivity": true,
+                                            "SubItems": [
+                                              {
+                                                "RefId": "MultipleAssign_66",
+                                                "Name": "赋值（多个）",
+                                                "IsActivity": true,
+                                                "SubItems": [
+                                                  {
+                                                    "RefId": null,
+                                                    "Name": "MultipleAssign.AssignModels",
+                                                    "IsActivity": true,
+                                                    "SubItems": []
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "RefId": "DatabaseQueryDataActivity_35",
+                                                "Name": "查询-仓库dt",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              },
+                                              {
+                                                "RefId": "FlowDecision_19",
+                                                "Name": "kid_dt",
+                                                "IsActivity": true,
+                                                "SubItems": [
+                                                  {
+                                                    "RefId": null,
+                                                    "Name": "FlowDecision.True",
+                                                    "IsActivity": true,
+                                                    "SubItems": [
+                                                      {
+                                                        "RefId": "ForEach_26",
+                                                        "Name": "遍历行",
+                                                        "IsActivity": true,
+                                                        "SubItems": [
+                                                          {
+                                                            "RefId": "Flowchart_45",
+                                                            "Name": "生成kid_dt",
+                                                            "IsActivity": true,
+                                                            "SubItems": [
+                                                              {
+                                                                "RefId": "MultipleAssign_70",
+                                                                "Name": "赋值（多个）",
+                                                                "IsActivity": true,
+                                                                "SubItems": [
+                                                                  {
+                                                                    "RefId": null,
+                                                                    "Name": "MultipleAssign.AssignModels",
+                                                                    "IsActivity": true,
+                                                                    "SubItems": []
+                                                                  }
+                                                                ]
+                                                              },
+                                                              {
+                                                                "RefId": "FlowDecision_6",
+                                                                "Name": "FlowDecision",
+                                                                "IsActivity": true,
+                                                                "SubItems": [
+                                                                  {
+                                                                    "RefId": null,
+                                                                    "Name": "FlowDecision.True",
+                                                                    "IsActivity": true,
+                                                                    "SubItems": [
+                                                                      {
+                                                                        "RefId": "InvokeCSharpCodeActivity_24",
+                                                                        "Name": "执行C#代码",
+                                                                        "IsActivity": true,
+                                                                        "SubItems": []
+                                                                      }
+                                                                    ]
+                                                                  },
+                                                                  {
+                                                                    "RefId": null,
+                                                                    "Name": "FlowDecision.False",
+                                                                    "IsActivity": true,
+                                                                    "SubItems": [
+                                                                      {
+                                                                        "RefId": "Break_24",
+                                                                        "Name": "终止循环",
+                                                                        "IsActivity": true,
+                                                                        "SubItems": []
+                                                                      }
+                                                                    ]
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      },
+                                                      {
+                                                        "RefId": "DatabaseInsertDataActivity_19",
+                                                        "Name": "插入数据",
+                                                        "IsActivity": true,
+                                                        "SubItems": []
+                                                      },
+                                                      {
+                                                        "RefId": "DatabaseQueryDataActivity_32",
+                                                        "Name": "查询-雀巢dt",
+                                                        "IsActivity": true,
+                                                        "SubItems": []
+                                                      },
+                                                      {
+                                                        "RefId": "FlowDecision_20",
+                                                        "Name": "雀巢dt",
+                                                        "IsActivity": true,
+                                                        "SubItems": [
+                                                          {
+                                                            "RefId": null,
+                                                            "Name": "FlowDecision.True",
+                                                            "IsActivity": true,
+                                                            "SubItems": [
+                                                              {
+                                                                "RefId": "ForEach_25",
+                                                                "Name": "遍历行",
+                                                                "IsActivity": true,
+                                                                "SubItems": [
+                                                                  {
+                                                                    "RefId": "Flowchart_44",
+                                                                    "Name": "价差",
+                                                                    "IsActivity": true,
+                                                                    "SubItems": [
+                                                                      {
+                                                                        "RefId": "MultipleAssign_69",
+                                                                        "Name": "赋值（多个）",
+                                                                        "IsActivity": true,
+                                                                        "SubItems": [
+                                                                          {
+                                                                            "RefId": null,
+                                                                            "Name": "MultipleAssign.AssignModels",
+                                                                            "IsActivity": true,
+                                                                            "SubItems": []
+                                                                          }
+                                                                        ]
+                                                                      },
+                                                                      {
+                                                                        "RefId": "FlowDecision_5",
+                                                                        "Name": "商品编码",
+                                                                        "IsActivity": true,
+                                                                        "SubItems": [
+                                                                          {
+                                                                            "RefId": null,
+                                                                            "Name": "FlowDecision.True",
+                                                                            "IsActivity": true,
+                                                                            "SubItems": [
+                                                                              {
+                                                                                "RefId": "FilterDataTableActivity_17",
+                                                                                "Name": "筛选",
+                                                                                "IsActivity": true,
+                                                                                "SubItems": []
+                                                                              },
+                                                                              {
+                                                                                "RefId": "FlowDecision_4",
+                                                                                "Name": "筛选后dt",
+                                                                                "IsActivity": true,
+                                                                                "SubItems": [
+                                                                                  {
+                                                                                    "RefId": null,
+                                                                                    "Name": "FlowDecision.True",
+                                                                                    "IsActivity": true,
+                                                                                    "SubItems": [
+                                                                                      {
+                                                                                        "RefId": "InvokeCSharpCodeActivity_23",
+                                                                                        "Name": "执行C#代码",
+                                                                                        "IsActivity": true,
+                                                                                        "SubItems": []
+                                                                                      }
+                                                                                    ]
+                                                                                  }
+                                                                                ]
+                                                                              }
+                                                                            ]
+                                                                          },
+                                                                          {
+                                                                            "RefId": null,
+                                                                            "Name": "FlowDecision.False",
+                                                                            "IsActivity": true,
+                                                                            "SubItems": [
+                                                                              {
+                                                                                "RefId": "Break_22",
+                                                                                "Name": "终止循环",
+                                                                                "IsActivity": true,
+                                                                                "SubItems": []
+                                                                              }
+                                                                            ]
+                                                                          }
+                                                                        ]
+                                                                      }
+                                                                    ]
+                                                                  }
+                                                                ]
+                                                              },
+                                                              {
+                                                                "RefId": "LogActivity_51",
+                                                                "Name": "写入日志",
+                                                                "IsActivity": true,
+                                                                "SubItems": []
+                                                              },
+                                                              {
+                                                                "RefId": "DatabaseQueryDataActivity_39",
+                                                                "Name": "查询",
+                                                                "IsActivity": true,
+                                                                "SubItems": []
+                                                              },
+                                                              {
+                                                                "RefId": "ForEach_28",
+                                                                "Name": "遍历行-组成exception_dt",
+                                                                "IsActivity": true,
+                                                                "SubItems": [
+                                                                  {
+                                                                    "RefId": "Flowchart_51",
+                                                                    "Name": "组成数据表dt",
+                                                                    "IsActivity": true,
+                                                                    "SubItems": [
+                                                                      {
+                                                                        "RefId": "MultipleAssign_102",
+                                                                        "Name": "赋值（多个）",
+                                                                        "IsActivity": true,
+                                                                        "SubItems": [
+                                                                          {
+                                                                            "RefId": null,
+                                                                            "Name": "MultipleAssign.AssignModels",
+                                                                            "IsActivity": true,
+                                                                            "SubItems": []
+                                                                          }
+                                                                        ]
+                                                                      },
+                                                                      {
+                                                                        "RefId": "MultipleAssign_114",
+                                                                        "Name": "赋值（多个）",
+                                                                        "IsActivity": true,
+                                                                        "SubItems": [
+                                                                          {
+                                                                            "RefId": null,
+                                                                            "Name": "MultipleAssign.AssignModels",
+                                                                            "IsActivity": true,
+                                                                            "SubItems": []
+                                                                          }
+                                                                        ]
+                                                                      },
+                                                                      {
+                                                                        "RefId": "FlowDecision_42",
+                                                                        "Name": "商品编码",
+                                                                        "IsActivity": true,
+                                                                        "SubItems": [
+                                                                          {
+                                                                            "RefId": null,
+                                                                            "Name": "FlowDecision.True",
+                                                                            "IsActivity": true,
+                                                                            "SubItems": [
+                                                                              {
+                                                                                "RefId": "InvokeCSharpCodeActivity_30",
+                                                                                "Name": "执行C#代码",
+                                                                                "IsActivity": true,
+                                                                                "SubItems": []
+                                                                              },
+                                                                              {
+                                                                                "RefId": "FlowDecision_36",
+                                                                                "Name": "零数=0",
+                                                                                "IsActivity": true,
+                                                                                "SubItems": [
+                                                                                  {
+                                                                                    "RefId": null,
+                                                                                    "Name": "FlowDecision.True",
+                                                                                    "IsActivity": true,
+                                                                                    "SubItems": [
+                                                                                      {
+                                                                                        "RefId": "FilterDataTableActivity_25",
+                                                                                        "Name": "筛选",
+                                                                                        "IsActivity": true,
+                                                                                        "SubItems": []
+                                                                                      },
+                                                                                      {
+                                                                                        "RefId": "FlowDecision_34",
+                                                                                        "Name": "筛选dt",
+                                                                                        "IsActivity": true,
+                                                                                        "SubItems": [
+                                                                                          {
+                                                                                            "RefId": null,
+                                                                                            "Name": "FlowDecision.True",
+                                                                                            "IsActivity": true,
+                                                                                            "SubItems": [
+                                                                                              {
+                                                                                                "RefId": "FlowDecision_37",
+                                                                                                "Name": "特殊产品",
+                                                                                                "IsActivity": true,
+                                                                                                "SubItems": [
+                                                                                                  {
+                                                                                                    "RefId": null,
+                                                                                                    "Name": "FlowDecision.True",
+                                                                                                    "IsActivity": true,
+                                                                                                    "SubItems": [
+                                                                                                      {
+                                                                                                        "RefId": "LogActivity_65",
+                                                                                                        "Name": "写入日志",
+                                                                                                        "IsActivity": true,
+                                                                                                        "SubItems": []
+                                                                                                      },
+                                                                                                      {
+                                                                                                        "RefId": "MultipleAssign_116",
+                                                                                                        "Name": "赋值（多个）",
+                                                                                                        "IsActivity": true,
+                                                                                                        "SubItems": [
+                                                                                                          {
+                                                                                                            "RefId": null,
+                                                                                                            "Name": "MultipleAssign.AssignModels",
+                                                                                                            "IsActivity": true,
+                                                                                                            "SubItems": []
+                                                                                                          }
+                                                                                                        ]
+                                                                                                      },
+                                                                                                      {
+                                                                                                        "RefId": "InvokeCSharpCodeActivity_31",
+                                                                                                        "Name": "执行C#代码: excep正常行赋值",
+                                                                                                        "IsActivity": true,
+                                                                                                        "SubItems": []
+                                                                                                      },
+                                                                                                      {
+                                                                                                        "RefId": "FlowDecision_38",
+                                                                                                        "Name": "正常",
+                                                                                                        "IsActivity": true,
+                                                                                                        "SubItems": [
+                                                                                                          {
+                                                                                                            "RefId": null,
+                                                                                                            "Name": "FlowDecision.True",
+                                                                                                            "IsActivity": true,
+                                                                                                            "SubItems": [
+                                                                                                              {
+                                                                                                                "RefId": "DataTableAddRowActivity_1",
+                                                                                                                "Name": "添加数据行",
+                                                                                                                "IsActivity": true,
+                                                                                                                "SubItems": []
+                                                                                                              }
+                                                                                                            ]
+                                                                                                          },
+                                                                                                          {
+                                                                                                            "RefId": null,
+                                                                                                            "Name": "FlowDecision.False",
+                                                                                                            "IsActivity": true,
+                                                                                                            "SubItems": [
+                                                                                                              {
+                                                                                                                "RefId": "MultipleAssign_117",
+                                                                                                                "Name": "赋值（多个）",
+                                                                                                                "IsActivity": true,
+                                                                                                                "SubItems": [
+                                                                                                                  {
+                                                                                                                    "RefId": null,
+                                                                                                                    "Name": "MultipleAssign.AssignModels",
+                                                                                                                    "IsActivity": true,
+                                                                                                                    "SubItems": []
+                                                                                                                  }
+                                                                                                                ]
+                                                                                                              }
+                                                                                                            ]
+                                                                                                          }
+                                                                                                        ]
+                                                                                                      }
+                                                                                                    ]
+                                                                                                  },
+                                                                                                  {
+                                                                                                    "RefId": null,
+                                                                                                    "Name": "FlowDecision.False",
+                                                                                                    "IsActivity": true,
+                                                                                                    "SubItems": []
+                                                                                                  }
+                                                                                                ]
+                                                                                              }
+                                                                                            ]
+                                                                                          },
+                                                                                          {
+                                                                                            "RefId": null,
+                                                                                            "Name": "FlowDecision.False",
+                                                                                            "IsActivity": true,
+                                                                                            "SubItems": [
+                                                                                              {
+                                                                                                "RefId": "LogActivity_61",
+                                                                                                "Name": "写入日志",
+                                                                                                "IsActivity": true,
+                                                                                                "SubItems": []
+                                                                                              },
+                                                                                              {
+                                                                                                "RefId": "MultipleAssign_115",
+                                                                                                "Name": "赋值（多个）",
+                                                                                                "IsActivity": true,
+                                                                                                "SubItems": [
+                                                                                                  {
+                                                                                                    "RefId": null,
+                                                                                                    "Name": "MultipleAssign.AssignModels",
+                                                                                                    "IsActivity": true,
+                                                                                                    "SubItems": []
+                                                                                                  }
+                                                                                                ]
+                                                                                              }
+                                                                                            ]
+                                                                                          }
+                                                                                        ]
+                                                                                      }
+                                                                                    ]
+                                                                                  },
+                                                                                  {
+                                                                                    "RefId": null,
+                                                                                    "Name": "FlowDecision.False",
+                                                                                    "IsActivity": true,
+                                                                                    "SubItems": [
+                                                                                      {
+                                                                                        "RefId": "LogActivity_64",
+                                                                                        "Name": "写入日志",
+                                                                                        "IsActivity": true,
+                                                                                        "SubItems": []
+                                                                                      },
+                                                                                      {
+                                                                                        "RefId": "MultipleAssign_113",
+                                                                                        "Name": "赋值（多个）",
+                                                                                        "IsActivity": true,
+                                                                                        "SubItems": [
+                                                                                          {
+                                                                                            "RefId": null,
+                                                                                            "Name": "MultipleAssign.AssignModels",
+                                                                                            "IsActivity": true,
+                                                                                            "SubItems": []
+                                                                                          }
+                                                                                        ]
+                                                                                      }
+                                                                                    ]
+                                                                                  }
+                                                                                ]
+                                                                              }
+                                                                            ]
+                                                                          },
+                                                                          {
+                                                                            "RefId": null,
+                                                                            "Name": "FlowDecision.False",
+                                                                            "IsActivity": true,
+                                                                            "SubItems": [
+                                                                              {
+                                                                                "RefId": "Break_26",
+                                                                                "Name": "终止循环",
+                                                                                "IsActivity": true,
+                                                                                "SubItems": []
+                                                                              }
+                                                                            ]
+                                                                          }
+                                                                        ]
+                                                                      }
+                                                                    ]
+                                                                  }
+                                                                ]
+                                                              },
+                                                              {
+                                                                "RefId": "FlowDecision_17",
+                                                                "Name": "当月",
+                                                                "IsActivity": true,
+                                                                "SubItems": [
+                                                                  {
+                                                                    "RefId": null,
+                                                                    "Name": "FlowDecision.True",
+                                                                    "IsActivity": true,
+                                                                    "SubItems": [
+                                                                      {
+                                                                        "RefId": "FlowDecision_15",
+                                                                        "Name": "总价差",
+                                                                        "IsActivity": true,
+                                                                        "SubItems": [
+                                                                          {
+                                                                            "RefId": null,
+                                                                            "Name": "FlowDecision.True",
+                                                                            "IsActivity": true,
+                                                                            "SubItems": [
+                                                                              {
+                                                                                "RefId": "FlowDecision_41",
+                                                                                "Name": "出单",
+                                                                                "IsActivity": true,
+                                                                                "SubItems": [
+                                                                                  {
+                                                                                    "RefId": null,
+                                                                                    "Name": "FlowDecision.True",
+                                                                                    "IsActivity": true,
+                                                                                    "SubItems": []
+                                                                                  },
+                                                                                  {
+                                                                                    "RefId": null,
+                                                                                    "Name": "FlowDecision.False",
+                                                                                    "IsActivity": true,
+                                                                                    "SubItems": [
+                                                                                      {
+                                                                                        "RefId": "InvokeWorkflow_5",
+                                                                                        "Name": "执行流程 : 流程图_exception写问题",
+                                                                                        "IsActivity": true,
+                                                                                        "SubItems": []
+                                                                                      }
+                                                                                    ]
+                                                                                  }
+                                                                                ]
+                                                                              }
+                                                                            ]
+                                                                          },
+                                                                          {
+                                                                            "RefId": null,
+                                                                            "Name": "FlowDecision.False",
+                                                                            "IsActivity": true,
+                                                                            "SubItems": [
+                                                                              {
+                                                                                "RefId": "InvokeWorkflow_6",
+                                                                                "Name": "执行流程 : 流程图_exception写问题",
+                                                                                "IsActivity": true,
+                                                                                "SubItems": []
+                                                                              }
+                                                                            ]
+                                                                          }
+                                                                        ]
+                                                                      }
+                                                                    ]
+                                                                  },
+                                                                  {
+                                                                    "RefId": null,
+                                                                    "Name": "FlowDecision.False",
+                                                                    "IsActivity": true,
+                                                                    "SubItems": [
+                                                                      {
+                                                                        "RefId": "InvokeWorkflow_10",
+                                                                        "Name": "执行流程 : 流程图_exception写问题",
+                                                                        "IsActivity": true,
+                                                                        "SubItems": []
+                                                                      }
+                                                                    ]
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          },
+                                                          {
+                                                            "RefId": null,
+                                                            "Name": "FlowDecision.False",
+                                                            "IsActivity": true,
+                                                            "SubItems": [
+                                                              {
+                                                                "RefId": "LogActivity_50",
+                                                                "Name": "写入日志",
+                                                                "IsActivity": true,
+                                                                "SubItems": []
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "RefId": null,
+                                                    "Name": "FlowDecision.False",
+                                                    "IsActivity": true,
+                                                    "SubItems": [
+                                                      {
+                                                        "RefId": "LogActivity_53",
+                                                        "Name": "写入日志",
+                                                        "IsActivity": true,
+                                                        "SubItems": []
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "RefId": null,
+                                            "Name": "FlowDecision.False",
+                                            "IsActivity": true,
+                                            "SubItems": [
+                                              {
+                                                "RefId": "LogActivity_49",
+                                                "Name": "写入日志",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "RefId": "DatabaseQueryDataActivity_31",
+                                        "Name": "查询",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      },
+                                      {
+                                        "RefId": "FlowDecision_14",
+                                        "Name": "没有数据",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": null,
+                                            "Name": "FlowDecision.True",
+                                            "IsActivity": true,
+                                            "SubItems": [
+                                              {
+                                                "RefId": "ForEach_23",
+                                                "Name": "遍历行",
+                                                "IsActivity": true,
+                                                "SubItems": [
+                                                  {
+                                                    "RefId": "Flowchart_42",
+                                                    "Name": "组成数据表dt",
+                                                    "IsActivity": true,
+                                                    "SubItems": [
+                                                      {
+                                                        "RefId": "MultipleAssign_67",
+                                                        "Name": "赋值（多个）",
+                                                        "IsActivity": true,
+                                                        "SubItems": [
+                                                          {
+                                                            "RefId": null,
+                                                            "Name": "MultipleAssign.AssignModels",
+                                                            "IsActivity": true,
+                                                            "SubItems": []
+                                                          }
+                                                        ]
+                                                      },
+                                                      {
+                                                        "RefId": "FlowDecision_8",
+                                                        "Name": "商品编码",
+                                                        "IsActivity": true,
+                                                        "SubItems": [
+                                                          {
+                                                            "RefId": null,
+                                                            "Name": "FlowDecision.True",
+                                                            "IsActivity": true,
+                                                            "SubItems": [
+                                                              {
+                                                                "RefId": "FilterDataTableActivity_15",
+                                                                "Name": "筛选",
+                                                                "IsActivity": true,
+                                                                "SubItems": []
+                                                              },
+                                                              {
+                                                                "RefId": "FlowDecision_7",
+                                                                "Name": "筛选dt",
+                                                                "IsActivity": true,
+                                                                "SubItems": [
+                                                                  {
+                                                                    "RefId": null,
+                                                                    "Name": "FlowDecision.True",
+                                                                    "IsActivity": true,
+                                                                    "SubItems": [
+                                                                      {
+                                                                        "RefId": "MultipleAssign_88",
+                                                                        "Name": "赋值（多个）",
+                                                                        "IsActivity": true,
+                                                                        "SubItems": [
+                                                                          {
+                                                                            "RefId": null,
+                                                                            "Name": "MultipleAssign.AssignModels",
+                                                                            "IsActivity": true,
+                                                                            "SubItems": []
+                                                                          }
+                                                                        ]
+                                                                      },
+                                                                      {
+                                                                        "RefId": "InvokeCSharpCodeActivity_21",
+                                                                        "Name": "执行C#代码",
+                                                                        "IsActivity": true,
+                                                                        "SubItems": []
+                                                                      }
+                                                                    ]
+                                                                  },
+                                                                  {
+                                                                    "RefId": null,
+                                                                    "Name": "FlowDecision.False",
+                                                                    "IsActivity": true,
+                                                                    "SubItems": [
+                                                                      {
+                                                                        "RefId": "LogActivity_55",
+                                                                        "Name": "写入日志",
+                                                                        "IsActivity": true,
+                                                                        "SubItems": []
+                                                                      },
+                                                                      {
+                                                                        "RefId": "MultipleAssign_89",
+                                                                        "Name": "赋值（多个）",
+                                                                        "IsActivity": true,
+                                                                        "SubItems": [
+                                                                          {
+                                                                            "RefId": null,
+                                                                            "Name": "MultipleAssign.AssignModels",
+                                                                            "IsActivity": true,
+                                                                            "SubItems": []
+                                                                          }
+                                                                        ]
+                                                                      }
+                                                                    ]
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          },
+                                                          {
+                                                            "RefId": null,
+                                                            "Name": "FlowDecision.False",
+                                                            "IsActivity": true,
+                                                            "SubItems": [
+                                                              {
+                                                                "RefId": "Break_20",
+                                                                "Name": "终止循环",
+                                                                "IsActivity": true,
+                                                                "SubItems": []
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "RefId": "DatabaseInsertDataActivity_16",
+                                                "Name": "插入数据",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              },
+                                              {
+                                                "RefId": "DataTableMergeActivity_6",
+                                                "Name": "合并数据表",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              },
+                                              {
+                                                "RefId": "FlowDecision_13",
+                                                "Name": "正常",
+                                                "IsActivity": true,
+                                                "SubItems": [
+                                                  {
+                                                    "RefId": null,
+                                                    "Name": "FlowDecision.True",
+                                                    "IsActivity": true,
+                                                    "SubItems": [
+                                                      {
+                                                        "RefId": "DatabaseQueryDataActivity_34",
+                                                        "Name": "查询",
+                                                        "IsActivity": true,
+                                                        "SubItems": []
+                                                      },
+                                                      {
+                                                        "RefId": "FlowDecision_9",
+                                                        "Name": "没有数据",
+                                                        "IsActivity": true,
+                                                        "SubItems": [
+                                                          {
+                                                            "RefId": null,
+                                                            "Name": "FlowDecision.True",
+                                                            "IsActivity": true,
+                                                            "SubItems": [
+                                                              {
+                                                                "RefId": "InvokeCSharpCodeActivity_20",
+                                                                "Name": "执行C#代码",
+                                                                "IsActivity": true,
+                                                                "SubItems": []
+                                                              },
+                                                              {
+                                                                "RefId": "DatabaseInsertDataActivity_18",
+                                                                "Name": "插入数据",
+                                                                "IsActivity": true,
+                                                                "SubItems": []
+                                                              },
+                                                              {
+                                                                "RefId": "DataTableMergeActivity_4",
+                                                                "Name": "合并数据表",
+                                                                "IsActivity": true,
+                                                                "SubItems": []
+                                                              }
+                                                            ]
+                                                          },
+                                                          {
+                                                            "RefId": null,
+                                                            "Name": "FlowDecision.False",
+                                                            "IsActivity": true,
+                                                            "SubItems": [
+                                                              {
+                                                                "RefId": "LogActivity_54",
+                                                                "Name": "写入日志",
+                                                                "IsActivity": true,
+                                                                "SubItems": []
+                                                              },
+                                                              {
+                                                                "RefId": "MultipleAssign_95",
+                                                                "Name": "赋值（多个）",
+                                                                "IsActivity": true,
+                                                                "SubItems": [
+                                                                  {
+                                                                    "RefId": null,
+                                                                    "Name": "MultipleAssign.AssignModels",
+                                                                    "IsActivity": true,
+                                                                    "SubItems": []
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "RefId": null,
+                                                    "Name": "FlowDecision.False",
+                                                    "IsActivity": true,
+                                                    "SubItems": [
+                                                      {
+                                                        "RefId": "DatabaseQueryDataActivity_33",
+                                                        "Name": "查询",
+                                                        "IsActivity": true,
+                                                        "SubItems": []
+                                                      },
+                                                      {
+                                                        "RefId": "FlowDecision_12",
+                                                        "Name": "没有数据",
+                                                        "IsActivity": true,
+                                                        "SubItems": [
+                                                          {
+                                                            "RefId": null,
+                                                            "Name": "FlowDecision.True",
+                                                            "IsActivity": true,
+                                                            "SubItems": [
+                                                              {
+                                                                "RefId": "DatabaseInsertDataActivity_17",
+                                                                "Name": "插入数据",
+                                                                "IsActivity": true,
+                                                                "SubItems": []
+                                                              },
+                                                              {
+                                                                "RefId": "DataTableMergeActivity_5",
+                                                                "Name": "合并数据表",
+                                                                "IsActivity": true,
+                                                                "SubItems": []
+                                                              }
+                                                            ]
+                                                          },
+                                                          {
+                                                            "RefId": null,
+                                                            "Name": "FlowDecision.False",
+                                                            "IsActivity": true,
+                                                            "SubItems": [
+                                                              {
+                                                                "RefId": "LogActivity_52",
+                                                                "Name": "写入日志",
+                                                                "IsActivity": true,
+                                                                "SubItems": []
+                                                              },
+                                                              {
+                                                                "RefId": "MultipleAssign_94",
+                                                                "Name": "赋值（多个）",
+                                                                "IsActivity": true,
+                                                                "SubItems": [
+                                                                  {
+                                                                    "RefId": null,
+                                                                    "Name": "MultipleAssign.AssignModels",
+                                                                    "IsActivity": true,
+                                                                    "SubItems": []
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "RefId": null,
+                                            "Name": "FlowDecision.False",
+                                            "IsActivity": true,
+                                            "SubItems": [
+                                              {
+                                                "RefId": "LogActivity_48",
+                                                "Name": "写入日志",
+                                                "IsActivity": true,
+                                                "SubItems": []
+                                              },
+                                              {
+                                                "RefId": "MultipleAssign_93",
+                                                "Name": "赋值（多个）",
+                                                "IsActivity": true,
+                                                "SubItems": [
+                                                  {
+                                                    "RefId": null,
+                                                    "Name": "MultipleAssign.AssignModels",
+                                                    "IsActivity": true,
+                                                    "SubItems": []
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "RefId": "DataTablePreviewActivity_22",
+                                        "Name": "预览数据表",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      },
+                                      {
+                                        "RefId": "DataTablePreviewActivity_23",
+                                        "Name": "预览数据表",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      },
+                                      {
+                                        "RefId": "Throw_1",
+                                        "Name": "抛出异常",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      },
+                                      {
+                                        "RefId": "Throw_2",
+                                        "Name": "抛出异常",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "RefId": null,
+                            "Name": "TryCatch.Catches",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": "InvokeWorkflow_11",
+                                "Name": "调用子流程",
+                                "IsActivity": true,
+                                "SubItems": []
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "RefId": "Flowchart_47",
+                    "Name": "流程图-收件人邮箱",
+                    "IsActivity": true,
+                    "SubItems": [
+                      {
+                        "RefId": "Flowchart_48",
+                        "Name": "流程图-删除列",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": "DataTableRemoveColumnActivity_1",
+                            "Name": "移除列",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "DataTableRemoveColumnActivity_2",
+                            "Name": "移除列",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "DataTableRemoveColumnActivity_5",
+                            "Name": "移除列",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "DataTableRemoveColumnActivity_4",
+                            "Name": "移除列",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "DataTableRemoveColumnActivity_3",
+                            "Name": "移除列",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "DataTableRemoveColumnActivity_6",
+                            "Name": "移除列",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "DataTableRemoveColumnActivity_8",
+                            "Name": "移除列",
+                            "IsActivity": true,
+                            "SubItems": []
+                          },
+                          {
+                            "RefId": "DataTableRemoveColumnActivity_7",
+                            "Name": "移除列",
+                            "IsActivity": true,
+                            "SubItems": []
+                          }
+                        ]
+                      },
+                      {
+                        "RefId": "DatabaseQueryDataActivity_38",
+                        "Name": "查询",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "FilterDataTableActivity_22",
+                        "Name": "筛选-收件人",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "MultipleAssign_75",
+                        "Name": "赋值（多个）",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": null,
+                            "Name": "MultipleAssign.AssignModels",
+                            "IsActivity": true,
+                            "SubItems": []
+                          }
+                        ]
+                      },
+                      {
+                        "RefId": "MultipleAssign_79",
+                        "Name": "赋值（多个）",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": null,
+                            "Name": "MultipleAssign.AssignModels",
+                            "IsActivity": true,
+                            "SubItems": []
+                          }
+                        ]
+                      },
+                      {
+                        "RefId": "DataTableAddColumnActivity_15",
+                        "Name": "添加数据列",
+                        "IsActivity": true,
+                        "SubItems": []
+                      },
+                      {
+                        "RefId": "FlowDecision_22",
+                        "Name": "dt为空",
+                        "IsActivity": true,
+                        "SubItems": [
+                          {
+                            "RefId": null,
+                            "Name": "FlowDecision.True",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": "MultipleAssign_78",
+                                "Name": "赋值（多个）",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": null,
+                                    "Name": "MultipleAssign.AssignModels",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  }
+                                ]
+                              },
+                              {
+                                "RefId": "FlowDecision_28",
+                                "Name": "重复订单",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": null,
+                                    "Name": "FlowDecision.True",
+                                    "IsActivity": true,
+                                    "SubItems": [
+                                      {
+                                        "RefId": "MultipleAssign_96",
+                                        "Name": "赋值（多个）",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": null,
+                                            "Name": "MultipleAssign.AssignModels",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "RefId": "InvokeWorkflow_1",
+                                        "Name": "调用子流程: 发送邮件",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      },
+                                      {
+                                        "RefId": "FilterDataTableActivity_23",
+                                        "Name": "筛选-收件人",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      },
+                                      {
+                                        "RefId": "MultipleAssign_76",
+                                        "Name": "赋值（多个）",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": null,
+                                            "Name": "MultipleAssign.AssignModels",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "RefId": "MultipleAssign_82",
+                                        "Name": "赋值（多个）",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": null,
+                                            "Name": "MultipleAssign.AssignModels",
+                                            "IsActivity": true,
+                                            "SubItems": []
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "RefId": "FlowDecision_23",
+                                        "Name": "dt为空",
+                                        "IsActivity": true,
+                                        "SubItems": [
+                                          {
+                                            "RefId": null,
+                                            "Name": "FlowDecision.True",
+                                            "IsActivity": true,
+                                            "SubItems": [
+                                              {
+                                                "RefId": "MultipleAssign_83",
+                                                "Name": "赋值（多个）",
+                                                "IsActivity": true,
+                                                "SubItems": [
+                                                  {
+                                                    "RefId": null,
+                                                    "Name": "MultipleAssign.AssignModels",
+                                                    "IsActivity": true,
+                                                    "SubItems": []
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "RefId": "FlowDecision_30",
+                                                "Name": "重复订单",
+                                                "IsActivity": true,
+                                                "SubItems": [
+                                                  {
+                                                    "RefId": null,
+                                                    "Name": "FlowDecision.True",
+                                                    "IsActivity": true,
+                                                    "SubItems": [
+                                                      {
+                                                        "RefId": "MultipleAssign_97",
+                                                        "Name": "赋值（多个）",
+                                                        "IsActivity": true,
+                                                        "SubItems": [
+                                                          {
+                                                            "RefId": null,
+                                                            "Name": "MultipleAssign.AssignModels",
+                                                            "IsActivity": true,
+                                                            "SubItems": []
+                                                          }
+                                                        ]
+                                                      },
+                                                      {
+                                                        "RefId": "InvokeWorkflow_2",
+                                                        "Name": "调用子流程: 发送邮件",
+                                                        "IsActivity": true,
+                                                        "SubItems": []
+                                                      },
+                                                      {
+                                                        "RefId": "FilterDataTableActivity_24",
+                                                        "Name": "筛选-收件人",
+                                                        "IsActivity": true,
+                                                        "SubItems": []
+                                                      },
+                                                      {
+                                                        "RefId": "MultipleAssign_77",
+                                                        "Name": "赋值（多个）",
+                                                        "IsActivity": true,
+                                                        "SubItems": [
+                                                          {
+                                                            "RefId": null,
+                                                            "Name": "MultipleAssign.AssignModels",
+                                                            "IsActivity": true,
+                                                            "SubItems": []
+                                                          }
+                                                        ]
+                                                      },
+                                                      {
+                                                        "RefId": "MultipleAssign_85",
+                                                        "Name": "赋值（多个）",
+                                                        "IsActivity": true,
+                                                        "SubItems": [
+                                                          {
+                                                            "RefId": null,
+                                                            "Name": "MultipleAssign.AssignModels",
+                                                            "IsActivity": true,
+                                                            "SubItems": []
+                                                          }
+                                                        ]
+                                                      },
+                                                      {
+                                                        "RefId": "FlowDecision_24",
+                                                        "Name": "dt为空",
+                                                        "IsActivity": true,
+                                                        "SubItems": [
+                                                          {
+                                                            "RefId": null,
+                                                            "Name": "FlowDecision.True",
+                                                            "IsActivity": true,
+                                                            "SubItems": [
+                                                              {
+                                                                "RefId": "MultipleAssign_86",
+                                                                "Name": "赋值（多个）",
+                                                                "IsActivity": true,
+                                                                "SubItems": [
+                                                                  {
+                                                                    "RefId": null,
+                                                                    "Name": "MultipleAssign.AssignModels",
+                                                                    "IsActivity": true,
+                                                                    "SubItems": []
+                                                                  }
+                                                                ]
+                                                              },
+                                                              {
+                                                                "RefId": "FlowDecision_31",
+                                                                "Name": "重复订单",
+                                                                "IsActivity": true,
+                                                                "SubItems": [
+                                                                  {
+                                                                    "RefId": null,
+                                                                    "Name": "FlowDecision.True",
+                                                                    "IsActivity": true,
+                                                                    "SubItems": [
+                                                                      {
+                                                                        "RefId": "MultipleAssign_98",
+                                                                        "Name": "赋值（多个）",
+                                                                        "IsActivity": true,
+                                                                        "SubItems": [
+                                                                          {
+                                                                            "RefId": null,
+                                                                            "Name": "MultipleAssign.AssignModels",
+                                                                            "IsActivity": true,
+                                                                            "SubItems": []
+                                                                          }
+                                                                        ]
+                                                                      },
+                                                                      {
+                                                                        "RefId": "InvokeWorkflow_3",
+                                                                        "Name": "调用子流程: 发送邮件",
+                                                                        "IsActivity": true,
+                                                                        "SubItems": []
+                                                                      }
+                                                                    ]
+                                                                  },
+                                                                  {
+                                                                    "RefId": null,
+                                                                    "Name": "FlowDecision.False",
+                                                                    "IsActivity": true,
+                                                                    "SubItems": []
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          },
+                                                          {
+                                                            "RefId": null,
+                                                            "Name": "FlowDecision.False",
+                                                            "IsActivity": true,
+                                                            "SubItems": [
+                                                              {
+                                                                "RefId": "ForEach`1_11",
+                                                                "Name": "循环操作（For Each)-删除列",
+                                                                "IsActivity": true,
+                                                                "SubItems": [
+                                                                  {
+                                                                    "RefId": "DataTableRemoveColumnActivity_10",
+                                                                    "Name": "移除列",
+                                                                    "IsActivity": true,
+                                                                    "SubItems": []
+                                                                  }
+                                                                ]
+                                                              },
+                                                              {
+                                                                "RefId": "OfficeExcelOpenOrCreateActivity_9",
+                                                                "Name": "打开/新建",
+                                                                "IsActivity": true,
+                                                                "SubItems": [
+                                                                  {
+                                                                    "RefId": "OfficeExcelSetRangeActivity_6",
+                                                                    "Name": "写入区域",
+                                                                    "IsActivity": true,
+                                                                    "SubItems": []
+                                                                  }
+                                                                ]
+                                                              },
+                                                              {
+                                                                "RefId": "MultipleAssign_87",
+                                                                "Name": "赋值（多个）",
+                                                                "IsActivity": true,
+                                                                "SubItems": [
+                                                                  {
+                                                                    "RefId": null,
+                                                                    "Name": "MultipleAssign.AssignModels",
+                                                                    "IsActivity": true,
+                                                                    "SubItems": []
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "RefId": null,
+                                                    "Name": "FlowDecision.False",
+                                                    "IsActivity": true,
+                                                    "SubItems": []
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "RefId": null,
+                                            "Name": "FlowDecision.False",
+                                            "IsActivity": true,
+                                            "SubItems": [
+                                              {
+                                                "RefId": "OfficeExcelOpenOrCreateActivity_8",
+                                                "Name": "打开/新建",
+                                                "IsActivity": true,
+                                                "SubItems": [
+                                                  {
+                                                    "RefId": "OfficeExcelSetRangeActivity_5",
+                                                    "Name": "写入区域",
+                                                    "IsActivity": true,
+                                                    "SubItems": []
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "RefId": "MultipleAssign_84",
+                                                "Name": "赋值（多个）",
+                                                "IsActivity": true,
+                                                "SubItems": [
+                                                  {
+                                                    "RefId": null,
+                                                    "Name": "MultipleAssign.AssignModels",
+                                                    "IsActivity": true,
+                                                    "SubItems": []
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "RefId": null,
+                                    "Name": "FlowDecision.False",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "RefId": null,
+                            "Name": "FlowDecision.False",
+                            "IsActivity": true,
+                            "SubItems": [
+                              {
+                                "RefId": "ForEach_27",
+                                "Name": "遍历行",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "Flowchart_50",
+                                    "Name": "Flowchart-日期格式更改",
+                                    "IsActivity": true,
+                                    "SubItems": [
+                                      {
+                                        "RefId": "InvokeCSharpCodeActivity_29",
+                                        "Name": "执行C#代码",
+                                        "IsActivity": true,
+                                        "SubItems": []
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "RefId": "DataTableRemoveColumnActivity_11",
+                                "Name": "移除列",
+                                "IsActivity": true,
+                                "SubItems": []
+                              },
+                              {
+                                "RefId": "OfficeExcelOpenOrCreateActivity_7",
+                                "Name": "打开/新建",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": "OfficeExcelSetRangeActivity_4",
+                                    "Name": "写入区域",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  }
+                                ]
+                              },
+                              {
+                                "RefId": "MultipleAssign_80",
+                                "Name": "赋值（多个）",
+                                "IsActivity": true,
+                                "SubItems": [
+                                  {
+                                    "RefId": null,
+                                    "Name": "MultipleAssign.AssignModels",
+                                    "IsActivity": true,
+                                    "SubItems": []
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "RefId": "KillProcessActivity_1",
+            "Name": "关闭进程excel",
+            "IsActivity": true,
+            "SubItems": []
+          }
+        ]
+      }
+    ]
+  }
+}

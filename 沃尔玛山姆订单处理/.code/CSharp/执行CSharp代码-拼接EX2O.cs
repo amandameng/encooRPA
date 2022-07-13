@@ -2,9 +2,6 @@
 public void Run()
 {
     //在这里编写您的代码
-    
-    // 清空模板数据
-    Console.WriteLine("---customer_name----:{0}", customer_name);
     etoResultDT = 模板数据表.Clone();
     etoResultDT.Columns.Add("Customer Order Date");
     etoResultDT.Columns.Add("Customer Order Number");
@@ -37,7 +34,7 @@ public void Run()
                 int quantity_ordered = toIntConvert(dr["quantity_ordered"]);
                 string 雀巢产品编码 = dr["雀巢产品编码"].ToString();
                 int lineNumber = toIntConvert(dr["line_number"]);
-                Console.WriteLine("雀巢产品编码: {0}", 雀巢产品编码);
+               // Console.WriteLine("雀巢产品编码: {0}", 雀巢产品编码);
                 // 山姆水单，仓租不为1.3%或者产品行折扣，不录单
                 if(customer_name == "山姆-IB Water" && exceptionPODT!=null && exceptionPODT.Rows.Count >0 ){
                     DataRow[] exceptionDRs = exceptionPODT.Select($"`PO No.` = '{dr["order_number"].ToString()}' and `Exception reason` like '%仓租不为1.3%订单%'");
@@ -158,9 +155,9 @@ public void Run()
 
 public decimal fetchQty(object originalQty, DataRow qtyMappingRow, ref bool 是否录单){
     decimal customerOrderQty = toDecimalConvert(originalQty);
-    
+    decimal nestle_qty_value = toDecimalConvert(qtyMappingRow["Nestle_Qty"]);
     string Not_Integer_Still_Into_EX2O = qtyMappingRow["Not_Integer_Still_Into_EX2O"].ToString();
-    decimal nestleQty_m = customerOrderQty * toDecimalConvert(qtyMappingRow["Nestle_Qty"]);
+    decimal nestleQty_m = customerOrderQty * nestle_qty_value;
     int nestleQtyInt = toIntConvert(nestleQty_m);
     // 换算不为整数则，看产品设定是否录单,反馈exception。
     // 1、如果计算后箱数不为整数，但是【Not_Integer_Still_Into_EX2O】为1，则计算出整数录单，否则不录单。
@@ -169,7 +166,7 @@ public decimal fetchQty(object originalQty, DataRow qtyMappingRow, ref bool 是�
         if(Not_Integer_Still_Into_EX2O == "1"){
             int 山姆整层箱数 = 30;
             int 层数 = toIntConvert(customerOrderQty/山姆整层箱数);
-            decimal quantity_ordered = 层数 * 山姆整层箱数;
+            decimal quantity_ordered = 层数 * 山姆整层箱数 * nestle_qty_value;
             是否录单 = true;
             return quantity_ordered;
         }else{
@@ -178,6 +175,36 @@ public decimal fetchQty(object originalQty, DataRow qtyMappingRow, ref bool 是�
     }else{
         是否录单 = true;
         return nestleQty_m;
+    }
+}
+
+
+public decimal fetchQty(object originalQty, string customerProdCode, string nestleProdCode, DataTable samQtyMappingDT){
+    DataRow[] qtyMappingRows = samQtyMappingDT.Select(string.Format("Sam_Product_Code='{0}' and Nestle_Product_Code='{1}'", customerProdCode, nestleProdCode));
+    decimal customerOrderQty = toDecimalConvert(originalQty);
+
+    if(qtyMappingRows.Length > 0){
+        DataRow qtyMappingRow = qtyMappingRows[0];  
+        
+        string Not_Integer_Still_Into_EX2O = qtyMappingRow["Not_Integer_Still_Into_EX2O"].ToString();
+        decimal nestleQty_m = customerOrderQty * toDecimalConvert(qtyMappingRow["Nestle_Qty"]);
+        int nestleQtyInt = toIntConvert(nestleQty_m);
+        // 换算不为整数则，看产品设定是否录单,反馈exception
+        if((nestleQtyInt != nestleQty_m)){
+            if(Not_Integer_Still_Into_EX2O == "1"){
+                int 山姆整层箱数 = 30;
+                int 层数 = toIntConvert(Math.Floor(customerOrderQty/山姆整层箱数));             // TODO: Math.Floor 还是 Math.Round，进位还是去除小数
+                decimal quantity_ordered = 层数 * 山姆整层箱数;
+                nestleQtyInt = toIntConvert(quantity_ordered * toDecimalConvert(qtyMappingRow["Nestle_Qty"]));
+                return nestleQtyInt;
+            }else{
+                return nestleQty_m;
+            }
+        }else{
+            return nestleQty_m;
+        }
+    }else{
+        return customerOrderQty;
     }
 }
 
@@ -225,14 +252,15 @@ public void walmartBulkWalfer(string productCode, int quantity_ordered, string �
 public void samOneToManyProcess(string productCode, int quantity_ordered, string 雀巢产品编码, ref int bulkWalferItemCount, DataRow dr){
     DataRow bulkWalferProduct = bulkWalferConfigDT.Select("customer_product_code='" + productCode + "'")[0];
     string nestleCodeAllocation = bulkWalferProduct["nestle_code_allocation"].ToString();
-    string allocationRatio = bulkWalferProduct["allocation_ratio"].ToString();
+    // string allocationRatio = bulkWalferProduct["allocation_ratio"].ToString();
     string[] nestleCodeArr = nestleCodeAllocation.Split(new string[]{",", "，"}, StringSplitOptions.RemoveEmptyEntries);
-    string[] allocationRatioArr = allocationRatio.Split(new string[]{"：", ":"}, StringSplitOptions.RemoveEmptyEntries); // 注意： 是中文冒号
-    int[] qtyArr = reAllocateQty(allocationRatioArr, quantity_ordered);
+    // string[] allocationRatioArr = allocationRatio.Split(new string[]{"：", ":"}, StringSplitOptions.RemoveEmptyEntries); // 注意： 是中文冒号
+   // int[] qtyArr = reAllocateQty(allocationRatioArr, quantity_ordered);
     for(int i=0; i< nestleCodeArr.Length; i++){
         string nestleCode = nestleCodeArr[i];
-        int curQuantity_ordered = qtyArr[i];
-
+       // int curQuantity_ordered = qtyArr[i];
+       decimal itemQuantity = fetchQty(quantity_ordered, productCode, nestleCode, samQtyMappingDT);
+         int curQuantity_ordered = toIntConvert(itemQuantity);
         DataRow etoRow = etoResultDT.NewRow();
         initEtoRow(ref etoRow, dr, curQuantity_ordered, nestleCode, bulkWalferItemCount, 0);
         bulkWalferItemCount = bulkWalferItemCount + 1;
@@ -244,9 +272,10 @@ public void samOneToManyProcess(string productCode, int quantity_ordered, string
 public int[] reAllocateQty(string[] allocationRatioArr, int quantity_ordered){
     List<int> initQtyList = new List<int> {};
     foreach(string ratioStr in allocationRatioArr){
-        int rationValue = toIntConvert(ratioStr);
-        int curQuantity_ordered = quantity_ordered * rationValue;
-        initQtyList.Add(curQuantity_ordered);
+        decimal rationValue = toDecimalConvert(ratioStr);
+        decimal curQuantity_ordered = quantity_ordered * rationValue;
+        int finalQty = Convert.ToInt32(Math.Floor(curQuantity_ordered));
+        initQtyList.Add(finalQty);
     }
     return initQtyList.ToArray();
 }
@@ -262,7 +291,7 @@ public int[] splitQtyByRatio(string[] allocationRatioArr, int quantity_ordered){
     List<int> initQtyList = new List<int> {};
     int totalRequltQty = 0;
     foreach(string ratioStr in allocationRatioArr){
-        int rationValue = toIntConvert(ratioStr);
+        decimal rationValue = toDecimalConvert(ratioStr);
         int curQuantity_ordered = toIntConvert(Math.Round(quantity_ordered * (rationValue/total_ratio)));
         totalRequltQty += curQuantity_ordered;
         initQtyList.Add(curQuantity_ordered);

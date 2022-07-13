@@ -1,0 +1,103 @@
+{
+  "Md5CheckSum": "e8a882e64b4524722feef971c0e328a9",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Flowchart_1",
+        "Name": "Root",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "OfficeExcelOpenOrCreateActivity_1",
+            "Name": "打开/新建",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "OfficeExcelReadRangeActivity_1",
+                "Name": "读取区域",
+                "IsActivity": true,
+                "SubItems": []
+              }
+            ]
+          },
+          {
+            "RefId": "DataTablePreviewActivity_1",
+            "Name": "预览数据表",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "PathExistsActivity_1",
+            "Name": "文件/文件夹是否存在",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "LogActivity_1",
+            "Name": "写入日志",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "SelectFileActivity_1",
+            "Name": "选择文件",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "GetFileListActivity_1",
+            "Name": "获取文件/文件夹列表",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "GetTextActivity_1",
+            "Name": "获取文本",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "ClickActivity_1",
+            "Name": "点击",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "MultipleAssign_1",
+            "Name": "赋值（多个）",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": null,
+                "Name": "MultipleAssign.AssignModels",
+                "IsActivity": true,
+                "SubItems": []
+              }
+            ]
+          },
+          {
+            "RefId": "LogActivity_2",
+            "Name": "写入日志",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "DataTableAddColumnActivity_1",
+            "Name": "添加数据列",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "DataTablePreviewActivity_2",
+            "Name": "预览数据表",
+            "IsActivity": true,
+            "SubItems": []
+          }
+        ]
+      }
+    ]
+  }
+}

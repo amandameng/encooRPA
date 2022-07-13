@@ -1,0 +1,159 @@
+[
+  {
+    "name": "产品主数据",
+    "table_name": "material_master_data",
+    "columns": [
+      {
+        "field": "id",
+        "type": "int",
+        "display_name": "主键"
+      },
+      {
+        "field": "customer_name",
+        "type": "string",
+        "display_name": "客户名称"
+      },
+      {
+        "field": "ver",
+        "type": "int",
+        "display_name": "数据版本号"
+      },
+      {
+        "field": "customer_material_no",
+        "type": "string",
+        "display_name": "客户产品编号"
+      },
+      {
+        "field": "customer_product_name",
+        "type": "string",
+        "display_name": "客户产品名称"
+      },
+      {
+        "field": "customer_product_size",
+        "type": "string",
+        "display_name": "客户产品规格"
+      },
+      {
+        "field": "customer_product_price",
+        "type": "string",
+        "display_name": "客户产品单价"
+      },
+      {
+        "field": "customer_product_nps",
+        "type": "string",
+        "display_name": "客户产品箱价"
+      },
+      {
+        "field": "wyeth_material_no",
+        "type": "string",
+        "display_name": "Wyeth 产品编号"
+      },
+      {
+        "field": "wyeth_product_name",
+        "type": "string",
+        "display_name": "Wyeth 产品名称"
+      },
+      {
+        "field": "size",
+        "type": "string",
+        "display_name": "Wyeth 产品规格"
+      },
+      {
+        "field": "wyeth_unit_price",
+        "type": "string",
+        "display_name": "Wyeth 产品单价"
+      },
+      {
+        "field": "wyeth_nps",
+        "type": "string",
+        "display_name": "Wyeth 产品箱价"
+      },
+      {
+        "field": "adjustive_price",
+        "type": "string",
+        "display_name": "调价"
+      },
+      {
+        "field": "remark",
+        "type": "string",
+        "display_name": "备注"
+      },
+      {
+        "field": "remark_option",
+        "type": "string",
+        "display_name": "备注选项"
+      },
+      {
+        "field": "created_time",
+        "type": "datetime",
+        "display_name": "创建时间"
+      },
+      {
+        "field": "updated_time",
+        "type": "datetime",
+        "display_name": "更新时间"
+      }
+    ]
+  },
+  {
+    "name": "特殊产品",
+    "table_name": "special_products",
+    "columns": [
+      {
+        "field": "id",
+        "type": "int",
+        "display_name": "主键"
+      },
+      {
+        "field": "customer_name",
+        "type": "string",
+        "display_name": "客户名称"
+      },
+      {
+        "field": "ver",
+        "type": "int",
+        "display_name": "数据版本号"
+      },
+      {
+        "field": "sold_to",
+        "type": "string",
+        "display_name": "Sold To"
+      },
+      {
+        "field": "dc_no",
+        "type": "string",
+        "display_name": "客户大仓/门店代码"
+      },
+      {
+        "field": "customer_sku_code",
+        "type": "string",
+        "display_name": "客户产品编号"
+      },
+      {
+        "field": "sku_code",
+        "type": "string",
+        "display_name": "Wyeth产品编号"
+      },
+      {
+        "field": "product_name",
+        "type": "string",
+        "display_name": "产品名称"
+      },
+      {
+        "field": "comment",
+        "type": "string",
+        "display_name": "Comment"
+      },
+      {
+        "field": "created_time",
+        "type": "datetime",
+        "display_name": "创建时间"
+      },
+      {
+        "field": "updated_time",
+        "type": "datetime",
+        "display_name": "更新时间"
+      }
+    ]
+  }
+]

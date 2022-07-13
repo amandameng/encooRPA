@@ -1,4 +1,13 @@
 //代码执行入口，请勿修改或删除
+const string checkPriceOption = "检查价差";
+const string checkCustomerCodeOption = "备注客户店内码";
+const string checkProductSizeOption = "客户店内码的原单规格";
+const string orderChangeQtyDescription = "订单修改产品数量";
+    
+const string 巴黎水产品码 = "980080954";
+const string 圣培露产品码 = "980085511";
+public string 产品主数据匹配描述 = "无法匹配雀巢主数据";
+
 public void Run()
 {
     exceptionByPODT = byPO模板数据表.Clone();
@@ -32,11 +41,13 @@ public void Run()
         
         // 整托和起送量的判断在订单层面和item层面都要做检查
         
+        // 山姆水修改的订单也要进EX2O, 沃尔玛和山姆的订单只进最新订单
+        bool notNewOrder = setNotIntoEx2O(order_number);
+        if(!notNewOrder) cleanExceptionDRow["是否新单"] = "是";
+
         // By Order的异常判断， 检查整托和起送量
         handleExceptionRow(curOrderRow, ref cleanExceptionDRow, ref 问题订单List, curOrderDocLinkRows);
 
-        // 山姆水修改的订单也要进EX2O, 沃尔玛和山姆的订单只进最新订单
-        // setNotIntoEx2O(order_number);
         /*
           有重复订单， MABD， 产品数量修改，等其他任意信息修改都要抓取
         */
@@ -77,7 +88,7 @@ public void Run()
                 refItemExceptionList.Add("产品数量为0");
             }
 
-            specialProductCheck(dr, ref refItemExceptionList, ref byPOItemRow, prevOrderDocLinkRows);
+            specialProductCheck(dr, ref refItemExceptionList, ref byPOItemRow, prevOrderDocLinkRows, 问题订单List);
             if(!String.IsNullOrEmpty(byPOItemRow["Exception reason"].ToString())){ // 异常信息不为空
                 exceptionByPODT.Rows.Add(byPOItemRow);  // by Item 的异常订单 
             }
@@ -95,6 +106,19 @@ public void Run()
     buildByPODT();
     buildByPOAndItemDT();
     // Convert.ToInt32("asdas");
+}
+
+public bool setNotIntoEx2O(string order_number){
+    if(existingEX2ODT!=null && orderJobHistoryDT!=null){
+        bool inEX2O = existingEX2ODT.AsEnumerable().Cast<DataRow>().Any(dRow => dRow["PO_Number"].ToString().Contains(order_number));        
+        bool inOrderJobHistory = orderJobHistoryDT.AsEnumerable().Cast<DataRow>().Any(dRow => dRow["order_number"].ToString() == order_number);
+
+        if(inEX2O && inOrderJobHistory){
+            不录单订单列表.Add(order_number);
+            return true;
+        }
+    }
+    return false;
 }
 
 public void compareOrderItem(DataRow[] curOrderDocLinkRows, DataRow[] prevOrderDocLinkRows, DataRow cleanExceptionDRow){
@@ -150,7 +174,7 @@ public void compareOrderItem(DataRow[] curOrderDocLinkRows, DataRow[] prevOrderD
 public void initExceptionItemRow(ref DataRow itemExceptionRow, DataRow dr){
     itemExceptionRow["Item Type"] = "Item";
     itemExceptionRow["order category"] = "exception";
-    itemExceptionRow["Exception category"] = "订单修改产品数量";
+    itemExceptionRow["Exception category"] = orderChangeQtyDescription;
     itemExceptionRow["Customer order Item"] = dr["line_number"];
     itemExceptionRow["沃尔玛产品编码"] = dr["customer_product_code"];
     itemExceptionRow["雀巢产品编码"] = dr["Nestle_Material_No"];
@@ -196,7 +220,7 @@ public void buildByPOAndItemDT(){
 }
 
 // 产品行检查折扣
-public void specialProductCheck(DataRow dr, ref List<string> refItemExceptionList, ref DataRow byPOItemRow, DataRow[] prevOrderDocLinkRows){
+public void specialProductCheck(DataRow dr, ref List<string> refItemExceptionList, ref DataRow byPOItemRow, DataRow[] prevOrderDocLinkRows, List<string> 问题订单list){
     List<string> itemExceptionList = new List<String>{};
     
     string remark = dr["Remark"].ToString();
@@ -211,8 +235,7 @@ public void specialProductCheck(DataRow dr, ref List<string> refItemExceptionLis
 
     if(String.IsNullOrEmpty(byPOItemRow["雀巢产品编码"].ToString())){
         byPOItemRow["Item Type"] = "Item";
-        itemExceptionList.Add("无法匹配雀巢主数据");
-        return;
+        itemExceptionList.Add(产品主数据匹配描述);
     }else{
         if(remark.Contains("特殊产品")){
             string pack = dr["pack"].ToString(); // 客户网站是 12 / 12
@@ -220,7 +243,7 @@ public void specialProductCheck(DataRow dr, ref List<string> refItemExceptionLis
             string[] packArr = pack.Split(new string[]{"/"}, StringSplitOptions.RemoveEmptyEntries);
             pack = packArr[0];
             }
-            bool 检查价差 = remarkOption.Contains("检查价差");
+            bool 检查价差 = remarkOption.Contains(checkPriceOption);
             if(检查价差){
                 bool skipCheckPrice = false;
                 decimal cost = Math.Round(toDecimalConvert(dr["cost"]), 2); // 沃尔玛价格
@@ -244,22 +267,27 @@ public void specialProductCheck(DataRow dr, ref List<string> refItemExceptionLis
                     byPOItemRow["Item Type"] = "Item";
                     itemExceptionList.Add("价差订单");
                 }
+                remarkOption = remarkOption.Replace(checkPriceOption, "");
+
             }
 
-            bool 备注客户店内码 = remarkOption.Contains("备注客户店内码");
+            bool 备注客户店内码 = remarkOption.Contains(checkCustomerCodeOption);
             if(备注客户店内码){
                 byPOItemRow["Item Type"] = "Item";
                 itemExceptionList.Add("特殊产品需检查订单," + remarkOption);
+                remarkOption = remarkOption.Replace(checkCustomerCodeOption, "");
             }
 
-            bool 客户店内码的原单规格 = remarkOption.Contains("客户店内码的原单规格");
+            bool 客户店内码的原单规格 = remarkOption.Contains(checkProductSizeOption);
             if(客户店内码的原单规格){
                 byPOItemRow["原单箱规"] = pack;
                 byPOItemRow["Item Type"] = "Item";
                 itemExceptionList.Add("特殊产品需检查订单," + remarkOption);
+                remarkOption = remarkOption.Replace(checkProductSizeOption, "");
+
             }
-            
-            if(!检查价差 && !备注客户店内码 && !客户店内码的原单规格 && !string.IsNullOrEmpty(remarkOption)){ // remarkOption 不为空，则也添加到异常描述里面
+            remarkOption = remarkOption.Replace(";", "").Replace("；", "").Trim();
+            if(!string.IsNullOrEmpty(remarkOption)){ // remarkOption 不为空，则也添加到异常描述里面
                 byPOItemRow["Item Type"] = "Item";
                 itemExceptionList.Add("特殊产品需检查订单," + remarkOption);
             }
@@ -267,10 +295,11 @@ public void specialProductCheck(DataRow dr, ref List<string> refItemExceptionLis
     }
 
     // 有remark说明已经map到主数据
+    /*
     if(remark.Contains("不填充ex2o，只反馈问题订单")){
         byPOItemRow["Item Type"] = "Item";
         itemExceptionList.Add("未录单，水仓+干货产品");
-    }
+    }*/
     /* 
       产品行折扣
       =Promotional Allowance/Extended Cost
@@ -278,14 +307,14 @@ public void specialProductCheck(DataRow dr, ref List<string> refItemExceptionLis
     */
     string 产品扣点 = dr["产品扣点"].ToString();
     if(!string.IsNullOrEmpty(产品扣点)){
-        decimal productDiscountRate = Math.Round(fetchRateInDecimal(产品扣点), 3);
+        decimal productDiscountRate = Math.Round(fetchRateInDecimal(产品扣点), 4);
         //Console.WriteLine("oli_extended_cost");
         decimal oli_extended_cost = toDecimalConvert(dr["oli_extended_cost"]);
         if(oli_extended_cost == 0){
             oli_extended_cost = decimal.MaxValue;
         }
         //Console.WriteLine("产品行折扣");
-        decimal 产品行折扣 = Math.Round(toDecimalConvert(dr["oli_allowance_total"])/oli_extended_cost, 3);
+        decimal 产品行折扣 = Math.Round(toDecimalConvert(dr["oli_allowance_total"])/oli_extended_cost, 4);
         if(Math.Abs(productDiscountRate) != Math.Abs(产品行折扣)){
             byPOItemRow["Item Type"] = "Item";
             itemExceptionList.Add(string.Format("产品行折扣率不等于扣点，产品行折扣: {0}, 雀巢产品扣点: {1}", 产品行折扣, productDiscountRate));
@@ -295,12 +324,12 @@ public void specialProductCheck(DataRow dr, ref List<string> refItemExceptionLis
     /*
       山姆京东类型的订单如下单产品为氨糖奶粉，不录单作为exception order发给CSA取消
       Exception reason：不录单，山姆JD+氨糖奶粉
-    */
+   
     if(remark.Contains("特殊产品") && remarkOption.Contains("订单类型Promotional Event为JD") && dr["promotional_event"].ToString().Contains("JD")){
         byPOItemRow["Item Type"] = "Item";
         itemExceptionList.Add("不录单，山姆JD+氨糖奶粉");
     }
-    
+    */
     
     /* 整托和起送量判断 */
     // WMDC = location
@@ -314,7 +343,8 @@ public void specialProductCheck(DataRow dr, ref List<string> refItemExceptionLis
 
      //Console.WriteLine("问题订单List: {0}", string.Join("|", refItemExceptionList));
     // 如果整个订单数量修改的话， 需要记录单个item变化的部分
-    if(string.Join("|", refItemExceptionList).Contains("订单修改产品数量")){
+    string orderExceptionListStr = string.Join("|", 问题订单list);
+    if(orderExceptionListStr.Contains(orderChangeQtyDescription) || orderExceptionListStr.Contains("Total Order Amount")){
         string customerProductCode = dr["customer_product_code"].ToString();
         //Console.WriteLine("customerProductCode: {0}", customerProductCode);
         
@@ -333,7 +363,9 @@ public void specialProductCheck(DataRow dr, ref List<string> refItemExceptionLis
             //Console.WriteLine("原订单数量: {0}, 修改后订单数量: {1}", prevItemRow["quantity_ordered"], dr["quantity_ordered"]);
             
             byPOItemRow["修改后订单数量"] = dr["quantity_ordered"];
-            itemExceptionList.Add("订单修改产品数量");
+            itemExceptionList.Add(orderChangeQtyDescription);
+        }else{
+            byPOItemRow["原订单数量"] = null;
         }
     }
 
@@ -372,7 +404,7 @@ public void repeatedOrderException(DataRow curOrderRow, DataRow previousOrderRow
                 List<String> resultMabds = prevOrderRows.Cast<DataRow>().Select<DataRow, string>(dr => Convert.ToDateTime(dr["must_arrived_by"]).ToString("yyyy/MM/dd")).ToList();
                 cleanExceptionDRow["原始MABD"] = resultMabds[0];
             }else if(colName == "total_units_ordered"){
-                重复订单信息.Add("订单修改产品数量");
+                重复订单信息.Add(orderChangeQtyDescription);
                 List<String> resultMabds = prevOrderRows.Cast<DataRow>().Select<DataRow, string>(dr => dr["total_units_ordered"].ToString()).ToList();
                 cleanExceptionDRow["原订单数量"] = resultMabds[0];
             }else{
@@ -563,9 +595,7 @@ public void handleExceptionRow(DataRow dr, ref DataRow cleanExceptionDRow, ref L
     2、980085511 圣培露：
     雀巢价小于山姆价，每箱价（X列价格/订单箱数）差0.0052525元的差异可忽略
     */
-    
-    string 巴黎水产品码 = "980080954";
-    string 圣培露产品码 = "980085511";
+
 
     decimal walmartDiscountRate = customerDiscountRateM();
     decimal 不含扣点 = (1-walmartDiscountRate);
@@ -670,6 +700,13 @@ public decimal getSapNetValue(DataRow dr, List<string> allitemproductCodesList, 
     foreach(DataRow itemDR in curOrderDocLinkRows){
         string customerProdCode = itemDR["customer_product_code"].ToString();
         int itemQuantityOrdered = toIntConvert(itemDR["quantity_ordered"]);
+        
+        string 产品扣点 = itemDR["产品扣点"].ToString();
+        if(!string.IsNullOrEmpty(产品扣点) && customerProdCode == 巴黎水产品码 ){
+            decimal productDiscountRate = Math.Round(fetchRateInDecimal(产品扣点), 6);
+            不含扣点 = 不含扣点 - productDiscountRate;
+        }
+        
         decimal itemNestleNPS=0;
         if(!String.IsNullOrEmpty(itemDR["Nestle_NPS"].ToString())){
             itemNestleNPS = toDecimalConvert(itemDR["Nestle_NPS"]);

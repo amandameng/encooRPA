@@ -102,7 +102,7 @@
           <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If updateOrderJobHistorySQL 不为空)" sap:VirtualizedContainerService.HintSize="534,637" sap2010:WorkflowViewState.IdRef="If_1" IsIgnore="False">
             <bfa:If.Condition>
               <InArgument x:TypeArguments="x:Boolean">
-                <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_4">!string.IsNullOrEmpty(updateOrderJobHistorySQL)</mca:CSharpValue>
+                <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_4">[!string.IsNullOrEmpty(updateOrderJobHistorySQL)]</mca:CSharpValue>
               </InArgument>
             </bfa:If.Condition>
             <sap:WorkflowViewStateService.ViewState>
@@ -126,7 +126,7 @@
                       <bda:ExecuteSqlActivity ActivityName="执行语句" sap2010:Annotation.AnnotationText="update order_job_history" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行语句 - update order_job_history" sap:VirtualizedContainerService.HintSize="349,47" sap2010:WorkflowViewState.IdRef="ExecuteSqlActivity_2">
                         <bda:ExecuteSqlActivity.AffectedRows>
                           <OutArgument x:TypeArguments="x:Int32">
-                            <mca:CSharpReference x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpReference`1_2">作用行数</mca:CSharpReference>
+                            <mca:CSharpReference x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpReference`1_2">[作用行数]</mca:CSharpReference>
                           </OutArgument>
                         </bda:ExecuteSqlActivity.AffectedRows>
                         <bda:ExecuteSqlActivity.ExecuteTimeOut>
@@ -136,7 +136,7 @@
                         </bda:ExecuteSqlActivity.ExecuteTimeOut>
                         <bda:ExecuteSqlActivity.Sql>
                           <InArgument x:TypeArguments="x:String">
-                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_6">System.Convert.ToString(updateOrderJobHistorySQL)</mca:CSharpValue>
+                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_6">[System.Convert.ToString(updateOrderJobHistorySQL)]</mca:CSharpValue>
                           </InArgument>
                         </bda:ExecuteSqlActivity.Sql>
                         <sap:WorkflowViewStateService.ViewState>
@@ -148,7 +148,7 @@
                       <baast:LogActivity ActivityName="写入日志" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="写入日志 - 更新order_job_history作用行数" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="LogActivity_2" Level="Info">
                         <baast:LogActivity.LogContent>
                           <InArgument x:TypeArguments="x:String">
-                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_7">System.Convert.ToString(作用行数)</mca:CSharpValue>
+                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_7">[System.Convert.ToString(作用行数)]</mca:CSharpValue>
                           </InArgument>
                         </baast:LogActivity.LogContent>
                       </baast:LogActivity>
@@ -157,7 +157,7 @@
                 </bda:DatabaseConnectActivity.Body>
                 <bda:DatabaseConnectActivity.ConnectionString>
                   <InArgument x:TypeArguments="x:String">
-                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_5">System.Convert.ToString(sqlConn)</mca:CSharpValue>
+                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_5">[System.Convert.ToString(sqlConn)]</mca:CSharpValue>
                   </InArgument>
                 </bda:DatabaseConnectActivity.ConnectionString>
                 <sap:WorkflowViewStateService.ViewState>

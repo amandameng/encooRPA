@@ -1,0 +1,25 @@
+{
+  "QuickOpenItems": [
+    "Main.xaml"
+  ],
+  "ProjectBreakpoints": {
+    "Value": {
+      "Main.xaml": [
+        {
+          "ActivityId": "1.260",
+          "IsEnabled": true,
+          "IdRef": "InvokeWorkflow_3",
+          "DisplayName": "调用子流程:  主业务"
+        }
+      ],
+      "主业务.xaml": [
+        {
+          "ActivityId": "1.23",
+          "IsEnabled": true,
+          "IdRef": "SetTextActivity_1",
+          "DisplayName": "输入文本 - 门店号"
+        }
+      ]
+    }
+  }
+}

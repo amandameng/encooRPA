@@ -1,0 +1,334 @@
+<Activity mc:Ignorable="sap sap2010 sads" x:Class="流程图_exception写问题" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:baast="clr-namespace:BotTime.ActivityLibrary.Activities.System.Tool;assembly=BotTime.ActivityLibrary" xmlns:bda="clr-namespace:BotTime.DataTableActivity.Activities;assembly=BotTime.DataTableActivity" xmlns:bfa="clr-namespace:BotTime.Flow.Activities;assembly=BotTime.Flow.Activities" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger">
+  <x:Members>
+    <x:Property Name="exception_order_dt" Type="InOutArgument(sd:DataTable)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+    <x:Property Name="po级别问题" Type="InOutArgument(x:Boolean)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+    <x:Property Name="问题分类" Type="InArgument(x:String)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+    <x:Property Name="问题详细描述" Type="InArgument(x:String)">
+      <x:Property.Attributes>
+        <RequiredArgumentAttribute />
+      </x:Property.Attributes>
+    </x:Property>
+  </x:Members>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap:VirtualizedContainerService.HintSize>654,716</sap:VirtualizedContainerService.HintSize>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="19">
+      <x:String>System.Xml</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>BotTime.Flow.Activities</x:String>
+      <x:String>BotTime.ActivityLibrary.Activities.CodeTool</x:String>
+      <x:String>BotTime.ActivityLibrary.Activities.System.Tool</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>BotTime.DataTableActivity.Activities</x:String>
+      <x:String>BotTime.Office.Activity</x:String>
+      <x:String>Microsoft.CSharp.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>BotTime.DataBase.Activity</x:String>
+      <x:String>BotTime.DataBase.Activity.Models</x:String>
+      <x:String>BotTime.DataTableActivity.Activities.Models</x:String>
+      <x:String>Encoo.CodeTool.Activity.Activities.CSharp</x:String>
+      <x:String>Encoo.DataType</x:String>
+      <x:String>BotTime.ActivityLibrary.Activities.System.File</x:String>
+      <x:String>Encoo.Console.Activity</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>BotTime.Flow.Activities</AssemblyReference>
+      <AssemblyReference>BotTime.ActivityLibrary</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>BotTime.DataTableActivity</AssemblyReference>
+      <AssemblyReference>BotTime.Office.Activity</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>Encoo.CodeTool.Activity</AssemblyReference>
+      <AssemblyReference>System.Globalization.Extensions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Net.WebSockets.Client.Managed</AssemblyReference>
+      <AssemblyReference>ParallelExtensionsExtras</AssemblyReference>
+      <AssemblyReference>BotTime.DataBase.Activity</AssemblyReference>
+      <AssemblyReference>Encoo.DataType</AssemblyReference>
+      <AssemblyReference>Encoo.Console.Activity</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Flowchart DisplayName="流程图-exception写问题" sap:VirtualizedContainerService.HintSize="614,636" sap2010:WorkflowViewState.IdRef="Flowchart_56">
+    <Flowchart.Variables>
+      <Variable x:TypeArguments="x:Int32" Name="行索引" />
+    </Flowchart.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
+        <av:Size x:Key="ShapeSize">80,48</av:Size>
+        <av:PointCollection x:Key="ConnectorLocation">310,50.5 310,90.5</av:PointCollection>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Flowchart.StartNode>
+      <x:Reference>__ReferenceID6</x:Reference>
+    </Flowchart.StartNode>
+    <FlowStep x:Name="__ReferenceID5">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <av:Point x:Key="ShapeLocation">130,205.5</av:Point>
+          <av:Size x:Key="ShapeSize">360,89</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">310,294.5 310,344.5</av:PointCollection>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <bfa:MultipleAssign ActivityName="赋值（多个）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值（多个）" sap:VirtualizedContainerService.HintSize="360,89" sap2010:WorkflowViewState.IdRef="MultipleAssign_124" IsIgnore="False" Text="[{&quot;To&quot;:&quot;po级别问题&quot;,&quot;ToTypeName&quot;:&quot;System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;,&quot;Val&quot;:&quot;true&quot;,&quot;ValTypeName&quot;:&quot;System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;}]">
+        <bfa:MultipleAssign.AssignModels>
+          <bfa:AssignModel Index="1" IsNotFirst="False">
+            <bfa:AssignModel.To>
+              <OutArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpReference x:TypeArguments="x:Boolean">po级别问题</mca:CSharpReference>
+              </OutArgument>
+            </bfa:AssignModel.To>
+            <bfa:AssignModel.Value>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean">true</mca:CSharpValue>
+              </InArgument>
+            </bfa:AssignModel.Value>
+          </bfa:AssignModel>
+        </bfa:MultipleAssign.AssignModels>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </bfa:MultipleAssign>
+      <FlowStep.Next>
+        <FlowStep x:Name="__ReferenceID4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">210,344.5</av:Point>
+              <av:Size x:Key="ShapeSize">200,53</av:Size>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <bda:ForEach ActivityName="遍历行" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="遍历行-exception写问题" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="ForEach_33">
+            <bda:ForEach.CurrentIndex>
+              <OutArgument x:TypeArguments="x:Int32">
+                <mca:CSharpReference x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpReference`1_996">行索引</mca:CSharpReference>
+              </OutArgument>
+            </bda:ForEach.CurrentIndex>
+            <bda:ForEach.DataTable>
+              <InArgument x:TypeArguments="sd:DataTable">
+                <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1320">exception_order_dt</mca:CSharpValue>
+              </InArgument>
+            </bda:ForEach.DataTable>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ActivityAction x:TypeArguments="sd:DataRow">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+              </ActivityAction.Argument>
+              <Flowchart DisplayName="修改数据表dt" sap:VirtualizedContainerService.HintSize="1514,1762" sap2010:WorkflowViewState.IdRef="Flowchart_57">
+                <Flowchart.Variables>
+                  <Variable x:TypeArguments="x:String" Name="商品编码" />
+                  <Variable x:TypeArguments="x:String" Name="原来的问题分类" />
+                  <Variable x:TypeArguments="x:String" Name="原来的问题详细描述" />
+                </Flowchart.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
+                    <av:Size x:Key="ShapeSize">80,48</av:Size>
+                    <av:PointCollection x:Key="ConnectorLocation">310,50.5 310,100.5</av:PointCollection>
+                    <x:Double x:Key="Height">1726.5</x:Double>
+                    <x:Double x:Key="Width">1500</x:Double>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Flowchart.StartNode>
+                  <x:Reference>__ReferenceID3</x:Reference>
+                </Flowchart.StartNode>
+                <FlowStep x:Name="__ReferenceID3">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <av:Point x:Key="ShapeLocation">130,100.5</av:Point>
+                      <av:Size x:Key="ShapeSize">360,145</av:Size>
+                      <av:PointCollection x:Key="ConnectorLocation">490,173 660,173 660,336.5</av:PointCollection>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <bfa:MultipleAssign ActivityName="赋值（多个）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值（多个）" sap:VirtualizedContainerService.HintSize="360,145" sap2010:WorkflowViewState.IdRef="MultipleAssign_125" IsIgnore="False" Text="[{&quot;To&quot;:&quot;原来的问题分类&quot;,&quot;ToTypeName&quot;:&quot;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;,&quot;Val&quot;:&quot;row[\&quot;问题分类\&quot;].ToString()&quot;,&quot;ValTypeName&quot;:&quot;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;},{&quot;To&quot;:&quot;原来的问题详细描述&quot;,&quot;ToTypeName&quot;:&quot;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;,&quot;Val&quot;:&quot;row[\&quot;问题详细描述\&quot;].ToString()&quot;,&quot;ValTypeName&quot;:&quot;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;},{&quot;To&quot;:&quot;商品编码&quot;,&quot;ToTypeName&quot;:&quot;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;,&quot;Val&quot;:&quot;row[\&quot;客户产品码\&quot;].ToString()&quot;,&quot;ValTypeName&quot;:&quot;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;}]">
+                    <bfa:MultipleAssign.AssignModels>
+                      <bfa:AssignModel Index="1" IsNotFirst="False">
+                        <bfa:AssignModel.To>
+                          <OutArgument x:TypeArguments="x:String">
+                            <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_998">原来的问题分类</mca:CSharpReference>
+                          </OutArgument>
+                        </bfa:AssignModel.To>
+                        <bfa:AssignModel.Value>
+                          <InArgument x:TypeArguments="x:String">
+                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1324">row["问题分类"].ToString()</mca:CSharpValue>
+                          </InArgument>
+                        </bfa:AssignModel.Value>
+                      </bfa:AssignModel>
+                      <bfa:AssignModel Index="2" IsNotFirst="True">
+                        <bfa:AssignModel.To>
+                          <OutArgument x:TypeArguments="x:String">
+                            <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_999">原来的问题详细描述</mca:CSharpReference>
+                          </OutArgument>
+                        </bfa:AssignModel.To>
+                        <bfa:AssignModel.Value>
+                          <InArgument x:TypeArguments="x:String">
+                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1325">row["问题详细描述"].ToString()</mca:CSharpValue>
+                          </InArgument>
+                        </bfa:AssignModel.Value>
+                      </bfa:AssignModel>
+                      <bfa:AssignModel Index="3" IsNotFirst="True">
+                        <bfa:AssignModel.To>
+                          <OutArgument x:TypeArguments="x:String">
+                            <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1000">商品编码</mca:CSharpReference>
+                          </OutArgument>
+                        </bfa:AssignModel.To>
+                        <bfa:AssignModel.Value>
+                          <InArgument x:TypeArguments="x:String">
+                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1326">row["客户产品码"].ToString()</mca:CSharpValue>
+                          </InArgument>
+                        </bfa:AssignModel.Value>
+                      </bfa:AssignModel>
+                    </bfa:MultipleAssign.AssignModels>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </bfa:MultipleAssign>
+                  <FlowStep.Next>
+                    <FlowDecision x:Name="__ReferenceID0" DisplayName="商品编码" sap:VirtualizedContainerService.HintSize="70,87">
+                      <FlowDecision.Condition>
+                        <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1322">商品编码.Length&gt;=10</mca:CSharpValue>
+                      </FlowDecision.Condition>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <av:Point x:Key="ShapeLocation">625,336.5</av:Point>
+                          <av:Size x:Key="ShapeSize">70,87</av:Size>
+                          <av:PointCollection x:Key="TrueConnector">625,380 595,380 595,384 490,384</av:PointCollection>
+                          <av:PointCollection x:Key="FalseConnector">695,380 815,380</av:PointCollection>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <FlowDecision.True>
+                        <FlowStep x:Name="__ReferenceID2">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <av:Point x:Key="ShapeLocation">130,325.5</av:Point>
+                              <av:Size x:Key="ShapeSize">360,117</av:Size>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <bfa:MultipleAssign ActivityName="赋值（多个）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值（多个）" sap:VirtualizedContainerService.HintSize="360,117" sap2010:WorkflowViewState.IdRef="MultipleAssign_126" IsIgnore="False" Text="[{&quot;To&quot;:&quot;exception_order_dt.Rows[行索引][\&quot;问题分类\&quot;]&quot;,&quot;ToTypeName&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;,&quot;Val&quot;:&quot;原来的问题分类+问题分类&quot;,&quot;ValTypeName&quot;:&quot;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;},{&quot;To&quot;:&quot;exception_order_dt.Rows[行索引][\&quot;问题详细描述\&quot;]&quot;,&quot;ToTypeName&quot;:&quot;System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;,&quot;Val&quot;:&quot;原来的问题详细描述+问题详细描述&quot;,&quot;ValTypeName&quot;:&quot;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089&quot;}]">
+                            <bfa:MultipleAssign.AssignModels>
+                              <bfa:AssignModel Index="1" IsNotFirst="False">
+                                <bfa:AssignModel.To>
+                                  <OutArgument x:TypeArguments="x:Object">
+                                    <mca:CSharpReference x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1001">exception_order_dt.Rows[行索引]["问题分类"]</mca:CSharpReference>
+                                  </OutArgument>
+                                </bfa:AssignModel.To>
+                                <bfa:AssignModel.Value>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1327">原来的问题分类+问题分类</mca:CSharpValue>
+                                  </InArgument>
+                                </bfa:AssignModel.Value>
+                              </bfa:AssignModel>
+                              <bfa:AssignModel Index="2" IsNotFirst="True">
+                                <bfa:AssignModel.To>
+                                  <OutArgument x:TypeArguments="x:Object">
+                                    <mca:CSharpReference x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1002">exception_order_dt.Rows[行索引]["问题详细描述"]</mca:CSharpReference>
+                                  </OutArgument>
+                                </bfa:AssignModel.To>
+                                <bfa:AssignModel.Value>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1328">原来的问题详细描述+问题详细描述</mca:CSharpValue>
+                                  </InArgument>
+                                </bfa:AssignModel.Value>
+                              </bfa:AssignModel>
+                            </bfa:MultipleAssign.AssignModels>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </bfa:MultipleAssign>
+                        </FlowStep>
+                      </FlowDecision.True>
+                      <FlowDecision.False>
+                        <FlowStep x:Name="__ReferenceID1">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <av:Point x:Key="ShapeLocation">815,369</av:Point>
+                              <av:Size x:Key="ShapeSize">200,22</av:Size>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <bfa:Break BreakAction="{x:Null}" ActivityName="终止循环" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="终止循环" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Break_31" IsIgnore="False">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </bfa:Break>
+                        </FlowStep>
+                      </FlowDecision.False>
+                    </FlowDecision>
+                  </FlowStep.Next>
+                </FlowStep>
+                <x:Reference>__ReferenceID0</x:Reference>
+                <x:Reference>__ReferenceID1</x:Reference>
+                <x:Reference>__ReferenceID2</x:Reference>
+              </Flowchart>
+            </ActivityAction>
+          </bda:ForEach>
+        </FlowStep>
+      </FlowStep.Next>
+    </FlowStep>
+    <x:Reference>__ReferenceID4</x:Reference>
+    <FlowStep x:Name="__ReferenceID6">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <av:Point x:Key="ShapeLocation">135.5,90.5</av:Point>
+          <av:Size x:Key="ShapeSize">349,58</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">310,148.5 310,205.5</av:PointCollection>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <baast:LogActivity ActivityName="写入日志" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="写入日志" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="LogActivity_1" Level="Info">
+        <baast:LogActivity.LogContent>
+          <InArgument x:TypeArguments="x:String">
+            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1329">System.Convert.ToString(string.Format("po级别问题，问题分类：{0}，问题详细描述：{1}",问题分类,问题详细描述))</mca:CSharpValue>
+          </InArgument>
+        </baast:LogActivity.LogContent>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </baast:LogActivity>
+      <FlowStep.Next>
+        <x:Reference>__ReferenceID5</x:Reference>
+      </FlowStep.Next>
+    </FlowStep>
+  </Flowchart>
+</Activity>

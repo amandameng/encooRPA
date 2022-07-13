@@ -1,0 +1,120 @@
+<Activity mc:Ignorable="sap sap2010 sads" x:Class="EncooWorkflow.Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:bfa="clr-namespace:BotTime.Flow.Activities;assembly=BotTime.Flow.Activities" xmlns:boa="clr-namespace:BotTime.Office.Activity;assembly=BotTime.Office.Activity" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger">
+  <x:Members>
+    <x:Property Name="filePath" Type="InArgument(x:String)" />
+    <x:Property Name="resultDT" Type="OutArgument(sd:DataTable)" />
+  </x:Members>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap:VirtualizedContainerService.HintSize>654,716</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>EncooWorkflow.Workflow_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="9">
+      <x:String>System</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>BotTime.Flow.Activities</x:String>
+      <x:String>BotTime.Office.Activity</x:String>
+      <x:String>Microsoft.CSharp.Activities</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>BotTime.Flow.Activities</AssemblyReference>
+      <AssemblyReference>BotTime.Office.Activity</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Flowchart DisplayName="流程图_Root" sap:VirtualizedContainerService.HintSize="614,636" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+        <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
+        <av:Size x:Key="ShapeSize">80,48</av:Size>
+        <av:PointCollection x:Key="ConnectorLocation">310,50.5 310,123.5</av:PointCollection>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Flowchart.StartNode>
+      <x:Reference>__ReferenceID0</x:Reference>
+    </Flowchart.StartNode>
+    <FlowStep x:Name="__ReferenceID0">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <av:Point x:Key="ShapeLocation">210,123.5</av:Point>
+          <av:Size x:Key="ShapeSize">200,53</av:Size>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <bfa:Retry ActivityName="重试" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="重试" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="Retry_1" IsIgnore="False">
+        <bfa:Retry.RetryCount>
+          <InArgument x:TypeArguments="x:Int32">
+            <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_1" Value="2" />
+          </InArgument>
+        </bfa:Retry.RetryCount>
+        <bfa:Retry.RetryTimeSpan>
+          <InArgument x:TypeArguments="x:TimeSpan">
+            <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_2" Value="00:00:05" />
+          </InArgument>
+        </bfa:Retry.RetryTimeSpan>
+        <bfa:Retry.Condition>
+          <InArgument x:TypeArguments="x:Boolean">
+            <Literal x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="Literal`1_3" Value="True" />
+          </InArgument>
+        </bfa:Retry.Condition>
+        <bfa:Retry.Body>
+          <boa:OfficeExcelOpenOrCreateActivity OfficeVersion="{x:Null}" Password="{x:Null}" SaveAs="{x:Null}" ActivityName="打开/新建" AutoSave="True" ContinueOnError="No" CreateNewFile="False" DelayAfter="0" DelayBefore="0" DisplayName="打开 - excel" EnableMacro="False" sap:VirtualizedContainerService.HintSize="450,481" sap2010:WorkflowViewState.IdRef="OfficeExcelOpenOrCreateActivity_1" MultiEngineType="Office" ReadOnly="False" Visible="False" needRestoreKey="False">
+            <boa:OfficeExcelOpenOrCreateActivity.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="XlWorkbook" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="356,373" sap2010:WorkflowViewState.IdRef="Sequence_1">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="scg:List(x:String)" Name="allSheetNames" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <boa:OfficeExcelGetAllSheetsActivity ActivityName="获取所有工作表名" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取所有工作表名" sap:VirtualizedContainerService.HintSize="334,80" sap2010:WorkflowViewState.IdRef="OfficeExcelGetAllSheetsActivity_1">
+                    <boa:OfficeExcelGetAllSheetsActivity.SheetNames>
+                      <OutArgument x:TypeArguments="scg:List(x:String)">
+                        <mca:CSharpReference x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1">allSheetNames</mca:CSharpReference>
+                      </OutArgument>
+                    </boa:OfficeExcelGetAllSheetsActivity.SheetNames>
+                  </boa:OfficeExcelGetAllSheetsActivity>
+                  <boa:OfficeExcelReadRangeActivity Range="{x:Null}" ActivityName="读取区域" AddHeaders="True" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="读取区域 - 首个工作表数据" sap:VirtualizedContainerService.HintSize="334,129" sap2010:WorkflowViewState.IdRef="OfficeExcelReadRangeActivity_1" PreserveFormat="False" RepeatedColumn="False" UseFilter="False">
+                    <boa:OfficeExcelReadRangeActivity.Data>
+                      <OutArgument x:TypeArguments="sd:DataTable">
+                        <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_2">resultDT</mca:CSharpReference>
+                      </OutArgument>
+                    </boa:OfficeExcelReadRangeActivity.Data>
+                    <boa:OfficeExcelReadRangeActivity.SheetName>
+                      <InArgument x:TypeArguments="x:String">
+                        <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_2">System.Convert.ToString(allSheetNames[0])</mca:CSharpValue>
+                      </InArgument>
+                    </boa:OfficeExcelReadRangeActivity.SheetName>
+                  </boa:OfficeExcelReadRangeActivity>
+                </Sequence>
+              </ActivityAction>
+            </boa:OfficeExcelOpenOrCreateActivity.Body>
+            <boa:OfficeExcelOpenOrCreateActivity.ExcelFile>
+              <InArgument x:TypeArguments="x:String">
+                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">System.Convert.ToString(filePath)</mca:CSharpValue>
+              </InArgument>
+            </boa:OfficeExcelOpenOrCreateActivity.ExcelFile>
+          </boa:OfficeExcelOpenOrCreateActivity>
+        </bfa:Retry.Body>
+      </bfa:Retry>
+    </FlowStep>
+  </Flowchart>
+</Activity>

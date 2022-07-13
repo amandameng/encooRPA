@@ -82,8 +82,8 @@
       <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
       <AssemblyReference>BotTime.DataTableActivity</AssemblyReference>
       <AssemblyReference>System.Text.Encoding.CodePages</AssemblyReference>
-      <AssemblyReference>System.Data.Entity</AssemblyReference>
-      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      
+      
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="序列-Main" sap:VirtualizedContainerService.HintSize="988,1964" sap2010:WorkflowViewState.IdRef="Sequence_1">

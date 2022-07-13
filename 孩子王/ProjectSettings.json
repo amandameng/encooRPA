@@ -1,0 +1,43 @@
+{
+  "QuickOpenItems": [
+    "Main.xaml"
+  ],
+  "ProjectBreakpoints": {
+    "Value": {
+      "Main.xaml": [
+        {
+          "ActivityId": "1.3505",
+          "IsEnabled": false,
+          "IdRef": "Flowchart_41",
+          "DisplayName": "主要操作"
+        },
+        {
+          "ActivityId": "1.9",
+          "IsEnabled": false,
+          "IdRef": "DatabaseConnectActivity_5",
+          "DisplayName": "连接数据库"
+        },
+        {
+          "ActivityId": "1.6144",
+          "IsEnabled": false,
+          "IdRef": "DatabaseInsertDataActivity_17",
+          "DisplayName": "插入数据"
+        },
+        {
+          "ActivityId": "1.5305",
+          "IsEnabled": false,
+          "IdRef": "DatabaseInsertDataActivity_18",
+          "DisplayName": "插入数据"
+        }
+      ],
+      "测试.xaml": [
+        {
+          "ActivityId": "1.8",
+          "IsEnabled": false,
+          "IdRef": "MultipleAssign_1",
+          "DisplayName": "赋值（多个）"
+        }
+      ]
+    }
+  }
+}

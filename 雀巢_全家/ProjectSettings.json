@@ -10,6 +10,12 @@
           "IsEnabled": true,
           "IdRef": "BrowserClose_12",
           "DisplayName": "关闭浏览器"
+        },
+        {
+          "ActivityId": "1.4315",
+          "IsEnabled": false,
+          "IdRef": "SetTextActivity_20",
+          "DisplayName": "输入文本 - 订货结束日期"
         }
       ]
     }

@@ -1,0 +1,670 @@
+<Activity mc:Ignorable="sap sap2010 sads" x:Class="EncooWorkflow.Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:baasf="clr-namespace:BotTime.ActivityLibrary.Activities.System.File;assembly=BotTime.ActivityLibrary" xmlns:baast="clr-namespace:BotTime.ActivityLibrary.Activities.System.Tool;assembly=BotTime.ActivityLibrary" xmlns:bda="clr-namespace:BotTime.DataBase.Activity;assembly=BotTime.DataBase.Activity" xmlns:bfa="clr-namespace:BotTime.Flow.Activities;assembly=BotTime.Flow.Activities" xmlns:boa="clr-namespace:BotTime.Office.Activity;assembly=BotTime.Office.Activity" xmlns:ecaac="clr-namespace:Encoo.CodeTool.Activity.Activities.CSharp;assembly=Encoo.CodeTool.Activity" xmlns:ecaac1="clr-namespace:Encoo.CodeTool.Activity.Activities.Collection;assembly=Encoo.CodeTool.Activity" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger">
+  <x:Members>
+    <x:Property Name="processSuccess" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="dtRow_ProjectSettings" Type="InArgument(sd:DataRow)" />
+    <x:Property Name="dtRow_ModuleSettings" Type="InArgument(sd:DataRow)" />
+    <x:Property Name="curCustomerName" Type="InArgument(x:String)" />
+  </x:Members>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap:VirtualizedContainerService.HintSize>1124,849</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>EncooWorkflow.Workflow_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="17">
+      <x:String>System</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>Microsoft.CSharp.Activities</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>BotTime.Flow.Activities</x:String>
+      <x:String>BotTime.DataBase.Activity</x:String>
+      <x:String>Encoo.CodeTool.Activity.Activities.CSharp</x:String>
+      <x:String>BotTime.ActivityLibrary.Activities.System.File</x:String>
+      <x:String>BotTime.Office.Activity</x:String>
+      <x:String>Encoo.CodeTool.Activity.Activities.Collection</x:String>
+      <x:String>BotTime.ActivityLibrary.Activities.System.Tool</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>ParallelExtensionsExtras</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Globalization.Extensions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Net.WebSockets.Client.Managed</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.Text.Encoding.CodePages</AssemblyReference>
+      <AssemblyReference>BotTime.Flow.Activities</AssemblyReference>
+      <AssemblyReference>BotTime.DataBase.Activity</AssemblyReference>
+      <AssemblyReference>Encoo.CodeTool.Activity</AssemblyReference>
+      <AssemblyReference>BotTime.ActivityLibrary</AssemblyReference>
+      <AssemblyReference>BotTime.Office.Activity</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Flowchart DisplayName="Root" sap:VirtualizedContainerService.HintSize="1084,769" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <Flowchart.Variables>
+      <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="山姆彩箱装tracker数据表" Name="successOrdersTrackerSQL" />
+      <Variable x:TypeArguments="sd:DataTable" sap2010:Annotation.AnnotationText="山姆彩箱装tracker查询语句" Name="successOrdersTrackerDT" />
+      <Variable x:TypeArguments="sd:DataTable" Name="validTodayOrdersDT" />
+      <Variable x:TypeArguments="x:Boolean" Name="isSam" />
+      <Variable x:TypeArguments="sd:DataTable" sap2010:Annotation.AnnotationText="彩箱装模板数据表" Name="cxzDetailsDT" />
+      <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="查询【指定日期】之前一个月的订单" Name="recent30DaysLatestOrdersSQL" />
+      <Variable x:TypeArguments="sd:DataTable" sap2010:Annotation.AnnotationText="预约信息表数据表" Name="bookingInfoDT" />
+      <Variable x:TypeArguments="scg:List(x:String)" Name="cxzOrderFilesList">
+        <Variable.Default>
+          <mca:CSharpValue x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_704">new List&lt;String&gt;{}</mca:CSharpValue>
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="scg:List(x:String)" Name="bookingInfoOrderFilesList">
+        <Variable.Default>
+          <mca:CSharpValue x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_705">new List&lt;String&gt;{}</mca:CSharpValue>
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="sd:DataTable" Name="recent30DaysLatestOrdersDT" />
+      <Variable x:TypeArguments="s:DateTime" Name="指定日期" />
+    </Flowchart.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+        <av:Point x:Key="ShapeLocation">450,6</av:Point>
+        <av:Size x:Key="ShapeSize">80,48</av:Size>
+        <x:Double x:Key="Height">733.26</x:Double>
+        <x:Double x:Key="Width">1070</x:Double>
+        <av:PointCollection x:Key="ConnectorLocation">490,54 490,94</av:PointCollection>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Flowchart.StartNode>
+      <x:Reference>__ReferenceID3</x:Reference>
+    </Flowchart.StartNode>
+    <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_4">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <av:Point x:Key="ShapeLocation">315.5,94</av:Point>
+          <av:Size x:Key="ShapeSize">349,93</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">490,187 490,227</av:PointCollection>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ecaac:InvokeCSharpCodeActivity ActivityName="执行C#代码" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行C#代码 - WM平台初始化" sap:VirtualizedContainerService.HintSize="349,93" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_1">
+        <ecaac:InvokeCSharpCodeActivity.CodeFilePath>
+          <InArgument x:TypeArguments="x:String">
+            <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_365">.code\CSharp\执行CSharp代码-模块初始化.cs</Literal>
+          </InArgument>
+        </ecaac:InvokeCSharpCodeActivity.CodeFilePath>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ecaac:InvokeCSharpCodeActivity>
+      <FlowStep.Next>
+        <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_3">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">390,227</av:Point>
+              <av:Size x:Key="ShapeSize">200,95</av:Size>
+              <av:PointCollection x:Key="ConnectorLocation">490,322 490,392.5</av:PointCollection>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <bda:DatabaseConnectActivity ActivityName="连接数据库" sap2010:Annotation.AnnotationText="1、查询当前平台的大于等于前一天的tracker 数据" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="连接数据库" sap:VirtualizedContainerService.HintSize="200,95" sap2010:WorkflowViewState.IdRef="DatabaseConnectActivity_1" ProviderName="MySql">
+            <bda:DatabaseConnectActivity.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="DataBaseScope" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="371,488" sap2010:WorkflowViewState.IdRef="Sequence_1">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <bda:QueryTableActivity ActivityName="查询语句" sap2010:Annotation.AnnotationText="输出samcxzTrackerDT" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="查询语句 - 山姆cxz traker" sap:VirtualizedContainerService.HintSize="349,47" sap2010:WorkflowViewState.IdRef="QueryTableActivity_1">
+                    <bda:QueryTableActivity.DataTable>
+                      <OutArgument x:TypeArguments="sd:DataTable">
+                        <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1">successOrdersTrackerDT</mca:CSharpReference>
+                      </OutArgument>
+                    </bda:QueryTableActivity.DataTable>
+                    <bda:QueryTableActivity.ExecuteTimeOut>
+                      <InArgument x:TypeArguments="x:TimeSpan">
+                        <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_366" Value="00:00:30" />
+                      </InArgument>
+                    </bda:QueryTableActivity.ExecuteTimeOut>
+                    <bda:QueryTableActivity.Sql>
+                      <InArgument x:TypeArguments="x:String">
+                        <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_702">System.Convert.ToString(successOrdersTrackerSQL)</mca:CSharpValue>
+                      </InArgument>
+                    </bda:QueryTableActivity.Sql>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </bda:QueryTableActivity>
+                  <baast:LogActivity ActivityName="写入日志" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="写入日志 - successOrdersTrackerSQL" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="LogActivity_1" Level="Info">
+                    <baast:LogActivity.LogContent>
+                      <InArgument x:TypeArguments="x:String">
+                        <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_779">System.Convert.ToString(successOrdersTrackerSQL)</mca:CSharpValue>
+                      </InArgument>
+                    </baast:LogActivity.LogContent>
+                  </baast:LogActivity>
+                  <baast:LogActivity ActivityName="写入日志" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="写入日志 - recent30DaysLatestOrdersSQL" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="LogActivity_2" Level="Info">
+                    <baast:LogActivity.LogContent>
+                      <InArgument x:TypeArguments="x:String">
+                        <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_781">System.Convert.ToString(recent30DaysLatestOrdersSQL)</mca:CSharpValue>
+                      </InArgument>
+                    </baast:LogActivity.LogContent>
+                  </baast:LogActivity>
+                  <bda:QueryTableActivity ActivityName="查询语句" sap2010:Annotation.AnnotationText="最近30天&#xA;但是如果今天录的单是前天第一次出的单，昨天改单" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="查询语句 - recent30DaysLatestOrdersDTDT" sap:VirtualizedContainerService.HintSize="349,81" sap2010:WorkflowViewState.IdRef="QueryTableActivity_2">
+                    <bda:QueryTableActivity.DataTable>
+                      <OutArgument x:TypeArguments="sd:DataTable">
+                        <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_2">recent30DaysLatestOrdersDT</mca:CSharpReference>
+                      </OutArgument>
+                    </bda:QueryTableActivity.DataTable>
+                    <bda:QueryTableActivity.ExecuteTimeOut>
+                      <InArgument x:TypeArguments="x:TimeSpan">
+                        <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_369" Value="00:00:30" />
+                      </InArgument>
+                    </bda:QueryTableActivity.ExecuteTimeOut>
+                    <bda:QueryTableActivity.Sql>
+                      <InArgument x:TypeArguments="x:String">
+                        <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_703">System.Convert.ToString(recent30DaysLatestOrdersSQL)</mca:CSharpValue>
+                      </InArgument>
+                    </bda:QueryTableActivity.Sql>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </bda:QueryTableActivity>
+                </Sequence>
+              </ActivityAction>
+            </bda:DatabaseConnectActivity.Body>
+            <bda:DatabaseConnectActivity.ConnectionString>
+              <InArgument x:TypeArguments="x:String">
+                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_701">System.Convert.ToString(dtRow_ProjectSettings["数据库连接"].ToString())</mca:CSharpValue>
+              </InArgument>
+            </bda:DatabaseConnectActivity.ConnectionString>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </bda:DatabaseConnectActivity>
+          <FlowStep.Next>
+            <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_2">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <av:Point x:Key="ShapeLocation">315.5,392.5</av:Point>
+                  <av:Size x:Key="ShapeSize">349,135</av:Size>
+                  <av:PointCollection x:Key="ConnectorLocation">490,527.5 490,593.5</av:PointCollection>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ecaac:InvokeCSharpCodeActivity ActivityName="执行C#代码" sap2010:Annotation.AnnotationText="2、因为查询出的订单包括昨天订单（存入数据库的时间时UTC时间，需要转为localtime，再筛选今天的订单）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行C#代码 - 订单整理" sap:VirtualizedContainerService.HintSize="349,135" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_2">
+                <ecaac:InvokeCSharpCodeActivity.CodeFilePath>
+                  <InArgument x:TypeArguments="x:String">
+                    <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_384">.code\CSharp\执行CSharp代码-订单整理.cs</Literal>
+                  </InArgument>
+                </ecaac:InvokeCSharpCodeActivity.CodeFilePath>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ecaac:InvokeCSharpCodeActivity>
+              <FlowStep.Next>
+                <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_1">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <av:Point x:Key="ShapeLocation">390,593.5</av:Point>
+                      <av:Size x:Key="ShapeSize">200,53</av:Size>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <bfa:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" ActivityName="循环操作（For Each)" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="循环操作 - 遍历彩箱装和预约信息表" sap:VirtualizedContainerService.HintSize="614,1780" sap2010:WorkflowViewState.IdRef="ForEach`1_3" IsIgnore="False">
+                    <bfa:ForEach.Values>
+                      <InArgument x:TypeArguments="s:String[]">
+                        <mca:CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_734">new string[]{"彩箱装", "预约信息表"}</mca:CSharpValue>
+                      </InArgument>
+                    </bfa:ForEach.Values>
+                    <ActivityAction x:TypeArguments="x:String">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="x:String" Name="item" />
+                      </ActivityAction.Argument>
+                      <Sequence DisplayName="序列 - 遍历类型" sap:VirtualizedContainerService.HintSize="598,1675" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="x:String" Name="itemBody" />
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <bfa:Switch x:TypeArguments="x:String" ActivityName="条件（Switch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（Switch）" sap:VirtualizedContainerService.HintSize="576,1551" sap2010:WorkflowViewState.IdRef="Switch`1_2" IsIgnore="False">
+                          <bfa:Switch.Cases>
+                            <Sequence x:Key="彩箱装" DisplayName="序列" sap:VirtualizedContainerService.HintSize="556,1339" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值  itemBody" sap:VirtualizedContainerService.HintSize="534,58" sap2010:WorkflowViewState.IdRef="Assign_3" IsIgnore="False">
+                                <bfa:Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">
+                                    <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_6">itemBody</mca:CSharpReference>
+                                  </OutArgument>
+                                </bfa:Assign.To>
+                                <bfa:Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_746">"彩箱装明细"</mca:CSharpValue>
+                                  </InArgument>
+                                </bfa:Assign.Value>
+                              </bfa:Assign>
+                              <bfa:If ActivityName="条件（If）" sap2010:Annotation.AnnotationText="山姆彩箱装发邮件" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 存在彩箱装数据）" sap:VirtualizedContainerService.HintSize="534,1117" sap2010:WorkflowViewState.IdRef="If_12" IsIgnore="False">
+                                <bfa:If.Condition>
+                                  <InArgument x:TypeArguments="x:Boolean">
+                                    <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_758">(bool)dtRow_ModuleSettings["isSam"] &amp;&amp; cxzDetailsDT != null &amp;&amp; cxzDetailsDT.Rows.Count &gt; 0</mca:CSharpValue>
+                                  </InArgument>
+                                </bfa:If.Condition>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <bfa:If.Then>
+                                  <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="491,904" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                                    <Sequence.Variables>
+                                      <Variable x:TypeArguments="scg:List(x:String)" Name="附件">
+                                        <Variable.Default>
+                                          <mca:CSharpValue x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_761">new List&lt;string&gt;{}</mca:CSharpValue>
+                                        </Variable.Default>
+                                      </Variable>
+                                    </Sequence.Variables>
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <bfa:Retry ActivityName="重试" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="重试" sap:VirtualizedContainerService.HintSize="469,447" sap2010:WorkflowViewState.IdRef="Retry_1" IsIgnore="False">
+                                      <bfa:Retry.RetryCount>
+                                        <InArgument x:TypeArguments="x:Int32">
+                                          <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_385" Value="2" />
+                                        </InArgument>
+                                      </bfa:Retry.RetryCount>
+                                      <bfa:Retry.RetryTimeSpan>
+                                        <InArgument x:TypeArguments="x:TimeSpan">
+                                          <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_386" Value="00:00:05" />
+                                        </InArgument>
+                                      </bfa:Retry.RetryTimeSpan>
+                                      <bfa:Retry.Condition>
+                                        <InArgument x:TypeArguments="x:Boolean">
+                                          <Literal x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="Literal`1_387" Value="True" />
+                                        </InArgument>
+                                      </bfa:Retry.Condition>
+                                      <bfa:Retry.Body>
+                                        <boa:OfficeExcelOpenOrCreateActivity OfficeVersion="{x:Null}" Password="{x:Null}" SaveAs="{x:Null}" ActivityName="打开/新建" AutoSave="True" ContinueOnError="No" CreateNewFile="True" DelayAfter="0" DelayBefore="0" DisplayName="打开/新建 彩箱装excel" EnableMacro="False" sap:VirtualizedContainerService.HintSize="449,292" sap2010:WorkflowViewState.IdRef="OfficeExcelOpenOrCreateActivity_7" MultiEngineType="Office" ReadOnly="False" Visible="False" needRestoreKey="False">
+                                          <boa:OfficeExcelOpenOrCreateActivity.Body>
+                                            <ActivityAction x:TypeArguments="x:Object">
+                                              <ActivityAction.Argument>
+                                                <DelegateInArgument x:TypeArguments="x:Object" Name="XlWorkbook" />
+                                              </ActivityAction.Argument>
+                                              <boa:OfficeExcelSetRangeActivity ActivityName="写入区域" AddHeaders="True" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="写入区域" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="OfficeExcelSetRangeActivity_5">
+                                                <boa:OfficeExcelSetRangeActivity.InputDataTable>
+                                                  <InArgument x:TypeArguments="sd:DataTable">
+                                                    <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_769">cxzDetailsDT</mca:CSharpValue>
+                                                  </InArgument>
+                                                </boa:OfficeExcelSetRangeActivity.InputDataTable>
+                                                <boa:OfficeExcelSetRangeActivity.SheetName>
+                                                  <InArgument x:TypeArguments="x:String">
+                                                    <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_381">Sheet1</Literal>
+                                                  </InArgument>
+                                                </boa:OfficeExcelSetRangeActivity.SheetName>
+                                                <boa:OfficeExcelSetRangeActivity.StartCell>
+                                                  <InArgument x:TypeArguments="x:String">
+                                                    <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_380">A1</Literal>
+                                                  </InArgument>
+                                                </boa:OfficeExcelSetRangeActivity.StartCell>
+                                              </boa:OfficeExcelSetRangeActivity>
+                                            </ActivityAction>
+                                          </boa:OfficeExcelOpenOrCreateActivity.Body>
+                                          <boa:OfficeExcelOpenOrCreateActivity.ExcelFile>
+                                            <InArgument x:TypeArguments="x:String">
+                                              <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_763">System.Convert.ToString(dtRow_ModuleSettings[item + "文件路径"].ToString())</mca:CSharpValue>
+                                            </InArgument>
+                                          </boa:OfficeExcelOpenOrCreateActivity.ExcelFile>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </boa:OfficeExcelOpenOrCreateActivity>
+                                      </bfa:Retry.Body>
+                                    </bfa:Retry>
+                                    <ecaac1:AddToCollectionActivity ActivityName="添加对象" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="添加对象 - excel附件" sap:VirtualizedContainerService.HintSize="469,22" sap2010:WorkflowViewState.IdRef="AddToCollectionActivity_5">
+                                      <ecaac1:AddToCollectionActivity.Collection>
+                                        <InOutArgument x:TypeArguments="scg:List(x:String)">
+                                          <mca:CSharpReference x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_8">附件</mca:CSharpReference>
+                                        </InOutArgument>
+                                      </ecaac1:AddToCollectionActivity.Collection>
+                                      <ecaac1:AddToCollectionActivity.Item>
+                                        <InArgument x:TypeArguments="x:String">
+                                          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_764">dtRow_ModuleSettings[item + "文件路径"].ToString()</mca:CSharpValue>
+                                        </InArgument>
+                                      </ecaac1:AddToCollectionActivity.Item>
+                                    </ecaac1:AddToCollectionActivity>
+                                    <bfa:If ActivityName="条件（If）" sap2010:Annotation.AnnotationText="如果是山姆&#xA;- 收集彩箱装附件，并压缩" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 山姆）" sap:VirtualizedContainerService.HintSize="469,95" sap2010:WorkflowViewState.IdRef="If_14" IsIgnore="False">
+                                      <bfa:If.Condition>
+                                        <InArgument x:TypeArguments="x:Boolean">
+                                          <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_765">cxzOrderFilesList.Count &gt; 0</mca:CSharpValue>
+                                        </InArgument>
+                                      </bfa:If.Condition>
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <bfa:If.Then>
+                                        <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="371,271" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <baasf:CompresseFileActivity Password="{x:Null}" ActivityName="压缩文件/文件夹" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="压缩文件 - 彩箱装" sap:VirtualizedContainerService.HintSize="349,85" sap2010:WorkflowViewState.IdRef="CompresseFileActivity_6" InputType="File" Overwrite="True">
+                                            <baasf:CompresseFileActivity.CompressedFilePath>
+                                              <InArgument x:TypeArguments="x:String">
+                                                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_772">System.Convert.ToString(dtRow_ModuleSettings[item + "订单PDF"].ToString())</mca:CSharpValue>
+                                              </InArgument>
+                                            </baasf:CompresseFileActivity.CompressedFilePath>
+                                            <baasf:CompresseFileActivity.FileListPath>
+                                              <InArgument x:TypeArguments="scg:IEnumerable(x:String)">
+                                                <mca:CSharpValue x:TypeArguments="scg:IEnumerable(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_771">cxzOrderFilesList</mca:CSharpValue>
+                                              </InArgument>
+                                            </baasf:CompresseFileActivity.FileListPath>
+                                          </baasf:CompresseFileActivity>
+                                          <ecaac1:AddToCollectionActivity ActivityName="添加对象" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="添加对象 - pdf压缩包" sap:VirtualizedContainerService.HintSize="349,22" sap2010:WorkflowViewState.IdRef="AddToCollectionActivity_7">
+                                            <ecaac1:AddToCollectionActivity.Collection>
+                                              <InOutArgument x:TypeArguments="scg:List(x:String)">
+                                                <mca:CSharpReference x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_10">附件</mca:CSharpReference>
+                                              </InOutArgument>
+                                            </ecaac1:AddToCollectionActivity.Collection>
+                                            <ecaac1:AddToCollectionActivity.Item>
+                                              <InArgument x:TypeArguments="x:String">
+                                                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_773">dtRow_ModuleSettings[item + "订单PDF"].ToString()</mca:CSharpValue>
+                                              </InArgument>
+                                            </ecaac1:AddToCollectionActivity.Item>
+                                          </ecaac1:AddToCollectionActivity>
+                                        </Sequence>
+                                      </bfa:If.Then>
+                                    </bfa:If>
+                                    <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: 发送邮件" sap:VirtualizedContainerService.HintSize="469,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_4" IsIgnore="False">
+                                      <bfa:InvokeWorkflow.Arguments>
+                                        <InArgument x:TypeArguments="scg:List(x:String)" x:Key="附件">
+                                          <mca:CSharpValue x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_748">附件</mca:CSharpValue>
+                                        </InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="邮件正文">
+                                          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_749">string.Format("Hi all, &lt;br/&gt; 附件是今日收到的{0}，请查收，谢谢。&lt;br/&gt;云扩RPA", itemBody)</mca:CSharpValue>
+                                        </InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="邮件主题">
+                                          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_789">System.Convert.ToString(string.Format("{0}{1} {2}", curCustomerName, dtRow_ProjectSettings["指定日期"], item))</mca:CSharpValue>
+                                        </InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="收件人">
+                                          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_751">System.Convert.ToString(dtRow_ModuleSettings[item + "邮件接收人"].ToString())</mca:CSharpValue>
+                                        </InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="抄送人">
+                                          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_783">System.Convert.ToString(dtRow_ModuleSettings[item + "邮件抄送人"].ToString())</mca:CSharpValue>
+                                        </InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="发件箱配置">
+                                          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_784">System.Convert.ToString(dtRow_ProjectSettings["发件箱配置"].ToString())</mca:CSharpValue>
+                                        </InArgument>
+                                      </bfa:InvokeWorkflow.Arguments>
+                                      <bfa:InvokeWorkflow.WorkflowPath>
+                                        <InArgument x:TypeArguments="x:String">
+                                          <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_378">通知\发送邮件.xaml</Literal>
+                                        </InArgument>
+                                      </bfa:InvokeWorkflow.WorkflowPath>
+                                    </bfa:InvokeWorkflow>
+                                  </Sequence>
+                                </bfa:If.Then>
+                              </bfa:If>
+                            </Sequence>
+                            <Sequence x:Key="预约信息表" DisplayName="序列" sap:VirtualizedContainerService.HintSize="596,1728" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                              <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值  itemBody" sap:VirtualizedContainerService.HintSize="574,58" sap2010:WorkflowViewState.IdRef="Assign_4" IsIgnore="False">
+                                <bfa:Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">
+                                    <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_7">itemBody</mca:CSharpReference>
+                                  </OutArgument>
+                                </bfa:Assign.To>
+                                <bfa:Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_759">"预约信息表"</mca:CSharpValue>
+                                  </InArgument>
+                                </bfa:Assign.Value>
+                              </bfa:Assign>
+                              <bfa:If ActivityName="条件（If）" sap2010:Annotation.AnnotationText="预约信息表发邮件" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 存在预约信息）" sap:VirtualizedContainerService.HintSize="574,1506" sap2010:WorkflowViewState.IdRef="If_13" IsIgnore="False">
+                                <bfa:If.Condition>
+                                  <InArgument x:TypeArguments="x:Boolean">
+                                    <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_760">bookingInfoDT != null &amp;&amp; bookingInfoDT.Rows.Count &gt; 0</mca:CSharpValue>
+                                  </InArgument>
+                                </bfa:If.Condition>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
+                                <bfa:If.Then>
+                                  <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="556,1293" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                                    <Sequence.Variables>
+                                      <Variable x:TypeArguments="scg:List(x:String)" Name="附件">
+                                        <Variable.Default>
+                                          <mca:CSharpValue x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_762">new List&lt;string&gt;{}</mca:CSharpValue>
+                                        </Variable.Default>
+                                      </Variable>
+                                    </Sequence.Variables>
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <bfa:Retry ActivityName="重试" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="重试" sap:VirtualizedContainerService.HintSize="534,447" sap2010:WorkflowViewState.IdRef="Retry_2" IsIgnore="False">
+                                      <bfa:Retry.RetryCount>
+                                        <InArgument x:TypeArguments="x:Int32">
+                                          <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_388" Value="2" />
+                                        </InArgument>
+                                      </bfa:Retry.RetryCount>
+                                      <bfa:Retry.RetryTimeSpan>
+                                        <InArgument x:TypeArguments="x:TimeSpan">
+                                          <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_389" Value="00:00:05" />
+                                        </InArgument>
+                                      </bfa:Retry.RetryTimeSpan>
+                                      <bfa:Retry.Condition>
+                                        <InArgument x:TypeArguments="x:Boolean">
+                                          <Literal x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="Literal`1_390" Value="True" />
+                                        </InArgument>
+                                      </bfa:Retry.Condition>
+                                      <bfa:Retry.Body>
+                                        <boa:OfficeExcelOpenOrCreateActivity OfficeVersion="{x:Null}" Password="{x:Null}" SaveAs="{x:Null}" ActivityName="打开/新建" AutoSave="True" ContinueOnError="No" CreateNewFile="True" DelayAfter="0" DelayBefore="0" DisplayName="打开/新建 预约信息表" EnableMacro="False" sap:VirtualizedContainerService.HintSize="449,292" sap2010:WorkflowViewState.IdRef="OfficeExcelOpenOrCreateActivity_8" MultiEngineType="Office" ReadOnly="False" Visible="False" needRestoreKey="False">
+                                          <boa:OfficeExcelOpenOrCreateActivity.Body>
+                                            <ActivityAction x:TypeArguments="x:Object">
+                                              <ActivityAction.Argument>
+                                                <DelegateInArgument x:TypeArguments="x:Object" Name="XlWorkbook" />
+                                              </ActivityAction.Argument>
+                                              <boa:OfficeExcelSetRangeActivity ActivityName="写入区域" AddHeaders="True" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="写入区域" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="OfficeExcelSetRangeActivity_6">
+                                                <boa:OfficeExcelSetRangeActivity.InputDataTable>
+                                                  <InArgument x:TypeArguments="sd:DataTable">
+                                                    <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_770">bookingInfoDT</mca:CSharpValue>
+                                                  </InArgument>
+                                                </boa:OfficeExcelSetRangeActivity.InputDataTable>
+                                                <boa:OfficeExcelSetRangeActivity.SheetName>
+                                                  <InArgument x:TypeArguments="x:String">
+                                                    <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_383">Sheet1</Literal>
+                                                  </InArgument>
+                                                </boa:OfficeExcelSetRangeActivity.SheetName>
+                                                <boa:OfficeExcelSetRangeActivity.StartCell>
+                                                  <InArgument x:TypeArguments="x:String">
+                                                    <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_382">A1</Literal>
+                                                  </InArgument>
+                                                </boa:OfficeExcelSetRangeActivity.StartCell>
+                                              </boa:OfficeExcelSetRangeActivity>
+                                            </ActivityAction>
+                                          </boa:OfficeExcelOpenOrCreateActivity.Body>
+                                          <boa:OfficeExcelOpenOrCreateActivity.ExcelFile>
+                                            <InArgument x:TypeArguments="x:String">
+                                              <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_766">System.Convert.ToString(dtRow_ModuleSettings[item + "文件路径"].ToString())</mca:CSharpValue>
+                                            </InArgument>
+                                          </boa:OfficeExcelOpenOrCreateActivity.ExcelFile>
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                        </boa:OfficeExcelOpenOrCreateActivity>
+                                      </bfa:Retry.Body>
+                                    </bfa:Retry>
+                                    <ecaac1:AddToCollectionActivity ActivityName="添加对象" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="添加对象 - excel附件" sap:VirtualizedContainerService.HintSize="534,22" sap2010:WorkflowViewState.IdRef="AddToCollectionActivity_6">
+                                      <ecaac1:AddToCollectionActivity.Collection>
+                                        <InOutArgument x:TypeArguments="scg:List(x:String)">
+                                          <mca:CSharpReference x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_9">附件</mca:CSharpReference>
+                                        </InOutArgument>
+                                      </ecaac1:AddToCollectionActivity.Collection>
+                                      <ecaac1:AddToCollectionActivity.Item>
+                                        <InArgument x:TypeArguments="x:String">
+                                          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_767">dtRow_ModuleSettings[item + "文件路径"].ToString()</mca:CSharpValue>
+                                        </InArgument>
+                                      </ecaac1:AddToCollectionActivity.Item>
+                                    </ecaac1:AddToCollectionActivity>
+                                    <bfa:If ActivityName="条件（If）" sap2010:Annotation.AnnotationText="预约信息表附件" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 附件存在）" sap:VirtualizedContainerService.HintSize="534,484" sap2010:WorkflowViewState.IdRef="If_15" IsIgnore="False">
+                                      <bfa:If.Condition>
+                                        <InArgument x:TypeArguments="x:Boolean">
+                                          <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_768">bookingInfoOrderFilesList.Count &gt; 0</mca:CSharpValue>
+                                        </InArgument>
+                                      </bfa:If.Condition>
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <bfa:If.Then>
+                                        <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="371,271" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                                          <sap:WorkflowViewStateService.ViewState>
+                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            </scg:Dictionary>
+                                          </sap:WorkflowViewStateService.ViewState>
+                                          <baasf:CompresseFileActivity Password="{x:Null}" ActivityName="压缩文件/文件夹" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="压缩文件 - 预约信息表" sap:VirtualizedContainerService.HintSize="349,85" sap2010:WorkflowViewState.IdRef="CompresseFileActivity_7" InputType="File" Overwrite="True">
+                                            <baasf:CompresseFileActivity.CompressedFilePath>
+                                              <InArgument x:TypeArguments="x:String">
+                                                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_775">System.Convert.ToString(dtRow_ModuleSettings[item + "订单PDF"].ToString())</mca:CSharpValue>
+                                              </InArgument>
+                                            </baasf:CompresseFileActivity.CompressedFilePath>
+                                            <baasf:CompresseFileActivity.FileListPath>
+                                              <InArgument x:TypeArguments="scg:IEnumerable(x:String)">
+                                                <mca:CSharpValue x:TypeArguments="scg:IEnumerable(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_774">bookingInfoOrderFilesList</mca:CSharpValue>
+                                              </InArgument>
+                                            </baasf:CompresseFileActivity.FileListPath>
+                                          </baasf:CompresseFileActivity>
+                                          <ecaac1:AddToCollectionActivity ActivityName="添加对象" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="添加对象 - pdf压缩包" sap:VirtualizedContainerService.HintSize="349,22" sap2010:WorkflowViewState.IdRef="AddToCollectionActivity_8">
+                                            <ecaac1:AddToCollectionActivity.Collection>
+                                              <InOutArgument x:TypeArguments="scg:List(x:String)">
+                                                <mca:CSharpReference x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_11">附件</mca:CSharpReference>
+                                              </InOutArgument>
+                                            </ecaac1:AddToCollectionActivity.Collection>
+                                            <ecaac1:AddToCollectionActivity.Item>
+                                              <InArgument x:TypeArguments="x:String">
+                                                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_776">dtRow_ModuleSettings[item + "订单PDF"].ToString()</mca:CSharpValue>
+                                              </InArgument>
+                                            </ecaac1:AddToCollectionActivity.Item>
+                                          </ecaac1:AddToCollectionActivity>
+                                        </Sequence>
+                                      </bfa:If.Then>
+                                    </bfa:If>
+                                    <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: 发送邮件" sap:VirtualizedContainerService.HintSize="534,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_5" IsIgnore="False">
+                                      <bfa:InvokeWorkflow.Arguments>
+                                        <InArgument x:TypeArguments="scg:List(x:String)" x:Key="附件">
+                                          <mca:CSharpValue x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_753">附件</mca:CSharpValue>
+                                        </InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="邮件正文">
+                                          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_754">string.Format("Hi all, &lt;br/&gt; 附件是今日收到的{0}，请查收，谢谢。&lt;br/&gt;云扩RPA", itemBody)</mca:CSharpValue>
+                                        </InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="邮件主题">
+                                          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_788">System.Convert.ToString(string.Format("{0}{1} {2}", curCustomerName, dtRow_ProjectSettings["指定日期"], item))</mca:CSharpValue>
+                                        </InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="收件人">
+                                          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_756">System.Convert.ToString(dtRow_ModuleSettings[item + "邮件接收人"].ToString())</mca:CSharpValue>
+                                        </InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="抄送人">
+                                          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_782">System.Convert.ToString(dtRow_ModuleSettings[item + "邮件抄送人"].ToString())</mca:CSharpValue>
+                                        </InArgument>
+                                        <InArgument x:TypeArguments="x:String" x:Key="发件箱配置">
+                                          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_785">System.Convert.ToString(dtRow_ProjectSettings["发件箱配置"].ToString())</mca:CSharpValue>
+                                        </InArgument>
+                                      </bfa:InvokeWorkflow.Arguments>
+                                      <bfa:InvokeWorkflow.WorkflowPath>
+                                        <InArgument x:TypeArguments="x:String">
+                                          <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_379">通知\发送邮件.xaml</Literal>
+                                        </InArgument>
+                                      </bfa:InvokeWorkflow.WorkflowPath>
+                                    </bfa:InvokeWorkflow>
+                                  </Sequence>
+                                </bfa:If.Then>
+                              </bfa:If>
+                            </Sequence>
+                          </bfa:Switch.Cases>
+                          <bfa:Switch.Expression>
+                            <InArgument x:TypeArguments="x:String">
+                              <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_745">item</mca:CSharpValue>
+                            </InArgument>
+                          </bfa:Switch.Expression>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </bfa:Switch>
+                      </Sequence>
+                    </ActivityAction>
+                  </bfa:ForEach>
+                </FlowStep>
+              </FlowStep.Next>
+            </FlowStep>
+          </FlowStep.Next>
+        </FlowStep>
+      </FlowStep.Next>
+    </FlowStep>
+    <x:Reference>__ReferenceID0</x:Reference>
+    <x:Reference>__ReferenceID1</x:Reference>
+    <x:Reference>__ReferenceID2</x:Reference>
+  </Flowchart>
+</Activity>
