@@ -17,7 +17,8 @@ public void Run()
     //在这里编写您的代码
     DataTable cleanOrderItemsMappedToWyethDT = orderItemsMappedToWyethDT.Copy();
     DataTable exceptionOrderWithItemsDT = orderItemsMappedToWyethDT.Clone();
-    
+        //Console.WriteLine("cleanOrderItemsMappedToWyethDT: {0}", cleanOrderItemsMappedToWyethDT.Rows.Count);
+
     exceptionOrderWithItemsDT.Columns.Add("异常分类", typeof(string));
     exceptionOrderWithItemsDT.Columns.Add("异常详细描述", typeof(string));
 
@@ -69,7 +70,8 @@ public void Run()
         
         // 退货单
         if(dr["业务类型"].ToString() == "自营采购退单"){
-            addToExceptionOrder(cleanOrderItemsMappedToWyethDT, ref 退货单ExceptionDT, ExceptionCategory.退货单.ToString(), dr, ref exceptionOrderList);
+            List<string> tmpExceptionList = new List<string>{};
+            addToExceptionOrder(cleanOrderItemsMappedToWyethDT, ref 退货单ExceptionDT, ExceptionCategory.退货单.ToString(), dr, ref tmpExceptionList);
         }
     }
 
@@ -84,6 +86,16 @@ public void Run()
     // 存在exception的订单需要从clean 移除
     if(exceptionOrderList.Count > 0){
         foreach(string orderNumber in exceptionOrderList){
+            DataRow[] drs = cleanOrderItemsMappedToWyethDT.Select(string.Format("订单号='{0}'", orderNumber));
+            foreach(DataRow dr in drs){
+                cleanOrderItemsMappedToWyethDT.Rows.Remove(dr);
+            }
+        }
+    }
+    // clean订单里面排除退货单
+    if(退货单ExceptionDT.Rows.Count > 0){
+        foreach(DataRow 退货dr in 退货单ExceptionDT.Rows){
+            string orderNumber = 退货dr["订单号"].ToString();
             DataRow[] drs = cleanOrderItemsMappedToWyethDT.Select(string.Format("订单号='{0}'", orderNumber));
             foreach(DataRow dr in drs){
                 cleanOrderItemsMappedToWyethDT.Rows.Remove(dr);
@@ -120,11 +132,28 @@ public void Run()
     List<string> cleanOrderNumberList = writeToDMSTracker(cleanOrderItemsMappedToWyethDT); // 输出 dmsTrackerDT
 
     string cleanOrderPrintURL = setPrintPOURL(cleanOrderNumberList);
-
-    string exceptionOrderPrintURL = setPrintPOURL(exceptionOrderList);
-
+    
     List <string> 退货单OrderList =  退货单DBExceptionDT.Rows.Cast<DataRow>().Select<DataRow, string>(dr => dr["客户订单号（POID）"].ToString()).ToList();
     string 退货单OrderListPrintURL = setPrintPOURL(退货单OrderList);
+    
+    // 将退货单从Exception订单中移除
+    //printDT(finalExceptionDT);
+    
+    Console.WriteLine("cleanOrderItemsMappedToWyethDT: {0}, finalExceptionDT: {1}", cleanOrderItemsMappedToWyethDT.Rows.Count, finalExceptionDT.Rows.Count);
+    
+    //printDT(退货单DBExceptionDT);
+
+    foreach(DataRow exceptionDR in 退货单DBExceptionDT.DefaultView.ToTable(true, new string[]{"客户订单号（POID）"}).Rows){
+         string orderNumber = exceptionDR["客户订单号（POID）"].ToString();
+         DataRow[] drs = finalExceptionDT.Select(string.Format("`客户订单号（POID）`='{0}'", orderNumber));
+            foreach(DataRow dr in drs){
+                finalExceptionDT.Rows.Remove(dr);
+            }
+    }
+    
+    //Convert.ToInt32("sdsds");
+    exceptionOrderList = finalExceptionDT.Rows.Cast<DataRow>().Select<DataRow, string>(dr => dr["客户订单号（POID）"].ToString()).ToList();
+    string exceptionOrderPrintURL = setPrintPOURL(exceptionOrderList);
     
     foreach(DataRow dr in orderCatResultDT.Rows){
         string printURL = string.Empty;
@@ -136,7 +165,7 @@ public void Run()
                 break; 
             case "Exception"  :
                 printURL= exceptionOrderPrintURL;
-                orderRelatedDBDT = MergeExceptionDTbyProductRow(finalExceptionDT);;
+                orderRelatedDBDT = MergeExceptionDTbyProductRow(finalExceptionDT);
                 break; 
             case "退货单"  :
                 printURL= 退货单OrderListPrintURL;
@@ -247,6 +276,7 @@ public List<string> writeToDMSTracker(DataTable cleanOrderItemsMappedToWyethDT){
         // dmsTrackerDR["大仓密码"]
         dmsTrackerDR["付款方式（赊销/现金）"] = 付款方式;
         dmsTrackerDR["读单日期"] = dr["提单日期"];
+        dmsTrackerDR["客户要求到货日期"] = dr["RDD"];
         dmsTrackerDR["SoldToCode"] = dr["Sold To"];
         dmsTrackerDR["ShipToCode"] = dr["Ship to"];
         dmsTrackerDR["Customer Name"] = 门店;

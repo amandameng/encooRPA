@@ -100,7 +100,7 @@ public void Run()
        }
 
        if(!string.IsNullOrEmpty(orderJobHistoryInsertStr)){
-           orderJobHistoryInsertSQL = string.Format(@"INSERT INTO order_job_history 
+           orderJobHistoryInsertSQL = string.Format(@"INSERT ignore INTO order_job_history 
                         (
                             customer_name,
                             order_number,

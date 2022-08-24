@@ -60,7 +60,7 @@
           <av:Size x:Key="ShapeSize">200,53</av:Size>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <eaw:BrowserOpen DelayAfter="{x:Null}" DelayBefore="{x:Null}" TimeOut="{x:Null}" UserDataFolderPath="{x:Null}" WaitTimeout="{x:Null}" ActivityName="BrowserOpen" BrowserType="Chrome" CommMethod="Native" ContinueOnError="False" DisplayName="打开浏览器" Guid="11f283ae-b17e-4444-861c-a668afe04814" Headless="False" sap:VirtualizedContainerService.HintSize="570,2682" sap2010:WorkflowViewState.IdRef="BrowserOpen_2" IsEndClose="False" IsIgnore="False" IsMaximize="True" IsReady="True" UserDataFolderMode="Automatic">
+      <eaw:BrowserOpen DelayAfter="{x:Null}" DelayBefore="{x:Null}" TimeOut="{x:Null}" UserDataFolderPath="{x:Null}" WaitTimeout="{x:Null}" ActivityName="BrowserOpen" BrowserType="Chrome" CommMethod="Native" ContinueOnError="False" DisplayName="打开浏览器" Guid="11f283ae-b17e-4444-861c-a668afe04814" Headless="False" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="BrowserOpen_2" IsEndClose="False" IsIgnore="False" IsMaximize="True" IsReady="True" UserDataFolderMode="Automatic">
         <eaw:BrowserOpen.Browser>
           <OutArgument x:TypeArguments="bcci:IBotTimeWebDriver">
             <mca:CSharpReference x:TypeArguments="bcci:IBotTimeWebDriver" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1">chromeBrower</mca:CSharpReference>

@@ -44,8 +44,9 @@ public void Run()
         
        if (!string.IsNullOrWhiteSpace(missedFields))
        {
-           string errorMsg = "Excel字段【"+missedFields.Trim(',')+"】缺少与数据库表的映射关系，"+string.Format("请检查并更新Excel与数据库表【{0},{1}】的映射关系，路径为 .\\Config\\excel_db_mapping.json",mappedTableItem.Name, str_TableName);
-           throw(new Exception(errorMsg));
+           string errorMsg = "Excel字段【"+missedFields.Trim(',')+"】缺少与数据库表的映射关系，存入数据库后该列信息将丢失" + string.Format(", 请检查并更新Excel与数据库表【{0},{1}】的映射关系，路径为 .\\Config\\excel_db_mapping.json",mappedTableItem.Name, str_TableName);
+           Console.WriteLine(errorMsg);
+           //throw(new Exception(errorMsg));
        }
 
         //追加字段

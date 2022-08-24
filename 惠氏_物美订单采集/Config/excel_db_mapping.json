@@ -34,6 +34,11 @@
         "display_name": "读单日期"
       },
       {
+        "field": "rdd",
+        "type": "timestamp",
+        "display_name": "客户要求到货日期"
+      },
+      {
         "field": "sold_to_code",
         "type": "string",
         "display_name": "SoldToCode"

@@ -7,7 +7,7 @@
   </x:Members>
   <this:Main.附件>
     <InArgument x:TypeArguments="scg:List(x:String)">
-      <mca:CSharpValue x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">new List&lt;string&gt;{}</mca:CSharpValue>
+      <mca:CSharpValue x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">[new List&lt;string&gt;{}]</mca:CSharpValue>
     </InArgument>
   </this:Main.附件>
   <this:Main.邮件正文>
@@ -105,7 +105,7 @@
             </eca:AcquireAssetsActivity.AssetName>
             <eca:AcquireAssetsActivity.AssetValue>
               <OutArgument x:TypeArguments="x:String">
-                <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1">发件人密码</mca:CSharpReference>
+                <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1">[发件人密码]</mca:CSharpReference>
               </OutArgument>
             </eca:AcquireAssetsActivity.AssetValue>
             <eca:AcquireAssetsActivity.AssetsNames>
@@ -135,12 +135,12 @@
                 <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - 发件人密码" sap:VirtualizedContainerService.HintSize="323,55" sap2010:WorkflowViewState.IdRef="Assign_2" IsIgnore="False">
                   <bfa:Assign.To>
                     <OutArgument x:TypeArguments="x:String">
-                      <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_3">发件人密码</mca:CSharpReference>
+                      <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_3">[发件人密码]</mca:CSharpReference>
                     </OutArgument>
                   </bfa:Assign.To>
                   <bfa:Assign.Value>
                     <InArgument x:TypeArguments="x:String">
-                      <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_40">"test@2021"</mca:CSharpValue>
+                      <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_40">["test@2021"]</mca:CSharpValue>
                     </InArgument>
                   </bfa:Assign.Value>
                 </bfa:Assign>
@@ -168,12 +168,12 @@
             <bmaa:SendSmtpMailActivity Bcc="{x:Null}" Cc="{x:Null}" Proxy="{x:Null}" ActivityName="发送邮件(SMTP)" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="发送邮件(SMTP)" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="SendSmtpMailActivity_4" IsBodyHtml="True" IsDraft="False" Priority="High" SecureConnection="Auto">
               <bmaa:SendSmtpMailActivity.Body>
                 <InArgument x:TypeArguments="x:String">
-                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_38">System.Convert.ToString(邮件正文)</mca:CSharpValue>
+                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_38">[System.Convert.ToString(邮件正文)]</mca:CSharpValue>
                 </InArgument>
               </bmaa:SendSmtpMailActivity.Body>
               <bmaa:SendSmtpMailActivity.Files>
                 <InArgument x:TypeArguments="scg:IEnumerable(x:String)">
-                  <mca:CSharpValue x:TypeArguments="scg:IEnumerable(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_39">附件</mca:CSharpValue>
+                  <mca:CSharpValue x:TypeArguments="scg:IEnumerable(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_39">[附件]</mca:CSharpValue>
                 </InArgument>
               </bmaa:SendSmtpMailActivity.Files>
               <bmaa:SendSmtpMailActivity.MailAddress>
@@ -183,7 +183,7 @@
               </bmaa:SendSmtpMailActivity.MailAddress>
               <bmaa:SendSmtpMailActivity.Password>
                 <InArgument x:TypeArguments="x:String">
-                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_35">System.Convert.ToString(发件人密码)</mca:CSharpValue>
+                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_35">[System.Convert.ToString(发件人密码)]</mca:CSharpValue>
                 </InArgument>
               </bmaa:SendSmtpMailActivity.Password>
               <bmaa:SendSmtpMailActivity.Port>
@@ -198,7 +198,7 @@
               </bmaa:SendSmtpMailActivity.Server>
               <bmaa:SendSmtpMailActivity.Subject>
                 <InArgument x:TypeArguments="x:String">
-                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_37">System.Convert.ToString(邮件主题)</mca:CSharpValue>
+                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_37">[System.Convert.ToString(邮件主题)]</mca:CSharpValue>
                 </InArgument>
               </bmaa:SendSmtpMailActivity.Subject>
               <bmaa:SendSmtpMailActivity.TimeOut>
@@ -208,7 +208,7 @@
               </bmaa:SendSmtpMailActivity.TimeOut>
               <bmaa:SendSmtpMailActivity.To>
                 <InArgument x:TypeArguments="x:String">
-                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_36">System.Convert.ToString(收件人)</mca:CSharpValue>
+                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_36">[System.Convert.ToString(收件人)]</mca:CSharpValue>
                 </InArgument>
               </bmaa:SendSmtpMailActivity.To>
               <sap:WorkflowViewStateService.ViewState>

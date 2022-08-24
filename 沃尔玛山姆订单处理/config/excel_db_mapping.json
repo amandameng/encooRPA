@@ -175,6 +175,11 @@
         "display_name": "location"
       },
       {
+        "field": "supplier_number",
+        "type": "string",
+        "display_name": "supplier_number"
+      },
+      {
         "field": "allowance_or_charge",
         "type": "string",
         "display_name": "allowance_or_charge"

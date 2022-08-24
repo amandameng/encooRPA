@@ -95,7 +95,7 @@
           <av:Size x:Key="ShapeSize">200,163</av:Size>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <bfa:If ActivityName="条件（If）" sap2010:Annotation.AnnotationText="增量订单结果数据表!=null &amp;&amp; 增量订单结果数据表.Rows.Count &gt; 0 &amp;&amp; 增量订单详情结果数据表 != null &amp;&amp; 增量订单详情结果数据表.Rows.Count &gt; 0" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 增量结果数据表存在）" sap:VirtualizedContainerService.HintSize="622,3267" sap2010:WorkflowViewState.IdRef="If_1" IsIgnore="False">
+      <bfa:If ActivityName="条件（If）" sap2010:Annotation.AnnotationText="增量订单结果数据表!=null &amp;&amp; 增量订单结果数据表.Rows.Count &gt; 0 &amp;&amp; 增量订单详情结果数据表 != null &amp;&amp; 增量订单详情结果数据表.Rows.Count &gt; 0" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 增量结果数据表存在）" sap:VirtualizedContainerService.HintSize="622,3706" sap2010:WorkflowViewState.IdRef="If_1" IsIgnore="False">
         <bfa:If.Condition>
           <InArgument x:TypeArguments="x:Boolean">
             <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">增量订单结果数据表!=null &amp;&amp; 增量订单结果数据表.Rows.Count &gt; 0 &amp;&amp; 增量订单详情结果数据表 != null &amp;&amp; 增量订单详情结果数据表.Rows.Count &gt; 0</mca:CSharpValue>
@@ -109,13 +109,13 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <bfa:If.Then>
-          <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="604,3037" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="604,3476" sap2010:WorkflowViewState.IdRef="Sequence_3">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="582,594" sap2010:WorkflowViewState.IdRef="Sequence_7">
+            <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="582,1033" sap2010:WorkflowViewState.IdRef="Sequence_7">
               <Sequence.Variables>
                 <Variable x:TypeArguments="sd:DataSet" Name="ordersDataSet" />
                 <Variable x:TypeArguments="sd:DataSet" Name="orderItemsDataSet" />
@@ -125,17 +125,17 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ecaac:InvokeCSharpCodeActivity ActivityName="执行C#代码" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行C#代码 - 数据表分割" sap:VirtualizedContainerService.HintSize="349,93" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_3">
+              <ecaac:InvokeCSharpCodeActivity ActivityName="执行C#代码" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行C#代码 - 数据表分割" sap:VirtualizedContainerService.HintSize="455,93" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_3">
                 <ecaac:InvokeCSharpCodeActivity.CodeFilePath>
                   <InArgument x:TypeArguments="x:String">
                     <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_34">.code\CSharp\执行CSharp代码-数据表分割.cs</Literal>
                   </InArgument>
                 </ecaac:InvokeCSharpCodeActivity.CodeFilePath>
               </ecaac:InvokeCSharpCodeActivity>
-              <bfa:While ActivityName="循环操作（While)" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="循环操作 orders" sap:VirtualizedContainerService.HintSize="349,53" sap2010:WorkflowViewState.IdRef="While_1" IsIgnore="False">
+              <bfa:While ActivityName="循环操作（While)" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="循环操作 orders" sap:VirtualizedContainerService.HintSize="455,492" sap2010:WorkflowViewState.IdRef="While_1" IsIgnore="False">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
@@ -205,7 +205,7 @@
                   </bfa:Assign>
                 </Sequence>
               </bfa:While>
-              <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - 重置executeTimes" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="Assign_4" IsIgnore="False">
+              <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - 重置executeTimes" sap:VirtualizedContainerService.HintSize="455,58" sap2010:WorkflowViewState.IdRef="Assign_4" IsIgnore="False">
                 <bfa:Assign.To>
                   <OutArgument x:TypeArguments="x:Int32">
                     <mca:CSharpReference x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpReference`1_12">executeTimes</mca:CSharpReference>
@@ -217,7 +217,7 @@
                   </InArgument>
                 </bfa:Assign.Value>
               </bfa:Assign>
-              <bfa:While ActivityName="循环操作（While)" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="循环操作 order items" sap:VirtualizedContainerService.HintSize="349,53" sap2010:WorkflowViewState.IdRef="While_2" IsIgnore="False">
+              <bfa:While ActivityName="循环操作（While)" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="循环操作 order items" sap:VirtualizedContainerService.HintSize="455,53" sap2010:WorkflowViewState.IdRef="While_2" IsIgnore="False">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -290,7 +290,7 @@
                   </bfa:Assign>
                 </Sequence>
               </bfa:While>
-              <eae:CommentActivity DisplayName="注释掉" sap:VirtualizedContainerService.HintSize="349,53" sap2010:WorkflowViewState.IdRef="CommentActivity_5">
+              <eae:CommentActivity DisplayName="注释掉" sap:VirtualizedContainerService.HintSize="455,53" sap2010:WorkflowViewState.IdRef="CommentActivity_5">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">False</x:Boolean>

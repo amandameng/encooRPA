@@ -92,7 +92,7 @@
           <av:Size x:Key="ShapeSize">200,53</av:Size>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <eaw:BrowserOpen DelayAfter="{x:Null}" DelayBefore="{x:Null}" TimeOut="{x:Null}" UserDataFolderPath="{x:Null}" ActivityName="BrowserOpen" BrowserType="Chrome" CommMethod="Native" ContinueOnError="False" DisplayName="打开浏览器 - 300s" Guid="d2378fa7-ed44-4105-bafc-b66da54cc4fa" Headless="False" sap:VirtualizedContainerService.HintSize="650,956" sap2010:WorkflowViewState.IdRef="BrowserOpen_1" IsEndClose="False" IsIgnore="False" IsMaximize="True" IsReady="True" UserDataFolderMode="Automatic">
+      <eaw:BrowserOpen DelayAfter="{x:Null}" DelayBefore="{x:Null}" TimeOut="{x:Null}" UserDataFolderPath="{x:Null}" ActivityName="BrowserOpen" BrowserType="Chrome" CommMethod="Native" ContinueOnError="False" DisplayName="打开浏览器 - 300s" Guid="d2378fa7-ed44-4105-bafc-b66da54cc4fa" Headless="False" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="BrowserOpen_1" IsEndClose="False" IsIgnore="False" IsMaximize="True" IsReady="True" UserDataFolderMode="Automatic">
         <eaw:BrowserOpen.Url>
           <InArgument x:TypeArguments="x:String">
             <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">[System.Convert.ToString(网站)]</mca:CSharpValue>

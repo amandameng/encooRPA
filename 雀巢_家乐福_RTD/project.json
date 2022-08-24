@@ -756,7 +756,7 @@
     },
     {
       "Id": "BotTime.WPS.Activity",
-      "Version": "1.4.2204.4",
+      "Version": "1.4.2206.6",
       "Title": "BotTime.WPS.Activity",
       "InnerDependencies": [
         {
@@ -1168,7 +1168,7 @@
       "InnerDependencies": []
     }
   ],
-  "LastModifyTime": "2022-07-06T14:02:26.7042295+08:00",
+  "LastModifyTime": "2022-07-28T10:24:46.3153375+08:00",
   "ProjectReferences": [],
   "TerminationHandler": null,
   "ExceptionHandler": null,

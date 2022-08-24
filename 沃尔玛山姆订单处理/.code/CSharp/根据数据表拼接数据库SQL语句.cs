@@ -3,7 +3,7 @@ public void Run()
 {
     //在这里编写您的代码
     string mappingJson = File.ReadAllText(System.IO.Path.Combine(Environment.GetEnvironmentVariable("CurrentProjectSourcePath"),"Config", "excel_db_mapping.json"));
-    
+    // printDT(源数据表);
     // 作为参数
     // string str_TableName = "orders";
     var mappingList = JsonConvert.DeserializeObject<List<MappingItem>>(mappingJson);
@@ -27,15 +27,15 @@ public void Run()
         JArray columnArr = token.Value<JArray>("columns");
         //生成insert列名
         List<string> columnNames = new List<string>{};
-        /*foreach(JToken jtok in columnArr){
-            Console.WriteLine("----jtok----{0}", jtok.Value<string>("display_name"));
-        }*/
+        //foreach(JToken jtok in columnArr){
+            //Console.WriteLine("----jtok----{0}", jtok.Value<string>("display_name"));
+        //}
         foreach(DataColumn dc in 源数据表.Columns)
         {
-            // Console.WriteLine("----dc.ColumnName----{0}", dc.ColumnName);
+            //Console.WriteLine("----dc.ColumnName----{0}", dc.ColumnName);
             List<JToken> columnsMapping = columnArr.Where(t => t.Value<string>("display_name") == dc.ColumnName).ToList();
             
-           // Console.WriteLine("----columnsMapping.Count----{0}", columnsMapping.Count);
+            //Console.WriteLine("----columnsMapping.Count----{0}", columnsMapping.Count);
             
             if(columnsMapping.Count == 1)
             {
@@ -45,6 +45,7 @@ public void Run()
               int intCol;
               bool isNumber = Int32.TryParse(dc.ColumnName, out intCol);
                if(!isNumber){
+                   Console.WriteLine("-mapping count 不等于1-{0}--", dc.ColumnName);
                    missedFields=missedFields+"["+dc.ColumnName+"],";
                }
             }
@@ -126,3 +127,17 @@ public class ColumnInfo
     public string DisplayName { get; set; }
 }
 //在这里编写您的函数或者类
+
+/// <summary>
+/// 辅助打印数据表方法
+/// </summary>
+/// <param name="theDT"></param>
+public void printDT(DataTable theDT){
+    DataColumnCollection dcols = theDT.Columns;
+    foreach(DataRow dr in theDT.Rows){
+        foreach(DataColumn dc in dcols){
+            Console.WriteLine("column:{0}, value:{1}", dc.ColumnName, dr[dc.ColumnName]);
+        }
+        Console.WriteLine("---------------------------------------");
+    }
+}

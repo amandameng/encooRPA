@@ -1,7 +1,7 @@
 {
   "ProjectName": "雀巢-主产品数据维护",
   "Version": "1.0.0",
-  "SchemaVersion": "3.0",
+  "SchemaVersion": "4.0",
   "ProjectType": "Workflow",
   "Description": null,
   "Author": "匿名用户",
@@ -23,8 +23,10 @@
     ".code\\CSharp\\根据数据表拼接数据库SQL语句.cs",
     ".code\\CSharp\\执行CSharp代码-流程初始化.cs",
     "通知",
+    ".code\\CSharp\\执行CSharp代码-检查数据.cs",
+    "通知\\发送邮件-bak.xaml",
     "通知\\发送邮件.xaml",
-    ".code\\CSharp\\执行CSharp代码-检查数据.cs"
+    ".code\\CSharp\\执行CSharp代码-发送邮件-bak.cs"
   ],
   "TargetFramework": ".NETFramework,Version=v4.6.1",
   "ProjectDependencies": [
@@ -759,7 +761,7 @@
     },
     {
       "Id": "BotTime.WPS.Activity",
-      "Version": "1.3.2201.2",
+      "Version": "1.4.2206.6",
       "Title": "BotTime.WPS.Activity",
       "InnerDependencies": [
         {
@@ -1089,9 +1091,11 @@
       "InnerDependencies": []
     }
   ],
-  "LastModifyTime": "2022-03-30T18:29:23.0448821+08:00",
+  "LastModifyTime": "2022-08-10T16:05:49.4716753+08:00",
   "ProjectReferences": [],
   "TerminationHandler": null,
   "ExceptionHandler": null,
-  "ParallelWorkflows": null
+  "ParallelWorkflows": null,
+  "CreatedStudioVersion": null,
+  "LastStudioVersion": "1.1.2204.10"
 }

@@ -22,6 +22,12 @@
           "IsEnabled": false,
           "IdRef": "OfficeExcelOpenOrCreateActivity_3",
           "DisplayName": "打开 - orderListFilePath"
+        },
+        {
+          "ActivityId": "1.6595",
+          "IsEnabled": true,
+          "IdRef": "DataTableSaveToCSVActivity_2",
+          "DisplayName": "保存为CSV文件"
         }
       ]
     }

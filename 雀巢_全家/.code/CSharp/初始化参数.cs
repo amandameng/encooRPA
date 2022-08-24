@@ -4,7 +4,7 @@ public void Run()
     string timeNowStr = DateTime.Now.ToString("yyyy-MM-dd");
     orderFolder = @"D:\全家\" + timeNowStr + @"\";
     orderFolderFromConsole = orderFolder + @"console\"; // 用来接收控制台下载的订单文件
-
+    pdf订单文件 = Path.Combine(orderFolder, DateTime.Now.ToString("yyyyMMddHHmmss")+".pdf");
     downloadPath= Environment.GetFolderPath(Environment.SpecialFolder.UserProfile).ToString() + @"\Downloads\";
     if(账号信息表.Rows.Count > 0){
         userName = 账号信息表.Rows[0]["User Name"].ToString();

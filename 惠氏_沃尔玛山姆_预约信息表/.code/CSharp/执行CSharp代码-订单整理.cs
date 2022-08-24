@@ -111,7 +111,7 @@ public void fetchTodayOrders(ref DataTable validTodayOrdersDT, ref DataTable cxz
         string orderCaptureDateStr = dr["order_capture_date"].ToString();
         DateTime orderCaptureDateUTC = DateTime.Parse(orderCaptureDateStr);
         DateTime orderCaptureDateLocal = convertToLocalTimeFromUTC(orderCaptureDateUTC);
-        if(orderCaptureDateUTC.ToString("yyyy-MM-dd") == todayStr){
+        if(orderCaptureDateLocal.ToString("yyyy-MM-dd") == todayStr){
             validTodayOrdersDT.ImportRow(dr);
             if(dr["POID"].ToString().Contains("-cxz")){
                 cxzOrdersDT.ImportRow(dr);

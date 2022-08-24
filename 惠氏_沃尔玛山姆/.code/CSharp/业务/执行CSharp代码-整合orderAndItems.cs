@@ -1,3 +1,6 @@
+public string samSupplierNumber = "196654640";
+public string wmSupplierNumber = "196654260";
+
 //代码执行入口，请勿修改或删除
 public void Run()
 {
@@ -275,9 +278,9 @@ public void orderBasicInfo(ref DataRow newOrderRow){
     string supplierNo = supplierDT.Select(String.Format("label = '{0}'", "Supplier Number"))[0]["value"].ToString().Trim();
     // 196654640 是山姆，196654260是大润发
     realCustomerName = customer_name;
-    if(supplierNo == "196654640"){
+    if(supplierNo == samSupplierNumber){
         realCustomerName = "山姆";
-    }else if(supplierNo == "196654260"){
+    }else if(supplierNo == wmSupplierNumber){
         realCustomerName = "沃尔玛";
     }
 

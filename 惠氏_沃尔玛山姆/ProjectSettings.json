@@ -3,23 +3,6 @@
     "Main.xaml"
   ],
   "ProjectBreakpoints": {
-    "Value": {
-      "通用\\导出订单_读取订单数据.xaml": [
-        {
-          "ActivityId": "1.2",
-          "IsEnabled": true,
-          "IdRef": "If_25",
-          "DisplayName": "条件（If 订单文件未成功导出）"
-        }
-      ],
-      "业务\\WM客户平台.xaml": [
-        {
-          "ActivityId": "1.6342",
-          "IsEnabled": true,
-          "IdRef": "Assign_45",
-          "DisplayName": "赋值 - - processSuccess = false"
-        }
-      ]
-    }
+    "Value": {}
   }
 }

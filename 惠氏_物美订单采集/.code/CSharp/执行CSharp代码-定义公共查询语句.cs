@@ -3,7 +3,17 @@ public void Run()
 {
     //在这里编写您的代码
     flow_name = customer_name + "订单采集";
-    rpaAccountsSql = string.Format("select * from rpa_accounts where customer_name='{0}' and flow_name='{1}'", customer_name, flow_name);
+    if(string.IsNullOrEmpty(区域)){
+        rpaAccountsSql = string.Format("select * from rpa_accounts where customer_name='{0}' and flow_name='{1}'", customer_name, flow_name);
+    }else{
+        string[] 区域数组 = 区域.Split(new string[] { ",", "，" }, StringSplitOptions.RemoveEmptyEntries);
+        List<string> 指定区域List = new List<string>{};
+        foreach(string item in 区域数组){
+            指定区域List.Add("'" + item + "'");
+        }
+        string 指定区域 = String.Join(",", 指定区域List);
+        rpaAccountsSql = string.Format("select * from rpa_accounts where customer_name='{0}' and flow_name='{1}' and region in ({2})", customer_name, flow_name, 指定区域);
+    }
     mailSettingSql = string.Format("select * from mail_setting where customer_name='{0}' and flow_name='{1}'", customer_name, flow_name);
     orderFetchRecordsSql = string.Format("select * from order_fecthing_records where cur_date='{0}' and customer_name like '%{1}%' and fetch_status=1", DateTime.Now.ToString("yyyy-MM-dd"), customer_name);
     masterDataSql = string.Format("select customer_material_no, customer_product_name, customer_product_nps, wyeth_material_no, wyeth_product_name, size, wyeth_unit_price, wyeth_nps from material_master_data where customer_name='{0}' and ver=(select max(ver) max_version from material_master_data where customer_name='{0}')", customer_name);

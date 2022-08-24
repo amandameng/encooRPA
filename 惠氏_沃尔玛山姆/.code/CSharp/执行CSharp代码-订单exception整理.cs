@@ -538,6 +538,7 @@ public List<string> writeToDMSTracker(DataTable cleanOrderItemsMappedToWyethDT){
             // dmsTrackerDR["大仓密码"]
             dmsTrackerDR["付款方式（赊销/现金）"] = 付款方式;
             dmsTrackerDR["读单日期"] = dr["收单日期"];
+            dmsTrackerDR["客户要求到货日期"] = dr["取消日期"];
             dmsTrackerDR["SoldToCode"] = dr["Sold To"];
             dmsTrackerDR["ShipToCode"] = dr["Ship to"];
             dmsTrackerDR["Customer Name"] = 门店;

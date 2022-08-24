@@ -40,7 +40,9 @@
     "Module\\写入结果文件.xaml",
     ".code\\CSharp\\执行CSharp代码-数据表添加列.cs",
     ".code\\CSharp\\执行CSharp代码-发邮件-mailkit.cs",
-    ".code\\CSharp\\执行CSharp代码-定义公共查询语句.cs"
+    ".code\\CSharp\\执行CSharp代码-定义公共查询语句.cs",
+    ".code\\CSharp\\执行CSharp代码-datatable转html.cs",
+    "通用\\数据表输出为表格html.xaml"
   ],
   "TargetFramework": ".NETFramework,Version=v4.6.2",
   "ProjectDependencies": [
@@ -787,7 +789,7 @@
     },
     {
       "Id": "BotTime.WPS.Activity",
-      "Version": "1.4.2204.4",
+      "Version": "1.4.2206.6",
       "Title": "BotTime.WPS.Activity",
       "InnerDependencies": [
         {
@@ -1105,7 +1107,7 @@
       "InnerDependencies": []
     }
   ],
-  "LastModifyTime": "2022-07-11T10:50:25.9753142+08:00",
+  "LastModifyTime": "2022-08-23T16:33:40.9560608+08:00",
   "ProjectReferences": [],
   "TerminationHandler": null,
   "ExceptionHandler": null,

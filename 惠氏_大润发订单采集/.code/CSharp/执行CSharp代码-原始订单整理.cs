@@ -34,7 +34,7 @@ public void Run()
     // 删单 => Exception 订单模板
     deletedOrdersMappingToExceptionOrders(ref exceptionsDT);
     
-    printDT(exceptionsDT);
+    // printDT(exceptionsDT);
     // exception格式转换成 DB Mapiing  对应的字段
     DataTable exceptionsDBDT = writeToExceptionDT(exceptionsDT);
     // 合并exception
@@ -100,7 +100,7 @@ public void origOrdersMappingToExceptionOrders(ref DataTable exceptionsDT){
             }
 
             // RDD Check，Order Level
-           if(toIntConvert(newOrderDR["RDD issue"]) < 3){
+          if(toIntConvert(newOrderDR["RDD issue"]) < 3){
                if(!hasRDDException){ // 如果为假，则赋值为真，此单仅为真
                     hasRDDException = true;
                 }
@@ -168,7 +168,7 @@ public void origOrdersMappingToExceptionOrders(ref DataTable exceptionsDT){
                     addToExceptionOrder(ref exceptionsDT, exceptionType, string.Empty, origFullOrderDR);
                 }else{
                     // Console.WriteLine("2222");
-                    exceptionDetail = $"客户订单产品与惠氏产品存在价格差异（未税差异：{origFullOrderDR["单价价差"]}），需确认是否录入订单并跟进价差问题";
+                    exceptionDetail = $"客户订单产品与惠氏产品存在价格差异，需确认是否录入订单并跟进价差问题";
                     addToExceptionOrder(ref exceptionsDT, ExceptionCategory.订单价格差异.ToString(), exceptionDetail, origFullOrderDR);
                 }
             }
@@ -216,7 +216,7 @@ public void initNewOrdersDT(){
     newOrdersDT = origOrdersFromSheetDT.Clone();
     // 惠氏编码	产品名称	紧缺品	规格	单价	箱价	订购箱数	惠氏总价	大润发总价	单价价差	RTM-惠氏价差	仓别	Ship to	Net Value	DC	惠氏订单编号	彩箱装品
 
-    string[] addedColumns = new string[]{"订单号", "读单日期",  "惠氏编码", "惠氏产品名称", "紧缺", "惠氏规格", "惠氏单价", "惠氏箱价", "惠氏订购箱数", "惠氏总价", "大润发总价", "单价价差", "总价价差", "仓别", "ship to", "Net Value", "DC", "惠氏订单编号",  "彩箱装品", "sold to", "大仓号", "扣点", "RDD issue","大润发订单总金额","惠氏订单总金额", "惠氏订单总折扣价","客户名称", "区域"};
+    string[] addedColumns = new string[]{"订单号", "读单日期",  "惠氏编码", "惠氏产品名称", "紧缺", "惠氏规格", "惠氏单价", "惠氏箱价", "惠氏订购箱数", "惠氏总价", "大润发总价", "单价价差", "总价价差", "仓别", "ship to", "Net Value", "DC", "惠氏订单编号",  "彩箱装品", "sold to", "大仓号", "扣点", "RDD issue","大润发订单总金额","惠氏订单总金额", "惠氏订单总折扣价","客户名称", "区域", "惠氏客户名称"};
     List<string> objectColumns = new List<string>{"惠氏订购箱数", "惠氏单价", "大润发总价", "惠氏总价", "惠氏箱价", "惠氏规格", "Net Value", "单价价差", "总价价差", "RDD issue", "大润发订单总金额", "惠氏订单总金额", "惠氏订单总折扣价"};
     foreach(string colName in addedColumns){
         DataColumn dcol = null;
@@ -269,7 +269,7 @@ public string specialProductComment(string 惠氏产品码, string 客户产品�
     return comment;
 }
 
-public void getShipTo(string dcNo, ref string shipTo, ref string soldTo, ref string 扣点, ref string 仓别){
+public void getShipTo(string dcNo, ref string shipTo, ref string soldTo, ref string 扣点, ref string 仓别, ref string stst门店){
     DataTable soldToShipToDT = (DataTable)dtRow_ModuleSettings["soldToShipToDT"];
     DataRow[] drs = soldToShipToDT.Select(string.Format("`DC编号` = '{0}'", dcNo));
     if(drs.Length > 0){
@@ -277,6 +277,7 @@ public void getShipTo(string dcNo, ref string shipTo, ref string soldTo, ref str
         soldTo = drs[0]["Sold to"].ToString();
         扣点 = drs[0]["discount"].ToString();
         仓别 = drs[0]["仓别"].ToString();
+        stst门店 = drs[0]["门店"].ToString();
     }
 }
 
@@ -320,18 +321,18 @@ public void rowMappedToNewOrderRow(DataColumnCollection orderDetailsCols, DataRo
         string 惠氏产品名称 = string.Empty;
         string 紧缺 = string.Empty;
         string 仓别 = string.Empty;
+        string stst门店 = string.Empty;
         decimal 惠氏箱价 = 0m;
 
         splitDCInfo(orderItemDR["门店"].ToString(), ref dcNo); // 拆分dc_no 和 dc_name
         string customerSku = orderItemDR["货号"].ToString();
-        getShipTo(dcNo, ref shipTo, ref soldTo, ref 扣点, ref 仓别); // 给 shipTo 赋值，给扣点赋值
+        getShipTo(dcNo, ref shipTo, ref soldTo, ref 扣点, ref 仓别, ref stst门店); // 给 shipTo 赋值，给扣点赋值
 
         // 将order 详情的每项赋值给新数据表行
         // 下载的订单表给当前数据表赋值
         foreach(DataColumn dcol in orderDetailsCols){
             string colName = dcol.ColumnName;
             newOrderDR[colName] = orderItemDR[dcol.ColumnName];
-
         }
         // "惠氏箱价", "惠氏订购箱数", "惠氏总价", "大润发总价", "单价价差", "总价价差", "仓别", "ship to", "sold to", "Net Value", "DC", "惠氏订单编号",  "彩箱装品", "RDD issue","大润发订单总金额"
         newOrderDR["订单号"] = string.Format("{0}.{1}", dcNo.Substring(1,3), orderItemDR["采购单号"]);
@@ -339,6 +340,7 @@ public void rowMappedToNewOrderRow(DataColumnCollection orderDetailsCols, DataRo
         newOrderDR["大仓号"] = dcNo;
         newOrderDR["ship to"] = shipTo;
         newOrderDR["sold to"] = soldTo;
+        newOrderDR["惠氏客户名称"] = stst门店;
         DateTime rddDate =  DateTime.Parse(orderItemDR["预计到货日"].ToString());
         DataRow wyethSKUMappingRow = getWyethMappingRow(customerSku);
         if(wyethSKUMappingRow != null){
@@ -371,7 +373,7 @@ public void rowMappedToNewOrderRow(DataColumnCollection orderDetailsCols, DataRo
         decimal 系统折扣价 = Math.Round(惠氏总价 * (1-扣点值), 2);
         newOrderDR["Net Value"] = 系统折扣价;
         // newOrderDR["规格差异"] = 物美规格 - 惠氏规格;
-        newOrderDR["单价价差"] = Math.Round(买价 - 惠氏单价, 2);
+        newOrderDR["单价价差"] = 买价 - 惠氏单价;
         newOrderDR["总价价差"] = 客户产品行总金额 - 惠氏总价;
         int rddGapDays = DiffDays(DateTime.Parse(newOrderDR["读单日期"].ToString()), rddDate);
         newOrderDR["RDD issue"] = rddGapDays;
@@ -412,10 +414,10 @@ public void deletedDRowMappedToNewOrderRow(DataRow orderItemDRFromDB, ref DataRo
         string 紧缺 = string.Empty;
         string 仓别 = string.Empty;
         decimal 惠氏箱价 = 0m;
-
+        string stst门店 = string.Empty;
         dcNo = orderItemDRFromDB["dc_no"].ToString();
         string customerSku = orderItemDRFromDB["product_code"].ToString();
-        getShipTo(dcNo, ref shipTo, ref soldTo, ref 扣点, ref 仓别); // 给 shipTo 赋值，给扣点赋值
+        getShipTo(dcNo, ref shipTo, ref soldTo, ref 扣点, ref 仓别, ref stst门店); // 给 shipTo 赋值，给扣点赋值
 
         // 将order 详情的每项赋值给新数据表行
         // 下载的订单表给当前数据表赋值
@@ -447,6 +449,8 @@ public void deletedDRowMappedToNewOrderRow(DataRow orderItemDRFromDB, ref DataRo
         newOrderDR["大仓号"] = dcNo;
         newOrderDR["ship to"] = shipTo;
         newOrderDR["sold to"] = soldTo;
+        newOrderDR["惠氏客户名称"] = stst门店;
+
         DateTime rddDate =  DateTime.Parse(orderItemDRFromDB["must_arrived_by"].ToString());
         DataRow wyethSKUMappingRow = getWyethMappingRow(customerSku);
         if(wyethSKUMappingRow != null){
@@ -613,6 +617,7 @@ public DataTable writeToExceptionDT(DataTable sourceExceptionOrderItemsDT){  // 
         newDR["客户产品编码"] = dr["货号"];
         newDR["客户产品名称"] = dr["品名"];
         newDR["客户产品箱数"] = dr["订购箱数"];
+        newDR["客户产品单位数量"] = dr["订购数量"];
         newDR["客户产品单价"] = dr["买价"];
         newDR["客户产品总价"] = dr["大润发总价"];
         newDR["扣点"] = dr["扣点"];
@@ -620,21 +625,23 @@ public DataTable writeToExceptionDT(DataTable sourceExceptionOrderItemsDT){  // 
         newDR["客户订单总金额"] = dr["大润发订单总金额"]; // 需要原始订单整理期间填充
         newDR["惠氏客户Sold to"] = dr["sold to"];
         newDR["惠氏客户Ship to"] = dr["ship to"];
-        newDR["惠氏客户名称"] = dtRow_ModuleSettings["客户区域"].ToString();
+        newDR["惠氏客户名称"] = dr["惠氏客户名称"];
         newDR["惠氏POID"] = dr["惠氏订单编号"];
         newDR["惠氏产品编码"] = dr["惠氏编码"];
         newDR["惠氏产品名称"] = dr["惠氏产品名称"];
         newDR["惠氏产品箱数"] = dr["惠氏订购箱数"];
         newDR["惠氏产品单价"] = dr["惠氏单价"];
         newDR["惠氏产品箱价"] = Math.Round(toDecimalConvert(dr["惠氏箱价"]), 2);
-        newDR["惠氏订单总金额"] = dr["惠氏订单总金额"]; // 需要原始订单整理期间填充
-        newDR["折后订单总金额"] = dr["惠氏订单总折扣价"]; // 需要原始订单整理期间填充
+        newDR["惠氏订单总金额"] = dr["惠氏总价"]; // 需要原始订单整理期间填充
+        newDR["折后订单总金额"] = dr["Net Value"]; // 需要原始订单整理期间填充
         newDR["产品备注1（紧缺品）"] = dr["紧缺"];
         // newDR["产品备注2（彩箱/整箱）"] = dr["整箱"];
         newDR["产品单价价差(未税）"] = dr["单价价差"];
         newDR["惠氏订单总金额价差 (未税）"] = dr["总价价差"];
         newDR["异常分类"] = dr["异常分类"];
         newDR["异常详细描述"] = dr["异常详细描述"];
+        newDR["客户产品规格"] = dr["规格"];
+        newDR["惠氏产品规格"] = dr["惠氏规格"];
         curExceptionDT.Rows.Add(newDR);
     }
    return curExceptionDT;
@@ -680,6 +687,7 @@ public List<string> writeToDMSTracker(DataTable cleanOrderItemsMappedToWyethDT){
             // dmsTrackerDR["大仓密码"]
             dmsTrackerDR["付款方式（赊销/现金）"] = 付款方式;
             dmsTrackerDR["读单日期"] = dr["读单日期"];
+            dmsTrackerDR["客户要求到货日期"] = dr["预计到货日"];
             dmsTrackerDR["SoldToCode"] = dr["sold To"];
             dmsTrackerDR["ShipToCode"] = dr["ship to"];
             dmsTrackerDR["Customer Name"] = 门店;

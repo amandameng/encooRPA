@@ -6,12 +6,12 @@ public void Run()
     totalOrderListDT.Columns.Add("订单PrintPO", typeof(string));
     totalOrderListDT.Columns.Add("直流CPO异常", typeof(string));
     totalOrderListDT.Columns.Add("RDD异常", typeof(string));
-
+  
     for(int i=totalOrderListDT.Rows.Count - 1; i>=0; i--){
         DataRow drFromList = totalOrderListDT.Rows[i];
         string orderNumber = drFromList["订单号"].ToString();
         DataRow[] matchedDRows = existingOrdersDT.Select(string.Format("order_number = '{0}'", orderNumber));
-        Console.WriteLine("----{0}", matchedDRows.Length);
+        // Console.WriteLine("----{0}", matchedDRows.Length);
         
         if(matchedDRows.Length >= 1){
             totalOrderListDT.Rows.Remove(drFromList); // 排除已经存在的订单
@@ -58,14 +58,22 @@ public void mergeOrdersFromPage(){
        // 直流CPO 订单判断：
       // 1）彩箱装产品需要邮件至Fascing不予录单
       // 2）非彩箱装产品，规格非350g, 非12EA（H12）， 邮件至Fascing不予录单
-      // TODO：彩箱装中其余正常产品是正常录单还是一整个订单block？
+      // TODO：彩箱装中其余正常产品是正常录单还是一整个订单block？ ：整单block
 
         foreach(DataRow itemRow in matchedOrderItemDRows){
+            string 客户Sku = itemRow["麦德龙总部商品编码"].ToString();
+            DataRow[] mappingSkuDRs = materialMasterDataDT.Select(string.Format("customer_material_no='{0}'",  客户Sku));
+            string comment = string.Empty;
+            if(mappingSkuDRs.Length > 0){
+                string 惠氏sku = mappingSkuDRs[0]["wyeth_material_no"].ToString();
+                comment = specialProductComment(惠氏sku, 客户Sku, specialListDT);
+            }
+
             if(isCPOOrder){
                 string 商品名称 = itemRow["商品名称"].ToString();
                 string 订货单位 = itemRow["订货单位"].ToString();
                 string 订货量 = itemRow["订货量"].ToString();
-                if(商品名称.Contains("彩箱装")){
+                if(comment.Contains("彩箱装")){
                     validCPO = false;
                     itemRow["cpo异常原因"] = "Metro CPO彩箱装产品"; 
                 }else{
@@ -128,4 +136,21 @@ public bool rddDateValid(string orderDateStr, string rddDateStr, int dayAdded){
         return false;
     }
     return true;
+}
+
+// 查询特殊品某个产品comment
+public string specialProductComment(string 惠氏产品码, string 客户产品码, DataTable specialListDT){
+    string comment = string.Empty;
+    if(!string.IsNullOrEmpty(惠氏产品码)){
+        DataRow[] matchedDrs = specialListDT.Select(string.Format("sku_code='{0}' and customer_sku_code='{1}'", 惠氏产品码, 客户产品码));
+        if(matchedDrs.Length > 0){
+            comment = matchedDrs[0]["comment"].ToString();
+        }else{
+            DataRow[] matchedDrs2 = specialListDT.Select(string.Format("sku_code='{0}'", 惠氏产品码));
+            if(matchedDrs2.Length > 0){
+                comment = matchedDrs2[0]["comment"].ToString();
+            }
+        }
+    }
+    return comment;
 }

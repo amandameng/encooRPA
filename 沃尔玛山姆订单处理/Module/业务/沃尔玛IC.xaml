@@ -8,6 +8,7 @@
     <x:Property Name="processSuccess" Type="OutArgument(x:Boolean)" />
     <x:Property Name="validOrdersFromListingDT" Type="InArgument(sd:DataTable)" />
     <x:Property Name="上传文件解压缩路径" Type="InArgument(x:String)" />
+    <x:Property Name="onlyRunWMRTD" Type="InArgument(x:Boolean)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
   <sap:VirtualizedContainerService.HintSize>1011,1554</sap:VirtualizedContainerService.HintSize>
@@ -266,7 +267,7 @@
           <av:PointCollection x:Key="ConnectorLocation">310,196.5 310,246.5</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <bfa:ForEach x:TypeArguments="x:Int32" CurrentIndex="{x:Null}" ActivityName="循环操作（For Each)" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="循环操作  - 失败重试一次" sap:VirtualizedContainerService.HintSize="487,999" sap2010:WorkflowViewState.IdRef="ForEach`1_2" IsIgnore="False">
+      <bfa:ForEach x:TypeArguments="x:Int32" CurrentIndex="{x:Null}" ActivityName="循环操作（For Each)" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="循环操作  - 失败重试一次" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="ForEach`1_2" IsIgnore="False">
         <bfa:ForEach.Values>
           <InArgument x:TypeArguments="s:Int32[]">
             <mca:CSharpValue x:TypeArguments="s:Int32[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_626">new int[]{1, 2}</mca:CSharpValue>
@@ -276,13 +277,13 @@
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Int32" Name="item" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="471,894" sap2010:WorkflowViewState.IdRef="Sequence_59">
+          <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="768,2637" sap2010:WorkflowViewState.IdRef="Sequence_59">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 主流程错误捕获" sap:VirtualizedContainerService.HintSize="449,770" sap2010:WorkflowViewState.IdRef="TryCatch_9" IsIgnore="False">
+            <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 主流程错误捕获" sap:VirtualizedContainerService.HintSize="746,2513" sap2010:WorkflowViewState.IdRef="TryCatch_9" IsIgnore="False">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -290,13 +291,13 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <bfa:TryCatch.Try>
-                <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="345,533" sap2010:WorkflowViewState.IdRef="Sequence_64">
+                <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="728,2276" sap2010:WorkflowViewState.IdRef="Sequence_64">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - - processSuccess = false" sap:VirtualizedContainerService.HintSize="323,58" sap2010:WorkflowViewState.IdRef="Assign_46" IsIgnore="False">
+                  <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - - processSuccess = false" sap:VirtualizedContainerService.HintSize="706,58" sap2010:WorkflowViewState.IdRef="Assign_46" IsIgnore="False">
                     <bfa:Assign.To>
                       <OutArgument x:TypeArguments="x:Boolean">
                         <mca:CSharpReference x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpReference`1_129">processSuccess</mca:CSharpReference>
@@ -308,10 +309,10 @@
                       </InArgument>
                     </bfa:Assign.Value>
                   </bfa:Assign>
-                  <Flowchart DisplayName="主流程" sap:VirtualizedContainerService.HintSize="323,53" sap2010:WorkflowViewState.IdRef="Flowchart_13">
+                  <Flowchart DisplayName="主流程" sap:VirtualizedContainerService.HintSize="706,1796" sap2010:WorkflowViewState.IdRef="Flowchart_13">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
                         <av:Size x:Key="ShapeSize">80,48</av:Size>
@@ -1118,7 +1119,7 @@
                                                   <av:PointCollection x:Key="ConnectorLocation">360,1366.5 360,1403.5</av:PointCollection>
                                                 </scg:Dictionary>
                                               </sap:WorkflowViewStateService.ViewState>
-                                              <Flowchart DisplayName="邮件发送报表" sap:VirtualizedContainerService.HintSize="1056,1246" sap2010:WorkflowViewState.IdRef="Flowchart_16">
+                                              <Flowchart DisplayName="邮件发送报表" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="Flowchart_16">
                                                 <Flowchart.Variables>
                                                   <Variable x:TypeArguments="x:String" Name="邮件正文模板无数据" />
                                                   <Variable x:TypeArguments="x:String" Name="邮件正文模板有数据" />
@@ -1591,7 +1592,7 @@
                                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                       <av:Point x:Key="ShapeLocation">185.5,1403.5</av:Point>
                                                       <av:Size x:Key="ShapeSize">349,93</av:Size>
-                                                      <av:PointCollection x:Key="ConnectorLocation">360,1496.5 360,1583.5</av:PointCollection>
+                                                      <av:PointCollection x:Key="ConnectorLocation">360,1496.5 360,1543.5</av:PointCollection>
                                                     </scg:Dictionary>
                                                   </sap:WorkflowViewStateService.ViewState>
                                                   <ecaac:InvokeCSharpCodeActivity ActivityName="执行C#代码" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行C#代码 -  汇总待更新exportedOrders" sap:VirtualizedContainerService.HintSize="349,93" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_16">
@@ -1610,9 +1611,9 @@
                                                     <FlowStep x:Name="__ReferenceID22" sap2010:WorkflowViewState.IdRef="FlowStep_60">
                                                       <sap:WorkflowViewStateService.ViewState>
                                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                          <av:Point x:Key="ShapeLocation">260,1583.5</av:Point>
+                                                          <av:Point x:Key="ShapeLocation">260,1543.5</av:Point>
                                                           <av:Size x:Key="ShapeSize">200,53</av:Size>
-                                                          <av:PointCollection x:Key="ConnectorLocation">360,1636.5 360,1666.5 350,1666.5 350,1702.5</av:PointCollection>
+                                                          <av:PointCollection x:Key="ConnectorLocation">360,1596.5 360,1641</av:PointCollection>
                                                         </scg:Dictionary>
                                                       </sap:WorkflowViewStateService.ViewState>
                                                       <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行流程 : 更新exported_Order" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_56" IsIgnore="False">
@@ -1634,7 +1635,7 @@
                                                         <FlowStep x:Name="__ReferenceID26" sap2010:WorkflowViewState.IdRef="FlowStep_59">
                                                           <sap:WorkflowViewStateService.ViewState>
                                                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                              <av:Point x:Key="ShapeLocation">188.5,1702.5</av:Point>
+                                                              <av:Point x:Key="ShapeLocation">198.5,1641</av:Point>
                                                               <av:Size x:Key="ShapeSize">323,58</av:Size>
                                                             </scg:Dictionary>
                                                           </sap:WorkflowViewStateService.ViewState>
@@ -2362,7 +2363,7 @@
                     <x:Reference>__ReferenceID29</x:Reference>
                     <x:Reference>__ReferenceID30</x:Reference>
                   </Flowchart>
-                  <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - processSuccess = true" sap:VirtualizedContainerService.HintSize="323,58" sap2010:WorkflowViewState.IdRef="Assign_47" IsIgnore="False">
+                  <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - processSuccess = true" sap:VirtualizedContainerService.HintSize="706,58" sap2010:WorkflowViewState.IdRef="Assign_47" IsIgnore="False">
                     <bfa:Assign.To>
                       <OutArgument x:TypeArguments="x:Boolean">
                         <mca:CSharpReference x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpReference`1_130">processSuccess</mca:CSharpReference>
@@ -2374,7 +2375,7 @@
                       </InArgument>
                     </bfa:Assign.Value>
                   </bfa:Assign>
-                  <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - 全局异常信息" sap:VirtualizedContainerService.HintSize="323,58" sap2010:WorkflowViewState.IdRef="Assign_62" IsIgnore="False">
+                  <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - 全局异常信息" sap:VirtualizedContainerService.HintSize="706,58" sap2010:WorkflowViewState.IdRef="Assign_62" IsIgnore="False">
                     <bfa:Assign.To>
                       <OutArgument x:TypeArguments="x:String">
                         <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_172">全局异常信息</mca:CSharpReference>
@@ -2386,11 +2387,11 @@
                       </InArgument>
                     </bfa:Assign.Value>
                   </bfa:Assign>
-                  <bfa:Break BreakAction="{x:Null}" ActivityName="终止循环" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="终止循环" sap:VirtualizedContainerService.HintSize="323,22" sap2010:WorkflowViewState.IdRef="Break_1" IsIgnore="False" />
+                  <bfa:Break BreakAction="{x:Null}" ActivityName="终止循环" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="终止循环" sap:VirtualizedContainerService.HintSize="706,22" sap2010:WorkflowViewState.IdRef="Break_1" IsIgnore="False" />
                 </Sequence>
               </bfa:TryCatch.Try>
               <bfa:TryCatch.Catches>
-                <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="435,23" sap2010:WorkflowViewState.IdRef="Catch`1_5">
+                <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="732,23" sap2010:WorkflowViewState.IdRef="Catch`1_5">
                   <bfa:Catch.Action>
                     <ActivityAction x:TypeArguments="s:Exception">
                       <ActivityAction.Argument>

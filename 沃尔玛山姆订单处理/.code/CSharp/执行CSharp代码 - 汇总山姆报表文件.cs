@@ -24,13 +24,16 @@ public void Run()
     List<string> 山姆水订单List = new List<string>{};
     List<string> 山姆订单List = new List<string>{};
     
-    foreach(string 订单文件 in 订单pdf附件){
-       if(订单文件.Contains("SAM-IBU")){
-           山姆水订单List.Add(订单文件);
-       }else{
-           山姆订单List.Add(订单文件);
-       }
+    if(订单pdf附件 != null && 订单pdf附件.Count > 0){
+        foreach(string 订单文件 in 订单pdf附件){
+           if(订单文件.Contains("SAM-IBU")){
+               山姆水订单List.Add(订单文件);
+           }else{
+               山姆订单List.Add(订单文件);
+           }
+        }
     }
+
     if(山姆水订单List.Count > 0){
         沃尔玛山姆报表字典["山姆水订单pdf附件"] = 山姆水订单List;
     }

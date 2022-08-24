@@ -124,7 +124,7 @@
           <av:Size x:Key="ShapeSize">200,163</av:Size>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <bfa:TryCatch ActivityName="错误捕获（Try Catch）" sap2010:Annotation.AnnotationText="流程运行完 最终发出邮件提示&#xA;有新增订单：ExcelTOOrder，clean Order， ExceptionOrder&#xA;无新增订单： 无附件，正文提示无新增订单" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 - 全局错误捕获" sap:VirtualizedContainerService.HintSize="734,4192" sap2010:WorkflowViewState.IdRef="TryCatch_1" IsIgnore="False">
+      <bfa:TryCatch ActivityName="错误捕获（Try Catch）" sap2010:Annotation.AnnotationText="流程运行完 最终发出邮件提示&#xA;有新增订单：ExcelTOOrder，clean Order， ExceptionOrder&#xA;无新增订单： 无附件，正文提示无新增订单" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 - 全局错误捕获" sap:VirtualizedContainerService.HintSize="734,2469" sap2010:WorkflowViewState.IdRef="TryCatch_1" IsIgnore="False">
         <bfa:TryCatch.Variables>
           <Variable x:TypeArguments="sd:DataTable" Name="增量订单数据表">
             <Variable.Default>
@@ -139,7 +139,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <bfa:TryCatch.Try>
-          <Sequence sap2010:Annotation.AnnotationText="" DisplayName="序列 - 全局" sap:VirtualizedContainerService.HintSize="716,3741" sap2010:WorkflowViewState.IdRef="Sequence_12">
+          <Sequence sap2010:Annotation.AnnotationText="" DisplayName="序列 - 全局" sap:VirtualizedContainerService.HintSize="716,2173" sap2010:WorkflowViewState.IdRef="Sequence_12">
             <Sequence.Variables>
               <Variable x:TypeArguments="sd:DataTable" Name="已取消异常订单数据表">
                 <Variable.Default>
@@ -335,7 +335,7 @@
                             <av:PointCollection x:Key="ConnectorLocation">310,526.5 310,555.5</av:PointCollection>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If sqlConn is empty）" sap:VirtualizedContainerService.HintSize="534,879" sap2010:WorkflowViewState.IdRef="If_31" IsIgnore="False">
+                        <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If sqlConn is empty）" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="If_31" IsIgnore="False">
                           <bfa:If.Condition>
                             <InArgument x:TypeArguments="x:Boolean">
                               <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_492">[string.IsNullOrEmpty(sqlConn)]</mca:CSharpValue>
@@ -1043,7 +1043,7 @@ and orders.order_number is null", 开始日期, 结束日期, 客户平台)]</mc
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </bda:DatabaseConnectActivity>
-            <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 - 订单处理 如不成功，则做订单回滚" sap:VirtualizedContainerService.HintSize="576,1761" sap2010:WorkflowViewState.IdRef="TryCatch_2" IsIgnore="False">
+            <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 - 订单处理 如不成功，则做订单回滚" sap:VirtualizedContainerService.HintSize="694,193" sap2010:WorkflowViewState.IdRef="TryCatch_2" IsIgnore="False">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -2459,7 +2459,7 @@ and orders.order_number is null", 开始日期, 结束日期, 客户平台)]</mc
                 </Sequence>
               </bfa:TryCatch.Try>
               <bfa:TryCatch.Catches>
-                <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="562,1591" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="435,23" sap2010:WorkflowViewState.IdRef="Catch`1_2">
                   <bfa:Catch.Action>
                     <ActivityAction x:TypeArguments="s:Exception">
                       <ActivityAction.Argument>
@@ -2662,7 +2662,7 @@ and orders.order_number is null", 开始日期, 结束日期, 客户平台)]</mc
                   </bfa:Catch.Action>
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
@@ -2672,7 +2672,7 @@ and orders.order_number is null", 开始日期, 结束日期, 客户平台)]</mc
           </Sequence>
         </bfa:TryCatch.Try>
         <bfa:TryCatch.Catches>
-          <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="602,23" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="720,23" sap2010:WorkflowViewState.IdRef="Catch`1_1">
             <bfa:Catch.Action>
               <ActivityAction x:TypeArguments="s:Exception">
                 <ActivityAction.Argument>

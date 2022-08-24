@@ -3,6 +3,23 @@
     "Main.xaml"
   ],
   "ProjectBreakpoints": {
-    "Value": {}
+    "Value": {
+      "主业务.xaml": [
+        {
+          "ActivityId": "1.3864",
+          "IsEnabled": true,
+          "IdRef": "QueryTableActivity_5",
+          "DisplayName": "查询语句 - 删单"
+        }
+      ],
+      "下载PDF.xaml": [
+        {
+          "ActivityId": "1.28",
+          "IsEnabled": false,
+          "IdRef": "Assign_2",
+          "DisplayName": "赋值 - fileInfoPdf"
+        }
+      ]
+    }
   }
 }

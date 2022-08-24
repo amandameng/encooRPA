@@ -75,7 +75,7 @@
     <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If addCustomerName）" sap:VirtualizedContainerService.HintSize="534,324" sap2010:WorkflowViewState.IdRef="If_1" IsIgnore="False">
       <bfa:If.Condition>
         <InArgument x:TypeArguments="x:Boolean">
-          <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">addCustomerName</mca:CSharpValue>
+          <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">[addCustomerName]</mca:CSharpValue>
         </InArgument>
       </bfa:If.Condition>
       <bfa:If.Then>
@@ -87,12 +87,12 @@
           </bda:DataTableAddColumnActivity.ColumnName>
           <bda:DataTableAddColumnActivity.DataTable>
             <InArgument x:TypeArguments="sd:DataTable">
-              <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_2">源数据表</mca:CSharpValue>
+              <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_2">[源数据表]</mca:CSharpValue>
             </InArgument>
           </bda:DataTableAddColumnActivity.DataTable>
           <bda:DataTableAddColumnActivity.DefaultValue>
             <InArgument x:TypeArguments="x:String">
-              <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_3">customerName</mca:CSharpValue>
+              <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_3">[customerName]</mca:CSharpValue>
             </InArgument>
           </bda:DataTableAddColumnActivity.DefaultValue>
           <sap:WorkflowViewStateService.ViewState>

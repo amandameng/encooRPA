@@ -1,5 +1,5 @@
 {
-  "ProjectName": "雀巢_主产品数据维护",
+  "ProjectName": "雀巢-主产品数据维护",
   "Version": "1.0.0",
   "SchemaVersion": "3.0",
   "ProjectType": "Workflow",
@@ -823,5 +823,7 @@
   "ProjectReferences": [],
   "TerminationHandler": null,
   "ExceptionHandler": null,
-  "ParallelWorkflows": null
+  "ParallelWorkflows": null,
+  "CreatedStudioVersion": null,
+  "LastStudioVersion": null
 }

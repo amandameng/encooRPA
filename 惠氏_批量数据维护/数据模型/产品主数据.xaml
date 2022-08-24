@@ -214,6 +214,9 @@
                     <InArgument x:TypeArguments="scg:List(x:String)" x:Key="defaultHeaders">
                       <mca:CSharpValue x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_33">defaultHeaders</mca:CSharpValue>
                     </InArgument>
+                    <InArgument x:TypeArguments="x:Boolean" x:Key="客户名称全匹配">
+                      <Literal x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="Literal`1_12" Value="True" />
+                    </InArgument>
                   </bfa:InvokeWorkflow.Arguments>
                   <bfa:InvokeWorkflow.WorkflowPath>
                     <InArgument x:TypeArguments="x:String">

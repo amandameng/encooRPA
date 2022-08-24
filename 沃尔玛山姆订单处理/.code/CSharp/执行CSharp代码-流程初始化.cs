@@ -52,6 +52,7 @@ public void Run()
     // output files
     cleanAndExceptionTemplate = Path.Combine(配置文件夹, "Clean and Exception Template.xlsx");
     eX2OTemplate = Path.Combine(配置文件夹, "Copy of Excel To Order template.xlsx");
+    
     eto_file_path = Path.Combine(当前结果文件夹, String.Format("Copy of Excel To Order_{0}_{1}.xlsx", curCustomerName, timenowStr));
     clean_order_file_path = Path.Combine(当前结果文件夹, String.Format("Clean and Exception_{0}_{1}.xlsx", curCustomerName, timenowStr));
     分仓明细表模板文件 = Path.Combine(配置文件夹, "分仓明细表 WM Template.xlsx");

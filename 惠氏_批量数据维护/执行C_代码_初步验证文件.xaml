@@ -5,6 +5,7 @@
     <x:Property Name="客户名称" Type="InArgument(x:String)" />
     <x:Property Name="数据库表名" Type="InArgument(x:String)" />
     <x:Property Name="defaultHeaders" Type="InArgument(scg:List(x:String))" />
+    <x:Property Name="客户名称全匹配" Type="InArgument(x:Boolean)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
   <sap:VirtualizedContainerService.HintSize>389,245</sap:VirtualizedContainerService.HintSize>
@@ -40,6 +41,12 @@
       <AssemblyReference>BotTime.DataTableActivity</AssemblyReference>
       <AssemblyReference>System.ServiceModel</AssemblyReference>
       <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Globalization.Extensions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Net.WebSockets.Client.Managed</AssemblyReference>
+      <AssemblyReference>ParallelExtensionsExtras</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <ecaac:InvokeCSharpCodeActivity ActivityName="执行C#代码" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行C#代码 - 初步验证文件" sap:VirtualizedContainerService.HintSize="349,93" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_1">

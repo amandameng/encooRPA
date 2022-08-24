@@ -6,7 +6,6 @@ public void Run()
     initGlobalVariable();
     checkValidDate(创单开始日期, "开始日期");
     checkValidDate(创单结束日期, "结束日期");
-   
     // 初始化文件夹
 }
 
@@ -101,38 +100,4 @@ public void initGlobalVariable()
     dtRow_ProjectSettings["是否退单"] = 是否退单;
     dtRow_ProjectSettings["退货明细文件路径"] = Path.Combine(tempFolder, string.Format("{0}退货明细_{1}.xlsx", customer_name, DateTime.Today.ToString("yyyy-MM-dd")));
     dtRow_ProjectSettings["延期表文件路径"] = Path.Combine(tempFolder, string.Format("{0}延期表_{1}.xlsx", customer_name, DateTime.Today.ToString("yyyy-MM-dd")));
-}
-
-public void initOrderDate(){
-    DateTime orderEndDate = fetchvalidDate(创单结束日期);
-    DateTime orderBeginDate;
-    if(!string.IsNullOrEmpty(创单开始日期)){ // 订货开始日期 参数不为空，则使用参数
-        orderBeginDate = fetchvalidDate(创单开始日期);
-    }else{
-        if(lastCapturedDateDT != null && lastCapturedDateDT.Rows.Count > 0){
-            string maxCreatedTime = lastCapturedDateDT.Rows[0]["maxCreatedTime"].ToString();
-            orderBeginDate = DateTime.Parse(maxCreatedTime);
-        }else{
-            DateTime startDate = DateTime.Now;
-            var dayOfMonth = startDate.Day;
-            orderBeginDate = startDate.AddDays(-(int)dayOfMonth + 1);
-        }
-    }
-
-    dtRow_ProjectSettings["开始日期"] = orderBeginDate.ToString("yyyy-MM-dd");
-    dtRow_ProjectSettings["结束日期"] = orderEndDate.ToString("yyyy-MM-dd");
-}
-
-public DateTime fetchvalidDate(string dateStrParam){
-     DateTime resultDate;
-    
-    if(String.IsNullOrEmpty(dateStrParam)){
-        resultDate = DateTime.Now; // 参数不传，如果是开始时间，则今天时间 - 3, 否则是今天时间
-    }else{       
-        bool isValid = DateTime.TryParse(dateStrParam, out resultDate);
-        if(!isValid){
-            throw(new Exception("输入的日期格式不正确，请输入 yyyy-MM-dd格式的日期，比如：2022-04-11"));
-        }
-    }
-    return resultDate;
 }

@@ -1,7 +1,7 @@
 <Activity mc:Ignorable="sap sap2010 sads" x:Class="EncooWorkflow.Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:bfa="clr-namespace:BotTime.Flow.Activities;assembly=BotTime.Flow.Activities" xmlns:ea="clr-namespace:Encootech.AutomationActivity;assembly=AutomationActivity" xmlns:ed="clr-namespace:Encoo.DataType;assembly=Encoo.DataType" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger">
   <x:Members>
     <x:Property Name="门店list" Type="InArgument(scg:List(x:String))" />
-    <x:Property Name="无新增订单" Type="InOutArgument(x:Boolean)" />
+    <x:Property Name="无新增订单" Type="OutArgument(x:Boolean)" />
     <x:Property Name="结束日期" Type="InArgument(x:String)" />
     <x:Property Name="orderFile" Type="InArgument(x:String)" />
     <x:Property Name="iframeSrc" Type="InArgument(x:String)" />
@@ -11,7 +11,7 @@
     <x:Property Name="供应链网址" Type="InArgument(x:String)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
-  <sap:VirtualizedContainerService.HintSize>654,716</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>654,722</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>EncooWorkflow.Workflow_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="10">
@@ -62,9 +62,9 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <Flowchart.StartNode>
-      <x:Reference>__ReferenceID12</x:Reference>
+      <x:Reference>__ReferenceID10</x:Reference>
     </Flowchart.StartNode>
-    <FlowStep x:Name="__ReferenceID11" sap2010:WorkflowViewState.IdRef="FlowStep_11">
+    <FlowStep x:Name="__ReferenceID9" sap2010:WorkflowViewState.IdRef="FlowStep_11">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <av:Point x:Key="ShapeLocation">210,197</av:Point>
@@ -105,7 +105,7 @@
         </ea:ClickActivity.YRate>
       </ea:ClickActivity>
       <FlowStep.Next>
-        <FlowStep x:Name="__ReferenceID10" sap2010:WorkflowViewState.IdRef="FlowStep_10">
+        <FlowStep x:Name="__ReferenceID8" sap2010:WorkflowViewState.IdRef="FlowStep_10">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <av:Point x:Key="ShapeLocation">210,307</av:Point>
@@ -146,7 +146,7 @@
             </ea:ClickActivity.YRate>
           </ea:ClickActivity>
           <FlowStep.Next>
-            <FlowStep x:Name="__ReferenceID8" sap2010:WorkflowViewState.IdRef="FlowStep_9">
+            <FlowStep x:Name="__ReferenceID6" sap2010:WorkflowViewState.IdRef="FlowStep_9">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <av:Point x:Key="ShapeLocation">210,427</av:Point>
@@ -187,7 +187,7 @@
                 </ea:ClickActivity.YRate>
               </ea:ClickActivity>
               <FlowStep.Next>
-                <FlowStep x:Name="__ReferenceID9" sap2010:WorkflowViewState.IdRef="FlowStep_8">
+                <FlowStep x:Name="__ReferenceID7" sap2010:WorkflowViewState.IdRef="FlowStep_8">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <av:Point x:Key="ShapeLocation">210,553.5</av:Point>
@@ -210,9 +210,9 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                     <Flowchart.StartNode>
-                      <x:Reference>__ReferenceID7</x:Reference>
+                      <x:Reference>__ReferenceID5</x:Reference>
                     </Flowchart.StartNode>
-                    <FlowStep x:Name="__ReferenceID7" sap2010:WorkflowViewState.IdRef="FlowStep_7">
+                    <FlowStep x:Name="__ReferenceID5" sap2010:WorkflowViewState.IdRef="FlowStep_7">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <av:Point x:Key="ShapeLocation">320,114</av:Point>
@@ -483,7 +483,7 @@
                             </ea:ClickActivity.YRate>
                           </ea:ClickActivity>
                           <FlowStep.Next>
-                            <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_5">
+                            <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_5">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <av:Point x:Key="ShapeLocation">320,372</av:Point>
@@ -519,7 +519,7 @@
                                 </ea:WaitElementAppearActivity.WaitTimeout>
                               </ea:WaitElementAppearActivity>
                               <FlowStep.Next>
-                                <FlowDecision x:Name="__ReferenceID3" DisplayName="hasResult" sap:VirtualizedContainerService.HintSize="70,87" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
+                                <FlowDecision x:Name="__ReferenceID2" DisplayName="hasResult" sap:VirtualizedContainerService.HintSize="70,87" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
                                   <FlowDecision.Condition>
                                     <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">hasResult</mca:CSharpValue>
                                   </FlowDecision.Condition>
@@ -528,116 +528,126 @@
                                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                       <av:Point x:Key="ShapeLocation">385,466.5</av:Point>
                                       <av:Size x:Key="ShapeSize">70,87</av:Size>
-                                      <av:PointCollection x:Key="FalseConnector">455,510 680,510 680,531</av:PointCollection>
-                                      <av:PointCollection x:Key="TrueConnector">385,510 260,510 260,542</av:PointCollection>
+                                      <av:PointCollection x:Key="FalseConnector">455,510 670,510 670,581</av:PointCollection>
+                                      <av:PointCollection x:Key="TrueConnector">385,510 180,510 180,534</av:PointCollection>
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
                                   <FlowDecision.True>
-                                    <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_4">
+                                    <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_12">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                          <av:Point x:Key="ShapeLocation">160,542</av:Point>
-                                          <av:Size x:Key="ShapeSize">200,56</av:Size>
-                                          <av:PointCollection x:Key="ConnectorLocation">260,598 260,641</av:PointCollection>
+                                          <av:Point x:Key="ShapeLocation">80,534</av:Point>
+                                          <av:Size x:Key="ShapeSize">200,112</av:Size>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
-                                      <ea:ClickActivity ControlElement="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" ScreenShoot="{x:Null}" Selector="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActivityName="点击" BringWindowType="Default" ClickLocation="Center" ClickMethod="Default" ClkType="SingleClick" ContinueOnError="False" DisplayName="点击 - 下载全部订单" ElementRect="0, 0, 0, 0" Guid="7ea4ba39-b587-4f70-a8eb-8472edfb0631" sap:VirtualizedContainerService.HintSize="200,56" sap2010:WorkflowViewState.IdRef="ClickActivity_5" IsIgnore="False" ModifierKey="None" MouseButton="LeftButton" SelectionRect="0, 0, 0, 0">
-                                        <ea:ClickActivity.Selector2>
-                                          <InArgument x:TypeArguments="ed:Selector">
-                                            <mca:CSharpValue x:TypeArguments="ed:Selector" sap2010:WorkflowViewState.IdRef="CSharpValue`1_25">"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTE2Ij8+CjxBcHBsaWNhdGlvbiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4bWxuczp4c2Q9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hIj4KPEF1dG9tYXRpb25UeXBlPldFQi1DSFJPTUU8L0F1dG9tYXRpb25UeXBlPgo8UHJvY2Vzc05hbWU+Y2hyb21lPC9Qcm9jZXNzTmFtZT4KPEZpbGVQYXRoPmNocm9tZS5leGU8L0ZpbGVQYXRoPgo8VmVyc2lvbj4xLjM8L1ZlcnNpb24+CjxDaGlsZENvbnRyb2xzPgo8Q29udHJvbE1ldGFEYXRhPgo8SWRlbnRpZmllcj4KPENsYXNzTmFtZT5DaHJvbWVfV2lkZ2V0V2luXzE8L0NsYXNzTmFtZT4KPFRpdGxlPmh0dHBzOi8vcnQtc3VwcGxpZXIucnQtbWFydC5jb20qPC9UaXRsZT4KPFJvbGU+V2luZG93PC9Sb2xlPgo8SXNEaXJlY3RDaGlsZD50cnVlPC9Jc0RpcmVjdENoaWxkPgo8L0lkZW50aWZpZXI+CjxDaGlsZENvbnRyb2xzPgo8Q29udHJvbE1ldGFEYXRhPgo8V2ViSWRlbnRpZmllcj4KPFRhZz5JRlJBTUU8L1RhZz4KPFNyYz57e2lmcmFtZVNyY319PC9TcmM+CjwvV2ViSWRlbnRpZmllcj4KPENoaWxkQ29udHJvbHM+CjxDb250cm9sTWV0YURhdGE+CjxXZWJJZGVudGlmaWVyPgo8VGFnPkJVVFRPTjwvVGFnPgo8VHlwZT5zdWJtaXQ8L1R5cGU+CjxTSW5mbz7kuIvovb3lhajpg6jorqLljZU8L1NJbmZvPgo8L1dlYklkZW50aWZpZXI+CjxBY2Nlc3NLZXkgLz4KPENvbXBvbmVudD48L0NvbXBvbmVudD4KPC9Db250cm9sTWV0YURhdGE+CjwvQ2hpbGRDb250cm9scz4KPEFjY2Vzc0tleSAvPgo8Q29tcG9uZW50PjwvQ29tcG9uZW50Pgo8L0NvbnRyb2xNZXRhRGF0YT4KPC9DaGlsZENvbnRyb2xzPgo8QWNjZXNzS2V5IC8+CjxDb21wb25lbnQ+PC9Db21wb25lbnQ+CjwvQ29udHJvbE1ldGFEYXRhPgo8L0NoaWxkQ29udHJvbHM+CjwvQXBwbGljYXRpb24+Cg=="</mca:CSharpValue>
+                                      <bfa:Retry ActivityName="重试" sap2010:Annotation.AnnotationText="重试是因为有时候点击下载全部订单时，下载中心页面并没有出现" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="重试 - 下载文件" sap:VirtualizedContainerService.HintSize="200,112" sap2010:WorkflowViewState.IdRef="Retry_1" IsIgnore="False">
+                                        <bfa:Retry.RetryCount>
+                                          <InArgument x:TypeArguments="x:Int32">
+                                            <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_44" Value="1" />
                                           </InArgument>
-                                        </ea:ClickActivity.Selector2>
+                                        </bfa:Retry.RetryCount>
+                                        <bfa:Retry.RetryTimeSpan>
+                                          <InArgument x:TypeArguments="x:TimeSpan">
+                                            <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_45" />
+                                          </InArgument>
+                                        </bfa:Retry.RetryTimeSpan>
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                                           </scg:Dictionary>
                                         </sap:WorkflowViewStateService.ViewState>
-                                        <ea:ClickActivity.X>
-                                          <InArgument x:TypeArguments="x:Int32">
-                                            <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_18" />
+                                        <bfa:Retry.Condition>
+                                          <InArgument x:TypeArguments="x:Boolean">
+                                            <Literal x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="Literal`1_46" Value="True" />
                                           </InArgument>
-                                        </ea:ClickActivity.X>
-                                        <ea:ClickActivity.XRate>
-                                          <InArgument x:TypeArguments="x:Double">
-                                            <Literal x:TypeArguments="x:Double" sap2010:WorkflowViewState.IdRef="Literal`1_20" />
-                                          </InArgument>
-                                        </ea:ClickActivity.XRate>
-                                        <ea:ClickActivity.Y>
-                                          <InArgument x:TypeArguments="x:Int32">
-                                            <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_19" />
-                                          </InArgument>
-                                        </ea:ClickActivity.Y>
-                                        <ea:ClickActivity.YRate>
-                                          <InArgument x:TypeArguments="x:Double">
-                                            <Literal x:TypeArguments="x:Double" sap2010:WorkflowViewState.IdRef="Literal`1_21" />
-                                          </InArgument>
-                                        </ea:ClickActivity.YRate>
-                                      </ea:ClickActivity>
-                                      <FlowStep.Next>
-                                        <FlowStep x:Name="__ReferenceID5" sap2010:WorkflowViewState.IdRef="FlowStep_3">
-                                          <sap:WorkflowViewStateService.ViewState>
-                                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                              <av:Point x:Key="ShapeLocation">98.5,641</av:Point>
-                                              <av:Size x:Key="ShapeSize">323,58</av:Size>
-                                              <av:PointCollection x:Key="ConnectorLocation">260,699 260,733.5</av:PointCollection>
-                                            </scg:Dictionary>
-                                          </sap:WorkflowViewStateService.ViewState>
-                                          <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - taskTime" sap:VirtualizedContainerService.HintSize="323,58" sap2010:WorkflowViewState.IdRef="Assign_2" IsIgnore="False">
-                                            <bfa:Assign.To>
-                                              <OutArgument x:TypeArguments="s:DateTime">
-                                                <mca:CSharpReference x:TypeArguments="s:DateTime" sap2010:WorkflowViewState.IdRef="CSharpReference`1_3">taskTime</mca:CSharpReference>
-                                              </OutArgument>
-                                            </bfa:Assign.To>
-                                            <bfa:Assign.Value>
-                                              <InArgument x:TypeArguments="s:DateTime">
-                                                <mca:CSharpValue x:TypeArguments="s:DateTime" sap2010:WorkflowViewState.IdRef="CSharpValue`1_11">DateTime.Now</mca:CSharpValue>
-                                              </InArgument>
-                                            </bfa:Assign.Value>
+                                        </bfa:Retry.Condition>
+                                        <bfa:Retry.Body>
+                                          <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="371,414" sap2010:WorkflowViewState.IdRef="Sequence_6">
                                             <sap:WorkflowViewStateService.ViewState>
                                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                               </scg:Dictionary>
                                             </sap:WorkflowViewStateService.ViewState>
-                                          </bfa:Assign>
-                                          <FlowStep.Next>
-                                            <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_2">
+                                            <ea:ClickActivity ControlElement="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" ScreenShoot="{x:Null}" Selector="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActivityName="点击" BringWindowType="Default" ClickLocation="Center" ClickMethod="Default" ClkType="SingleClick" ContinueOnError="False" DisplayName="点击 - 下载全部订单" ElementRect="0, 0, 0, 0" Guid="7ea4ba39-b587-4f70-a8eb-8472edfb0631" sap:VirtualizedContainerService.HintSize="349,56" sap2010:WorkflowViewState.IdRef="ClickActivity_10" IsIgnore="False" ModifierKey="None" MouseButton="LeftButton" SelectionRect="0, 0, 0, 0">
+                                              <ea:ClickActivity.Selector2>
+                                                <InArgument x:TypeArguments="ed:Selector">
+                                                  <mca:CSharpValue x:TypeArguments="ed:Selector" sap2010:WorkflowViewState.IdRef="CSharpValue`1_34">"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTE2Ij8+CjxBcHBsaWNhdGlvbiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4bWxuczp4c2Q9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hIj4KPEF1dG9tYXRpb25UeXBlPldFQi1DSFJPTUU8L0F1dG9tYXRpb25UeXBlPgo8UHJvY2Vzc05hbWU+Y2hyb21lPC9Qcm9jZXNzTmFtZT4KPEZpbGVQYXRoPmNocm9tZS5leGU8L0ZpbGVQYXRoPgo8VmVyc2lvbj4xLjM8L1ZlcnNpb24+CjxDaGlsZENvbnRyb2xzPgo8Q29udHJvbE1ldGFEYXRhPgo8SWRlbnRpZmllcj4KPENsYXNzTmFtZT5DaHJvbWVfV2lkZ2V0V2luXzE8L0NsYXNzTmFtZT4KPFRpdGxlPmh0dHBzOi8vcnQtc3VwcGxpZXIucnQtbWFydC5jb20qPC9UaXRsZT4KPFJvbGU+V2luZG93PC9Sb2xlPgo8SXNEaXJlY3RDaGlsZD50cnVlPC9Jc0RpcmVjdENoaWxkPgo8L0lkZW50aWZpZXI+CjxDaGlsZENvbnRyb2xzPgo8Q29udHJvbE1ldGFEYXRhPgo8V2ViSWRlbnRpZmllcj4KPFRhZz5JRlJBTUU8L1RhZz4KPFNyYz57e2lmcmFtZVNyY319PC9TcmM+CjwvV2ViSWRlbnRpZmllcj4KPENoaWxkQ29udHJvbHM+CjxDb250cm9sTWV0YURhdGE+CjxXZWJJZGVudGlmaWVyPgo8VGFnPkJVVFRPTjwvVGFnPgo8VHlwZT5zdWJtaXQ8L1R5cGU+CjxTSW5mbz7kuIvovb3lhajpg6jorqLljZU8L1NJbmZvPgo8L1dlYklkZW50aWZpZXI+CjxBY2Nlc3NLZXkgLz4KPENvbXBvbmVudD48L0NvbXBvbmVudD4KPC9Db250cm9sTWV0YURhdGE+CjwvQ2hpbGRDb250cm9scz4KPEFjY2Vzc0tleSAvPgo8Q29tcG9uZW50PjwvQ29tcG9uZW50Pgo8L0NvbnRyb2xNZXRhRGF0YT4KPC9DaGlsZENvbnRyb2xzPgo8QWNjZXNzS2V5IC8+CjxDb21wb25lbnQ+PC9Db21wb25lbnQ+CjwvQ29udHJvbE1ldGFEYXRhPgo8L0NoaWxkQ29udHJvbHM+CjwvQXBwbGljYXRpb24+Cg=="</mca:CSharpValue>
+                                                </InArgument>
+                                              </ea:ClickActivity.Selector2>
                                               <sap:WorkflowViewStateService.ViewState>
                                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                  <av:Point x:Key="ShapeLocation">160,733.5</av:Point>
-                                                  <av:Size x:Key="ShapeSize">200,53</av:Size>
+                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                 </scg:Dictionary>
                                               </sap:WorkflowViewStateService.ViewState>
-                                              <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: 下载中心下载" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_1" IsIgnore="False">
-                                                <bfa:InvokeWorkflow.Arguments>
-                                                  <InArgument x:TypeArguments="s:DateTime" x:Key="taskTime">
-                                                    <mca:CSharpValue x:TypeArguments="s:DateTime" sap2010:WorkflowViewState.IdRef="CSharpValue`1_2">taskTime</mca:CSharpValue>
-                                                  </InArgument>
-                                                  <InArgument x:TypeArguments="x:String" x:Key="orderFile">
-                                                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_3">System.Convert.ToString(orderFile)</mca:CSharpValue>
-                                                  </InArgument>
-                                                </bfa:InvokeWorkflow.Arguments>
-                                                <sap:WorkflowViewStateService.ViewState>
-                                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                  </scg:Dictionary>
-                                                </sap:WorkflowViewStateService.ViewState>
-                                                <bfa:InvokeWorkflow.WorkflowPath>
-                                                  <InArgument x:TypeArguments="x:String">
-                                                    <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_24">下载中心下载.xaml</Literal>
-                                                  </InArgument>
-                                                </bfa:InvokeWorkflow.WorkflowPath>
-                                              </bfa:InvokeWorkflow>
-                                            </FlowStep>
-                                          </FlowStep.Next>
-                                        </FlowStep>
-                                      </FlowStep.Next>
+                                              <ea:ClickActivity.X>
+                                                <InArgument x:TypeArguments="x:Int32">
+                                                  <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_47" />
+                                                </InArgument>
+                                              </ea:ClickActivity.X>
+                                              <ea:ClickActivity.XRate>
+                                                <InArgument x:TypeArguments="x:Double">
+                                                  <Literal x:TypeArguments="x:Double" sap2010:WorkflowViewState.IdRef="Literal`1_49" />
+                                                </InArgument>
+                                              </ea:ClickActivity.XRate>
+                                              <ea:ClickActivity.Y>
+                                                <InArgument x:TypeArguments="x:Int32">
+                                                  <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_48" />
+                                                </InArgument>
+                                              </ea:ClickActivity.Y>
+                                              <ea:ClickActivity.YRate>
+                                                <InArgument x:TypeArguments="x:Double">
+                                                  <Literal x:TypeArguments="x:Double" sap2010:WorkflowViewState.IdRef="Literal`1_50" />
+                                                </InArgument>
+                                              </ea:ClickActivity.YRate>
+                                            </ea:ClickActivity>
+                                            <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - taskTime" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="Assign_5" IsIgnore="False">
+                                              <bfa:Assign.To>
+                                                <OutArgument x:TypeArguments="s:DateTime">
+                                                  <mca:CSharpReference x:TypeArguments="s:DateTime" sap2010:WorkflowViewState.IdRef="CSharpReference`1_6">taskTime</mca:CSharpReference>
+                                                </OutArgument>
+                                              </bfa:Assign.To>
+                                              <bfa:Assign.Value>
+                                                <InArgument x:TypeArguments="s:DateTime">
+                                                  <mca:CSharpValue x:TypeArguments="s:DateTime" sap2010:WorkflowViewState.IdRef="CSharpValue`1_35">DateTime.Now</mca:CSharpValue>
+                                                </InArgument>
+                                              </bfa:Assign.Value>
+                                              <sap:WorkflowViewStateService.ViewState>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                </scg:Dictionary>
+                                              </sap:WorkflowViewStateService.ViewState>
+                                            </bfa:Assign>
+                                            <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: 下载中心下载" sap:VirtualizedContainerService.HintSize="349,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_3" IsIgnore="False">
+                                              <bfa:InvokeWorkflow.Arguments>
+                                                <InArgument x:TypeArguments="s:DateTime" x:Key="taskTime">
+                                                  <mca:CSharpValue x:TypeArguments="s:DateTime" sap2010:WorkflowViewState.IdRef="CSharpValue`1_36">taskTime</mca:CSharpValue>
+                                                </InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="orderFile">
+                                                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_37">System.Convert.ToString(orderFile)</mca:CSharpValue>
+                                                </InArgument>
+                                              </bfa:InvokeWorkflow.Arguments>
+                                              <sap:WorkflowViewStateService.ViewState>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                </scg:Dictionary>
+                                              </sap:WorkflowViewStateService.ViewState>
+                                              <bfa:InvokeWorkflow.WorkflowPath>
+                                                <InArgument x:TypeArguments="x:String">
+                                                  <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_51">下载中心下载.xaml</Literal>
+                                                </InArgument>
+                                              </bfa:InvokeWorkflow.WorkflowPath>
+                                            </bfa:InvokeWorkflow>
+                                          </Sequence>
+                                        </bfa:Retry.Body>
+                                      </bfa:Retry>
                                     </FlowStep>
                                   </FlowDecision.True>
                                   <FlowDecision.False>
-                                    <FlowStep x:Name="__ReferenceID6" sap2010:WorkflowViewState.IdRef="FlowStep_12">
+                                    <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_12">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                          <av:Point x:Key="ShapeLocation">518.5,531</av:Point>
+                                          <av:Point x:Key="ShapeLocation">508.5,581</av:Point>
                                           <av:Size x:Key="ShapeSize">323,58</av:Size>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
@@ -672,8 +682,6 @@
                     <x:Reference>__ReferenceID2</x:Reference>
                     <x:Reference>__ReferenceID3</x:Reference>
                     <x:Reference>__ReferenceID4</x:Reference>
-                    <x:Reference>__ReferenceID5</x:Reference>
-                    <x:Reference>__ReferenceID6</x:Reference>
                   </Flowchart>
                 </FlowStep>
               </FlowStep.Next>
@@ -682,10 +690,10 @@
         </FlowStep>
       </FlowStep.Next>
     </FlowStep>
+    <x:Reference>__ReferenceID6</x:Reference>
+    <x:Reference>__ReferenceID7</x:Reference>
     <x:Reference>__ReferenceID8</x:Reference>
-    <x:Reference>__ReferenceID9</x:Reference>
-    <x:Reference>__ReferenceID10</x:Reference>
-    <FlowStep x:Name="__ReferenceID12">
+    <FlowStep x:Name="__ReferenceID10" sap2010:WorkflowViewState.IdRef="FlowStep_13">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <av:Point x:Key="ShapeLocation">210,93.5</av:Point>
@@ -711,7 +719,7 @@
         </bfa:InvokeWorkflow.WorkflowPath>
       </bfa:InvokeWorkflow>
       <FlowStep.Next>
-        <x:Reference>__ReferenceID11</x:Reference>
+        <x:Reference>__ReferenceID9</x:Reference>
       </FlowStep.Next>
     </FlowStep>
   </Flowchart>

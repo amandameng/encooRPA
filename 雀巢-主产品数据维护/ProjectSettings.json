@@ -4,50 +4,20 @@
   ],
   "ProjectBreakpoints": {
     "Value": {
-      "Main.xaml": [
-        {
-          "ActivityId": "1.69",
-          "IsEnabled": true,
-          "IdRef": "If_4",
-          "DisplayName": "条件（If sqlConn 为空，才去配置文件读取）"
-        },
-        {
-          "ActivityId": "1.20",
-          "IsEnabled": true,
-          "IdRef": "DatabaseConnectActivity_2",
-          "DisplayName": "连接数据库"
-        },
-        {
-          "ActivityId": "1.65",
-          "IsEnabled": true,
-          "IdRef": "Assign_12",
-          "DisplayName": "赋值 - 邮件正文"
-        },
-        {
-          "ActivityId": "1.295",
-          "IsEnabled": true,
-          "IdRef": "ExecuteSqlActivity_2",
-          "DisplayName": "执行语句 - 更新"
-        },
-        {
-          "ActivityId": "1.500",
-          "IsEnabled": true,
-          "IdRef": "InvokeCSharpCodeActivity_3",
-          "DisplayName": "执行C#代码 - 检查数据"
-        },
-        {
-          "ActivityId": "1.503",
-          "IsEnabled": true,
-          "IdRef": "OfficeExcelOpenOrCreateActivity_3",
-          "DisplayName": "打开 - 当前主产品文件"
-        }
-      ],
       "根据数据表拼接数据库SQL语句.xaml": [
         {
           "ActivityId": "1.2",
           "IsEnabled": true,
           "IdRef": "InvokeCSharpCodeActivity_4",
           "DisplayName": "执行C#代码: 根据数据表拼接数据库SQL语句"
+        }
+      ],
+      "通知\\发送邮件.xaml": [
+        {
+          "ActivityId": "1.22",
+          "IsEnabled": true,
+          "IdRef": "InvokeCSharpCodeActivity_1",
+          "DisplayName": "执行C#代码 - 发送邮件"
         }
       ]
     }

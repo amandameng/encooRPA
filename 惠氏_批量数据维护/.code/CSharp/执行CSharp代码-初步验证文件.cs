@@ -19,7 +19,10 @@ public void Run()
     if(headersHasIssue.Count > 0){
         throw(new Exception(string.Format("文件中缺少的必填列如下：{0}", string.Join(", ", headersHasIssue))));
     }
-    
-    sqlDic = new Dictionary<string, string>{{"当前最高版本号", string.Format("select max(ver) maxVersion from {0} where customer_name='{1}'", 数据库表名, 客户名称)}};
+    string maxVersionSql = string.Format("select max(ver) maxVersion from {0} where customer_name = '{1}'", 数据库表名, 客户名称);
+    if(!客户名称全匹配){
+        maxVersionSql = string.Format("select max(ver) maxVersion from {0} where customer_name like '{1}%'", 数据库表名, 客户名称);
+    }
+    sqlDic = new Dictionary<string, string>{{"当前最高版本号", maxVersionSql}};
 }
 //在这里编写您的函数或者类

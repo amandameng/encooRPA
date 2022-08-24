@@ -1,3 +1,7 @@
+public string samSupplierNumber = "098053640";
+// public string wmSupplierNumber = "196654260";
+public string wmRTDSupplierNumber = "098053952";
+
 //代码执行入口，请勿修改或删除
 public void Run()
 {
@@ -36,7 +40,7 @@ public void initOrdersDT(){
     orderDT = new DataTable();
     List<string> orderColumns = new List<string>{"order_number", "order_type", "create_date", "create_date_time", "document_link", "ship_date",
         "must_arrived_by", "promotional_event", "location", "allowance_or_charge", "allowance_description", "allowance_percent", "allowance_total",
-        "total_order_amount_after_adjustments", "total_line_items", "total_units_ordered", "customer_name", "file_path"};
+        "total_order_amount_after_adjustments", "total_line_items", "total_units_ordered", "customer_name", "file_path", "supplier_number"};
     foreach(string item in orderColumns){
        orderDT.Columns.Add(item, typeof(string));
     }
@@ -233,14 +237,26 @@ public void orderBasicInfo(ref DataRow newOrderRow){
 
     string orderType = additionalDetailsDT.Select(String.Format("label = '{0}'", "Order Type"))[0]["value"].ToString().Trim();
     string promotionalEvent = additionalDetailsDT.Select(String.Format("label = '{0}'", "Promotional Event"))[0]["value"].ToString().Trim();
+    string supplierNo = supplierDT.Select(String.Format("label = '{0}'", "Supplier Number"))[0]["value"].ToString().Trim();
+    Console.WriteLine("---supplierNo:{0}---", supplierNo);
+    realCustomerName = customer_name;
+    if(supplierNo == samSupplierNumber){
+        realCustomerName = "山姆";
+    }else if(supplierNo == wmRTDSupplierNumber){
+        realCustomerName = "沃尔玛-RTD";
+    }else{
+        realCustomerName = "沃尔玛";
+    }
+Console.WriteLine(realCustomerName);
     newOrderRow["order_number"] = poNumber;
     newOrderRow["order_type"] = orderType;
     newOrderRow["create_date"] = Convert.ToDateTime(poOrderDate);
     newOrderRow["location"] = location.Trim();
-    newOrderRow["customer_name"] = customer_name;
+    newOrderRow["customer_name"] = realCustomerName;
     newOrderRow["create_date_time"] = create_date_time;
     newOrderRow["document_link"] = orderLink;
     newOrderRow["ship_date"] = Convert.ToDateTime(shipDate);
     newOrderRow["must_arrived_by"] = Convert.ToDateTime(mustArriveBy);
     newOrderRow["promotional_event"] = promotionalEvent; 
+    newOrderRow["supplier_number"] = supplierNo; 
 }

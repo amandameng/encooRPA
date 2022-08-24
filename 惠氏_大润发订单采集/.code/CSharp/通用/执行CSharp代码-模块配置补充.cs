@@ -105,7 +105,7 @@ public void initRequiredDT(ref DataTable dt_ModuleSetting)
     // dt_ModuleSetting.Columns.Add("existingOrdersDT", typeof(object)); // specialListDT
 
     dtRow_ModuleSettings["rpaAccountsDT"] = rpaAccountsDT;
-    dtRow_ModuleSettings["mailSettingDT"] = mailSettingDT;
+    dtRow_ModuleSettings["mailSettingDT"] = filterCurRegion(mailSettingDT);
     dtRow_ModuleSettings["materialMasterDataDT"] = materialMasterDataDT;
     DataTable curSoldToShipToDT = filterCurRegion(soldToShipToDT);    
     dtRow_ModuleSettings["soldToShipToDT"] = curSoldToShipToDT;
@@ -118,16 +118,16 @@ public void initRequiredDT(ref DataTable dt_ModuleSetting)
 /// <summary>
 /// 根据 region 过滤sold to ship to
 /// </summary>
-/// <param name="soldToShipToDT"></param>
+/// <param name="targetDT"></param>
 /// <returns></returns>
-public DataTable filterCurRegion(DataTable soldToShipToDT){
-    DataTable regionsoldToShipToDT = soldToShipToDT.Clone();
-    DataRow[] drs = soldToShipToDT.Select(string.Format("region = '{0}'", region));
+public DataTable filterCurRegion(DataTable targetDT){
+    DataTable regionResultDT = targetDT.Clone();
+    DataRow[] drs = targetDT.Select(string.Format("region = '{0}'", region));
     
     foreach(DataRow dr in drs){
-        regionsoldToShipToDT.ImportRow(dr);
+        regionResultDT.ImportRow(dr);
     }
-    return regionsoldToShipToDT;
+    return regionResultDT;
 }
 
 /// <summary>
@@ -155,7 +155,7 @@ public DataTable filterCurspecialListDT(DataTable specialListDT){
     foreach(DataRow dr in drs){
         regionSpecialListDT.ImportRow(dr);
     }
-    printDT(regionSpecialListDT);
+   //  printDT(regionSpecialListDT);
 // Convert.ToInt32("sdsd");
 
     return regionSpecialListDT;
@@ -169,7 +169,8 @@ public void setAccount(){
 }
 
 public void checkMailSetting(ref DataTable dt_ModuleSetting){
-    if(mailSettingDT == null || mailSettingDT.Rows.Count == 0){
+    DataTable curMailSettingDT = (DataTable)dtRow_ModuleSettings["mailSettingDT"];
+    if(curMailSettingDT == null || curMailSettingDT.Rows.Count == 0){
         errorMessageList.Add(string.Format("{0}_{1}流程 邮件接收人未设置。<br/>请在低代平台Mail Setting模块维护此信息", customer_name, flow_name));
         return;
     }
@@ -184,7 +185,7 @@ public void checkMailSetting(ref DataTable dt_ModuleSetting){
         string mailToAddress = "";
         string mailCcAddress = "";
     
-        checkMail(mailSettingDT, orderCat, customer_name, ref mailToAddress, ref mailCcAddress);
+        checkMail(curMailSettingDT, orderCat, customer_name, ref mailToAddress, ref mailCcAddress);
         dtRow_ModuleSettings[邮件接收人字段] = mailToAddress;
         dtRow_ModuleSettings[邮件抄送人字段] = mailCcAddress;
         if( orderCat == "退单"){
