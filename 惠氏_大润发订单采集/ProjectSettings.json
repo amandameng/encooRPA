@@ -4,20 +4,48 @@
   ],
   "ProjectBreakpoints": {
     "Value": {
-      "主业务.xaml": [
-        {
-          "ActivityId": "1.3864",
-          "IsEnabled": true,
-          "IdRef": "QueryTableActivity_5",
-          "DisplayName": "查询语句 - 删单"
-        }
-      ],
       "下载PDF.xaml": [
         {
           "ActivityId": "1.28",
           "IsEnabled": false,
           "IdRef": "Assign_2",
           "DisplayName": "赋值 - fileInfoPdf"
+        }
+      ],
+      "下载订单文件.xaml": [
+        {
+          "ActivityId": "1.102",
+          "IsEnabled": false,
+          "IdRef": "WhetherElementExistsActivity_1",
+          "DisplayName": "判断元素是否存在"
+        },
+        {
+          "ActivityId": "1.139",
+          "IsEnabled": false,
+          "IdRef": "WaitElementAppearActivity_1",
+          "DisplayName": "等待元素出现 - 存在数据"
+        }
+      ],
+      "Main.xaml": [
+        {
+          "ActivityId": "1.308",
+          "IsEnabled": false,
+          "IdRef": "InvokeWorkflow_22",
+          "DisplayName": "调用子流程: 发送邮件 - 有延期表"
+        }
+      ],
+      "主业务.xaml": [
+        {
+          "ActivityId": "1.3642",
+          "IsEnabled": false,
+          "IdRef": "InvokeCSharpCodeActivity_39",
+          "DisplayName": "执行C#代码: 执行CSharp代码-提取订单信息"
+        },
+        {
+          "ActivityId": "1.2774",
+          "IsEnabled": false,
+          "IdRef": "InvokeWorkflow_130",
+          "DisplayName": "调用子流程: 下载clean PDF"
         }
       ]
     }

@@ -1522,6 +1522,11 @@
         "display_name": "采购单号"
       },
       {
+        "field": "store_location",
+        "type": "string",
+        "display_name": "门店"
+      },
+      {
         "field": "created_time",
         "type": "datetime",
         "display_name": "创建时间"

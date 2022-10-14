@@ -29,7 +29,7 @@ public void Run()
                                                              date_format({0}.created_time, '%Y-%m-%d') as readDate,ship_to_sold_to.store_location FROM {0}
                                                              join ship_to_sold_to on ship_to_sold_to.dc_no = {0}.dc_no and ship_to_sold_to.customer_name = concat({0}.customer_name, {0}.region)
                                                              where {0}.customer_name='{1}' and date_format({0}.created_time, '%Y-%m-%d')>='{2}'  and {0}.order_type='订单' 
-                                                             order by region asc, order_date", dtRow_ProjectSettings["订单数据库表名"].ToString(), customer_name, 延期表指定日期.ToString("yyyy-MM-dd"));
+                                                             order by region asc, order_date", dtRow_ProjectSettings["订单数据库表名"].ToString(), customer_name, 延期表指定日期.AddDays(-30).ToString("yyyy-MM-dd"));
 
     successOrdersTrackerSQL = string.Format(@"SELECT *
                                                                             FROM tracker 

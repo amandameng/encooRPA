@@ -64,7 +64,8 @@
     ".code\\CSharp\\执行CSharp代码-整理延期表模板.cs",
     "通知",
     "通知\\发送邮件.xaml",
-    ".code\\CSharp\\执行CSharp代码-延期表配置.cs"
+    ".code\\CSharp\\执行CSharp代码-延期表配置.cs",
+    ".code\\CSharp\\执行CSharp代码-筛选删单.cs"
   ],
   "TargetFramework": ".NETFramework,Version=v4.6.2",
   "ProjectDependencies": [
@@ -1224,7 +1225,7 @@
       "InnerDependencies": []
     }
   ],
-  "LastModifyTime": "2022-08-24T09:45:55.1735932+08:00",
+  "LastModifyTime": "2022-10-14T16:23:33.2360845+08:00",
   "ProjectReferences": [],
   "TerminationHandler": null,
   "ExceptionHandler": null,

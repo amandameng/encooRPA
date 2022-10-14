@@ -11,7 +11,7 @@ public enum ExceptionCategory
     彩箱装品检查
 };
 public string exceptionSeperator = "|";
-public string exceptionContactSumbol = "；";
+public string exceptionContactSymbol = "；";
 
 public void Run()
 {
@@ -55,9 +55,10 @@ public void origOrdersMappingToExceptionOrders(ref DataTable exceptionsDT){
     
     foreach(DataRow dr in newOrdersTmpDT.Rows){
         string orderNumber = dr["order_number"].ToString();
-                Console.WriteLine("orderNumber: {0}", orderNumber);
+        string 门店 = dr["store_location"].ToString();
+        Console.WriteLine("orderNumber: {0}", orderNumber);
 
-        DataRow[] orderDRs = origOrdersFromSheetDT.Select(string.Format("采购单号 = '{0}'", orderNumber));  // 根据订单号筛选产品行详情
+        DataRow[] orderDRs = origOrdersFromSheetDT.Select(string.Format("采购单号 = '{0}' and 门店 = '{1}'", orderNumber, 门店));  // 根据订单号筛选产品行详情
         // 处理订单每一产品行
         // 以下三个值是订单级别汇总
         decimal 客户订单总金额 = 0m;
@@ -672,11 +673,11 @@ public List<string> writeToDMSTracker(DataTable cleanOrderItemsMappedToWyethDT){
             门店 = ststDRs[0]["门店"].ToString();
         }
         // 一个订单匹配中的客户产品码匹配到多个惠氏产品码，这时候需要合并产品行数量
-        DataRow[] existingDRs = dmsTrackerDT.Select(string.Format("`POID（客户订单号）`='{0}' and `产品名称（惠氏SKU 代码）`='{1}'", dr["采购单号"].ToString(), dr["惠氏编码"].ToString()));
+        DataRow[] existingDRs = dmsTrackerDT.Select(string.Format("`POID（客户订单号）`='{0}' and `产品名称（惠氏SKU 代码）`='{1}' and `大仓账号`='{2}'", dr["采购单号"].ToString(), dr["惠氏编码"].ToString(), DMS账号));
         if(existingDRs.Length > 0){
             // 合并产品行数量
             foreach(DataRow existingDR in dmsTrackerDT.Rows){
-                if(existingDR["POID（客户订单号）"].ToString() == dr["POID"].ToString() && existingDR["产品名称（惠氏SKU 代码）"].ToString() == dr["惠氏编码"].ToString()){
+                if(existingDR["POID（客户订单号）"].ToString() == dr["POID"].ToString() && existingDR["产品名称（惠氏SKU 代码）"].ToString() == dr["惠氏编码"].ToString() &&  existingDR["大仓账号"].ToString() == DMS账号){
                     Console.WriteLine("{0}， {1}", existingDR["数量（箱）"], dr["订单箱数"]);
                     existingDR["数量（箱）"] = toIntConvert(existingDR["数量（箱）"]) + toIntConvert(dr["订单箱数"]);
                 }
@@ -706,7 +707,9 @@ public DataTable getCleanOrders(DataTable allDT, DataTable exceptionDT){
     foreach(DataRow dr in allDT.Rows){
         string orderNumber = dr["采购单号"].ToString();
         string customerSku = dr["货号"].ToString();
-        DataRow[] drs = exceptionDT.Select(string.Format("`客户订单号（POID）`='{0}'", orderNumber));
+        Console.WriteLine("`客户订单号（POID）`='{0}' and `门店/大仓编号`='{1}'", orderNumber, dr["大仓号"].ToString());
+        DataRow[] drs = exceptionDT.Select(string.Format("`客户订单号（POID）`='{0}' and `门店/大仓编号`='{1}'", orderNumber, dr["大仓号"].ToString()));
+        Console.WriteLine("drs.Length: {0}", drs.Length);
         if(drs.Length == 0){
             cleanOrdersDT.ImportRow(dr);
             if(!cleanOrderList.Contains(orderNumber)) {cleanOrderList.Add(orderNumber);}  // 收集clean 订单号，用于批量查询导出pdf
@@ -721,14 +724,15 @@ public DataTable getCleanOrders(DataTable allDT, DataTable exceptionDT){
 /// <param name="exceptionDT"></param>
 /// <returns></returns>
 public DataTable MergeExceptionDTbyProductRow(DataTable exceptionDT){
-    DataTable distinctOrderItemDT = exceptionDT.DefaultView.ToTable(true, new string[]{"客户订单号（POID）", "客户产品编码"});
+    DataTable distinctOrderItemDT = exceptionDT.DefaultView.ToTable(true, new string[]{"客户订单号（POID）", "客户产品编码", "门店/大仓编号"});
     DataTable mergedExceptionDT = exceptionDT.Clone();
 
     foreach(DataRow dr in distinctOrderItemDT.Rows){
         string orderNumber = dr["客户订单号（POID）"].ToString();
         string customerSku = dr["客户产品编码"].ToString();
+        string dc_no = dr["门店/大仓编号"].ToString();
         Console.WriteLine("客户订单号（POID）: {0}, 客户产品编码: {1}", orderNumber, customerSku);
-        DataRow[] drs = exceptionDT.Select(string.Format("`客户订单号（POID）`='{0}' and 客户产品编码='{1}'", orderNumber, customerSku));
+        DataRow[] drs = exceptionDT.Select(string.Format("`客户订单号（POID）`='{0}' and `客户产品编码`='{1}' and `门店/大仓编号`='{2}'", orderNumber, customerSku, dc_no));
         
         List<string> exceptionCategoryList = new List<string>{};
         List<string> exceptionDetailList = new List<string>{};

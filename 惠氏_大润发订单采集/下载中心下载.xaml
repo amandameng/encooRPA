@@ -72,7 +72,7 @@
           <av:PointCollection x:Key="ConnectorLocation">310,266.5 310,313.5</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <bfa:ForPro CurrentNumber="{x:Null}" ActivityName="重复操作" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="重复操作 - 下载文件" sap:VirtualizedContainerService.HintSize="654,996" sap2010:WorkflowViewState.IdRef="ForPro_1" IsIgnore="False">
+      <bfa:ForPro CurrentNumber="{x:Null}" ActivityName="重复操作" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="重复操作 - 下载文件" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="ForPro_1" IsIgnore="False">
         <bfa:ForPro.Cycles>
           <InArgument x:TypeArguments="x:Int32">
             <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_16" Value="10" />
@@ -351,7 +351,7 @@
           <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件 taskID 不存在" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="If_2" IsIgnore="False">
             <bfa:If.Condition>
               <InArgument x:TypeArguments="x:Boolean">
-                <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_7">string.IsNullOrEmpty(taskId)</mca:CSharpValue>
+                <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_22">!string.IsNullOrEmpty(taskId) &amp;&amp; 最终状态 == "已完成"</mca:CSharpValue>
               </InArgument>
             </bfa:If.Condition>
             <sap:WorkflowViewStateService.ViewState>
@@ -359,19 +359,19 @@
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <bfa:If.Then>
+            <bfa:If.Else>
               <bfa:Throw DisplayName="抛出异常 - 任务下载失败" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_1">
                 <InArgument x:TypeArguments="s:Exception">
                   <mca:CSharpValue x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="CSharpValue`1_8">new Exception("任务下载失败")</mca:CSharpValue>
                 </InArgument>
               </bfa:Throw>
-            </bfa:If.Then>
+            </bfa:If.Else>
           </bfa:If>
         </FlowStep>
       </FlowStep.Next>
     </FlowStep>
     <x:Reference>__ReferenceID8</x:Reference>
-    <FlowStep x:Name="__ReferenceID10">
+    <FlowStep x:Name="__ReferenceID10" sap2010:WorkflowViewState.IdRef="FlowStep_11">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <av:Point x:Key="ShapeLocation">210,100.5</av:Point>
