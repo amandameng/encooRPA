@@ -56,7 +56,8 @@ public void initGlobalVariable()
     dtProjectSetting.Columns.Add("env", typeof(string));
     dtProjectSetting.Columns.Add("dev_email", typeof(string));
     dtProjectSetting.Columns.Add("发件箱配置", typeof(string));
- 
+    dtProjectSetting.Columns.Add("流程警示邮件", typeof(string));
+
     // 文件上传订单HTML和Excel的zip文件  -- TODO
     dtProjectSetting.Columns.Add("上传文件解压缩路径", typeof(string));
 

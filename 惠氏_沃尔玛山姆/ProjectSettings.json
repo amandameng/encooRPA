@@ -3,6 +3,21 @@
     "Main.xaml"
   ],
   "ProjectBreakpoints": {
-    "Value": {}
+    "Value": {
+      "业务\\抓取订单详情页111.xaml": [
+        {
+          "ActivityId": "1.378",
+          "IsEnabled": false,
+          "IdRef": "Retry_1",
+          "DisplayName": "重试- 获取订单结构化数据"
+        },
+        {
+          "ActivityId": "1.168",
+          "IsEnabled": true,
+          "IdRef": "Sequence_2",
+          "DisplayName": "序列 - order items info"
+        }
+      ]
+    }
   }
 }

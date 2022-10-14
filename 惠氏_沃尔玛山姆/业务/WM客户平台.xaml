@@ -5,6 +5,8 @@
     <x:Property Name="dtRow_ProjectSettings" Type="InArgument(sd:DataRow)" />
     <x:Property Name="dtRow_ModuleSettings" Type="InArgument(sd:DataRow)" />
     <x:Property Name="curCustomerName" Type="InArgument(x:String)" />
+    <x:Property Name="平台抓取失败订单数据表" Type="OutArgument(sd:DataTable)" />
+    <x:Property Name="平台下载失败订单" Type="OutArgument(scg:List(x:String))" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
   <sap:VirtualizedContainerService.HintSize>1011,1554</sap:VirtualizedContainerService.HintSize>
@@ -69,33 +71,12 @@
   </TextExpression.ReferencesForImplementation>
   <Flowchart DisplayName="Root" sap:VirtualizedContainerService.HintSize="971,1474" sap2010:WorkflowViewState.IdRef="Flowchart_1">
     <Flowchart.Variables>
-      <Variable x:TypeArguments="x:Boolean" Name="登录成功" />
-      <Variable x:TypeArguments="sd:DataTable" sap2010:Annotation.AnnotationText="包括实际采集成功的订单 + 已存在的未处理订单" Name="增量订单数据表" />
-      <Variable x:TypeArguments="scg:List(x:String)" Name="WMLocationsList">
-        <Variable.Default>
-          <mca:CSharpValue x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_699">new List&lt;string&gt;{}</mca:CSharpValue>
-        </Variable.Default>
-      </Variable>
-      <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="订单报表结果文件夹，需要清理，保留一个月" Name="结果文件夹" />
-      <Variable x:TypeArguments="scg:List(x:String)" Name="下载失败订单" />
-      <Variable x:TypeArguments="sd:DataTable" sap2010:Annotation.AnnotationText="exportd_orders 与 exportd_orders_tmp 比较得到的实际增量订单（待处理发给客户）" Name="实际增量订单数据表" />
       <Variable x:TypeArguments="scg:List(x:String)" Name="错误附件">
         <Variable.Default>
           <mca:CSharpValue x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_495">new List&lt;string&gt;{}</mca:CSharpValue>
         </Variable.Default>
       </Variable>
       <Variable x:TypeArguments="x:String" Name="全局异常信息" />
-      <Variable x:TypeArguments="sd:DataTable" Name="增量订单详情数据表" />
-      <Variable x:TypeArguments="sd:DataTable" Name="finalExceptionDT" />
-      <Variable x:TypeArguments="sd:DataTable" Name="dmsTrackerDT" />
-      <Variable x:TypeArguments="x:Boolean" Name="无新增订单">
-        <Variable.Default>
-          <Literal x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="Literal`1_364" />
-        </Variable.Default>
-      </Variable>
-      <Variable x:TypeArguments="sd:DataTable" Name="orderCatResultDT" />
-      <Variable x:TypeArguments="sd:DataTable" Name="待更新exportedOrders" />
-      <Variable x:TypeArguments="sd:DataTable" Name="抓取失败订单数据表" />
     </Flowchart.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -108,9 +89,9 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <Flowchart.StartNode>
-      <x:Reference>__ReferenceID39</x:Reference>
+      <x:Reference>__ReferenceID38</x:Reference>
     </Flowchart.StartNode>
-    <FlowStep x:Name="__ReferenceID39" sap2010:WorkflowViewState.IdRef="FlowStep_21">
+    <FlowStep x:Name="__ReferenceID38" sap2010:WorkflowViewState.IdRef="FlowStep_21">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <av:Point x:Key="ShapeLocation">210,123.5</av:Point>
@@ -118,7 +99,7 @@
           <av:PointCollection x:Key="ConnectorLocation">310,176.5 310,246.5</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <bfa:ForEach x:TypeArguments="x:Int32" CurrentIndex="{x:Null}" ActivityName="循环操作（For Each)" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="循环操作  - 失败重试一次" sap:VirtualizedContainerService.HintSize="679,1530" sap2010:WorkflowViewState.IdRef="ForEach`1_13" IsIgnore="False">
+      <bfa:ForEach x:TypeArguments="x:Int32" CurrentIndex="{x:Null}" ActivityName="循环操作（For Each)" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="循环操作  - 失败重试一次" sap:VirtualizedContainerService.HintSize="679,1726" sap2010:WorkflowViewState.IdRef="ForEach`1_13" IsIgnore="False">
         <bfa:ForEach.Values>
           <InArgument x:TypeArguments="s:Int32[]">
             <mca:CSharpValue x:TypeArguments="s:Int32[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_938">new int[]{1, 2, 3}</mca:CSharpValue>
@@ -128,20 +109,66 @@
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Int32" Name="item" />
           </ActivityAction.Argument>
-          <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 主流程错误捕获" sap:VirtualizedContainerService.HintSize="663,1353" sap2010:WorkflowViewState.IdRef="TryCatch_7" IsIgnore="False">
+          <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 主流程错误捕获" sap:VirtualizedContainerService.HintSize="663,1549" sap2010:WorkflowViewState.IdRef="TryCatch_7" IsIgnore="False">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <bfa:TryCatch.Try>
-              <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="645,1116" sap2010:WorkflowViewState.IdRef="Sequence_56">
+              <Sequence DisplayName="序列 - 主流程序列" sap:VirtualizedContainerService.HintSize="645,1312" sap2010:WorkflowViewState.IdRef="Sequence_56">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="x:Boolean" Name="登录成功" />
+                  <Variable x:TypeArguments="sd:DataTable" sap2010:Annotation.AnnotationText="包括实际采集成功的订单 + 已存在的未处理订单" Name="增量订单数据表" />
+                  <Variable x:TypeArguments="scg:List(x:String)" Name="WMLocationsList">
+                    <Variable.Default>
+                      <mca:CSharpValue x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_699">new List&lt;string&gt;{}</mca:CSharpValue>
+                    </Variable.Default>
+                  </Variable>
+                  <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="订单报表结果文件夹，需要清理，保留一个月" Name="结果文件夹" />
+                  <Variable x:TypeArguments="sd:DataTable" sap2010:Annotation.AnnotationText="exportd_orders 与 exportd_orders_tmp 比较得到的实际增量订单（待处理发给客户）" Name="实际增量订单数据表" />
+                  <Variable x:TypeArguments="sd:DataTable" Name="增量订单详情数据表" />
+                  <Variable x:TypeArguments="sd:DataTable" Name="finalExceptionDT" />
+                  <Variable x:TypeArguments="sd:DataTable" Name="dmsTrackerDT" />
+                  <Variable x:TypeArguments="x:Boolean" Name="无新增订单">
+                    <Variable.Default>
+                      <Literal x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="Literal`1_364" />
+                    </Variable.Default>
+                  </Variable>
+                  <Variable x:TypeArguments="sd:DataTable" Name="orderCatResultDT" />
+                  <Variable x:TypeArguments="sd:DataTable" Name="待更新exportedOrders" />
+                </Sequence.Variables>
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
+                <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - 平台抓取失败订单数据表" sap:VirtualizedContainerService.HintSize="623,58" sap2010:WorkflowViewState.IdRef="Assign_72" IsIgnore="False">
+                  <bfa:Assign.To>
+                    <OutArgument x:TypeArguments="sd:DataTable">
+                      <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_235">平台抓取失败订单数据表</mca:CSharpReference>
+                    </OutArgument>
+                  </bfa:Assign.To>
+                  <bfa:Assign.Value>
+                    <InArgument x:TypeArguments="sd:DataTable">
+                      <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_963">new DataTable()</mca:CSharpValue>
+                    </InArgument>
+                  </bfa:Assign.Value>
+                </bfa:Assign>
+                <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - 平台下载失败订单" sap:VirtualizedContainerService.HintSize="623,58" sap2010:WorkflowViewState.IdRef="Assign_73" IsIgnore="False">
+                  <bfa:Assign.To>
+                    <OutArgument x:TypeArguments="scg:List(x:String)">
+                      <mca:CSharpReference x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_236">平台下载失败订单</mca:CSharpReference>
+                    </OutArgument>
+                  </bfa:Assign.To>
+                  <bfa:Assign.Value>
+                    <InArgument x:TypeArguments="scg:List(x:String)">
+                      <mca:CSharpValue x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_964">new List&lt;string&gt;{}</mca:CSharpValue>
+                    </InArgument>
+                  </bfa:Assign.Value>
+                </bfa:Assign>
                 <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - - processSuccess = false" sap:VirtualizedContainerService.HintSize="623,58" sap2010:WorkflowViewState.IdRef="Assign_45" IsIgnore="False">
                   <bfa:Assign.To>
                     <OutArgument x:TypeArguments="x:Boolean">
@@ -178,9 +205,9 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <Flowchart.StartNode>
-                    <x:Reference>__ReferenceID33</x:Reference>
+                    <x:Reference>__ReferenceID32</x:Reference>
                   </Flowchart.StartNode>
-                  <FlowStep x:Name="__ReferenceID33" sap2010:WorkflowViewState.IdRef="FlowStep_43">
+                  <FlowStep x:Name="__ReferenceID32" sap2010:WorkflowViewState.IdRef="FlowStep_43">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <av:Point x:Key="ShapeLocation">210,100.5</av:Point>
@@ -188,7 +215,7 @@
                         <av:PointCollection x:Key="ConnectorLocation">310,153.5 310,203.5</av:PointCollection>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Flowchart DisplayName="主流程" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="Flowchart_10">
+                    <Flowchart DisplayName="主流程" sap:VirtualizedContainerService.HintSize="862,1770" sap2010:WorkflowViewState.IdRef="Flowchart_10">
                       <Flowchart.Variables>
                         <Variable x:TypeArguments="sd:DataTable" Name="allOrdersDT" />
                         <Variable x:TypeArguments="sd:DataTable" Name="newOrdersIntoSheetDT" />
@@ -201,15 +228,15 @@
                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                           <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
                           <av:Size x:Key="ShapeSize">80,48</av:Size>
-                          <x:Double x:Key="Height">1669</x:Double>
+                          <x:Double x:Key="Height">1734</x:Double>
                           <av:PointCollection x:Key="ConnectorLocation">310,50.5 310,103.5</av:PointCollection>
-                          <x:Double x:Key="Width">850</x:Double>
+                          <x:Double x:Key="Width">848</x:Double>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                       <Flowchart.StartNode>
-                        <x:Reference>__ReferenceID24</x:Reference>
+                        <x:Reference>__ReferenceID23</x:Reference>
                       </Flowchart.StartNode>
-                      <FlowStep x:Name="__ReferenceID10" sap2010:WorkflowViewState.IdRef="FlowStep_11">
+                      <FlowStep x:Name="__ReferenceID9" sap2010:WorkflowViewState.IdRef="FlowStep_11">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <av:Point x:Key="ShapeLocation">530,811</av:Point>
@@ -321,10 +348,10 @@
                                   <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_508">实际增量订单数据表</mca:CSharpValue>
                                 </InArgument>
                                 <OutArgument x:TypeArguments="sd:DataTable" x:Key="抓取失败订单数据表">
-                                  <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_155">抓取失败订单数据表</mca:CSharpReference>
+                                  <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_155">平台抓取失败订单数据表</mca:CSharpReference>
                                 </OutArgument>
                                 <OutArgument x:TypeArguments="scg:List(x:String)" x:Key="下载失败订单">
-                                  <mca:CSharpReference x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_135">下载失败订单</mca:CSharpReference>
+                                  <mca:CSharpReference x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_135">平台下载失败订单</mca:CSharpReference>
                                 </OutArgument>
                                 <OutArgument x:TypeArguments="sd:DataTable" x:Key="增量订单结果数据表">
                                   <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_194">增量订单结果数据表</mca:CSharpReference>
@@ -348,7 +375,7 @@
                               </bfa:InvokeWorkflow.WorkflowPath>
                             </bfa:InvokeWorkflow>
                             <FlowStep.Next>
-                              <FlowStep x:Name="__ReferenceID23" sap2010:WorkflowViewState.IdRef="FlowStep_46">
+                              <FlowStep x:Name="__ReferenceID22" sap2010:WorkflowViewState.IdRef="FlowStep_46">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <av:Point x:Key="ShapeLocation">455.5,1087.5</av:Point>
@@ -369,7 +396,7 @@
                                   </sap:WorkflowViewStateService.ViewState>
                                 </ecaac:InvokeCSharpCodeActivity>
                                 <FlowStep.Next>
-                                  <FlowStep x:Name="__ReferenceID22" sap2010:WorkflowViewState.IdRef="FlowStep_33">
+                                  <FlowStep x:Name="__ReferenceID21" sap2010:WorkflowViewState.IdRef="FlowStep_33">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <av:Point x:Key="ShapeLocation">530,1237</av:Point>
@@ -403,7 +430,6 @@
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <av:Point x:Key="ShapeLocation">290,1368.5</av:Point>
                                             <av:Size x:Key="ShapeSize">200,163</av:Size>
-                                            <av:PointCollection x:Key="ConnectorLocation">390,1531.5 390,1591</av:PointCollection>
                                           </scg:Dictionary>
                                         </sap:WorkflowViewStateService.ViewState>
                                         <bfa:If ActivityName="条件（If）" sap2010:Annotation.AnnotationText="存在增量订单&#xA;    1、输出数据到Excel报表&#xA;    2、报表存入数据库&#xA;    3、提取订单附件&#xA;else&#xA;   无新增订单 = true" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 增量订单数据表 存在）" sap:VirtualizedContainerService.HintSize="200,163" sap2010:WorkflowViewState.IdRef="If_26" IsIgnore="False">
@@ -513,6 +539,20 @@
                                                       </bfa:Assign.Value>
                                                     </bfa:Assign>
                                                   </bfa:If.Then>
+                                                  <bfa:If.Else>
+                                                    <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - 无新增订单=false" sap:VirtualizedContainerService.HintSize="323,58" sap2010:WorkflowViewState.IdRef="Assign_71" IsIgnore="False">
+                                                      <bfa:Assign.To>
+                                                        <OutArgument x:TypeArguments="x:Boolean">
+                                                          <mca:CSharpReference x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpReference`1_234">无新增订单</mca:CSharpReference>
+                                                        </OutArgument>
+                                                      </bfa:Assign.To>
+                                                      <bfa:Assign.Value>
+                                                        <InArgument x:TypeArguments="x:Boolean">
+                                                          <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_959">false</mca:CSharpValue>
+                                                        </InArgument>
+                                                      </bfa:Assign.Value>
+                                                    </bfa:Assign>
+                                                  </bfa:If.Else>
                                                 </bfa:If>
                                                 <bfa:Assign ActivityName="赋值" sap2010:Annotation.AnnotationText="从数据库查询此批次新增的订单" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - orderAndLinkDT" sap:VirtualizedContainerService.HintSize="534,83" sap2010:WorkflowViewState.IdRef="Assign_57" IsIgnore="False">
                                                   <bfa:Assign.To>
@@ -1368,42 +1408,6 @@
                                             </bfa:Assign>
                                           </bfa:If.Else>
                                         </bfa:If>
-                                        <FlowStep.Next>
-                                          <FlowStep x:Name="__ReferenceID7" sap2010:WorkflowViewState.IdRef="FlowStep_7">
-                                            <sap:WorkflowViewStateService.ViewState>
-                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                <av:Point x:Key="ShapeLocation">290,1591</av:Point>
-                                                <av:Size x:Key="ShapeSize">200,78</av:Size>
-                                              </scg:Dictionary>
-                                            </sap:WorkflowViewStateService.ViewState>
-                                            <bfa:InvokeWorkflow sap2010:Annotation.AnnotationText="邮件通知" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行流程 : 抓取失败订单通知" sap:VirtualizedContainerService.HintSize="200,78" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_59" IsIgnore="False">
-                                              <bfa:InvokeWorkflow.Arguments>
-                                                <InArgument x:TypeArguments="sd:DataTable" x:Key="抓取失败订单数据表">
-                                                  <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_583">抓取失败订单数据表</mca:CSharpValue>
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="curCustomerName">
-                                                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_518">System.Convert.ToString(curCustomerName)</mca:CSharpValue>
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="x:String" x:Key="mailReceiver">
-                                                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_854">System.Convert.ToString(dtRow_ModuleSettings["DMS_Tracker邮件接收人"])</mca:CSharpValue>
-                                                </InArgument>
-                                                <InArgument x:TypeArguments="scg:List(x:String)" x:Key="下载失败订单">
-                                                  <mca:CSharpValue x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_520">下载失败订单</mca:CSharpValue>
-                                                </InArgument>
-                                              </bfa:InvokeWorkflow.Arguments>
-                                              <sap:WorkflowViewStateService.ViewState>
-                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-                                                </scg:Dictionary>
-                                              </sap:WorkflowViewStateService.ViewState>
-                                              <bfa:InvokeWorkflow.WorkflowPath>
-                                                <InArgument x:TypeArguments="x:String">
-                                                  <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_244">通用\抓取失败订单通知.xaml</Literal>
-                                                </InArgument>
-                                              </bfa:InvokeWorkflow.WorkflowPath>
-                                            </bfa:InvokeWorkflow>
-                                          </FlowStep>
-                                        </FlowStep.Next>
                                       </FlowStep>
                                     </FlowStep.Next>
                                   </FlowStep>
@@ -1488,8 +1492,44 @@
                           <x:Reference>__ReferenceID5</x:Reference>
                         </FlowStep.Next>
                       </FlowStep>
-                      <x:Reference>__ReferenceID7</x:Reference>
-                      <FlowDecision x:Name="__ReferenceID20" sap2010:Annotation.AnnotationText="if 控制台上传文件&#xA;  allOrdersDT =  validOrdersFromListingDT去除Document link 和 file name&#xA;else&#xA;  登录，导出订单列表，输出allOrdersDT" DisplayName="上传文件解压缩路径存在" sap:VirtualizedContainerService.HintSize="160,231" sap2010:WorkflowViewState.IdRef="FlowDecision_2">
+                      <FlowStep sap2010:WorkflowViewState.IdRef="FlowStep_7">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <av:Point x:Key="ShapeLocation">290,1591</av:Point>
+                            <av:Size x:Key="ShapeSize">200,78</av:Size>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <bfa:InvokeWorkflow sap2010:Annotation.AnnotationText="邮件通知" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行流程 : 抓取失败订单通知" sap:VirtualizedContainerService.HintSize="200,78" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_59" IsIgnore="False">
+                          <bfa:InvokeWorkflow.Arguments>
+                            <InArgument x:TypeArguments="sd:DataTable" x:Key="抓取失败订单数据表">
+                              <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_583">平台抓取失败订单数据表</mca:CSharpValue>
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="curCustomerName">
+                              <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_518">System.Convert.ToString(curCustomerName)</mca:CSharpValue>
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="mailReceiver">
+                              <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_854">System.Convert.ToString(dtRow_ModuleSettings["DMS_Tracker邮件接收人"])</mca:CSharpValue>
+                            </InArgument>
+                            <InArgument x:TypeArguments="scg:List(x:String)" x:Key="下载失败订单">
+                              <mca:CSharpValue x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_520">平台下载失败订单</mca:CSharpValue>
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="发件箱配置">
+                              <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_962">System.Convert.ToString(dtRow_ProjectSettings["发件箱配置"].ToString())</mca:CSharpValue>
+                            </InArgument>
+                          </bfa:InvokeWorkflow.Arguments>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <bfa:InvokeWorkflow.WorkflowPath>
+                            <InArgument x:TypeArguments="x:String">
+                              <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_244">通用\抓取失败订单通知.xaml</Literal>
+                            </InArgument>
+                          </bfa:InvokeWorkflow.WorkflowPath>
+                        </bfa:InvokeWorkflow>
+                      </FlowStep>
+                      <FlowDecision x:Name="__ReferenceID19" sap2010:Annotation.AnnotationText="if 控制台上传文件&#xA;  allOrdersDT =  validOrdersFromListingDT去除Document link 和 file name&#xA;else&#xA;  登录，导出订单列表，输出allOrdersDT" DisplayName="上传文件解压缩路径存在" sap:VirtualizedContainerService.HintSize="160,231" sap2010:WorkflowViewState.IdRef="FlowDecision_2">
                         <FlowDecision.Condition>
                           <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_666">!string.IsNullOrEmpty(dtRow_ProjectSettings["上传文件解压缩路径"].ToString())</mca:CSharpValue>
                         </FlowDecision.Condition>
@@ -1504,7 +1544,7 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                         <FlowDecision.True>
-                          <FlowStep x:Name="__ReferenceID13" sap2010:WorkflowViewState.IdRef="FlowStep_26">
+                          <FlowStep x:Name="__ReferenceID12" sap2010:WorkflowViewState.IdRef="FlowStep_26">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <av:Point x:Key="ShapeLocation">18.5,502.5</av:Point>
@@ -1530,7 +1570,7 @@
                               </sap:WorkflowViewStateService.ViewState>
                             </bfa:Assign>
                             <FlowStep.Next>
-                              <FlowStep x:Name="__ReferenceID14" sap2010:WorkflowViewState.IdRef="FlowStep_25">
+                              <FlowStep x:Name="__ReferenceID13" sap2010:WorkflowViewState.IdRef="FlowStep_25">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <av:Point x:Key="ShapeLocation">80,621</av:Point>
@@ -1553,9 +1593,9 @@
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
                                   <Flowchart.StartNode>
-                                    <x:Reference>__ReferenceID9</x:Reference>
+                                    <x:Reference>__ReferenceID8</x:Reference>
                                   </Flowchart.StartNode>
-                                  <FlowStep x:Name="__ReferenceID9" sap2010:WorkflowViewState.IdRef="FlowStep_23">
+                                  <FlowStep x:Name="__ReferenceID8" sap2010:WorkflowViewState.IdRef="FlowStep_23">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <av:Point x:Key="ShapeLocation">135.5,113.5</av:Point>
@@ -1577,7 +1617,7 @@
                                       </sap:WorkflowViewStateService.ViewState>
                                     </ecaac:InvokeCSharpCodeActivity>
                                     <FlowStep.Next>
-                                      <FlowStep x:Name="__ReferenceID8" sap2010:WorkflowViewState.IdRef="FlowStep_22">
+                                      <FlowStep x:Name="__ReferenceID7" sap2010:WorkflowViewState.IdRef="FlowStep_22">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <av:Point x:Key="ShapeLocation">210,303.5</av:Point>
@@ -1616,10 +1656,10 @@
                                       </FlowStep>
                                     </FlowStep.Next>
                                   </FlowStep>
-                                  <x:Reference>__ReferenceID8</x:Reference>
+                                  <x:Reference>__ReferenceID7</x:Reference>
                                 </Flowchart>
                                 <FlowStep.Next>
-                                  <FlowStep x:Name="__ReferenceID15" sap2010:WorkflowViewState.IdRef="FlowStep_24">
+                                  <FlowStep x:Name="__ReferenceID14" sap2010:WorkflowViewState.IdRef="FlowStep_24">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <av:Point x:Key="ShapeLocation">80,763.5</av:Point>
@@ -1657,7 +1697,7 @@
                                       </bfa:InvokeWorkflow.WorkflowPath>
                                     </bfa:InvokeWorkflow>
                                     <FlowStep.Next>
-                                      <FlowStep x:Name="__ReferenceID16" sap2010:WorkflowViewState.IdRef="FlowStep_29">
+                                      <FlowStep x:Name="__ReferenceID15" sap2010:WorkflowViewState.IdRef="FlowStep_29">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <av:Point x:Key="ShapeLocation">80,1021</av:Point>
@@ -1697,7 +1737,7 @@
                           </FlowStep>
                         </FlowDecision.True>
                         <FlowDecision.False>
-                          <FlowStep x:Name="__ReferenceID11" sap2010:WorkflowViewState.IdRef="FlowStep_28">
+                          <FlowStep x:Name="__ReferenceID10" sap2010:WorkflowViewState.IdRef="FlowStep_28">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <av:Point x:Key="ShapeLocation">530,321</av:Point>
@@ -1819,7 +1859,7 @@
                               </bfa:If>
                             </Sequence>
                             <FlowStep.Next>
-                              <FlowStep x:Name="__ReferenceID12" sap2010:WorkflowViewState.IdRef="FlowStep_27">
+                              <FlowStep x:Name="__ReferenceID11" sap2010:WorkflowViewState.IdRef="FlowStep_27">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <av:Point x:Key="ShapeLocation">530,472.5</av:Point>
@@ -1848,7 +1888,7 @@
                                   </bfa:InvokeWorkflow.WorkflowPath>
                                 </bfa:InvokeWorkflow>
                                 <FlowStep.Next>
-                                  <FlowStep x:Name="__ReferenceID21" sap2010:WorkflowViewState.IdRef="FlowStep_34">
+                                  <FlowStep x:Name="__ReferenceID20" sap2010:WorkflowViewState.IdRef="FlowStep_34">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <av:Point x:Key="ShapeLocation">530,624</av:Point>
@@ -2017,7 +2057,7 @@
                                       </bfa:TryCatch.Catches>
                                     </bfa:TryCatch>
                                     <FlowStep.Next>
-                                      <x:Reference>__ReferenceID10</x:Reference>
+                                      <x:Reference>__ReferenceID9</x:Reference>
                                     </FlowStep.Next>
                                   </FlowStep>
                                 </FlowStep.Next>
@@ -2026,13 +2066,13 @@
                           </FlowStep>
                         </FlowDecision.False>
                       </FlowDecision>
+                      <x:Reference>__ReferenceID10</x:Reference>
                       <x:Reference>__ReferenceID11</x:Reference>
                       <x:Reference>__ReferenceID12</x:Reference>
                       <x:Reference>__ReferenceID13</x:Reference>
                       <x:Reference>__ReferenceID14</x:Reference>
                       <x:Reference>__ReferenceID15</x:Reference>
-                      <x:Reference>__ReferenceID16</x:Reference>
-                      <FlowStep x:Name="__ReferenceID24" sap2010:WorkflowViewState.IdRef="FlowStep_35">
+                      <FlowStep x:Name="__ReferenceID23" sap2010:WorkflowViewState.IdRef="FlowStep_35">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <av:Point x:Key="ShapeLocation">210,103.5</av:Point>
@@ -2050,9 +2090,9 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <Flowchart.StartNode>
-                            <x:Reference>__ReferenceID19</x:Reference>
+                            <x:Reference>__ReferenceID18</x:Reference>
                           </Flowchart.StartNode>
-                          <FlowStep x:Name="__ReferenceID19" sap2010:WorkflowViewState.IdRef="FlowStep_24">
+                          <FlowStep x:Name="__ReferenceID18" sap2010:WorkflowViewState.IdRef="FlowStep_24">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <av:Point x:Key="ShapeLocation">210,100.5</av:Point>
@@ -2109,7 +2149,7 @@
                               </sap:WorkflowViewStateService.ViewState>
                             </boa:OfficeExcelOpenOrCreateActivity>
                             <FlowStep.Next>
-                              <FlowStep x:Name="__ReferenceID17" sap2010:WorkflowViewState.IdRef="FlowStep_23">
+                              <FlowStep x:Name="__ReferenceID16" sap2010:WorkflowViewState.IdRef="FlowStep_23">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <av:Point x:Key="ShapeLocation">210,203.5</av:Point>
@@ -2166,7 +2206,7 @@
                                   </sap:WorkflowViewStateService.ViewState>
                                 </boa:OfficeExcelOpenOrCreateActivity>
                                 <FlowStep.Next>
-                                  <FlowStep x:Name="__ReferenceID18" sap2010:WorkflowViewState.IdRef="FlowStep_22">
+                                  <FlowStep x:Name="__ReferenceID17" sap2010:WorkflowViewState.IdRef="FlowStep_22">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <av:Point x:Key="ShapeLocation">148.5,301</av:Point>
@@ -2195,26 +2235,26 @@
                               </FlowStep>
                             </FlowStep.Next>
                           </FlowStep>
+                          <x:Reference>__ReferenceID16</x:Reference>
                           <x:Reference>__ReferenceID17</x:Reference>
-                          <x:Reference>__ReferenceID18</x:Reference>
                         </Flowchart>
                         <FlowStep.Next>
-                          <x:Reference>__ReferenceID20</x:Reference>
+                          <x:Reference>__ReferenceID19</x:Reference>
                         </FlowStep.Next>
                       </FlowStep>
+                      <x:Reference>__ReferenceID20</x:Reference>
                       <x:Reference>__ReferenceID21</x:Reference>
                       <x:Reference>__ReferenceID22</x:Reference>
-                      <x:Reference>__ReferenceID23</x:Reference>
                     </Flowchart>
                     <FlowStep.Next>
-                      <FlowStep x:Name="__ReferenceID32" sap2010:WorkflowViewState.IdRef="FlowStep_42">
+                      <FlowStep x:Name="__ReferenceID31" sap2010:WorkflowViewState.IdRef="FlowStep_42">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <av:Point x:Key="ShapeLocation">210,203.5</av:Point>
                             <av:Size x:Key="ShapeSize">200,265</av:Size>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <Flowchart sap2010:Annotation.AnnotationText="&gt;邮件反馈&#xA;    - 无新增订单&#xA;    - 有新增订单&#xA;       1、CPO异常订单&#xA;       2、RDD&#xA;       3、产品编码不匹配&#xA;       4、退货单&#xA;       5、clean order, Tracker + 原始订单明细&#xA;&gt;此次抓单批次记录更新&#xA;&gt; 登出&#xA;" DisplayName="结束处理" sap:VirtualizedContainerService.HintSize="614,1247" sap2010:WorkflowViewState.IdRef="Flowchart_18">
+                        <Flowchart sap2010:Annotation.AnnotationText="&gt;邮件反馈&#xA;    - 无新增订单&#xA;    - 有新增订单&#xA;       1、CPO异常订单&#xA;       2、RDD&#xA;       3、产品编码不匹配&#xA;       4、退货单&#xA;       5、clean order, Tracker + 原始订单明细&#xA;&gt;此次抓单批次记录更新&#xA;&gt; 登出&#xA;" DisplayName="结束处理" sap:VirtualizedContainerService.HintSize="200,265" sap2010:WorkflowViewState.IdRef="Flowchart_18">
                           <Flowchart.Variables>
                             <Variable x:TypeArguments="x:String" Name="orderCat" />
                           </Flowchart.Variables>
@@ -2230,9 +2270,9 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <Flowchart.StartNode>
-                            <x:Reference>__ReferenceID31</x:Reference>
+                            <x:Reference>__ReferenceID30</x:Reference>
                           </Flowchart.StartNode>
-                          <FlowStep x:Name="__ReferenceID31" sap2010:WorkflowViewState.IdRef="FlowStep_41">
+                          <FlowStep x:Name="__ReferenceID30" sap2010:WorkflowViewState.IdRef="FlowStep_41">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <av:Point x:Key="ShapeLocation">210,114.38</av:Point>
@@ -2282,12 +2322,18 @@
                                 </bfa:InvokeWorkflow>
                               </bfa:If.Then>
                               <bfa:If.Else>
-                                <bda1:ForEach CurrentIndex="{x:Null}" ActivityName="遍历行" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="遍历行 - orderCatResultDT" sap:VirtualizedContainerService.HintSize="572,1211" sap2010:WorkflowViewState.IdRef="ForEach_1">
+                                <bda1:ForEach CurrentIndex="{x:Null}" ActivityName="遍历行" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="遍历行 - orderCatResultDT" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="ForEach_1">
                                   <bda1:ForEach.DataTable>
                                     <InArgument x:TypeArguments="sd:DataTable">
                                       <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_766">[orderCatResultDT]</mca:CSharpValue>
                                     </InArgument>
                                   </bda1:ForEach.DataTable>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
                                   <ActivityAction x:TypeArguments="sd:DataRow">
                                     <ActivityAction.Argument>
                                       <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
@@ -2458,7 +2504,7 @@
                               </bfa:If.Else>
                             </bfa:If>
                             <FlowStep.Next>
-                              <FlowStep x:Name="__ReferenceID27" sap2010:WorkflowViewState.IdRef="FlowStep_40">
+                              <FlowStep x:Name="__ReferenceID26" sap2010:WorkflowViewState.IdRef="FlowStep_40">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <av:Point x:Key="ShapeLocation">210,253.5</av:Point>
@@ -2476,9 +2522,9 @@
                                     </scg:Dictionary>
                                   </sap:WorkflowViewStateService.ViewState>
                                   <Flowchart.StartNode>
-                                    <x:Reference>__ReferenceID26</x:Reference>
+                                    <x:Reference>__ReferenceID25</x:Reference>
                                   </Flowchart.StartNode>
-                                  <FlowDecision x:Name="__ReferenceID26" DisplayName="!无新增订单" sap:VirtualizedContainerService.HintSize="70,87" sap2010:WorkflowViewState.IdRef="FlowDecision_3">
+                                  <FlowDecision x:Name="__ReferenceID25" DisplayName="!无新增订单" sap:VirtualizedContainerService.HintSize="70,87" sap2010:WorkflowViewState.IdRef="FlowDecision_3">
                                     <FlowDecision.Condition>
                                       <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_767">[!无新增订单]</mca:CSharpValue>
                                     </FlowDecision.Condition>
@@ -2491,7 +2537,7 @@
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
                                     <FlowDecision.True>
-                                      <FlowStep x:Name="__ReferenceID25" sap2010:WorkflowViewState.IdRef="FlowStep_36">
+                                      <FlowStep x:Name="__ReferenceID24" sap2010:WorkflowViewState.IdRef="FlowStep_36">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <av:Point x:Key="ShapeLocation">210,264</av:Point>
@@ -2665,10 +2711,10 @@
                                       </FlowStep>
                                     </FlowDecision.True>
                                   </FlowDecision>
-                                  <x:Reference>__ReferenceID25</x:Reference>
+                                  <x:Reference>__ReferenceID24</x:Reference>
                                 </Flowchart>
                                 <FlowStep.Next>
-                                  <FlowStep x:Name="__ReferenceID29" sap2010:WorkflowViewState.IdRef="FlowStep_39">
+                                  <FlowStep x:Name="__ReferenceID28" sap2010:WorkflowViewState.IdRef="FlowStep_39">
                                     <sap:WorkflowViewStateService.ViewState>
                                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                         <av:Point x:Key="ShapeLocation">135.5,353.5</av:Point>
@@ -2689,7 +2735,7 @@
                                       </sap:WorkflowViewStateService.ViewState>
                                     </ecaac:InvokeCSharpCodeActivity>
                                     <FlowStep.Next>
-                                      <FlowStep x:Name="__ReferenceID28" sap2010:WorkflowViewState.IdRef="FlowStep_38">
+                                      <FlowStep x:Name="__ReferenceID27" sap2010:WorkflowViewState.IdRef="FlowStep_38">
                                         <sap:WorkflowViewStateService.ViewState>
                                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                             <av:Point x:Key="ShapeLocation">210,493.5</av:Point>
@@ -2838,7 +2884,7 @@
                                           </bfa:TryCatch.Catches>
                                         </bfa:TryCatch>
                                         <FlowStep.Next>
-                                          <FlowStep x:Name="__ReferenceID30" sap2010:WorkflowViewState.IdRef="FlowStep_37">
+                                          <FlowStep x:Name="__ReferenceID29" sap2010:WorkflowViewState.IdRef="FlowStep_37">
                                             <sap:WorkflowViewStateService.ViewState>
                                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                 <av:Point x:Key="ShapeLocation">148.5,611</av:Point>
@@ -2871,15 +2917,15 @@
                               </FlowStep>
                             </FlowStep.Next>
                           </FlowStep>
+                          <x:Reference>__ReferenceID26</x:Reference>
                           <x:Reference>__ReferenceID27</x:Reference>
                           <x:Reference>__ReferenceID28</x:Reference>
                           <x:Reference>__ReferenceID29</x:Reference>
-                          <x:Reference>__ReferenceID30</x:Reference>
                         </Flowchart>
                       </FlowStep>
                     </FlowStep.Next>
                   </FlowStep>
-                  <x:Reference>__ReferenceID32</x:Reference>
+                  <x:Reference>__ReferenceID31</x:Reference>
                 </Flowchart>
                 <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - processSuccess = true" sap:VirtualizedContainerService.HintSize="623,58" sap2010:WorkflowViewState.IdRef="Assign_38" IsIgnore="False">
                   <bfa:Assign.To>
@@ -3001,7 +3047,7 @@
         </ActivityAction>
       </bfa:ForEach>
       <FlowStep.Next>
-        <FlowDecision x:Name="__ReferenceID34" DisplayName="processSuccess 为假" sap:VirtualizedContainerService.HintSize="123,87" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
+        <FlowDecision x:Name="__ReferenceID33" DisplayName="processSuccess 为假" sap:VirtualizedContainerService.HintSize="123,87" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
           <FlowDecision.Condition>
             <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_480">!processSuccess</mca:CSharpValue>
           </FlowDecision.Condition>
@@ -3015,7 +3061,7 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <FlowDecision.True>
-            <FlowStep x:Name="__ReferenceID37" sap2010:WorkflowViewState.IdRef="FlowStep_22">
+            <FlowStep x:Name="__ReferenceID36" sap2010:WorkflowViewState.IdRef="FlowStep_22">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <av:Point x:Key="ShapeLocation">50,391</av:Point>
@@ -3051,7 +3097,7 @@
                 </bfa:If.Then>
               </bfa:If>
               <FlowStep.Next>
-                <FlowStep x:Name="__ReferenceID35" sap2010:WorkflowViewState.IdRef="FlowStep_18">
+                <FlowStep x:Name="__ReferenceID34" sap2010:WorkflowViewState.IdRef="FlowStep_18">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <av:Point x:Key="ShapeLocation">50,543.5</av:Point>
@@ -3084,7 +3130,7 @@
                     </bfa:InvokeWorkflow.WorkflowPath>
                   </bfa:InvokeWorkflow>
                   <FlowStep.Next>
-                    <FlowStep x:Name="__ReferenceID38">
+                    <FlowStep x:Name="__ReferenceID37">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <av:Point x:Key="ShapeLocation">50,646.5</av:Point>
@@ -3108,7 +3154,7 @@
             </FlowStep>
           </FlowDecision.True>
           <FlowDecision.False>
-            <FlowStep x:Name="__ReferenceID36" sap2010:WorkflowViewState.IdRef="FlowStep_20">
+            <FlowStep x:Name="__ReferenceID35" sap2010:WorkflowViewState.IdRef="FlowStep_20">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <av:Point x:Key="ShapeLocation">435.5,261</av:Point>
@@ -3132,10 +3178,10 @@
         </FlowDecision>
       </FlowStep.Next>
     </FlowStep>
+    <x:Reference>__ReferenceID33</x:Reference>
     <x:Reference>__ReferenceID34</x:Reference>
     <x:Reference>__ReferenceID35</x:Reference>
     <x:Reference>__ReferenceID36</x:Reference>
     <x:Reference>__ReferenceID37</x:Reference>
-    <x:Reference>__ReferenceID38</x:Reference>
   </Flowchart>
 </Activity>

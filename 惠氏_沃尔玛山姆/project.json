@@ -79,7 +79,9 @@
     ".code\\CSharp\\执行CSharp代码-发邮件-mailkit.cs",
     ".code\\CSharp\\执行CSharp代码 - 验证上传excel格式.cs",
     ".code\\CSharp\\执行CSharp代码-结束处理.cs",
-    ".code\\CSharp\\执行CSharp代码-排除不是当前客户的订单.cs"
+    ".code\\CSharp\\执行CSharp代码-排除不是当前客户的订单.cs",
+    ".code\\CSharp\\合并抓取采集失败订单.cs",
+    ".code\\CSharp\\执行CSharp代码.cs"
   ],
   "TargetFramework": ".NETFramework,Version=v4.6.2",
   "ProjectDependencies": [
@@ -1239,7 +1241,7 @@
       "InnerDependencies": []
     }
   ],
-  "LastModifyTime": "2022-08-23T16:32:25.5323156+08:00",
+  "LastModifyTime": "2022-10-14T16:27:02.1811656+08:00",
   "ProjectReferences": [],
   "TerminationHandler": null,
   "ExceptionHandler": null,

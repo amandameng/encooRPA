@@ -111,7 +111,7 @@ public void fetchTodayOrders(ref DataTable validTodayOrdersDT, ref DataTable cxz
         string orderCaptureDateStr = dr["order_capture_date"].ToString();
         DateTime orderCaptureDateUTC = DateTime.Parse(orderCaptureDateStr);
         DateTime orderCaptureDateLocal = convertToLocalTimeFromUTC(orderCaptureDateUTC);
-        if(orderCaptureDateLocal.ToString("yyyy-MM-dd") == todayStr){
+        if(orderCaptureDateUTC.ToString("yyyy-MM-dd") == todayStr){
             validTodayOrdersDT.ImportRow(dr);
             if(dr["POID"].ToString().Contains("-cxz")){
                 cxzOrdersDT.ImportRow(dr);
@@ -123,7 +123,7 @@ public void fetchTodayOrders(ref DataTable validTodayOrdersDT, ref DataTable cxz
 // 初始化预约信息表
 public DataTable initBookingInfoDT(){
     DataTable bookingInfoTempDT = new DataTable();
-    string[] columns = new string[]{"收单日期", "POID", "经销商简称","Type", "经销商代码", "Event", "订单日期", "起运日期", "取消日期", "备注", "Sum of 订单箱数"}; //, "Sum of Total Order Amount"};
+    string[] columns = new string[]{"收单日期", "POID", "经销商简称","Type", "经销商代码", "Event", "订单日期", "起运日期", "取消日期", "备注"}; // "Sum of 订单箱数"
     List<string> strCols = new List<string>{"POID"};
     foreach(string colName in columns){
         if(strCols.Contains(colName)){
@@ -205,7 +205,7 @@ public void processBookingInfoDT(DataTable validTodayOrdersDT){
         bookingInfoDR["起运日期"] = 起运日期;
         bookingInfoDR["取消日期"] = 取消日期;
         bookingInfoDR["备注"] = 备注;
-        bookingInfoDR["Sum of 订单箱数"] = 订单箱数;
+        // bookingInfoDR["Sum of 订单箱数"] = 订单箱数;
         // bookingInfoDR["Sum of Total Order Amount"] = totalOrderAmount;
         bookingInfoDT.Rows.Add(bookingInfoDR);  
     }

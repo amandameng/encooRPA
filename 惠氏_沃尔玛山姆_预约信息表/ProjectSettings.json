@@ -74,6 +74,12 @@
           "DisplayName": "循环操作 - 遍历彩箱装和预约信息表"
         },
         {
+          "ActivityId": "1.56",
+          "IsEnabled": true,
+          "IdRef": "If_13",
+          "DisplayName": "条件（If 存在预约信息）"
+        },
+        {
           "ActivityId": "1.310",
           "IsEnabled": true,
           "IdRef": "AddToCollectionActivity_6",
@@ -86,6 +92,12 @@
           "IsEnabled": true,
           "IdRef": "DeserializeObjectActivity_1",
           "DisplayName": "反序列化"
+        },
+        {
+          "ActivityId": "1.3",
+          "IsEnabled": true,
+          "IdRef": "LogActivity_1",
+          "DisplayName": "写入日志"
         }
       ],
       "Main.xaml": [

@@ -235,7 +235,7 @@
                       <av:Size x:Key="ShapeSize">200,53</av:Size>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <bfa:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" ActivityName="循环操作（For Each)" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="循环操作 - 遍历彩箱装和预约信息表" sap:VirtualizedContainerService.HintSize="614,1780" sap2010:WorkflowViewState.IdRef="ForEach`1_3" IsIgnore="False">
+                  <bfa:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" ActivityName="循环操作（For Each)" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="循环操作 - 遍历彩箱装和预约信息表" sap:VirtualizedContainerService.HintSize="654,2280" sap2010:WorkflowViewState.IdRef="ForEach`1_3" IsIgnore="False">
                     <bfa:ForEach.Values>
                       <InArgument x:TypeArguments="s:String[]">
                         <mca:CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_734">new string[]{"彩箱装", "预约信息表"}</mca:CSharpValue>
@@ -245,7 +245,7 @@
                       <ActivityAction.Argument>
                         <DelegateInArgument x:TypeArguments="x:String" Name="item" />
                       </ActivityAction.Argument>
-                      <Sequence DisplayName="序列 - 遍历类型" sap:VirtualizedContainerService.HintSize="598,1675" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                      <Sequence DisplayName="序列 - 遍历类型" sap:VirtualizedContainerService.HintSize="638,2175" sap2010:WorkflowViewState.IdRef="Sequence_9">
                         <Sequence.Variables>
                           <Variable x:TypeArguments="x:String" Name="itemBody" />
                         </Sequence.Variables>
@@ -254,16 +254,16 @@
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
-                        <bfa:Switch x:TypeArguments="x:String" ActivityName="条件（Switch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（Switch）" sap:VirtualizedContainerService.HintSize="576,1551" sap2010:WorkflowViewState.IdRef="Switch`1_2" IsIgnore="False">
+                        <bfa:Switch x:TypeArguments="x:String" ActivityName="条件（Switch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（Switch）" sap:VirtualizedContainerService.HintSize="616,2051" sap2010:WorkflowViewState.IdRef="Switch`1_2" IsIgnore="False">
                           <bfa:Switch.Cases>
-                            <Sequence x:Key="彩箱装" DisplayName="序列" sap:VirtualizedContainerService.HintSize="556,1339" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                            <Sequence x:Key="彩箱装" DisplayName="序列" sap:VirtualizedContainerService.HintSize="345,275" sap2010:WorkflowViewState.IdRef="Sequence_10">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
-                              <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值  itemBody" sap:VirtualizedContainerService.HintSize="534,58" sap2010:WorkflowViewState.IdRef="Assign_3" IsIgnore="False">
+                              <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值  itemBody" sap:VirtualizedContainerService.HintSize="323,58" sap2010:WorkflowViewState.IdRef="Assign_3" IsIgnore="False">
                                 <bfa:Assign.To>
                                   <OutArgument x:TypeArguments="x:String">
                                     <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_6">itemBody</mca:CSharpReference>
@@ -275,7 +275,7 @@
                                   </InArgument>
                                 </bfa:Assign.Value>
                               </bfa:Assign>
-                              <bfa:If ActivityName="条件（If）" sap2010:Annotation.AnnotationText="山姆彩箱装发邮件" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 存在彩箱装数据）" sap:VirtualizedContainerService.HintSize="534,1117" sap2010:WorkflowViewState.IdRef="If_12" IsIgnore="False">
+                              <bfa:If ActivityName="条件（If）" sap2010:Annotation.AnnotationText="山姆彩箱装发邮件" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 存在彩箱装数据）" sap:VirtualizedContainerService.HintSize="323,53" sap2010:WorkflowViewState.IdRef="If_12" IsIgnore="False">
                                 <bfa:If.Condition>
                                   <InArgument x:TypeArguments="x:Boolean">
                                     <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_758">(bool)dtRow_ModuleSettings["isSam"] &amp;&amp; cxzDetailsDT != null &amp;&amp; cxzDetailsDT.Rows.Count &gt; 0</mca:CSharpValue>
@@ -283,7 +283,7 @@
                                 </bfa:If.Condition>
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                                     <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                                     <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                   </scg:Dictionary>
@@ -448,7 +448,7 @@
                                 </bfa:If.Then>
                               </bfa:If>
                             </Sequence>
-                            <Sequence x:Key="预约信息表" DisplayName="序列" sap:VirtualizedContainerService.HintSize="596,1728" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                            <Sequence x:Key="预约信息表" DisplayName="序列" sap:VirtualizedContainerService.HintSize="596,1839" sap2010:WorkflowViewState.IdRef="Sequence_11">
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -467,7 +467,7 @@
                                   </InArgument>
                                 </bfa:Assign.Value>
                               </bfa:Assign>
-                              <bfa:If ActivityName="条件（If）" sap2010:Annotation.AnnotationText="预约信息表发邮件" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 存在预约信息）" sap:VirtualizedContainerService.HintSize="574,1506" sap2010:WorkflowViewState.IdRef="If_13" IsIgnore="False">
+                              <bfa:If ActivityName="条件（If）" sap2010:Annotation.AnnotationText="预约信息表发邮件" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 存在预约信息）" sap:VirtualizedContainerService.HintSize="574,1617" sap2010:WorkflowViewState.IdRef="If_13" IsIgnore="False">
                                 <bfa:If.Condition>
                                   <InArgument x:TypeArguments="x:Boolean">
                                     <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_760">bookingInfoDT != null &amp;&amp; bookingInfoDT.Rows.Count &gt; 0</mca:CSharpValue>
@@ -481,7 +481,7 @@
                                   </scg:Dictionary>
                                 </sap:WorkflowViewStateService.ViewState>
                                 <bfa:If.Then>
-                                  <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="556,1293" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                                  <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="556,1429" sap2010:WorkflowViewState.IdRef="Sequence_13">
                                     <Sequence.Variables>
                                       <Variable x:TypeArguments="scg:List(x:String)" Name="附件">
                                         <Variable.Default>
@@ -562,7 +562,7 @@
                                         </InArgument>
                                       </ecaac1:AddToCollectionActivity.Item>
                                     </ecaac1:AddToCollectionActivity>
-                                    <bfa:If ActivityName="条件（If）" sap2010:Annotation.AnnotationText="预约信息表附件" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 附件存在）" sap:VirtualizedContainerService.HintSize="534,484" sap2010:WorkflowViewState.IdRef="If_15" IsIgnore="False">
+                                    <bfa:If ActivityName="条件（If）" sap2010:Annotation.AnnotationText="预约信息表附件" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 附件存在）" sap:VirtualizedContainerService.HintSize="534,620" sap2010:WorkflowViewState.IdRef="If_15" IsIgnore="False">
                                       <bfa:If.Condition>
                                         <InArgument x:TypeArguments="x:Boolean">
                                           <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_768">bookingInfoOrderFilesList.Count &gt; 0</mca:CSharpValue>
@@ -576,7 +576,7 @@
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
                                       <bfa:If.Then>
-                                        <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="371,271" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                                        <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="371,407" sap2010:WorkflowViewState.IdRef="Sequence_15">
                                           <sap:WorkflowViewStateService.ViewState>
                                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -594,6 +594,16 @@
                                               </InArgument>
                                             </baasf:CompresseFileActivity.FileListPath>
                                           </baasf:CompresseFileActivity>
+                                          <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: WM客户平台" sap:VirtualizedContainerService.HintSize="349,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_6" IsIgnore="False">
+                                            <bfa:InvokeWorkflow.Arguments>
+                                              <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                                            </bfa:InvokeWorkflow.Arguments>
+                                            <bfa:InvokeWorkflow.WorkflowPath>
+                                              <InArgument x:TypeArguments="x:String">
+                                                <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_391">业务\WM客户平台.xaml</Literal>
+                                              </InArgument>
+                                            </bfa:InvokeWorkflow.WorkflowPath>
+                                          </bfa:InvokeWorkflow>
                                           <ecaac1:AddToCollectionActivity ActivityName="添加对象" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="添加对象 - pdf压缩包" sap:VirtualizedContainerService.HintSize="349,22" sap2010:WorkflowViewState.IdRef="AddToCollectionActivity_8">
                                             <ecaac1:AddToCollectionActivity.Collection>
                                               <InOutArgument x:TypeArguments="scg:List(x:String)">

@@ -11,7 +11,7 @@
   </this:Main.沃尔玛流程模块>
   <this:Main.数据库连接>
     <InArgument x:TypeArguments="x:String">
-      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_182">Server=127.0.0.1;Database=vicode_wyeth; Uid=root;Password=123456Q;Allow User Variables=True</Literal>
+      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_237">Server=1.15.243.91;Database=vicode_wyeth;Uid=wyeth;Password=encoo@123456;Allow User Variables=True</Literal>
     </InArgument>
   </this:Main.数据库连接>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
@@ -102,7 +102,7 @@
               <av:Size x:Key="ShapeSize">200,53</av:Size>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <bfa:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" ActivityName="循环操作（For Each)" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="循环操作 待运行模块" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="ForEach`1_8" IsIgnore="False">
+          <bfa:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" ActivityName="循环操作（For Each)" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="循环操作 待运行模块" sap:VirtualizedContainerService.HintSize="590,1923" sap2010:WorkflowViewState.IdRef="ForEach`1_8" IsIgnore="False">
             <bfa:ForEach.Values>
               <InArgument x:TypeArguments="scg:List(x:String)">
                 <mca:CSharpValue x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_380">待运行模块</mca:CSharpValue>
@@ -112,7 +112,7 @@
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="x:String" Name="customer_name" />
               </ActivityAction.Argument>
-              <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 - 依模块捕获错误" sap:VirtualizedContainerService.HintSize="576,1041" sap2010:WorkflowViewState.IdRef="TryCatch_18" IsIgnore="False">
+              <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 - 依模块捕获错误" sap:VirtualizedContainerService.HintSize="574,1746" sap2010:WorkflowViewState.IdRef="TryCatch_18" IsIgnore="False">
                 <bfa:TryCatch.Variables>
                   <Variable x:TypeArguments="sd:DataRow" Name="dtRow_ModuleSettings" />
                   <Variable x:TypeArguments="x:String" Name="flow_name" />
@@ -402,7 +402,7 @@
                   </Sequence>
                 </bfa:TryCatch.Try>
                 <bfa:TryCatch.Catches>
-                  <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="562,871" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                  <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="560,23" sap2010:WorkflowViewState.IdRef="Catch`1_3">
                     <bfa:Catch.Action>
                       <ActivityAction x:TypeArguments="s:Exception">
                         <ActivityAction.Argument>
@@ -501,7 +501,7 @@
                     </bfa:Catch.Action>
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
@@ -522,7 +522,7 @@
           <av:PointCollection x:Key="ConnectorLocation">310,166.5 310,233.5</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 - 控制台获取发件人密码" sap:VirtualizedContainerService.HintSize="495,580" sap2010:WorkflowViewState.IdRef="TryCatch_20" IsIgnore="False">
+      <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 - 控制台获取发件人密码" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="TryCatch_20" IsIgnore="False">
         <bfa:TryCatch.Try>
           <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="477,343" sap2010:WorkflowViewState.IdRef="Sequence_68">
             <sap:WorkflowViewStateService.ViewState>
@@ -550,7 +550,7 @@
                 <eca:AcquireAssetsActivity ResourceGroup="{x:Null}" TenantId="{x:Null}" ActivityName="获取资产" ConsoleVersion="V4Console" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="获取资产 - 发件箱配置" sap:VirtualizedContainerService.HintSize="200,64" sap2010:WorkflowViewState.IdRef="AcquireAssetsActivity_1">
                   <eca:AcquireAssetsActivity.AssetName>
                     <InArgument x:TypeArguments="x:String">
-                      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_238">发件箱配置</Literal>
+                      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_231">发件箱配置</Literal>
                     </InArgument>
                   </eca:AcquireAssetsActivity.AssetName>
                   <eca:AcquireAssetsActivity.AssetValue>
@@ -559,8 +559,7 @@
                     </OutArgument>
                   </eca:AcquireAssetsActivity.AssetValue>
                   <eca:AcquireAssetsActivity.AssetsNames>
-                    <scg:List x:TypeArguments="x:String" Capacity="8">
-                      <x:String>发件箱配置163</x:String>
+                    <scg:List x:TypeArguments="x:String" Capacity="4">
                       <x:String>数据库测试</x:String>
                       <x:String>WyethCheckInRPA_Receiver</x:String>
                       <x:String>发件箱配置</x:String>
@@ -569,7 +568,7 @@
                   </eca:AcquireAssetsActivity.AssetsNames>
                   <eca:AcquireAssetsActivity.ResourceGroupName>
                     <InArgument x:TypeArguments="x:String">
-                      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_237">雀巢（中国）有限公司/惠氏</Literal>
+                      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_232">雀巢（中国）有限公司/惠氏</Literal>
                     </InArgument>
                   </eca:AcquireAssetsActivity.ResourceGroupName>
                   <sap:WorkflowViewStateService.ViewState>
@@ -583,7 +582,7 @@
           </Sequence>
         </bfa:TryCatch.Try>
         <bfa:TryCatch.Catches>
-          <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="481,23" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+          <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="455,510" sap2010:WorkflowViewState.IdRef="Catch`1_2">
             <bfa:Catch.Action>
               <ActivityAction x:TypeArguments="s:Exception">
                 <ActivityAction.Argument>
@@ -637,7 +636,7 @@
             </bfa:Catch.Action>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>

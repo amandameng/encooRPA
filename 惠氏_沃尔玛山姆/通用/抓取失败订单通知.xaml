@@ -4,6 +4,7 @@
     <x:Property Name="下载失败订单" Type="InArgument(scg:List(x:String))" />
     <x:Property Name="抓取失败订单数据表" Type="InArgument(sd:DataTable)" />
     <x:Property Name="mailReceiver" Type="InArgument(x:String)" />
+    <x:Property Name="发件箱配置" Type="InArgument(x:String)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
   <sap:VirtualizedContainerService.HintSize>654,758</sap:VirtualizedContainerService.HintSize>
@@ -109,7 +110,7 @@
               <av:PointCollection x:Key="ConnectorLocation">320,1588.5 320,1653.5</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <bfa:If ActivityName="条件（If）" sap2010:Annotation.AnnotationText="存在异常订单 则单独发送邮件提示" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 存在异常订单，下载或抓取失败）" sap:VirtualizedContainerService.HintSize="534,381" sap2010:WorkflowViewState.IdRef="If_28" IsIgnore="False">
+          <bfa:If ActivityName="条件（If）" sap2010:Annotation.AnnotationText="存在异常订单 则单独发送邮件提示" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 存在异常订单，下载或抓取失败）" sap:VirtualizedContainerService.HintSize="200,95" sap2010:WorkflowViewState.IdRef="If_28" IsIgnore="False">
             <bfa:If.Condition>
               <InArgument x:TypeArguments="x:Boolean">
                 <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_436">hasDownloadExceptionOrder</mca:CSharpValue>
@@ -122,28 +123,38 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <bfa:If.Then>
-              <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: 发送邮件 - 存在异常订单" sap:VirtualizedContainerService.HintSize="349,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_46" IsIgnore="False">
-                <bfa:InvokeWorkflow.Arguments>
-                  <InArgument x:TypeArguments="x:String" x:Key="邮件正文">
-                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_437">System.Convert.ToString(异常订单邮件正文)</mca:CSharpValue>
-                  </InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="邮件主题">
-                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_438">System.Convert.ToString(异常订单邮件标题)</mca:CSharpValue>
-                  </InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="收件人">
-                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_439">System.Convert.ToString(mailReceiver)</mca:CSharpValue>
-                  </InArgument>
-                  <InArgument x:TypeArguments="scg:List(x:String)" x:Key="附件">
-                    <mca:CSharpValue x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">new List&lt;string&gt;{}</mca:CSharpValue>
-                  </InArgument>
-                  <InArgument x:TypeArguments="x:String" x:Key="抄送人" />
-                </bfa:InvokeWorkflow.Arguments>
-                <bfa:InvokeWorkflow.WorkflowPath>
-                  <InArgument x:TypeArguments="x:String">
-                    <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_223">通知\发送邮件.xaml</Literal>
-                  </InArgument>
-                </bfa:InvokeWorkflow.WorkflowPath>
-              </bfa:InvokeWorkflow>
+              <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="371,220" sap2010:WorkflowViewState.IdRef="Sequence_1">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: 发送邮件 - 存在异常订单" sap:VirtualizedContainerService.HintSize="349,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_46" IsIgnore="False">
+                  <bfa:InvokeWorkflow.Arguments>
+                    <InArgument x:TypeArguments="x:String" x:Key="邮件正文">
+                      <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_437">System.Convert.ToString(异常订单邮件正文)</mca:CSharpValue>
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="邮件主题">
+                      <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_438">System.Convert.ToString(异常订单邮件标题)</mca:CSharpValue>
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="收件人">
+                      <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_439">System.Convert.ToString(mailReceiver)</mca:CSharpValue>
+                    </InArgument>
+                    <InArgument x:TypeArguments="scg:List(x:String)" x:Key="附件">
+                      <mca:CSharpValue x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">new List&lt;string&gt;{}</mca:CSharpValue>
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="抄送人" />
+                    <InArgument x:TypeArguments="x:String" x:Key="发件箱配置">
+                      <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_440">发件箱配置</mca:CSharpValue>
+                    </InArgument>
+                  </bfa:InvokeWorkflow.Arguments>
+                  <bfa:InvokeWorkflow.WorkflowPath>
+                    <InArgument x:TypeArguments="x:String">
+                      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_223">通知\发送邮件.xaml</Literal>
+                    </InArgument>
+                  </bfa:InvokeWorkflow.WorkflowPath>
+                </bfa:InvokeWorkflow>
+              </Sequence>
             </bfa:If.Then>
           </bfa:If>
         </FlowStep>

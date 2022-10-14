@@ -4,7 +4,7 @@ public void Run()
     if(实际增量订单数据表 == null){
         return;
     }
-    DataTable validOrdersDT = excludeFailedOrder(实际增量订单数据表, 抓取失败订单数据表);
+    DataTable validOrdersDT = excludeFailedOrder(实际增量订单数据表, 平台抓取失败订单数据表);
     //在这里编写您的代码
     if(待更新exportedOrders==null || 待更新exportedOrders.Rows.Count == 0){
         待更新exportedOrders = validOrdersDT;

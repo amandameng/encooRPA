@@ -9,7 +9,7 @@ public void Run()
     string orderNumberStr = String.Join(",", orderNumberList);
 
     string newOrdersFromDBSql = string.Format("select * from {0} where customer_name='{1}' and document_link in ({2}) order by order_number, create_date_time desc", dtRow_ProjectSettings["订单数据库表名"].ToString(), curCustomerName, docLinkStr);
-    string relatedOrdersAndDocLinkSql = string.Format("select distinct order_number, document_link from {0} where customer_name='{1}' and document_link in ({2}) group by document_link order by order_number, create_date_time desc", dtRow_ProjectSettings["订单数据库表名"].ToString(), curCustomerName, docLinkStr);
+    string relatedOrdersAndDocLinkSql = string.Format("select distinct order_number, document_link, created_time from {0} where customer_name='{1}' and document_link in ({2}) group by document_link order by order_number, create_date_time desc", dtRow_ProjectSettings["订单数据库表名"].ToString(), curCustomerName, docLinkStr);
     string relatedOrdersCountAndDocLinkSql = string.Format(@"select count(order_number) orders_count, order_number from
                                                                                         (select distinct order_number, document_link from {0} where customer_name='{1}' and document_link in ({2}) group by document_link order by order_number, create_date_time desc) s2
                                                                                         group by order_number", dtRow_ProjectSettings["订单数据库表名"].ToString(), curCustomerName, docLinkStr);

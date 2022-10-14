@@ -130,6 +130,7 @@ public void setAccount(){
     dtRow_ModuleSettings["密码"] = rpaAccountDRow["password"];
     dtRow_ModuleSettings["登录网址"] = rpaAccountDRow["customer_login_url"];
     dtRow_ModuleSettings["流程异常接收邮件"] = string.IsNullOrEmpty(rpaAccountDRow["flow_alert_receiver_email_address"].ToString()) ? dtRow_ProjectSettings["dev_email"].ToString() : rpaAccountDRow["flow_alert_receiver_email_address"];
+    dtRow_ProjectSettings["流程警示邮件"] = dtRow_ModuleSettings["流程异常接收邮件"];
 }
 
 public void checkMailSetting(ref DataTable dt_ModuleSetting){

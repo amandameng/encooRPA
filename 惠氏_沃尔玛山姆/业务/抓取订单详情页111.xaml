@@ -443,7 +443,7 @@
                       <av:Size x:Key="ShapeSize">200,78</av:Size>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <bfa:If ActivityName="条件（If）" sap2010:Annotation.AnnotationText="下载订单pdf" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If orderDT 不为空 且是当前客户的订单才下载）" sap:VirtualizedContainerService.HintSize="534,699" sap2010:WorkflowViewState.IdRef="If_2" IsIgnore="False">
+                  <bfa:If ActivityName="条件（If）" sap2010:Annotation.AnnotationText="下载订单pdf" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If orderDT 不为空 且是当前客户的订单才下载）" sap:VirtualizedContainerService.HintSize="200,78" sap2010:WorkflowViewState.IdRef="If_2" IsIgnore="False">
                     <bfa:If.Condition>
                       <InArgument x:TypeArguments="x:Boolean">
                         <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_90">orderDT.Rows.Count != 0 &amp;&amp; realCustomerName == customer_name</mca:CSharpValue>

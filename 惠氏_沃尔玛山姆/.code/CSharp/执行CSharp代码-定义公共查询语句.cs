@@ -11,7 +11,7 @@ public void Run()
     wmSoldToShipToSql = string.Format("select dc_name as DC, dc_no as DC编号, store_location as 门店, ship_to as 'Ship to', sold_to as 'Sold to', wyeth_dc_no as 惠氏大仓账号, customer_pay_method as 支付方式, dms_account DMS账号 from ship_to_sold_to where top_customer_name='{0}'", "沃尔玛");
     constraintsSql = string.Format("SELECT sku_code, comment FROM constraint_list where ver=(select max(ver) from constraint_list)");
     specialSkuSql = string.Format("SELECT sold_to, sku_code, comment, customer_sku_code, dc_no FROM special_products where customer_name='{0}' and ver=(select max(ver) max_version from special_products where customer_name='{0}')", customer_name);
-    lastCaptureDateSql = string.Format("select max(order_capture_date) maxCreatedTime from {0} where customer_name='{1}'", dtRow_ProjectSettings["clean订单数据库表名"].ToString(), customer_name);
+    lastCaptureDateSql = string.Format("select max(order_capture_date) maxCreatedTime from {0} where customer_name like '%{1}%'", dtRow_ProjectSettings["clean订单数据库表名"].ToString(), customer_name);
     customerPreferenceSql = string.Format("select * from customer_preference_settings where customer_name='{0}'", customer_name);
 }
 //在这里编写您的函数或者类

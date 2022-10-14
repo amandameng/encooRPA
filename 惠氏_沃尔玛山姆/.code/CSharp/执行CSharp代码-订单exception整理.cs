@@ -49,7 +49,8 @@ public void Run()
         int orderCount = Convert.ToInt32(orderCountDrs[0]["orders_count"]);
         
         DataRow[] orderandLinkDrs = orderAndLinkDT.Select(string.Format("order_number = '{0}'", orderNumber));
-        string documentLink = orderandLinkDrs[0]["document_link"].ToString();
+        DataRow curOrderDataRow = orderandLinkDrs[0];
+        string documentLink = curOrderDataRow["document_link"].ToString();
         DataRow[] preverDocLinkRows=null;
         bool hasRepeatedOrders = false;
         DataRow[] curOrderDocLinkRows  = null;
@@ -57,7 +58,21 @@ public void Run()
         List<string> repeatedOrderExceptionList = new List<string>{};
         if(orderCount > 1){
             hasRepeatedOrders = true;
-            string prevDocumentLink = orderandLinkDrs[1]["document_link"].ToString(); // orderandLinkDrs[1] 第二个doclink
+            // fetch 上一批次的订单
+            DataRow previousDataRow = null;
+            foreach(DataRow thisOrderRow in orderandLinkDrs){
+                DateTime thisCreateTime = DateTime.Parse(thisOrderRow["created_time"].ToString());
+                DateTime curOrderCreateTime = DateTime.Parse(curOrderDataRow["created_time"].ToString());
+                TimeSpan daysSpan = new TimeSpan(curOrderCreateTime.Ticks - thisCreateTime.Ticks);
+                if(Math.Abs(daysSpan.TotalSeconds) > 10 ){
+                    previousDataRow = thisOrderRow;
+                    break;
+                }
+            }
+            if(previousDataRow == null){
+                previousDataRow = orderandLinkDrs[1];
+            }
+            string prevDocumentLink = previousDataRow["document_link"].ToString(); // 前一批次的原单
             preverDocLinkRows = dbOrdersDT.Select(string.Format("order_number = '{0}' and document_link='{1}'", orderNumber, prevDocumentLink)); // 重复订单的上一次 DataRow[]
             curOrderDocLinkRows = dbOrdersDT.Select(string.Format("order_number = '{0}' and document_link='{1}'", orderNumber, documentLink)); // 当前最新订单的DataRow[]，from DB
             orderExceptionCheck(orderNumber, documentLink, ref repeatedOrderExceptionList, curOrderDocLinkRows, preverDocLinkRows); // 当前需要检查的字段为 【订单总数量，RDD， Promotional Event】
@@ -87,7 +102,7 @@ public void Run()
             }
 
             string comment = specialProductComment(curDR["惠氏编码"].ToString(), curDR[curCustomerName + "编码"].ToString(), (DataTable)dtRow_ModuleSettings["specialListDT"]);
-            Console.WriteLine("-----comment: {0}-----", comment);
+
             if(comment.Contains("不录")){
                 notIntoDMSProducts = true;
             }
@@ -582,20 +597,22 @@ public DataTable MergeExceptionDTbyProductRow(DataTable exceptionDT){
     foreach(DataRow dr in distinctOrderItemDT.Rows){
         string orderNumber = dr["客户订单号（POID）"].ToString();
         string customerSku = dr["客户产品编码"].ToString();
-        DataRow[] drs = exceptionDT.Select(string.Format("`客户订单号（POID）`='{0}' and 客户产品编码='{1}'", orderNumber, customerSku));
         
-        List<string> exceptionCategoryList = new List<string>{};
-        List<string> exceptionDetailList = new List<string>{};
-        DataRow finalDataRow = drs[0];
-        foreach(DataRow exceptionDR in drs){
-            if(!string.IsNullOrEmpty(exceptionDR["异常分类"].ToString())){  // 异常分类不为空才加入list
-                exceptionCategoryList.Add(exceptionDR["异常分类"].ToString());
-                exceptionDetailList.Add(exceptionDR["异常详细描述"].ToString());
+        DataRow[] drs = exceptionDT.Select(string.Format("`客户订单号（POID）`='{0}' and 客户产品编码='{1}'", orderNumber, customerSku));
+        if(drs.Length > 0){
+            List<string> exceptionCategoryList = new List<string>{};
+            List<string> exceptionDetailList = new List<string>{};
+            DataRow finalDataRow = drs[0];
+            foreach(DataRow exceptionDR in drs){
+                if(!string.IsNullOrEmpty(exceptionDR["异常分类"].ToString())){  // 异常分类不为空才加入list
+                    exceptionCategoryList.Add(exceptionDR["异常分类"].ToString());
+                    exceptionDetailList.Add(exceptionDR["异常详细描述"].ToString());
+                }
             }
+            finalDataRow["异常分类"] = string.Join(exceptionSeperator, exceptionCategoryList);
+            finalDataRow["异常详细描述"] = string.Join(exceptionSeperator, exceptionDetailList);
+            mergedExceptionDT.ImportRow(finalDataRow);
         }
-        finalDataRow["异常分类"] = string.Join(exceptionSeperator, exceptionCategoryList);
-        finalDataRow["异常详细描述"] = string.Join(exceptionSeperator, exceptionDetailList);
-        mergedExceptionDT.ImportRow(finalDataRow);
     }
     return mergedExceptionDT;
 }
