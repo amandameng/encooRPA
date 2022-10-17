@@ -12,6 +12,7 @@
     <x:Property Name="oneToNNestleProductsDT" Type="InArgument(sd:DataTable)" />
     <x:Property Name="WMLocationsList" Type="InArgument(scg:List(x:String))" />
     <x:Property Name="不录单订单列表" Type="InOutArgument(scg:List(x:String))" />
+    <x:Property Name="增量订单关联数据表" Type="OutArgument(sd:DataTable)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
   <sap:VirtualizedContainerService.HintSize>654,772</sap:VirtualizedContainerService.HintSize>
@@ -61,12 +62,13 @@
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>System.Net.WebSockets.Client.Managed</AssemblyReference>
       <AssemblyReference>ParallelExtensionsExtras</AssemblyReference>
+      <AssemblyReference>System.Data.Entity</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Flowchart DisplayName="Root" sap:VirtualizedContainerService.HintSize="614,692" sap2010:WorkflowViewState.IdRef="Flowchart_1">
     <Flowchart.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="分仓明细数据表" />
-      <Variable x:TypeArguments="sd:DataTable" Name="增量订单关联数据表" />
       <Variable x:TypeArguments="sd:DataTable" Name="沃尔玛跳过产品检查数据表" />
       <Variable x:TypeArguments="sd:DataTable" Name="existingEX2ODT" />
       <Variable x:TypeArguments="x:Boolean" Name="存在异常数据" />
@@ -92,7 +94,7 @@
           <av:PointCollection x:Key="ConnectorLocation">310,449 310,499</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Flowchart sap2010:Annotation.AnnotationText="沃尔玛异常订单判断" DisplayName="流程图 - By PO" sap:VirtualizedContainerService.HintSize="714,952" sap2010:WorkflowViewState.IdRef="Flowchart_2">
+      <Flowchart sap2010:Annotation.AnnotationText="沃尔玛异常订单判断" DisplayName="流程图 - By PO" sap:VirtualizedContainerService.HintSize="200,78" sap2010:WorkflowViewState.IdRef="Flowchart_2">
         <Flowchart.Variables>
           <Variable x:TypeArguments="x:String" Name="selectSql" />
           <Variable x:TypeArguments="x:String" Name="existingEX2OSql" />
@@ -354,7 +356,7 @@
                       <av:PointCollection x:Key="ConnectorLocation">310,647.5 310,721</av:PointCollection>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <boa:OfficeExcelOpenOrCreateActivity OfficeVersion="{x:Null}" Password="{x:Null}" SaveAs="{x:Null}" ActivityName="打开/新建" sap2010:Annotation.AnnotationText="异常检查逻辑在此！！&#xA;写入异常数据" AutoSave="True" ContinueOnError="No" CreateNewFile="False" DelayAfter="0" DelayBefore="0" DisplayName="打开 clean exception file" EnableMacro="False" sap:VirtualizedContainerService.HintSize="690,3078" sap2010:WorkflowViewState.IdRef="OfficeExcelOpenOrCreateActivity_2" ReadOnly="False" Visible="False" needRestoreKey="False">
+                  <boa:OfficeExcelOpenOrCreateActivity OfficeVersion="{x:Null}" Password="{x:Null}" SaveAs="{x:Null}" ActivityName="打开/新建" sap2010:Annotation.AnnotationText="异常检查逻辑在此！！&#xA;写入异常数据" AutoSave="True" ContinueOnError="No" CreateNewFile="False" DelayAfter="0" DelayBefore="0" DisplayName="打开 clean exception file" EnableMacro="False" sap:VirtualizedContainerService.HintSize="200,95" sap2010:WorkflowViewState.IdRef="OfficeExcelOpenOrCreateActivity_2" ReadOnly="False" Visible="False" needRestoreKey="False">
                     <boa:OfficeExcelOpenOrCreateActivity.Body>
                       <ActivityAction x:TypeArguments="x:Object">
                         <ActivityAction.Argument>

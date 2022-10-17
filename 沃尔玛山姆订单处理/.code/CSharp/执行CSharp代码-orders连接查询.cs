@@ -56,5 +56,8 @@ public void Run()
     
     selectSql = String.Format(rawSelectSql, customer_name, 订单编号字符串);
     Console.WriteLine(selectSql);
+    
+    门店主产品查询语句 = string.Format("SELECT * FROM vicode_nestle.material_master_data where Customer_Name='{0}' and Nestle_Plant_No=0", customer_name);
+
 }
 //在这里编写您的函数或者类

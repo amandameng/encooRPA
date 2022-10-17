@@ -1,4 +1,7 @@
 //代码执行入口，请勿修改或删除
+public string tmpSoldToCode = "4419335";
+public string tmpShipToCode = "11255";
+
 public void Run()
 {
     //在这里编写您的代码
@@ -26,13 +29,28 @@ public void Run()
 
         foreach(var orderLinkGroup in groupedOrderLinks){
             DataRow[] orderItemRows = orderLinkGroup.ToArray();
-            
             int bulkWalferItemCount = 1;
-           
+            
             foreach(DataRow dr in orderItemRows){
+                string 雀巢产品编码 = dr["雀巢产品编码"].ToString();
                 string productCode = dr["product_code"].ToString();
                 int quantity_ordered = toIntConvert(dr["quantity_ordered"]);
-                string 雀巢产品编码 = dr["雀巢产品编码"].ToString();
+                
+                // 门店订单设置任意ship to 开始
+                if(string.IsNullOrEmpty(雀巢产品编码)){
+                    if(string.IsNullOrEmpty(dr["ship_to_code"].ToString())){
+                        雀巢产品编码 = getStoreProduct(productCode);
+                    }
+                }
+
+                if(string.IsNullOrEmpty(dr["sold_to_code"].ToString())){
+                    dr["sold_to_code"] = tmpSoldToCode;
+                }
+                if(string.IsNullOrEmpty(dr["ship_to_code"].ToString())){
+                    dr["ship_to_code"] = tmpShipToCode;
+                }
+               // 门店订单设置任意ship to 结束
+                
                 int lineNumber = toIntConvert(dr["line_number"]);
                // Console.WriteLine("雀巢产品编码: {0}", 雀巢产品编码);
                 // 山姆水单，仓租不为1.3%或者产品行折扣，不录单
@@ -329,6 +347,20 @@ public void initEtoRow(ref DataRow etoRow, DataRow dr, int quantity_ordered, str
     if(customer_name == "沃尔玛IC"){
         etoRow["Delivery note text"] = $"即走，起送日期{DateTime.Parse(dr["ship_date"].ToString()).ToString("yyyyMMdd")}; 最后送货日期{etoRow["Reqd Del Date"].ToString()}";
     }
+}
+
+/// <summary>
+/// 门店订单获取产品信息
+/// </summary>
+/// <param name="customerProductCode"></param>
+/// <returns></returns>
+public string getStoreProduct(string customerProductCode){
+    string Nestle_Material_No = string.Empty;
+    DataRow[] drs = 门店主产品数据表.Select(string.Format("Customer_Material_No='{0}'", customerProductCode));
+    if(drs.Length > 0){
+        Nestle_Material_No = drs[0]["Nestle_Material_No"].ToString();
+    }
+    return Nestle_Material_No;
 }
 
 public string getPONumber(DataRow dr, int 订单序号){

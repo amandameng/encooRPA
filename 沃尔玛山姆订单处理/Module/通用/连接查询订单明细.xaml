@@ -5,6 +5,7 @@
     <x:Property Name="订单列名" Type="InArgument(x:String)" />
     <x:Property Name="customer_name" Type="InArgument(x:String)" />
     <x:Property Name="sqlConn" Type="InArgument(x:String)" />
+    <x:Property Name="门店主产品数据表" Type="OutArgument(sd:DataTable)" />
   </x:Members>
   <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
   <sap:VirtualizedContainerService.HintSize>808,876</sap:VirtualizedContainerService.HintSize>
@@ -47,6 +48,8 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>ParallelExtensionsExtras</AssemblyReference>
       <AssemblyReference>System.Net.WebSockets.Client.Managed</AssemblyReference>
+      
+      
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Flowchart DisplayName="Root" sap:VirtualizedContainerService.HintSize="768,796" sap2010:WorkflowViewState.IdRef="Flowchart_1">
@@ -57,6 +60,7 @@
           <mca:CSharpValue x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_5">new List&lt;string&gt;{}</mca:CSharpValue>
         </Variable.Default>
       </Variable>
+      <Variable x:TypeArguments="x:String" Name="门店主产品查询语句" />
     </Flowchart.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -100,29 +104,53 @@
               <av:PointCollection x:Key="ConnectorLocation">310,416.5 310,463.5</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <bda:DatabaseConnectActivity ActivityName="连接数据库" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="连接数据库" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="DatabaseConnectActivity_1" ProviderName="MySql">
+          <bda:DatabaseConnectActivity ActivityName="连接数据库" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="连接数据库" sap:VirtualizedContainerService.HintSize="449,316" sap2010:WorkflowViewState.IdRef="DatabaseConnectActivity_1" ProviderName="MySql">
             <bda:DatabaseConnectActivity.Body>
               <ActivityAction x:TypeArguments="x:Object">
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="x:Object" Name="DataBaseScope" />
                 </ActivityAction.Argument>
-                <bda:QueryTableActivity ActivityName="查询语句" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="查询- join 查询订单相关联数据" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="QueryTableActivity_1">
-                  <bda:QueryTableActivity.DataTable>
-                    <OutArgument x:TypeArguments="sd:DataTable">
-                      <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_3">联结查询数据表</mca:CSharpReference>
-                    </OutArgument>
-                  </bda:QueryTableActivity.DataTable>
-                  <bda:QueryTableActivity.ExecuteTimeOut>
-                    <InArgument x:TypeArguments="x:TimeSpan">
-                      <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_2" Value="00:00:30" />
-                    </InArgument>
-                  </bda:QueryTableActivity.ExecuteTimeOut>
-                  <bda:QueryTableActivity.Sql>
-                    <InArgument x:TypeArguments="x:String">
-                      <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_4">(selectSql).ToString()</mca:CSharpValue>
-                    </InArgument>
-                  </bda:QueryTableActivity.Sql>
-                </bda:QueryTableActivity>
+                <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="222,208" sap2010:WorkflowViewState.IdRef="Sequence_1">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <bda:QueryTableActivity ActivityName="查询语句" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="查询- join 查询订单相关联数据" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="QueryTableActivity_1">
+                    <bda:QueryTableActivity.DataTable>
+                      <OutArgument x:TypeArguments="sd:DataTable">
+                        <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_3">联结查询数据表</mca:CSharpReference>
+                      </OutArgument>
+                    </bda:QueryTableActivity.DataTable>
+                    <bda:QueryTableActivity.ExecuteTimeOut>
+                      <InArgument x:TypeArguments="x:TimeSpan">
+                        <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_2" Value="00:00:30" />
+                      </InArgument>
+                    </bda:QueryTableActivity.ExecuteTimeOut>
+                    <bda:QueryTableActivity.Sql>
+                      <InArgument x:TypeArguments="x:String">
+                        <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_4">(selectSql).ToString()</mca:CSharpValue>
+                      </InArgument>
+                    </bda:QueryTableActivity.Sql>
+                  </bda:QueryTableActivity>
+                  <bda:QueryTableActivity ActivityName="查询语句" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="查询语句 - 门店主产品查询语句" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="QueryTableActivity_3">
+                    <bda:QueryTableActivity.DataTable>
+                      <OutArgument x:TypeArguments="sd:DataTable">
+                        <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_5">门店主产品数据表</mca:CSharpReference>
+                      </OutArgument>
+                    </bda:QueryTableActivity.DataTable>
+                    <bda:QueryTableActivity.ExecuteTimeOut>
+                      <InArgument x:TypeArguments="x:TimeSpan">
+                        <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_6" Value="00:00:30" />
+                      </InArgument>
+                    </bda:QueryTableActivity.ExecuteTimeOut>
+                    <bda:QueryTableActivity.Sql>
+                      <InArgument x:TypeArguments="x:String">
+                        <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_8">System.Convert.ToString(门店主产品查询语句)</mca:CSharpValue>
+                      </InArgument>
+                    </bda:QueryTableActivity.Sql>
+                  </bda:QueryTableActivity>
+                </Sequence>
               </ActivityAction>
             </bda:DatabaseConnectActivity.Body>
             <bda:DatabaseConnectActivity.ConnectionString>
@@ -150,7 +178,7 @@
           <av:Point x:Key="ShapeLocation">246,96.5</av:Point>
           <av:Size x:Key="ShapeSize">128,87</av:Size>
           <av:PointCollection x:Key="TrueConnector">246,140 230,140 230,283.5</av:PointCollection>
-          <av:PointCollection x:Key="FalseConnector">374,140 428.5,140</av:PointCollection>
+          <av:PointCollection x:Key="FalseConnector">374,140 404,140 404,141.5 428.5,141.5</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <FlowDecision.True>
@@ -161,10 +189,10 @@
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <av:Point x:Key="ShapeLocation">428.5,112.5</av:Point>
-              <av:Size x:Key="ShapeSize">323,55</av:Size>
+              <av:Size x:Key="ShapeSize">323,58</av:Size>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - 联结查询数据表 = 空表" sap:VirtualizedContainerService.HintSize="323,55" sap2010:WorkflowViewState.IdRef="Assign_3" IsIgnore="False">
+          <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - 联结查询数据表 = 空表" sap:VirtualizedContainerService.HintSize="323,58" sap2010:WorkflowViewState.IdRef="Assign_3" IsIgnore="False">
             <bfa:Assign.To>
               <OutArgument x:TypeArguments="sd:DataTable">
                 <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_4">联结查询数据表</mca:CSharpReference>

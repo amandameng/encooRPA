@@ -71,20 +71,7 @@
           <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_239">雀巢沃尔玛订单</Literal>
         </Variable.Default>
       </Variable>
-      <Variable x:TypeArguments="x:String" Name="userPassword" />
-      <Variable x:TypeArguments="x:String" Name="loginUrl" />
-      <Variable x:TypeArguments="x:String" Name="userName" />
-      <Variable x:TypeArguments="x:Boolean" Name="登录成功" />
       <Variable x:TypeArguments="x:String" Name="flowAlertEmail" />
-      <Variable x:TypeArguments="x:String" Name="当前Listing文件" />
-      <Variable x:TypeArguments="x:String" Name="配置文件夹" />
-      <Variable x:TypeArguments="x:String" Name="开始日期" />
-      <Variable x:TypeArguments="x:String" Name="eX2OTemplate" />
-      <Variable x:TypeArguments="x:String" Name="cleanAndExceptionTemplate" />
-      <Variable x:TypeArguments="sd:DataTable" Name="curShipToDT" />
-      <Variable x:TypeArguments="sd:DataTable" Name="增量订单数据表" />
-      <Variable x:TypeArguments="x:String" Name="eto_file_path" />
-      <Variable x:TypeArguments="x:String" Name="clean_order_file_path" />
       <Variable x:TypeArguments="x:String" Name="curCustomerName">
         <Variable.Default>
           <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_101">山姆</Literal>
@@ -95,13 +82,6 @@
           <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_31">沃尔玛</Literal>
         </Variable.Default>
       </Variable>
-      <Variable x:TypeArguments="sd:DataTable" Name="etoConfigDT" />
-      <Variable x:TypeArguments="x:String" Name="pdfFolder" />
-      <Variable x:TypeArguments="x:String" Name="分仓明细表模板文件" />
-      <Variable x:TypeArguments="x:String" Name="分仓明细表文件" />
-      <Variable x:TypeArguments="sd:DataTable" Name="samQtyMappingDT" />
-      <Variable x:TypeArguments="sd:DataTable" Name="实际增量订单数据表" />
-      <Variable x:TypeArguments="sd:DataTable" Name="抓取失败订单数据表" />
       <Variable x:TypeArguments="x:String" Name="walmart_exported_orders_name">
         <Variable.Default>
           <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_77">walmart_exported_orders</Literal>
@@ -112,27 +92,11 @@
           <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_71">walmart_exported_orders_tmp</Literal>
         </Variable.Default>
       </Variable>
-      <Variable x:TypeArguments="x:String" Name="etoMailReceiver" />
-      <Variable x:TypeArguments="x:String" Name="cleanExceptionOrderMailReceiver" />
-      <Variable x:TypeArguments="x:String" Name="分仓明细MailReceiver" />
-      <Variable x:TypeArguments="scg:List(x:String)" Name="订单pdf附件">
-        <Variable.Default>
-          <mca:CSharpValue x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_160">new List&lt;string&gt;{}</mca:CSharpValue>
-        </Variable.Default>
-      </Variable>
-      <Variable x:TypeArguments="sd:DataTable" Name="bulkWalferConfigDT" />
-      <Variable x:TypeArguments="sd:DataTable" sap2010:Annotation.AnnotationText="查询主产品中客户产品码1：n雀巢产品码" Name="oneToNNestleProductsDT" />
-      <Variable x:TypeArguments="sd:DataTable" Name="山姆主产品数据" />
       <Variable x:TypeArguments="x:String" Name="山姆水客户名">
         <Variable.Default>
           <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_114">山姆-IB Water</Literal>
         </Variable.Default>
       </Variable>
-      <Variable x:TypeArguments="sd:DataTable" Name="山姆水主产品数据" />
-      <Variable x:TypeArguments="x:String" Name="当前结果文件夹" />
-      <Variable x:TypeArguments="sd:DataTable" Name="山姆shiptToDT" />
-      <Variable x:TypeArguments="sd:DataTable" Name="samEtoConfigDT" />
-      <Variable x:TypeArguments="sd:DataTable" Name="samWaterDeliverySettingDT" />
       <Variable x:TypeArguments="x:String" Name="首页url">
         <Variable.Default>
           <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_237">*retaillink2.wal-mart.com*</Literal>
@@ -140,14 +104,12 @@
       </Variable>
       <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="订单pdf文件夹，需要清理，保留一个月" Name="订单导出文件夹" />
       <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="订单报表文件夹，需要清理，保留一个月" Name="结果文件夹" />
-      <Variable x:TypeArguments="scg:List(x:String)" Name="下载失败订单" />
       <Variable x:TypeArguments="scg:List(x:String)" Name="错误附件">
         <Variable.Default>
           <mca:CSharpValue x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_526">new List&lt;string&gt;{}</mca:CSharpValue>
         </Variable.Default>
       </Variable>
       <Variable x:TypeArguments="x:String" Name="全局异常信息" />
-      <Variable x:TypeArguments="sd:DataTable" Name="增量订单详情数据表" />
     </Flowchart.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -170,7 +132,7 @@
           <av:PointCollection x:Key="ConnectorLocation">310,177.38 310,246.5</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <bfa:ForEach x:TypeArguments="x:Int32" CurrentIndex="{x:Null}" ActivityName="循环操作（For Each)" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="循环操作 流程失败重试2次" sap:VirtualizedContainerService.HintSize="914,2634" sap2010:WorkflowViewState.IdRef="ForEach`1_7" IsIgnore="False">
+      <bfa:ForEach x:TypeArguments="x:Int32" CurrentIndex="{x:Null}" ActivityName="循环操作（For Each)" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="循环操作 流程失败重试2次" sap:VirtualizedContainerService.HintSize="914,2732" sap2010:WorkflowViewState.IdRef="ForEach`1_7" IsIgnore="False">
         <bfa:ForEach.Values>
           <InArgument x:TypeArguments="s:Int32[]">
             <mca:CSharpValue x:TypeArguments="s:Int32[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_666">new int[]{1, 2, 3}</mca:CSharpValue>
@@ -180,7 +142,47 @@
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Int32" Name="item" />
           </ActivityAction.Argument>
-          <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 - 主流程捕获" sap:VirtualizedContainerService.HintSize="898,2457" sap2010:WorkflowViewState.IdRef="TryCatch_7" IsIgnore="False">
+          <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 - 主流程捕获" sap:VirtualizedContainerService.HintSize="898,2555" sap2010:WorkflowViewState.IdRef="TryCatch_7" IsIgnore="False">
+            <bfa:TryCatch.Variables>
+              <Variable x:TypeArguments="x:String" Name="userPassword" />
+              <Variable x:TypeArguments="x:String" Name="loginUrl" />
+              <Variable x:TypeArguments="x:String" Name="userName" />
+              <Variable x:TypeArguments="x:Boolean" Name="登录成功" />
+              <Variable x:TypeArguments="x:String" Name="当前Listing文件" />
+              <Variable x:TypeArguments="x:String" Name="配置文件夹" />
+              <Variable x:TypeArguments="x:String" Name="开始日期" />
+              <Variable x:TypeArguments="x:String" Name="eX2OTemplate" />
+              <Variable x:TypeArguments="x:String" Name="cleanAndExceptionTemplate" />
+              <Variable x:TypeArguments="sd:DataTable" Name="curShipToDT" />
+              <Variable x:TypeArguments="sd:DataTable" Name="增量订单数据表" />
+              <Variable x:TypeArguments="x:String" Name="eto_file_path" />
+              <Variable x:TypeArguments="x:String" Name="clean_order_file_path" />
+              <Variable x:TypeArguments="sd:DataTable" Name="etoConfigDT" />
+              <Variable x:TypeArguments="x:String" Name="pdfFolder" />
+              <Variable x:TypeArguments="x:String" Name="分仓明细表模板文件" />
+              <Variable x:TypeArguments="x:String" Name="分仓明细表文件" />
+              <Variable x:TypeArguments="sd:DataTable" Name="samQtyMappingDT" />
+              <Variable x:TypeArguments="sd:DataTable" Name="实际增量订单数据表" />
+              <Variable x:TypeArguments="sd:DataTable" Name="抓取失败订单数据表" />
+              <Variable x:TypeArguments="x:String" Name="etoMailReceiver" />
+              <Variable x:TypeArguments="x:String" Name="cleanExceptionOrderMailReceiver" />
+              <Variable x:TypeArguments="x:String" Name="分仓明细MailReceiver" />
+              <Variable x:TypeArguments="scg:List(x:String)" Name="订单pdf附件">
+                <Variable.Default>
+                  <mca:CSharpValue x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_160">new List&lt;string&gt;{}</mca:CSharpValue>
+                </Variable.Default>
+              </Variable>
+              <Variable x:TypeArguments="sd:DataTable" Name="bulkWalferConfigDT" />
+              <Variable x:TypeArguments="sd:DataTable" sap2010:Annotation.AnnotationText="查询主产品中客户产品码1：n雀巢产品码" Name="oneToNNestleProductsDT" />
+              <Variable x:TypeArguments="sd:DataTable" Name="山姆主产品数据" />
+              <Variable x:TypeArguments="sd:DataTable" Name="山姆水主产品数据" />
+              <Variable x:TypeArguments="x:String" Name="当前结果文件夹" />
+              <Variable x:TypeArguments="sd:DataTable" Name="山姆shiptToDT" />
+              <Variable x:TypeArguments="sd:DataTable" Name="samEtoConfigDT" />
+              <Variable x:TypeArguments="sd:DataTable" Name="samWaterDeliverySettingDT" />
+              <Variable x:TypeArguments="scg:List(x:String)" Name="下载失败订单" />
+              <Variable x:TypeArguments="sd:DataTable" Name="增量订单详情数据表" />
+            </bfa:TryCatch.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -188,7 +190,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <bfa:TryCatch.Try>
-              <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="880,2220" sap2010:WorkflowViewState.IdRef="Sequence_57">
+              <Sequence DisplayName="序列 - 主流程处理" sap:VirtualizedContainerService.HintSize="880,2318" sap2010:WorkflowViewState.IdRef="Sequence_57">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -203,6 +205,18 @@
                   <bfa:Assign.Value>
                     <InArgument x:TypeArguments="x:Boolean">
                       <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_634">false</mca:CSharpValue>
+                    </InArgument>
+                  </bfa:Assign.Value>
+                </bfa:Assign>
+                <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - 全局异常信息" sap:VirtualizedContainerService.HintSize="858,58" sap2010:WorkflowViewState.IdRef="Assign_37" IsIgnore="False">
+                  <bfa:Assign.To>
+                    <OutArgument x:TypeArguments="x:String">
+                      <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_170">全局异常信息</mca:CSharpReference>
+                    </OutArgument>
+                  </bfa:Assign.To>
+                  <bfa:Assign.Value>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_669">string.Empty</mca:CSharpValue>
                     </InArgument>
                   </bfa:Assign.Value>
                 </bfa:Assign>

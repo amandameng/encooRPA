@@ -496,19 +496,30 @@ public void specialProductCheck(DataRow dr, List<string> 问题订单List,  ref 
     byPOItemRow["Nestle BU"] = dr["Nestle_BU"];
     decimal quantity_ordered = toDecimalConvert(dr["quantity_ordered"]);
     byPOItemRow["雀巢数量"] = dr["quantity_ordered"];
-    decimal nestleNPS = toDecimalConvert(dr["Nestle_NPS"].ToString());
     //sapNetValue += sapNetValueFormular(nestleNPS*quantity_ordered); // 注释掉，不这样算价差
     // 有remark说明已经map到主数据
+    if(String.IsNullOrEmpty(byPOItemRow["雀巢产品编码"].ToString())){
+        byPOItemRow["Item Type"] = "Item";
+        itemExceptionList.Add(产品主数据匹配描述);
+        return;
+    }
     if(remark.Contains("特殊产品")){
+        decimal nestleNPS = toDecimalConvert(dr["Nestle_NPS"].ToString());
+        decimal cost = Math.Round(toDecimalConvert(dr["cost"]), 2); // 沃尔玛价格
+
         string pack = dr["pack"].ToString(); // 客户网站是 12 / 12
         if(pack.Contains("/")){
            string[] packArr = pack.Split(new string[]{"/"}, StringSplitOptions.RemoveEmptyEntries);
            pack = packArr[0];
         }
+        // RTD 需要展示全部信息
+        byPOItemRow["沃尔玛价格"] = cost;
+        byPOItemRow["雀巢价格"] = nestleNPS;
+        byPOItemRow["原单箱规"] = pack;
+
         bool 检查价差 = remarkOption.Contains(checkPriceOption);
         if(检查价差){
             bool skipCheckPrice = false;
-            decimal cost = Math.Round(toDecimalConvert(dr["cost"]), 2); // 沃尔玛价格
             DataRow[] skipPriceCheckDRs = 沃尔玛跳过产品检查数据表.Select(string.Format("customer_product_code='{0}' and customer_name='{1}'", 沃尔玛产品编码, curCustomerName));
            // Console.WriteLine("沃尔玛产品编码：{0}, 沃尔玛价格:{1}", 沃尔玛产品编码, dr["cost"].ToString());
             if(skipPriceCheckDRs.Length > 0){
@@ -523,9 +534,6 @@ public void specialProductCheck(DataRow dr, List<string> 问题订单List,  ref 
             
             if(!skipCheckPrice && cost != nestleNPS){
                // Console.WriteLine("--价差订单---");
-                byPOItemRow["沃尔玛价格"] = cost;
-                byPOItemRow["雀巢价格"] = nestleNPS;
-                byPOItemRow["原单箱规"] = pack;
                 byPOItemRow["Item Type"] = "Item";
                 itemExceptionList.Add("价差订单");
             }
@@ -541,7 +549,7 @@ public void specialProductCheck(DataRow dr, List<string> 问题订单List,  ref 
 
         bool 客户店内码的原单规格 = remarkOption.Contains(checkProductSizeOption);
         if(客户店内码的原单规格){
-            byPOItemRow["原单箱规"] = pack;
+            // byPOItemRow["原单箱规"] = pack;
             byPOItemRow["Item Type"] = "Item";
             itemExceptionList.Add("特殊产品需检查订单," + remarkOption);
             remarkOption = remarkOption.Replace(checkProductSizeOption, "");
@@ -551,11 +559,6 @@ public void specialProductCheck(DataRow dr, List<string> 问题订单List,  ref 
         if(!string.IsNullOrEmpty(remarkOption)){ // remarkOption 不为空，则也添加到异常描述里面
             byPOItemRow["Item Type"] = "Item";
             itemExceptionList.Add("特殊产品需检查订单," + remarkOption);
-        }
-    }else{
-        if(String.IsNullOrEmpty(byPOItemRow["雀巢产品编码"].ToString())){
-            byPOItemRow["Item Type"] = "Item";
-            itemExceptionList.Add(产品主数据匹配描述);
         }
     }
 }
