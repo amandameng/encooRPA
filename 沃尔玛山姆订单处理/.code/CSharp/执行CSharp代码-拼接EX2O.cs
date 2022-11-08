@@ -1,7 +1,8 @@
 //代码执行入口，请勿修改或删除
 public string tmpSoldToCode = "4419335";
 public string tmpShipToCode = "11255";
-
+public string nestleSpecialCoffeCode = "981047661";
+public int nestleSpecialCoffeCodeMultiple = 5;
 public void Run()
 {
     //在这里编写您的代码
@@ -173,6 +174,11 @@ public void Run()
 
 public decimal fetchQty(object originalQty, DataRow qtyMappingRow, ref bool 是否录单){
     decimal customerOrderQty = toDecimalConvert(originalQty);
+    if(qtyMappingRow["Sam_Product_Code"].ToString() == nestleSpecialCoffeCode){
+        if(customerOrderQty/nestleSpecialCoffeCodeMultiple != Math.Floor(customerOrderQty/nestleSpecialCoffeCodeMultiple)){
+            customerOrderQty = Math.Floor(customerOrderQty/nestleSpecialCoffeCodeMultiple) * nestleSpecialCoffeCodeMultiple;
+        }
+    }
     decimal nestle_qty_value = toDecimalConvert(qtyMappingRow["Nestle_Qty"]);
     string Not_Integer_Still_Into_EX2O = qtyMappingRow["Not_Integer_Still_Into_EX2O"].ToString();
     decimal nestleQty_m = customerOrderQty * nestle_qty_value;
@@ -197,10 +203,16 @@ public decimal fetchQty(object originalQty, DataRow qtyMappingRow, ref bool 是�
 }
 
 
-public decimal fetchQty(object originalQty, string customerProdCode, string nestleProdCode, DataTable samQtyMappingDT){
+public decimal fetchQty(object originalQty, string customerProdCode, string nestleProdCode, DataTable samQtyMappingDT, ref bool 是否录单){
     DataRow[] qtyMappingRows = samQtyMappingDT.Select(string.Format("Sam_Product_Code='{0}' and Nestle_Product_Code='{1}'", customerProdCode, nestleProdCode));
     decimal customerOrderQty = toDecimalConvert(originalQty);
-
+    
+    // 总数改成5的倍数再算
+    if(customerProdCode == nestleSpecialCoffeCode){
+        if(customerOrderQty/nestleSpecialCoffeCodeMultiple != Math.Floor(customerOrderQty/nestleSpecialCoffeCodeMultiple)){
+            customerOrderQty = Math.Floor(customerOrderQty/nestleSpecialCoffeCodeMultiple) * nestleSpecialCoffeCodeMultiple;
+        }
+    }
     if(qtyMappingRows.Length > 0){
         DataRow qtyMappingRow = qtyMappingRows[0];  
         
@@ -214,14 +226,17 @@ public decimal fetchQty(object originalQty, string customerProdCode, string nest
                 int 层数 = toIntConvert(Math.Floor(customerOrderQty/山姆整层箱数));             // TODO: Math.Floor 还是 Math.Round，进位还是去除小数
                 decimal quantity_ordered = 层数 * 山姆整层箱数;
                 nestleQtyInt = toIntConvert(quantity_ordered * toDecimalConvert(qtyMappingRow["Nestle_Qty"]));
+                是否录单 = true;
                 return nestleQtyInt;
             }else{
                 return nestleQty_m;
             }
         }else{
+            是否录单 = true;
             return nestleQty_m;
         }
     }else{
+        是否录单 = true;
         return customerOrderQty;
     }
 }
@@ -265,7 +280,7 @@ public void walmartBulkWalfer(string productCode, int quantity_ordered, string �
 }
 
 /*
-山姆1：N产品，比例是 1：1：1, 假设山姆的产品Qty为180，那么需要衍生出3条产品行数据，每一行的Qty都是180.
+山姆1：N产品，假设比例是 1：1：1, 如果山姆的产品Qty为180，那么需要衍生出3条产品行数据，每一行的Qty都是180.
 */
 public void samOneToManyProcess(string productCode, int quantity_ordered, string 雀巢产品编码, ref int bulkWalferItemCount, DataRow dr){
     DataRow bulkWalferProduct = bulkWalferConfigDT.Select("customer_product_code='" + productCode + "'")[0];
@@ -277,8 +292,13 @@ public void samOneToManyProcess(string productCode, int quantity_ordered, string
     for(int i=0; i< nestleCodeArr.Length; i++){
         string nestleCode = nestleCodeArr[i];
        // int curQuantity_ordered = qtyArr[i];
-       decimal itemQuantity = fetchQty(quantity_ordered, productCode, nestleCode, samQtyMappingDT);
-         int curQuantity_ordered = toIntConvert(itemQuantity);
+       bool 是否录单 = false;
+       decimal itemQuantity = fetchQty(quantity_ordered, productCode, nestleCode, samQtyMappingDT, ref 是否录单);
+        if(!是否录单){
+            Console.WriteLine("-----------------箱数不为整数不录单----------");
+            continue; // 继续下一条，这一条不进ETO
+        }
+        int curQuantity_ordered = toIntConvert(itemQuantity);
         DataRow etoRow = etoResultDT.NewRow();
         initEtoRow(ref etoRow, dr, curQuantity_ordered, nestleCode, bulkWalferItemCount, 0);
         bulkWalferItemCount = bulkWalferItemCount + 1;

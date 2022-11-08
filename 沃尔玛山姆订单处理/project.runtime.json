@@ -15,25 +15,25 @@
     {
       "Id": "BotTime.Flow.Activities",
       "AutoUpgrade": false,
-      "UpgradeVersionPattern": "1.*.*.*",
+      "UpgradeVersionPattern": "2.*.*.*",
       "Type": "ActivityOrCode"
     },
     {
       "Id": "Encoo.Console.Activity",
       "AutoUpgrade": false,
-      "UpgradeVersionPattern": "1.*.*.*",
+      "UpgradeVersionPattern": "2.*.*.*",
       "Type": "ActivityOrCode"
     },
     {
       "Id": "BotTime.Office.Activity",
       "AutoUpgrade": false,
-      "UpgradeVersionPattern": "1.*.*.*",
+      "UpgradeVersionPattern": "2.*.*.*",
       "Type": "ActivityOrCode"
     },
     {
       "Id": "BotTime.DataBase.Activity",
       "AutoUpgrade": false,
-      "UpgradeVersionPattern": "1.*.*.*",
+      "UpgradeVersionPattern": "2.*.*.*",
       "Type": "ActivityOrCode"
     },
     {
@@ -45,44 +45,56 @@
     {
       "Id": "BotTime.ActivityLibrary",
       "AutoUpgrade": false,
-      "UpgradeVersionPattern": "1.*.*.*",
+      "UpgradeVersionPattern": "2.*.*.*",
       "Type": "ActivityOrCode"
     },
     {
       "Id": "AutomationActivity",
       "AutoUpgrade": false,
-      "UpgradeVersionPattern": "1.*.*.*",
+      "UpgradeVersionPattern": "2.*.*.*",
       "Type": "ActivityOrCode"
     },
     {
       "Id": "Encoo.CodeTool.Activity",
       "AutoUpgrade": false,
-      "UpgradeVersionPattern": "1.*.*.*",
+      "UpgradeVersionPattern": "2.*.*.*",
       "Type": "ActivityOrCode"
     },
     {
       "Id": "BotTime.DataTableActivity",
       "AutoUpgrade": false,
-      "UpgradeVersionPattern": "1.*.*.*",
+      "UpgradeVersionPattern": "2.*.*.*",
       "Type": "ActivityOrCode"
     },
     {
       "Id": "BotTime.Mail.Activity",
       "AutoUpgrade": false,
-      "UpgradeVersionPattern": "1.*.*.*",
+      "UpgradeVersionPattern": "2.*.*.*",
       "Type": "ActivityOrCode"
     }
   ],
   "ProjectDependencyItems": [
     {
       "Id": "BotTime.Flow.Activities",
-      "Version": "1.5.2201.2",
+      "Version": "2.0.2211.1",
       "Title": "BotTime.Flow.Activities",
+      "InnerDependencies": [
+        {
+          "Id": "System.Collections",
+          "MaxVersion": null,
+          "MinVersion": "4.3.0"
+        }
+      ]
+    },
+    {
+      "Id": "System.Collections",
+      "Version": "4.3.0",
+      "Title": "System.Collections",
       "InnerDependencies": []
     },
     {
       "Id": "Encoo.Console.Activity",
-      "Version": "1.8.2201.3",
+      "Version": "2.0.2211.1",
       "Title": "Encoo.Console.Activity",
       "InnerDependencies": [
         {
@@ -133,7 +145,7 @@
     },
     {
       "Id": "BotTime.Office.Activity",
-      "Version": "1.9.2202.1",
+      "Version": "2.0.2211.1",
       "Title": "BotTime.Office.Activity",
       "InnerDependencies": [
         {
@@ -147,9 +159,24 @@
           "MinVersion": "20.1.1"
         },
         {
+          "Id": "ClosedXML",
+          "MaxVersion": null,
+          "MinVersion": "0.95.4"
+        },
+        {
+          "Id": "DocumentFormat.OpenXml",
+          "MaxVersion": null,
+          "MinVersion": "2.9.1"
+        },
+        {
           "Id": "Microsoft.Office.Interop.Excel",
           "MaxVersion": null,
           "MinVersion": "15.0.4795.1000"
+        },
+        {
+          "Id": "NPOI",
+          "MaxVersion": null,
+          "MinVersion": "2.4.1"
         },
         {
           "Id": "Panuon.UI.Silver",
@@ -157,9 +184,9 @@
           "MinVersion": "1.0.8.7"
         },
         {
-          "Id": "System.IO.Packaging",
+          "Id": "SharpZipLib",
           "MaxVersion": null,
-          "MinVersion": "4.0.0"
+          "MinVersion": "1.0.0"
         }
       ]
     },
@@ -194,16 +221,38 @@
       ]
     },
     {
-      "Id": "Microsoft.Office.Interop.Excel",
-      "Version": "15.0.4795.1000",
-      "Title": "Microsoft.Office.Interop.Excel",
-      "InnerDependencies": []
+      "Id": "ClosedXML",
+      "Version": "0.95.4",
+      "Title": "ClosedXML",
+      "InnerDependencies": [
+        {
+          "Id": "DocumentFormat.OpenXml",
+          "MaxVersion": null,
+          "MinVersion": "2.7.2"
+        },
+        {
+          "Id": "ExcelNumberFormat",
+          "MaxVersion": null,
+          "MinVersion": "1.0.10"
+        },
+        {
+          "Id": "Microsoft.CSharp",
+          "MaxVersion": null,
+          "MinVersion": "4.7.0"
+        }
+      ]
     },
     {
-      "Id": "Panuon.UI.Silver",
-      "Version": "1.0.8.7",
-      "Title": "Panuon.UI.Silver",
-      "InnerDependencies": []
+      "Id": "DocumentFormat.OpenXml",
+      "Version": "2.9.1",
+      "Title": "DocumentFormat.OpenXml",
+      "InnerDependencies": [
+        {
+          "Id": "System.IO.Packaging",
+          "MaxVersion": null,
+          "MinVersion": "4.5.0"
+        }
+      ]
     },
     {
       "Id": "System.IO.Packaging",
@@ -224,8 +273,50 @@
       "InnerDependencies": []
     },
     {
+      "Id": "ExcelNumberFormat",
+      "Version": "1.0.10",
+      "Title": "ExcelNumberFormat",
+      "InnerDependencies": []
+    },
+    {
+      "Id": "Microsoft.CSharp",
+      "Version": "4.7.0",
+      "Title": "Microsoft.CSharp",
+      "InnerDependencies": []
+    },
+    {
+      "Id": "Microsoft.Office.Interop.Excel",
+      "Version": "15.0.4795.1000",
+      "Title": "Microsoft.Office.Interop.Excel",
+      "InnerDependencies": []
+    },
+    {
+      "Id": "NPOI",
+      "Version": "2.4.1",
+      "Title": "NPOI",
+      "InnerDependencies": [
+        {
+          "Id": "SharpZipLib",
+          "MaxVersion": null,
+          "MinVersion": "1.0.0"
+        }
+      ]
+    },
+    {
+      "Id": "SharpZipLib",
+      "Version": "1.0.0",
+      "Title": "SharpZipLib",
+      "InnerDependencies": []
+    },
+    {
+      "Id": "Panuon.UI.Silver",
+      "Version": "1.0.8.7",
+      "Title": "Panuon.UI.Silver",
+      "InnerDependencies": []
+    },
+    {
       "Id": "BotTime.DataBase.Activity",
-      "Version": "1.8.2201.4",
+      "Version": "2.0.2211.1",
       "Title": "BotTime.DataBase.Activity",
       "InnerDependencies": []
     },
@@ -237,7 +328,7 @@
     },
     {
       "Id": "BotTime.ActivityLibrary",
-      "Version": "1.7.2201.3",
+      "Version": "2.0.2211.1",
       "Title": "BotTime.ActivityLibrary",
       "InnerDependencies": [
         {
@@ -254,6 +345,16 @@
           "Id": "DotNetZip",
           "MaxVersion": null,
           "MinVersion": "1.14.0"
+        },
+        {
+          "Id": "FreeRDP-Sharp",
+          "MaxVersion": null,
+          "MinVersion": "0.1.0"
+        },
+        {
+          "Id": "FreeRDP-Sharp.Native",
+          "MaxVersion": null,
+          "MinVersion": "1.1.1"
         },
         {
           "Id": "HtmlAgilityPack",
@@ -356,6 +457,24 @@
       "Id": "DotNetZip",
       "Version": "1.14.0",
       "Title": "DotNetZip",
+      "InnerDependencies": []
+    },
+    {
+      "Id": "FreeRDP-Sharp",
+      "Version": "0.1.0",
+      "Title": "FreeRDP-Sharp",
+      "InnerDependencies": [
+        {
+          "Id": "FreeRDP-Sharp.Native",
+          "MaxVersion": "1.2.0",
+          "MinVersion": "1.1.0"
+        }
+      ]
+    },
+    {
+      "Id": "FreeRDP-Sharp.Native",
+      "Version": "1.1.1",
+      "Title": "FreeRDP-Sharp Native stable-1.1",
       "InnerDependencies": []
     },
     {
@@ -632,20 +751,14 @@
       "InnerDependencies": []
     },
     {
-      "Id": "SharpZipLib",
-      "Version": "1.0.0",
-      "Title": "SharpZipLib",
-      "InnerDependencies": []
-    },
-    {
       "Id": "AutomationActivity",
-      "Version": "1.7.2201.6",
+      "Version": "2.0.2211.1",
       "Title": "BotTime.Automation.Activity",
       "InnerDependencies": []
     },
     {
       "Id": "Encoo.CodeTool.Activity",
-      "Version": "1.5.2201.4",
+      "Version": "2.0.2211.1",
       "Title": "Encoo.CodeTool.Activity",
       "InnerDependencies": [
         {
@@ -661,7 +774,7 @@
         {
           "Id": "Flurl.Http",
           "MaxVersion": null,
-          "MinVersion": "3.0.0"
+          "MinVersion": "3.2.4"
         },
         {
           "Id": "Microsoft.CodeAnalysis.CSharp.Scripting",
@@ -704,13 +817,13 @@
     },
     {
       "Id": "Flurl.Http",
-      "Version": "3.0.0",
+      "Version": "3.2.4",
       "Title": "Flurl.Http",
       "InnerDependencies": [
         {
           "Id": "Flurl",
           "MaxVersion": null,
-          "MinVersion": "3.0.0"
+          "MinVersion": "3.0.6"
         },
         {
           "Id": "Newtonsoft.Json",
@@ -721,7 +834,7 @@
     },
     {
       "Id": "Flurl",
-      "Version": "3.0.0",
+      "Version": "3.0.6",
       "Title": "Flurl",
       "InnerDependencies": [
         {
@@ -771,12 +884,6 @@
       ]
     },
     {
-      "Id": "Microsoft.CSharp",
-      "Version": "4.5.0",
-      "Title": "Microsoft.CSharp",
-      "InnerDependencies": []
-    },
-    {
       "Id": "Microsoft.PowerShell.5.ReferenceAssemblies",
       "Version": "1.1.0",
       "Title": "Microsoft PowerShell Version 5 Reference Assemblies",
@@ -784,7 +891,7 @@
     },
     {
       "Id": "BotTime.DataTableActivity",
-      "Version": "1.6.2201.3",
+      "Version": "2.0.2211.1",
       "Title": "BotTime.DataTable.Activity",
       "InnerDependencies": [
         {
@@ -833,7 +940,7 @@
     },
     {
       "Id": "BotTime.Mail.Activity",
-      "Version": "1.7.2201.2",
+      "Version": "2.0.2211.1",
       "Title": "BotTime.Mail.Activity",
       "InnerDependencies": [
         {
@@ -897,7 +1004,7 @@
     },
     {
       "Id": "Encoo.Automation.MobileActivity",
-      "Version": "1.5.2201.5",
+      "Version": "2.0.2211.1",
       "Title": "Encoo.Automation.MobileActivity Package",
       "InnerDependencies": []
     }

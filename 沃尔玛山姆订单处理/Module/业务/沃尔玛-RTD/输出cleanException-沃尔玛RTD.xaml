@@ -62,8 +62,8 @@
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>System.Net.WebSockets.Client.Managed</AssemblyReference>
       <AssemblyReference>ParallelExtensionsExtras</AssemblyReference>
-      <AssemblyReference>System.Data.Entity</AssemblyReference>
-      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      
+      
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Flowchart DisplayName="Root" sap:VirtualizedContainerService.HintSize="614,692" sap2010:WorkflowViewState.IdRef="Flowchart_1">

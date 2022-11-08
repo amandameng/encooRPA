@@ -3,7 +3,9 @@ const string checkPriceOption = "检查价差";
 const string checkCustomerCodeOption = "备注客户店内码";
 const string checkProductSizeOption = "需检查以下客户店内码的原单规格与雀巢的产品规格是否一致";
 const string orderChangeQtyDescription = "订单修改产品数量";
-public string 产品主数据匹配描述 = "无法匹配雀巢主数据";
+const string 产品主数据匹配描述 = "无法匹配雀巢主数据";
+const string SYDC异常 = "SYDC需确认是否出单";
+const string SYDCShipToCode = "4419336";
 
 const string issueSeparator = ";";
 public void Run()
@@ -727,6 +729,10 @@ public void handleExceptionRow(DataRow dr, ref DataRow cleanExceptionDRow, ref L
 
         if(string.IsNullOrEmpty(dr["Ship_to_Code"].ToString())){
             问题订单List.Add("Ship to 为空");
+        }else{
+            if(dr["Ship_to_Code"].ToString() == SYDCShipToCode){ // 本周起暂停配送沈阳DC的订单
+                问题订单List.Add("SYDC需确认是否出单");
+            }
         }
         string requestDeliveryDate = dr["Request_Delivery_Date"].ToString(); // ship to表里面获取的。周一/周四, 【7400 KMDC 下周一/下周三】特殊处理
         

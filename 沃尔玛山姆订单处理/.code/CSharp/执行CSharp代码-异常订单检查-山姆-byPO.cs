@@ -6,6 +6,8 @@ const string checkProductSizeOption = "客户店内码的原单规格";
 const string orderChangeQtyDescription = "订单修改产品数量";
 const string itemQtyNotIntegerDesc = "订单数量转换后不为整数";
 const string issueSeparator = ";";
+public string nestleSpecialCoffeCode = "981047661";
+public int nestleSpecialCoffeCodeMultiple = 5;
 
 public string 产品主数据匹配描述 = "无法匹配雀巢主数据";
 
@@ -83,7 +85,7 @@ public void Run()
     
         
          /* 待拆分产品判断 
-         980064918 （6个口味平分） 星巴克胶囊咖啡6盒装， 拆分比例 6200071：6200571：6200671 = 1：1：1，这个不是普通意义上的平分，因为雀巢跟山姆的箱规不一致，比如 山姆箱规是60，雀巢的是20，所以这个是1份分成雀巢的3份, 后跳转为0.7
+         980064918 （6个口味平分） 星巴克胶囊咖啡6盒装， 拆分比例 6200071：6200571：6200671 = 1：1：1，这个不是普通意义上的平分，因为雀巢跟山姆的箱规不一致，比如 山姆箱规是60，雀巢的是20，所以这个是1份分成雀巢的3份, 后调整为0.7
         */
         List<string> bulk_walfer_codes = new List<string>{};
         foreach(DataRow dr in bulkWalferConfigDT.Rows){
@@ -447,7 +449,7 @@ public void specialProductCheck(DataRow dr, ref List<string> refItemExceptionLis
         if(qtyMappingRows.Length > 0){
             qtyMappingRow = qtyMappingRows[0];
         
-             final_quantity = fetchQty(dr["quantity_ordered"], qtyMappingRow, ref itemExceptionList, true);
+            final_quantity = fetchQty(dr["quantity_ordered"], qtyMappingRow, ref itemExceptionList, true);
             byPOItemRow["雀巢数量"] = toIntConvert(Math.Floor(final_quantity));
             
             Decimal cost = toDecimalConvert(dr["cost"]);
@@ -513,7 +515,12 @@ public void specialProductCheck(DataRow dr, ref List<string> refItemExceptionLis
 
 public decimal fetchQty(object originalQty, DataRow qtyMappingRow, ref List<string> itemExceptionList, bool intoException){
     decimal customerOrderQty = toDecimalConvert(originalQty);
-    
+    if(qtyMappingRow["Sam_Product_Code"].ToString() == nestleSpecialCoffeCode){
+        if(customerOrderQty/nestleSpecialCoffeCodeMultiple != Math.Floor(customerOrderQty/nestleSpecialCoffeCodeMultiple)){
+            customerOrderQty = Math.Floor(customerOrderQty/nestleSpecialCoffeCodeMultiple) * nestleSpecialCoffeCodeMultiple;
+        }
+    }
+
     string Not_Integer_Still_Into_EX2O = qtyMappingRow["Not_Integer_Still_Into_EX2O"].ToString();
     decimal nestleQty_m = customerOrderQty * toDecimalConvert(qtyMappingRow["Nestle_Qty"]);
     int nestleQtyInt = toIntConvert(nestleQty_m);
@@ -538,7 +545,11 @@ public decimal fetchQty(object originalQty, DataRow qtyMappingRow, ref List<stri
 public decimal fetchQty(object originalQty, string customerProdCode, string nestleProdCode, DataTable samQtyMappingDT){
     DataRow[] qtyMappingRows = samQtyMappingDT.Select(string.Format("Sam_Product_Code='{0}' and Nestle_Product_Code='{1}'", customerProdCode, nestleProdCode));
     decimal customerOrderQty = toDecimalConvert(originalQty);
-
+    if(customerProdCode == nestleSpecialCoffeCode){
+        if(customerOrderQty/nestleSpecialCoffeCodeMultiple != Math.Floor(customerOrderQty/nestleSpecialCoffeCodeMultiple)){
+            customerOrderQty = Math.Floor(customerOrderQty/nestleSpecialCoffeCodeMultiple) * nestleSpecialCoffeCodeMultiple;
+        }
+    }
     if(qtyMappingRows.Length > 0){
         DataRow qtyMappingRow = qtyMappingRows[0];  
         
