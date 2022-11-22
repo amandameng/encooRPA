@@ -73,8 +73,6 @@
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>System.Net.WebSockets.Client.Managed</AssemblyReference>
       <AssemblyReference>BotTime.DataTableActivity</AssemblyReference>
-      <AssemblyReference>System.Data.Entity</AssemblyReference>
-      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Flowchart DisplayName="流程图_Root" sap:VirtualizedContainerService.HintSize="778,1049" sap2010:WorkflowViewState.IdRef="Flowchart_3">
@@ -934,7 +932,7 @@
                           <av:Size x:Key="ShapeSize">200,78</av:Size>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <Flowchart sap2010:Annotation.AnnotationText="文件夹清理" DisplayName="流程图 - 结束处理" sap:VirtualizedContainerService.HintSize="614,661" sap2010:WorkflowViewState.IdRef="Flowchart_13">
+                      <Flowchart sap2010:Annotation.AnnotationText="文件夹清理" DisplayName="流程图 - 结束处理" sap:VirtualizedContainerService.HintSize="200,78" sap2010:WorkflowViewState.IdRef="Flowchart_13">
                         <Flowchart.Variables>
                           <Variable x:TypeArguments="sd:DataTable" Name="筛选后抓取失败订单DT" />
                         </Flowchart.Variables>
@@ -1001,7 +999,7 @@
                             <x:Reference>__ReferenceID0</x:Reference>
                           </FlowStep.Next>
                         </FlowStep>
-                        <FlowStep x:Name="__ReferenceID2">
+                        <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_10">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <av:Point x:Key="ShapeLocation">210,104.38</av:Point>

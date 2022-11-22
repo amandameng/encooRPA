@@ -215,7 +215,7 @@
                         <av:PointCollection x:Key="ConnectorLocation">310,153.5 310,203.5</av:PointCollection>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Flowchart DisplayName="主流程" sap:VirtualizedContainerService.HintSize="862,1770" sap2010:WorkflowViewState.IdRef="Flowchart_10">
+                    <Flowchart DisplayName="主流程" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="Flowchart_10">
                       <Flowchart.Variables>
                         <Variable x:TypeArguments="sd:DataTable" Name="allOrdersDT" />
                         <Variable x:TypeArguments="sd:DataTable" Name="newOrdersIntoSheetDT" />
@@ -1896,14 +1896,14 @@
                                         <av:PointCollection x:Key="ConnectorLocation">630,736 630,811</av:PointCollection>
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
-                                    <bfa:TryCatch ActivityName="错误捕获（Try Catch）" sap2010:Annotation.AnnotationText="偶发打开文件报错说文件已经被打开&#xA;打开listing文件，读取数据" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 - 重试打开listing文件" sap:VirtualizedContainerService.HintSize="200,112" sap2010:WorkflowViewState.IdRef="TryCatch_9" IsIgnore="False">
+                                    <bfa:TryCatch ActivityName="错误捕获（Try Catch）" sap2010:Annotation.AnnotationText="偶发打开文件报错说文件已经被打开&#xA;打开listing文件，读取数据" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 - 重试打开listing文件" sap:VirtualizedContainerService.HintSize="473,584" sap2010:WorkflowViewState.IdRef="TryCatch_9" IsIgnore="False">
                                       <sap:WorkflowViewStateService.ViewState>
                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                                         </scg:Dictionary>
                                       </sap:WorkflowViewStateService.ViewState>
                                       <bfa:TryCatch.Try>
-                                        <bfa:Retry ActivityName="重试" sap2010:Annotation.AnnotationText="因为曾出现文件已被打开的错误，所以重试" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="重试 - 打开导出的订单文件" sap:VirtualizedContainerService.HintSize="470,1144" sap2010:WorkflowViewState.IdRef="Retry_1" IsIgnore="False">
+                                        <bfa:Retry ActivityName="重试" sap2010:Annotation.AnnotationText="因为曾出现文件已被打开的错误，所以重试" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="重试 - 打开导出的订单文件" sap:VirtualizedContainerService.HintSize="455,233" sap2010:WorkflowViewState.IdRef="Retry_1" IsIgnore="False">
                                           <bfa:Retry.RetryCount>
                                             <InArgument x:TypeArguments="x:Int32">
                                               <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_301" Value="1" />
@@ -1927,7 +1927,7 @@
                                             </InArgument>
                                           </bfa:Retry.Condition>
                                           <bfa:Retry.Body>
-                                            <boa:OfficeExcelOpenOrCreateActivity OfficeVersion="{x:Null}" Password="{x:Null}" SaveAs="{x:Null}" ActivityName="打开/新建" AutoSave="False" ContinueOnError="No" CreateNewFile="False" DelayAfter="0" DelayBefore="0" DisplayName="打开 - 导出的订单文件" EnableMacro="False" sap:VirtualizedContainerService.HintSize="450,964" sap2010:WorkflowViewState.IdRef="OfficeExcelOpenOrCreateActivity_10" MultiEngineType="Office" ReadOnly="False" Visible="False" needRestoreKey="False">
+                                            <boa:OfficeExcelOpenOrCreateActivity OfficeVersion="{x:Null}" Password="{x:Null}" SaveAs="{x:Null}" ActivityName="打开/新建" AutoSave="False" ContinueOnError="No" CreateNewFile="False" DelayAfter="0" DelayBefore="0" DisplayName="打开 - 导出的订单文件" EnableMacro="False" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="OfficeExcelOpenOrCreateActivity_10" MultiEngineType="NoOffice" ReadOnly="False" Visible="False" needRestoreKey="False">
                                               <boa:OfficeExcelOpenOrCreateActivity.Body>
                                                 <ActivityAction x:TypeArguments="x:Object">
                                                   <ActivityAction.Argument>
@@ -2025,7 +2025,7 @@
                                               </boa:OfficeExcelOpenOrCreateActivity.ExcelFile>
                                               <sap:WorkflowViewStateService.ViewState>
                                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                                                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                                 </scg:Dictionary>
                                               </sap:WorkflowViewStateService.ViewState>
@@ -2034,7 +2034,7 @@
                                         </bfa:Retry>
                                       </bfa:TryCatch.Try>
                                       <bfa:TryCatch.Catches>
-                                        <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="474,23" sap2010:WorkflowViewState.IdRef="Catch`1_4">
+                                        <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="459,23" sap2010:WorkflowViewState.IdRef="Catch`1_4">
                                           <bfa:Catch.Action>
                                             <ActivityAction x:TypeArguments="s:Exception">
                                               <ActivityAction.Argument>

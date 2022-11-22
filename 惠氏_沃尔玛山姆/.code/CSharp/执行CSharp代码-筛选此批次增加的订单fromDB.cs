@@ -33,6 +33,8 @@ public void Run()
         sheetRow["Event"] = dr["promotional_event"];
         if(dr["line_number"].ToString() == "001"){
             sheetRow["Total Order Amount"] = Math.Round(Convert.ToDouble(dr["total_order_amount_after_adjustments"]), 2);
+        }else{
+            sheetRow["Total Order Amount"] = Math.Round(Convert.ToDouble(dr["total_order_amount_after_adjustments"]), 2);
         }
         if(dr["promotional_event"].ToString().Contains("JD")){
             sheetRow["备注"] = "JD单";
