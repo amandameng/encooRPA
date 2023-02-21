@@ -1,0 +1,278 @@
+<Activity mc:Ignorable="sap sap2010 sads" x:Class="EncooWorkflow.Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:bcci="clr-namespace:BotTimeUI.Common.Control.Interface;assembly=BotTimeUI.Common" xmlns:bfa="clr-namespace:BotTime.Flow.Activities;assembly=BotTime.Flow.Activities" xmlns:ecaac="clr-namespace:Encoo.CodeTool.Activity.Activities.CSharp;assembly=Encoo.CodeTool.Activity" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Core" xmlns:scg1="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger">
+  <x:Members>
+    <x:Property Name="browser" Type="InArgument(bcci:IBotTimeWebDriver)" />
+    <x:Property Name="TableByAccount" Type="InOutArgument(sd:DataTable)" />
+    <x:Property Name="constraintSet" Type="InArgument(scg:HashSet(x:String))" />
+  </x:Members>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap:VirtualizedContainerService.HintSize>512,1550</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>EncooWorkflow.defaultWorkflowSequence</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg1:List x:TypeArguments="x:String" Capacity="10">
+      <x:String>System</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>BotTimeUI.Common.Control.Interface</x:String>
+      <x:String>Microsoft.CSharp.Activities</x:String>
+      <x:String>BotTime.Flow.Activities</x:String>
+      <x:String>Encoo.CodeTool.Activity.Activities.CSharp</x:String>
+    </scg1:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>BotTimeUI.Common</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>BotTime.Flow.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Globalization.Extensions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Net.WebSockets.Client.Managed</AssemblyReference>
+      <AssemblyReference>ParallelExtensionsExtras</AssemblyReference>
+      <AssemblyReference>Encoo.CodeTool.Activity</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="序列_Root" sap:VirtualizedContainerService.HintSize="472,1470" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg1:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg1:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <bfa:ForEach x:TypeArguments="sd:DataRow" CurrentIndex="{x:Null}" ActivityName="循环操作（For Each)" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="循环操作（For Each)" sap:VirtualizedContainerService.HintSize="450,1346" sap2010:WorkflowViewState.IdRef="ForEach`1_2" IsIgnore="False">
+      <bfa:ForEach.Values>
+        <InArgument x:TypeArguments="sd:DataRowCollection">
+          <mca:CSharpValue x:TypeArguments="sd:DataRowCollection" sap2010:WorkflowViewState.IdRef="CSharpValue`1_11">[TableByAccount.Rows]</mca:CSharpValue>
+        </InArgument>
+      </bfa:ForEach.Values>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg1:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg1:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ActivityAction x:TypeArguments="sd:DataRow">
+        <ActivityAction.Argument>
+          <DelegateInArgument x:TypeArguments="sd:DataRow" Name="AccountRow" />
+        </ActivityAction.Argument>
+        <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="371,1241" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="scg:HashSet(sd:DataTable)" Name="orderTables" />
+            <Variable x:TypeArguments="x:Boolean" Name="isError" />
+            <Variable x:TypeArguments="x:Boolean" Name="LogInResult" />
+            <Variable x:TypeArguments="scg1:List(x:String)" Name="indexList" />
+            <Variable x:TypeArguments="scg1:Dictionary(x:String, x:String)" Name="indexAmountDic">
+              <Variable.Default>
+                <mca:CSharpValue x:TypeArguments="scg1:Dictionary(x:String, x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_23">[new Dictionary&lt;string, string&gt;()]</mca:CSharpValue>
+              </Variable.Default>
+            </Variable>
+            <Variable x:TypeArguments="scg1:Dictionary(x:String, x:String)" Name="indexDmsPoDic">
+              <Variable.Default>
+                <mca:CSharpValue x:TypeArguments="scg1:Dictionary(x:String, x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_26">[new Dictionary&lt;string, string&gt;()]</mca:CSharpValue>
+              </Variable.Default>
+            </Variable>
+            <Variable x:TypeArguments="sd:DataTable" Name="inTable" />
+            <Variable x:TypeArguments="scg1:List(x:String)" Name="failedPicList" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg1:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg1:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="Assign_2" IsIgnore="False">
+            <bfa:Assign.To>
+              <OutArgument x:TypeArguments="sd:DataTable">
+                <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_18">inTable</mca:CSharpReference>
+              </OutArgument>
+            </bfa:Assign.To>
+            <bfa:Assign.Value>
+              <InArgument x:TypeArguments="sd:DataTable">
+                <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_29">(DataTable)AccountRow["Table"]</mca:CSharpValue>
+              </InArgument>
+            </bfa:Assign.Value>
+          </bfa:Assign>
+          <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程" sap:VirtualizedContainerService.HintSize="349,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_4" IsIgnore="False">
+            <bfa:InvokeWorkflow.Arguments>
+              <InOutArgument x:TypeArguments="sd:DataTable" x:Key="itemTable">
+                <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_17">inTable</mca:CSharpReference>
+              </InOutArgument>
+              <InArgument x:TypeArguments="scg:HashSet(x:String)" x:Key="constraint_list">
+                <mca:CSharpValue x:TypeArguments="scg:HashSet(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_25">[constraintSet]</mca:CSharpValue>
+              </InArgument>
+              <OutArgument x:TypeArguments="scg:HashSet(sd:DataTable)" x:Key="orderTables">
+                <mca:CSharpReference x:TypeArguments="scg:HashSet(sd:DataTable)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_5">[orderTables]</mca:CSharpReference>
+              </OutArgument>
+            </bfa:InvokeWorkflow.Arguments>
+            <bfa:InvokeWorkflow.WorkflowPath>
+              <InArgument x:TypeArguments="x:String">
+                <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_16">FormatDataForEachAccount.xaml</Literal>
+              </InArgument>
+            </bfa:InvokeWorkflow.WorkflowPath>
+          </bfa:InvokeWorkflow>
+          <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程 - 登陆" sap:VirtualizedContainerService.HintSize="349,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_1" IsIgnore="False">
+            <bfa:InvokeWorkflow.Arguments>
+              <InArgument x:TypeArguments="bcci:IBotTimeWebDriver" x:Key="browser">
+                <mca:CSharpValue x:TypeArguments="bcci:IBotTimeWebDriver" sap2010:WorkflowViewState.IdRef="CSharpValue`1_8">[browser]</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Account">
+                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_9">[System.Convert.ToString(AccountRow["Account"].ToString())]</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Password">
+                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_10">[System.Convert.ToString(AccountRow["Password"].ToString())]</mca:CSharpValue>
+              </InArgument>
+              <OutArgument x:TypeArguments="x:Boolean" x:Key="LogInResult">
+                <mca:CSharpReference x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpReference`1_8">[LogInResult]</mca:CSharpReference>
+              </OutArgument>
+            </bfa:InvokeWorkflow.Arguments>
+            <bfa:InvokeWorkflow.WorkflowPath>
+              <InArgument x:TypeArguments="x:String">
+                <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_13">Wyeth_DMS_Login.xaml</Literal>
+              </InArgument>
+            </bfa:InvokeWorkflow.WorkflowPath>
+          </bfa:InvokeWorkflow>
+          <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If）" sap:VirtualizedContainerService.HintSize="349,53" sap2010:WorkflowViewState.IdRef="If_3" IsIgnore="False">
+            <bfa:If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_22">[!LogInResult]</mca:CSharpValue>
+              </InArgument>
+            </bfa:If.Condition>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg1:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg1:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <bfa:If.Then>
+              <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="371,279" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg1:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg1:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ecaac:InvokeCSharpCodeActivity ActivityName="执行C#代码" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="SetError4Login" sap:VirtualizedContainerService.HintSize="349,93" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_2">
+                  <ecaac:InvokeCSharpCodeActivity.CodeFilePath>
+                    <InArgument x:TypeArguments="x:String">
+                      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_20">.code\CSharp\SetError4LogIn.cs</Literal>
+                    </InArgument>
+                  </ecaac:InvokeCSharpCodeActivity.CodeFilePath>
+                </ecaac:InvokeCSharpCodeActivity>
+                <bfa:Continue ContinueAction="{x:Null}" ActivityName="继续循环" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="继续循环" sap:VirtualizedContainerService.HintSize="349,22" sap2010:WorkflowViewState.IdRef="Continue_1" IsIgnore="False" />
+              </Sequence>
+            </bfa:If.Then>
+          </bfa:If>
+          <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行流程 : GotoCheckInPage" sap:VirtualizedContainerService.HintSize="349,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_2" IsIgnore="False">
+            <bfa:InvokeWorkflow.Arguments>
+              <InOutArgument x:TypeArguments="bcci:IBotTimeWebDriver" x:Key="browser">
+                <mca:CSharpReference x:TypeArguments="bcci:IBotTimeWebDriver" sap2010:WorkflowViewState.IdRef="CSharpReference`1_4">[browser]</mca:CSharpReference>
+              </InOutArgument>
+            </bfa:InvokeWorkflow.Arguments>
+            <bfa:InvokeWorkflow.WorkflowPath>
+              <InArgument x:TypeArguments="x:String">
+                <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_14">GotoCheckInPage.xaml</Literal>
+              </InArgument>
+            </bfa:InvokeWorkflow.WorkflowPath>
+          </bfa:InvokeWorkflow>
+          <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="Assign_1" IsIgnore="False">
+            <bfa:Assign.To>
+              <OutArgument x:TypeArguments="scg1:List(x:String)">
+                <mca:CSharpReference x:TypeArguments="scg1:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_16">indexList</mca:CSharpReference>
+              </OutArgument>
+            </bfa:Assign.To>
+            <bfa:Assign.Value>
+              <InArgument x:TypeArguments="scg1:List(x:String)">
+                <mca:CSharpValue x:TypeArguments="scg1:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_28">new List&lt;string&gt;()</mca:CSharpValue>
+              </InArgument>
+            </bfa:Assign.Value>
+          </bfa:Assign>
+          <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程" sap:VirtualizedContainerService.HintSize="349,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_3" IsIgnore="False">
+            <bfa:InvokeWorkflow.Arguments>
+              <InArgument x:TypeArguments="scg:HashSet(sd:DataTable)" x:Key="orderTables">
+                <mca:CSharpValue x:TypeArguments="scg:HashSet(sd:DataTable)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_12">[orderTables]</mca:CSharpValue>
+              </InArgument>
+              <InArgument x:TypeArguments="bcci:IBotTimeWebDriver" x:Key="browser">
+                <mca:CSharpValue x:TypeArguments="bcci:IBotTimeWebDriver" sap2010:WorkflowViewState.IdRef="CSharpValue`1_13">[browser]</mca:CSharpValue>
+              </InArgument>
+              <OutArgument x:TypeArguments="x:Boolean" x:Key="isError">
+                <mca:CSharpReference x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpReference`1_7">[isError]</mca:CSharpReference>
+              </OutArgument>
+              <InOutArgument x:TypeArguments="scg1:List(x:String)" x:Key="indexList">
+                <mca:CSharpReference x:TypeArguments="scg1:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_13">[indexList]</mca:CSharpReference>
+              </InOutArgument>
+              <InOutArgument x:TypeArguments="scg1:Dictionary(x:String, x:String)" x:Key="indexAmountDic">
+                <mca:CSharpReference x:TypeArguments="scg1:Dictionary(x:String, x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_14">[indexAmountDic]</mca:CSharpReference>
+              </InOutArgument>
+              <InOutArgument x:TypeArguments="scg1:Dictionary(x:String, x:String)" x:Key="indexDmsPoDic">
+                <mca:CSharpReference x:TypeArguments="scg1:Dictionary(x:String, x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_15">[indexDmsPoDic]</mca:CSharpReference>
+              </InOutArgument>
+              <OutArgument x:TypeArguments="scg1:List(x:String)" x:Key="failedPicList">
+                <mca:CSharpReference x:TypeArguments="scg1:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_19">failedPicList</mca:CSharpReference>
+              </OutArgument>
+            </bfa:InvokeWorkflow.Arguments>
+            <bfa:InvokeWorkflow.WorkflowPath>
+              <InArgument x:TypeArguments="x:String">
+                <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_15">CheckInOrders.xaml</Literal>
+              </InArgument>
+            </bfa:InvokeWorkflow.WorkflowPath>
+          </bfa:InvokeWorkflow>
+          <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - failedPicList" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="Assign_3" IsIgnore="False">
+            <bfa:Assign.To>
+              <OutArgument x:TypeArguments="x:Object">
+                <mca:CSharpReference x:TypeArguments="x:Object" sap2010:WorkflowViewState.IdRef="CSharpReference`1_20">AccountRow["FailedPicList"]</mca:CSharpReference>
+              </OutArgument>
+            </bfa:Assign.To>
+            <bfa:Assign.Value>
+              <InArgument x:TypeArguments="scg1:List(x:String)">
+                <mca:CSharpValue x:TypeArguments="scg1:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_30">failedPicList</mca:CSharpValue>
+              </InArgument>
+            </bfa:Assign.Value>
+          </bfa:Assign>
+          <ecaac:InvokeCSharpCodeActivity ActivityName="执行C#代码" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="SetError4CheckInOrders" sap:VirtualizedContainerService.HintSize="349,93" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_3">
+            <ecaac:InvokeCSharpCodeActivity.CodeFilePath>
+              <InArgument x:TypeArguments="x:String">
+                <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_19">.code\CSharp\SetError4CheckInOrders.cs</Literal>
+              </InArgument>
+            </ecaac:InvokeCSharpCodeActivity.CodeFilePath>
+          </ecaac:InvokeCSharpCodeActivity>
+          <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If）" sap:VirtualizedContainerService.HintSize="349,53" sap2010:WorkflowViewState.IdRef="If_2" IsIgnore="False">
+            <bfa:If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_20">[!isError]</mca:CSharpValue>
+              </InArgument>
+            </bfa:If.Condition>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg1:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg1:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <bfa:If.Then>
+              <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程 - 登出" sap:VirtualizedContainerService.HintSize="349,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_5" IsIgnore="False">
+                <bfa:InvokeWorkflow.Arguments>
+                  <scg1:Dictionary x:TypeArguments="x:String, Argument" />
+                </bfa:InvokeWorkflow.Arguments>
+                <bfa:InvokeWorkflow.WorkflowPath>
+                  <InArgument x:TypeArguments="x:String">
+                    <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_17">LogOut.xaml</Literal>
+                  </InArgument>
+                </bfa:InvokeWorkflow.WorkflowPath>
+              </bfa:InvokeWorkflow>
+            </bfa:If.Then>
+          </bfa:If>
+        </Sequence>
+      </ActivityAction>
+    </bfa:ForEach>
+  </Sequence>
+</Activity>

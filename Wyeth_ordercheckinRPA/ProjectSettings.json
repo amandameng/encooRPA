@@ -1,0 +1,59 @@
+{
+  "QuickOpenItems": [
+    "Main.xaml"
+  ],
+  "ProjectBreakpoints": {
+    "Value": {
+      "CheckInByAccount.xaml": [
+        {
+          "ActivityId": "1.118",
+          "IsEnabled": false,
+          "IdRef": "InvokeWorkflow_1",
+          "DisplayName": "调用子流程 - 登陆"
+        },
+        {
+          "ActivityId": "1.60",
+          "IsEnabled": false,
+          "IdRef": "Continue_1",
+          "DisplayName": "继续循环"
+        },
+        {
+          "ActivityId": "1.133",
+          "IsEnabled": false,
+          "IdRef": "InvokeWorkflow_2",
+          "DisplayName": "执行流程 : GotoCheckInPage"
+        }
+      ],
+      "Email.xaml": [
+        {
+          "ActivityId": "1.34",
+          "IsEnabled": false,
+          "IdRef": "SendSmtpMailActivity_2",
+          "DisplayName": "发送邮件(SMTP)"
+        },
+        {
+          "ActivityId": "1.187",
+          "IsEnabled": false,
+          "IdRef": "InvokeCSharpCodeActivity_4",
+          "DisplayName": "执行C#代码 - JoinDuplicateData"
+        }
+      ],
+      "CheckInOrders.xaml": [
+        {
+          "ActivityId": "1.6",
+          "IsEnabled": false,
+          "IdRef": "Sequence_17",
+          "DisplayName": "序列"
+        }
+      ],
+      "GotoCheckInPage.xaml": [
+        {
+          "ActivityId": "1.3",
+          "IsEnabled": true,
+          "IdRef": "ClickActivity_3",
+          "DisplayName": "点击"
+        }
+      ]
+    }
+  }
+}

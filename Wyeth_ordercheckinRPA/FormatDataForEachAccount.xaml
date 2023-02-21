@@ -1,0 +1,79 @@
+<Activity mc:Ignorable="sap sap2010 sads" x:Class="EncooWorkflow.Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:bda="clr-namespace:BotTime.DataTableActivity.Activities;assembly=BotTime.DataTableActivity" xmlns:bfa="clr-namespace:BotTime.Flow.Activities;assembly=BotTime.Flow.Activities" xmlns:eae="clr-namespace:Encootech.ActivityCommon.EncooCommonActivity;assembly=ActivityCommon" xmlns:ecaac="clr-namespace:Encoo.CodeTool.Activity.Activities.CSharp;assembly=Encoo.CodeTool.Activity" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Core" xmlns:scg1="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger">
+  <x:Members>
+    <x:Property Name="itemTable" Type="InOutArgument(sd:DataTable)" />
+    <x:Property Name="constraint_list" Type="InArgument(scg:HashSet(x:String))" />
+    <x:Property Name="orderTables" Type="OutArgument(scg:HashSet(sd:DataTable))" />
+  </x:Members>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap:VirtualizedContainerService.HintSize>512,536</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>EncooWorkflow.defaultWorkflowSequence</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg1:List x:TypeArguments="x:String" Capacity="11">
+      <x:String>System</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>Encoo.CodeTool.Activity.Activities.CSharp</x:String>
+      <x:String>BotTime.DataTableActivity.Activities</x:String>
+      <x:String>BotTime.Flow.Activities</x:String>
+      <x:String>Microsoft.CSharp.Activities</x:String>
+      <x:String>Encootech.ActivityCommon.EncooCommonActivity</x:String>
+    </scg1:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>Encoo.CodeTool.Activity</AssemblyReference>
+      <AssemblyReference>BotTime.DataTableActivity</AssemblyReference>
+      <AssemblyReference>BotTime.Flow.Activities</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>ActivityCommon</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="序列_Root" sap:VirtualizedContainerService.HintSize="492,611" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg1:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg1:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ecaac:InvokeCSharpCodeActivity ActivityName="执行C#代码" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="OrderList - c#" sap:VirtualizedContainerService.HintSize="470,93" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_1">
+      <ecaac:InvokeCSharpCodeActivity.CodeFilePath>
+        <InArgument x:TypeArguments="x:String">
+          <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_1">.code\CSharp\OrderList.cs</Literal>
+        </InArgument>
+      </ecaac:InvokeCSharpCodeActivity.CodeFilePath>
+    </ecaac:InvokeCSharpCodeActivity>
+    <eae:CommentActivity DisplayName="注释掉" sap:VirtualizedContainerService.HintSize="470,354" sap2010:WorkflowViewState.IdRef="CommentActivity_1">
+      <bfa:ForEach x:TypeArguments="sd:DataTable" CurrentIndex="{x:Null}" ActivityName="循环操作（For Each）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="循环操作（For Each）" sap:VirtualizedContainerService.HintSize="450,199" sap2010:WorkflowViewState.IdRef="ForEach`1_2" IsIgnore="False">
+        <bfa:ForEach.Values>
+          <InArgument x:TypeArguments="scg:HashSet(sd:DataTable)">
+            <mca:CSharpValue x:TypeArguments="scg:HashSet(sd:DataTable)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">orderTables</mca:CSharpValue>
+          </InArgument>
+        </bfa:ForEach.Values>
+        <ActivityAction x:TypeArguments="sd:DataTable">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="sd:DataTable" Name="item" />
+          </ActivityAction.Argument>
+          <bda:DataTablePreviewActivity ActivityName="预览数据表" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="预览数据表" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="DataTablePreviewActivity_1">
+            <bda:DataTablePreviewActivity.DataTable>
+              <InArgument x:TypeArguments="sd:DataTable">
+                <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_2">item</mca:CSharpValue>
+              </InArgument>
+            </bda:DataTablePreviewActivity.DataTable>
+          </bda:DataTablePreviewActivity>
+        </ActivityAction>
+      </bfa:ForEach>
+    </eae:CommentActivity>
+  </Sequence>
+</Activity>

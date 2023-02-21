@@ -1,0 +1,325 @@
+<Activity mc:Ignorable="sap sap2010 sads" x:Class="EncooWorkflow.Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:bda="clr-namespace:BotTime.DataTableActivity.Activities;assembly=BotTime.DataTableActivity" xmlns:bdam="clr-namespace:BotTime.DataTableActivity.ActivityDesigners.Models;assembly=BotTime.DataTableActivity" xmlns:bfa="clr-namespace:BotTime.Flow.Activities;assembly=BotTime.Flow.Activities" xmlns:bmaa="clr-namespace:BotTime.Mail.Activity.Activities;assembly=BotTime.Mail.Activity" xmlns:boa="clr-namespace:BotTime.Office.Activity;assembly=BotTime.Office.Activity" xmlns:ecaac="clr-namespace:Encoo.CodeTool.Activity.Activities.CSharp;assembly=Encoo.CodeTool.Activity" xmlns:ecaac1="clr-namespace:Encoo.CodeTool.Activity.Activities.Collection;assembly=Encoo.CodeTool.Activity" xmlns:ecaaj="clr-namespace:Encoo.CodeTool.Activity.Activities.Json;assembly=Encoo.CodeTool.Activity" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Core" xmlns:scg1="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger">
+  <x:Members>
+    <x:Property Name="TableByAccount" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="duplicateTable" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="constraintSet" Type="InArgument(scg:HashSet(x:String))" />
+    <x:Property Name="receivers" Type="InArgument(x:String)" />
+    <x:Property Name="sendEmail" Type="InArgument(x:String)" />
+  </x:Members>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap:VirtualizedContainerService.HintSize>596,1892</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>EncooWorkflow.defaultWorkflowSequence</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg1:List x:TypeArguments="x:String" Capacity="18">
+      <x:String>System</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>BotTime.Flow.Activities</x:String>
+      <x:String>BotTime.Mail.Activity.Activities</x:String>
+      <x:String>Microsoft.CSharp.Activities</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>Encoo.CodeTool.Activity.Activities.CSharp</x:String>
+      <x:String>BotTime.DataTableActivity.Activities</x:String>
+      <x:String>BotTime.DataTableActivity.ActivityDesigners.Models</x:String>
+      <x:String>BotTime.Office.Activity</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>Encoo.CodeTool.Activity.Activities.Json</x:String>
+      <x:String>Encoo.CodeTool.Activity.Activities.Collection</x:String>
+    </scg1:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>BotTime.Flow.Activities</AssemblyReference>
+      <AssemblyReference>BotTime.Mail.Activity</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Text.Encoding.CodePages</AssemblyReference>
+      <AssemblyReference>Encoo.CodeTool.Activity</AssemblyReference>
+      <AssemblyReference>BotTime.DataTableActivity</AssemblyReference>
+      <AssemblyReference>BotTime.Office.Activity</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="序列_Root" sap:VirtualizedContainerService.HintSize="556,1812" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="context" />
+      <Variable x:TypeArguments="x:String" Name="subject" />
+      <Variable x:TypeArguments="sd:DataTable" Name="attachTable" />
+      <Variable x:TypeArguments="njl:JObject" Name="sendMailObject" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg1:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg1:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ecaaj:DeserializeObjectActivity ActivityName="反序列化" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="反序列化" sap:VirtualizedContainerService.HintSize="534,22" sap2010:WorkflowViewState.IdRef="DeserializeObjectActivity_1">
+      <ecaaj:DeserializeObjectActivity.JsonString>
+        <InArgument x:TypeArguments="x:String">
+          <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_24">System.Convert.ToString(sendEmail)</mca:CSharpValue>
+        </InArgument>
+      </ecaaj:DeserializeObjectActivity.JsonString>
+      <ecaaj:DeserializeObjectActivity.Result>
+        <OutArgument x:TypeArguments="njl:JObject">
+          <mca:CSharpReference x:TypeArguments="njl:JObject" sap2010:WorkflowViewState.IdRef="CSharpReference`1_5">sendMailObject</mca:CSharpReference>
+        </OutArgument>
+      </ecaaj:DeserializeObjectActivity.Result>
+    </ecaaj:DeserializeObjectActivity>
+    <ecaac:InvokeCSharpCodeActivity ActivityName="执行C#代码" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行C#代码 - JoinDuplicateData" sap:VirtualizedContainerService.HintSize="534,93" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_4">
+      <ecaac:InvokeCSharpCodeActivity.CodeFilePath>
+        <InArgument x:TypeArguments="x:String">
+          <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_36">.code\CSharp\JoinDuplicateData.cs</Literal>
+        </InArgument>
+      </ecaac:InvokeCSharpCodeActivity.CodeFilePath>
+    </ecaac:InvokeCSharpCodeActivity>
+    <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If）" sap:VirtualizedContainerService.HintSize="534,1493" sap2010:WorkflowViewState.IdRef="If_1" IsIgnore="False">
+      <bfa:If.Condition>
+        <InArgument x:TypeArguments="x:Boolean">
+          <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_10">[TableByAccount.Rows.Count &gt; 0]</mca:CSharpValue>
+        </InArgument>
+      </bfa:If.Condition>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg1:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg1:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <bfa:If.Then>
+        <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="515,1305" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg1:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg1:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <bfa:ForEach x:TypeArguments="sd:DataRow" CurrentIndex="{x:Null}" ActivityName="循环操作（For Each)" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="循环操作（For Each)" sap:VirtualizedContainerService.HintSize="493,1181" sap2010:WorkflowViewState.IdRef="ForEach`1_2" IsIgnore="False">
+            <bfa:ForEach.Values>
+              <InArgument x:TypeArguments="sd:DataRowCollection">
+                <mca:CSharpValue x:TypeArguments="sd:DataRowCollection" sap2010:WorkflowViewState.IdRef="CSharpValue`1_4">[TableByAccount.Rows]</mca:CSharpValue>
+              </InArgument>
+            </bfa:ForEach.Values>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg1:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg1:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ActivityAction x:TypeArguments="sd:DataRow">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Account" />
+              </ActivityAction.Argument>
+              <Sequence DisplayName="序列 - 遍历row" sap:VirtualizedContainerService.HintSize="477,1076" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="x:String" Name="savePath" />
+                  <Variable x:TypeArguments="scg1:List(x:String)" Name="附件">
+                    <Variable.Default>
+                      <mca:CSharpValue x:TypeArguments="scg1:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_31">new List&lt;string&gt;{}</mca:CSharpValue>
+                    </Variable.Default>
+                  </Variable>
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg1:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg1:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If）" sap:VirtualizedContainerService.HintSize="455,53" sap2010:WorkflowViewState.IdRef="If_2" IsIgnore="False">
+                  <bfa:If.Condition>
+                    <InArgument x:TypeArguments="x:Boolean">
+                      <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_23">[Account["Table"] == null]</mca:CSharpValue>
+                    </InArgument>
+                  </bfa:If.Condition>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg1:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg1:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <bfa:If.Then>
+                    <bfa:Continue ContinueAction="{x:Null}" ActivityName="继续循环" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="继续循环" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Continue_1" IsIgnore="False" />
+                  </bfa:If.Then>
+                </bfa:If>
+                <bda:BuildDataTableActivity ActivityName="搭建数据表" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="搭建数据表" sap:VirtualizedContainerService.HintSize="455,63" sap2010:WorkflowViewState.IdRef="BuildDataTableActivity_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;cf268adf-f1af-4c5d-991e-bb7f33cf8877&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;cf268adf-f1af-4c5d-991e-bb7f33cf8877&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Account&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Password&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Pay&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DateTime&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;RDD&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;soldto&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;shipto&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;CustomerName&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;POID&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;itemName&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Nums&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Result&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Reson&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Amount&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;DmsPo&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;isCon&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;">
+                  <bda:BuildDataTableActivity.Columns>
+                    <bdam:DataTableBuildColumn DefaultValue="{x:Null}" x:Key="Account" AllowDBNull="True" AutoIncrement="False" ColumnName="Account" DataType="x:String" MaxLength="0" Unique="False" />
+                    <bdam:DataTableBuildColumn DefaultValue="{x:Null}" x:Key="Password" AllowDBNull="True" AutoIncrement="False" ColumnName="Password" DataType="x:String" MaxLength="0" Unique="False" />
+                    <bdam:DataTableBuildColumn DefaultValue="{x:Null}" x:Key="Pay" AllowDBNull="True" AutoIncrement="False" ColumnName="Pay" DataType="x:String" MaxLength="0" Unique="False" />
+                    <bdam:DataTableBuildColumn DefaultValue="{x:Null}" x:Key="DateTime" AllowDBNull="True" AutoIncrement="False" ColumnName="DateTime" DataType="x:String" MaxLength="0" Unique="False" />
+                    <bdam:DataTableBuildColumn DefaultValue="{x:Null}" x:Key="RDD" AllowDBNull="True" AutoIncrement="False" ColumnName="RDD" DataType="x:String" MaxLength="0" Unique="False" />
+                    <bdam:DataTableBuildColumn DefaultValue="{x:Null}" x:Key="soldto" AllowDBNull="True" AutoIncrement="False" ColumnName="soldto" DataType="x:String" MaxLength="0" Unique="False" />
+                    <bdam:DataTableBuildColumn DefaultValue="{x:Null}" x:Key="shipto" AllowDBNull="True" AutoIncrement="False" ColumnName="shipto" DataType="x:String" MaxLength="0" Unique="False" />
+                    <bdam:DataTableBuildColumn DefaultValue="{x:Null}" x:Key="CustomerName" AllowDBNull="True" AutoIncrement="False" ColumnName="CustomerName" DataType="x:String" MaxLength="0" Unique="False" />
+                    <bdam:DataTableBuildColumn DefaultValue="{x:Null}" x:Key="POID" AllowDBNull="True" AutoIncrement="False" ColumnName="POID" DataType="x:String" MaxLength="0" Unique="False" />
+                    <bdam:DataTableBuildColumn DefaultValue="{x:Null}" x:Key="itemName" AllowDBNull="True" AutoIncrement="False" ColumnName="itemName" DataType="x:String" MaxLength="0" Unique="False" />
+                    <bdam:DataTableBuildColumn DefaultValue="{x:Null}" x:Key="Nums" AllowDBNull="True" AutoIncrement="False" ColumnName="Nums" DataType="x:String" MaxLength="0" Unique="False" />
+                    <bdam:DataTableBuildColumn DefaultValue="{x:Null}" x:Key="Result" AllowDBNull="True" AutoIncrement="False" ColumnName="Result" DataType="x:String" MaxLength="0" Unique="False" />
+                    <bdam:DataTableBuildColumn DefaultValue="{x:Null}" x:Key="Reson" AllowDBNull="True" AutoIncrement="False" ColumnName="Reson" DataType="x:String" MaxLength="0" Unique="False" />
+                    <bdam:DataTableBuildColumn DefaultValue="{x:Null}" x:Key="Amount" AllowDBNull="True" AutoIncrement="False" ColumnName="Amount" DataType="x:String" MaxLength="0" Unique="False" />
+                    <bdam:DataTableBuildColumn DefaultValue="{x:Null}" x:Key="DmsPo" AllowDBNull="True" AutoIncrement="False" ColumnName="DmsPo" DataType="x:String" MaxLength="0" Unique="False" />
+                    <bdam:DataTableBuildColumn DefaultValue="{x:Null}" x:Key="isCon" AllowDBNull="True" AutoIncrement="False" ColumnName="isCon" DataType="x:String" MaxLength="0" Unique="False" />
+                  </bda:BuildDataTableActivity.Columns>
+                  <bda:BuildDataTableActivity.DataTable>
+                    <OutArgument x:TypeArguments="sd:DataTable">
+                      <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1">[attachTable]</mca:CSharpReference>
+                    </OutArgument>
+                  </bda:BuildDataTableActivity.DataTable>
+                </bda:BuildDataTableActivity>
+                <ecaac:InvokeCSharpCodeActivity ActivityName="执行C#代码" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行C#代码" sap:VirtualizedContainerService.HintSize="455,93" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_1">
+                  <ecaac:InvokeCSharpCodeActivity.CodeFilePath>
+                    <InArgument x:TypeArguments="x:String">
+                      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_10">.code\CSharp\GenMail.cs</Literal>
+                    </InArgument>
+                  </ecaac:InvokeCSharpCodeActivity.CodeFilePath>
+                </ecaac:InvokeCSharpCodeActivity>
+                <boa:OfficeExcelOpenOrCreateActivity OfficeVersion="{x:Null}" Password="{x:Null}" ActivityName="打开/新建" AutoSave="False" ContinueOnError="No" CreateNewFile="False" DelayAfter="0" DelayBefore="0" DisplayName="打开/新建" EnableMacro="False" sap:VirtualizedContainerService.HintSize="455,292" sap2010:WorkflowViewState.IdRef="OfficeExcelOpenOrCreateActivity_1" MultiEngineType="Office" ReadOnly="False" Visible="False" needRestoreKey="False">
+                  <boa:OfficeExcelOpenOrCreateActivity.Body>
+                    <ActivityAction x:TypeArguments="x:Object">
+                      <ActivityAction.Argument>
+                        <DelegateInArgument x:TypeArguments="x:Object" Name="XlWorkbook" />
+                      </ActivityAction.Argument>
+                      <boa:OfficeExcelSetRangeActivity ActivityName="写入区域" AddHeaders="False" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="写入区域" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="OfficeExcelSetRangeActivity_1">
+                        <boa:OfficeExcelSetRangeActivity.InputDataTable>
+                          <InArgument x:TypeArguments="sd:DataTable">
+                            <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_12">[attachTable]</mca:CSharpValue>
+                          </InArgument>
+                        </boa:OfficeExcelSetRangeActivity.InputDataTable>
+                        <boa:OfficeExcelSetRangeActivity.SheetName>
+                          <InArgument x:TypeArguments="x:String">
+                            <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_23">Tracker</Literal>
+                          </InArgument>
+                        </boa:OfficeExcelSetRangeActivity.SheetName>
+                        <boa:OfficeExcelSetRangeActivity.StartCell>
+                          <InArgument x:TypeArguments="x:String">
+                            <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_22">A2</Literal>
+                          </InArgument>
+                        </boa:OfficeExcelSetRangeActivity.StartCell>
+                      </boa:OfficeExcelSetRangeActivity>
+                    </ActivityAction>
+                  </boa:OfficeExcelOpenOrCreateActivity.Body>
+                  <boa:OfficeExcelOpenOrCreateActivity.ExcelFile>
+                    <InArgument x:TypeArguments="x:String">
+                      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_25">C:\RPA\temple.xlsx</Literal>
+                    </InArgument>
+                  </boa:OfficeExcelOpenOrCreateActivity.ExcelFile>
+                  <boa:OfficeExcelOpenOrCreateActivity.SaveAs>
+                    <InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_13">[savePath]</mca:CSharpValue>
+                    </InArgument>
+                  </boa:OfficeExcelOpenOrCreateActivity.SaveAs>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg1:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg1:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </boa:OfficeExcelOpenOrCreateActivity>
+                <bfa:Retry ActivityName="重试" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="重试" sap:VirtualizedContainerService.HintSize="455,291" sap2010:WorkflowViewState.IdRef="Retry_2" IsIgnore="False">
+                  <bfa:Retry.RetryCount>
+                    <InArgument x:TypeArguments="x:Int32">
+                      <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_11" Value="1" />
+                    </InArgument>
+                  </bfa:Retry.RetryCount>
+                  <bfa:Retry.RetryTimeSpan>
+                    <InArgument x:TypeArguments="x:TimeSpan">
+                      <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_12" />
+                    </InArgument>
+                  </bfa:Retry.RetryTimeSpan>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg1:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg1:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <bfa:Retry.Condition>
+                    <InArgument x:TypeArguments="x:Boolean">
+                      <Literal x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="Literal`1_13" Value="True" />
+                    </InArgument>
+                  </bfa:Retry.Condition>
+                  <bfa:Retry.Body>
+                    <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="222,208" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg1:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg1:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ecaac1:AddToCollectionActivity ActivityName="添加对象" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="添加对象 - 附件添加反馈excel" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollectionActivity_2">
+                        <ecaac1:AddToCollectionActivity.Collection>
+                          <InOutArgument x:TypeArguments="scg1:List(x:String)">
+                            <mca:CSharpReference x:TypeArguments="scg1:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_6">附件</mca:CSharpReference>
+                          </InOutArgument>
+                        </ecaac1:AddToCollectionActivity.Collection>
+                        <ecaac1:AddToCollectionActivity.Item>
+                          <InArgument x:TypeArguments="x:String">
+                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_32">savePath</mca:CSharpValue>
+                          </InArgument>
+                        </ecaac1:AddToCollectionActivity.Item>
+                      </ecaac1:AddToCollectionActivity>
+                      <bmaa:SendSmtpMailActivity Bcc="{x:Null}" Cc="{x:Null}" Proxy="{x:Null}" ActivityName="发送邮件(SMTP)" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="发送邮件(SMTP)" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="SendSmtpMailActivity_2" IsBodyHtml="True" IsDraft="False" Priority="Normal" SecureConnection="Auto">
+                        <bmaa:SendSmtpMailActivity.Body>
+                          <InArgument x:TypeArguments="x:String">
+                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_7">[System.Convert.ToString(context)]</mca:CSharpValue>
+                          </InArgument>
+                        </bmaa:SendSmtpMailActivity.Body>
+                        <bmaa:SendSmtpMailActivity.Files>
+                          <InArgument x:TypeArguments="scg1:IEnumerable(x:String)">
+                            <mca:CSharpValue x:TypeArguments="scg1:IEnumerable(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_33">附件</mca:CSharpValue>
+                          </InArgument>
+                        </bmaa:SendSmtpMailActivity.Files>
+                        <bmaa:SendSmtpMailActivity.MailAddress>
+                          <InArgument x:TypeArguments="x:String">
+                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_27">System.Convert.ToString(sendMailObject["email"].ToString())</mca:CSharpValue>
+                          </InArgument>
+                        </bmaa:SendSmtpMailActivity.MailAddress>
+                        <bmaa:SendSmtpMailActivity.Password>
+                          <InArgument x:TypeArguments="x:String">
+                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_28">System.Convert.ToString(sendMailObject["password"].ToString())</mca:CSharpValue>
+                          </InArgument>
+                        </bmaa:SendSmtpMailActivity.Password>
+                        <bmaa:SendSmtpMailActivity.Port>
+                          <InArgument x:TypeArguments="x:Int32">
+                            <mca:CSharpValue x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="CSharpValue`1_26">Convert.ToInt32(sendMailObject["port"])</mca:CSharpValue>
+                          </InArgument>
+                        </bmaa:SendSmtpMailActivity.Port>
+                        <bmaa:SendSmtpMailActivity.Server>
+                          <InArgument x:TypeArguments="x:String">
+                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_25">System.Convert.ToString(sendMailObject["smtpServer"].ToString())</mca:CSharpValue>
+                          </InArgument>
+                        </bmaa:SendSmtpMailActivity.Server>
+                        <bmaa:SendSmtpMailActivity.Subject>
+                          <InArgument x:TypeArguments="x:String">
+                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_30">System.Convert.ToString(subject)</mca:CSharpValue>
+                          </InArgument>
+                        </bmaa:SendSmtpMailActivity.Subject>
+                        <bmaa:SendSmtpMailActivity.TimeOut>
+                          <InArgument x:TypeArguments="x:TimeSpan">
+                            <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_18" Value="00:00:15" />
+                          </InArgument>
+                        </bmaa:SendSmtpMailActivity.TimeOut>
+                        <bmaa:SendSmtpMailActivity.To>
+                          <InArgument x:TypeArguments="x:String">
+                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_5">[System.Convert.ToString(receivers)]</mca:CSharpValue>
+                          </InArgument>
+                        </bmaa:SendSmtpMailActivity.To>
+                      </bmaa:SendSmtpMailActivity>
+                    </Sequence>
+                  </bfa:Retry.Body>
+                </bfa:Retry>
+              </Sequence>
+            </ActivityAction>
+          </bfa:ForEach>
+        </Sequence>
+      </bfa:If.Then>
+    </bfa:If>
+  </Sequence>
+</Activity>

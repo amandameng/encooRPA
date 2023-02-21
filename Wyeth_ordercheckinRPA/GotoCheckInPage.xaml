@@ -1,0 +1,196 @@
+<Activity mc:Ignorable="sap sap2010 sads" x:Class="GotoCheckInPage" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:bcci="clr-namespace:BotTimeUI.Common.Control.Interface;assembly=BotTimeUI.Common" xmlns:ea="clr-namespace:Encootech.AutomationActivity;assembly=AutomationActivity" xmlns:eaw="clr-namespace:Encootech.AutomationActivity.WebAction;assembly=AutomationActivity" xmlns:ed="clr-namespace:Encoo.DataType;assembly=Encoo.DataType" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger">
+  <x:Members>
+    <x:Property Name="browser" Type="InOutArgument(bcci:IBotTimeWebDriver)" />
+  </x:Members>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap:VirtualizedContainerService.HintSize>489,939</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>GotoCheckInPage_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="12">
+      <x:String>System</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>BotTimeUI.Common.Control.Interface</x:String>
+      <x:String>Encootech.AutomationActivity</x:String>
+      <x:String>Encootech.AutomationActivity.WebAction</x:String>
+      <x:String>Encoo.DataType</x:String>
+      <x:String>Microsoft.CSharp.Activities</x:String>
+      <x:String>BotTime.Flow.Activities</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>BotTimeUI.Common</AssemblyReference>
+      <AssemblyReference>AutomationActivity</AssemblyReference>
+      <AssemblyReference>Encoo.DataType</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>BotTime.Flow.Activities</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <eaw:BrowserAttach DelayAfter="{x:Null}" DelayBefore="{x:Null}" ScreenShoot="{x:Null}" Selector="{x:Null}" Selector2="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActivityName="绑定浏览器" BringWindowType="Default" BrowserType="Default" ContinueOnError="False" DisplayName="绑定浏览器" ElementRect="0, 0, 0, 0" Guid="d6634b42-8904-43b1-b394-7da4505de597" sap:VirtualizedContainerService.HintSize="449,787" sap2010:WorkflowViewState.IdRef="BrowserAttach_1" IsEndClose="False" IsIgnore="False" IsMaximize="True" SelectionRect="0, 0, 0, 0">
+    <eaw:BrowserAttach.Body>
+      <ActivityAction x:TypeArguments="x:Object">
+        <ActivityAction.Argument>
+          <DelegateInArgument x:TypeArguments="x:Object" Name="CurrentBrowser" />
+        </ActivityAction.Argument>
+        <Sequence DisplayName="等待点击菜单" sap:VirtualizedContainerService.HintSize="222,690" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="bcci:IUiObject" Name="数据维护菜单" />
+            <Variable x:TypeArguments="bcci:IUiObject" Name="经销商采购管理菜单" />
+            <Variable x:TypeArguments="bcci:IUiObject" Name="采购订单录入菜单" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ea:WaitElementAppearActivity DelayAfter="{x:Null}" DelayBefore="{x:Null}" Result="{x:Null}" Selector="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" WaitTimeout="{x:Null}" ActivityName="等待元素出现" BringWindowType="Default" ContinueOnError="False" DisplayName="等待数据维护菜单出现" ElementRect="0, 0, 0, 0" Guid="45142edd-23b5-4148-b41d-19c2cc4f7337" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="WaitElementAppearActivity_1" IsIgnore="False" ScreenShoot="cf6826bc-01fd-4be1-b799-11f954fb2088.jpg" SelectionRect="0, 0, 0, 0">
+            <ea:WaitElementAppearActivity.ControlObject>
+              <OutArgument x:TypeArguments="bcci:IUiObject">
+                <mca:CSharpReference x:TypeArguments="bcci:IUiObject" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1">[数据维护菜单]</mca:CSharpReference>
+              </OutArgument>
+            </ea:WaitElementAppearActivity.ControlObject>
+            <ea:WaitElementAppearActivity.Selector2>
+              <InArgument x:TypeArguments="ed:Selector">
+                <mca:CSharpValue x:TypeArguments="ed:Selector" sap2010:WorkflowViewState.IdRef="CSharpValue`1_8">"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTE2Ij8+CjxBcHBsaWNhdGlvbiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4bWxuczp4c2Q9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hIj4KPEF1dG9tYXRpb25UeXBlPldFQi1DSFJPTUU8L0F1dG9tYXRpb25UeXBlPgo8UHJvY2Vzc05hbWU+Y2hyb21lPC9Qcm9jZXNzTmFtZT4KPEZpbGVQYXRoPmNocm9tZS5leGU8L0ZpbGVQYXRoPgo8VmVyc2lvbj4xLjM8L1ZlcnNpb24+CjxDaGlsZENvbnRyb2xzPgo8Q29udHJvbE1ldGFEYXRhPgo8SWRlbnRpZmllcj4KPENsYXNzTmFtZT5DaHJvbWVfV2lkZ2V0V2luXzE8L0NsYXNzTmFtZT4KPFRpdGxlPio8L1RpdGxlPgo8Um9sZT5XaW5kb3c8L1JvbGU+CjxJc0RpcmVjdENoaWxkPnRydWU8L0lzRGlyZWN0Q2hpbGQ+CjwvSWRlbnRpZmllcj4KPENoaWxkQ29udHJvbHM+CjxDb250cm9sTWV0YURhdGE+CjxXZWJJZGVudGlmaWVyPgo8WFBhdGg+aWQoJnF1b3Q7bWVudSZxdW90Oyk8L1hQYXRoPgo8L1dlYklkZW50aWZpZXI+CjxDaGlsZENvbnRyb2xzPgo8Q29udHJvbE1ldGFEYXRhPgo8V2ViSWRlbnRpZmllcj4KPFhQYXRoPi8vKltjb250YWlucyhAaWQsJnF1b3Q7VHJlZVZpZXcxX2l0ZW1fJnF1b3Q7KV0vbm9iclt0ZXh0KCk9JnF1b3Q75pWw5o2u57u05oqkJnF1b3Q7XTwvWFBhdGg+CjwvV2ViSWRlbnRpZmllcj4KPEFjY2Vzc0tleSAvPgo8Q29tcG9uZW50PjwvQ29tcG9uZW50Pgo8L0NvbnRyb2xNZXRhRGF0YT4KPC9DaGlsZENvbnRyb2xzPgo8QWNjZXNzS2V5IC8+CjxDb21wb25lbnQ+PC9Db21wb25lbnQ+CjwvQ29udHJvbE1ldGFEYXRhPgo8L0NoaWxkQ29udHJvbHM+CjxBY2Nlc3NLZXkgLz4KPENvbXBvbmVudD48L0NvbXBvbmVudD4KPC9Db250cm9sTWV0YURhdGE+CjwvQ2hpbGRDb250cm9scz4KPC9BcHBsaWNhdGlvbj4K"</mca:CSharpValue>
+              </InArgument>
+            </ea:WaitElementAppearActivity.Selector2>
+            <ea:WaitElementAppearActivity.Timeout>
+              <InArgument x:TypeArguments="x:Int32">
+                <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_13" Value="100" />
+              </InArgument>
+            </ea:WaitElementAppearActivity.Timeout>
+          </ea:WaitElementAppearActivity>
+          <ea:ClickActivity DelayAfter="{x:Null}" DelayBefore="{x:Null}" ScreenShoot="{x:Null}" Selector="{x:Null}" Selector2="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActivityName="点击" BringWindowType="Default" ClickLocation="Center" ClickMethod="Default" ClkType="SingleClick" ContinueOnError="False" DisplayName="点击数据维护菜单" ElementRect="0, 0, 0, 0" Guid="b90b956e-b476-4392-baf0-44a5a968c89a" sap:VirtualizedContainerService.HintSize="200,56" sap2010:WorkflowViewState.IdRef="ClickActivity_1" IsIgnore="False" ModifierKey="None" MouseButton="LeftButton" SelectionRect="0, 0, 0, 0">
+            <ea:ClickActivity.ControlElement>
+              <InArgument x:TypeArguments="bcci:IUiObject">
+                <mca:CSharpValue x:TypeArguments="bcci:IUiObject" sap2010:WorkflowViewState.IdRef="CSharpValue`1_3">[数据维护菜单]</mca:CSharpValue>
+              </InArgument>
+            </ea:ClickActivity.ControlElement>
+            <ea:ClickActivity.X>
+              <InArgument x:TypeArguments="x:Int32">
+                <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_1" />
+              </InArgument>
+            </ea:ClickActivity.X>
+            <ea:ClickActivity.XRate>
+              <InArgument x:TypeArguments="x:Double">
+                <Literal x:TypeArguments="x:Double" sap2010:WorkflowViewState.IdRef="Literal`1_3" />
+              </InArgument>
+            </ea:ClickActivity.XRate>
+            <ea:ClickActivity.Y>
+              <InArgument x:TypeArguments="x:Int32">
+                <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_2" />
+              </InArgument>
+            </ea:ClickActivity.Y>
+            <ea:ClickActivity.YRate>
+              <InArgument x:TypeArguments="x:Double">
+                <Literal x:TypeArguments="x:Double" sap2010:WorkflowViewState.IdRef="Literal`1_4" />
+              </InArgument>
+            </ea:ClickActivity.YRate>
+          </ea:ClickActivity>
+          <ea:WaitElementAppearActivity DelayAfter="{x:Null}" DelayBefore="{x:Null}" Result="{x:Null}" Selector="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActivityName="等待元素出现" BringWindowType="Default" ContinueOnError="False" DisplayName="等待经销商采购管理菜单出现" ElementRect="0, 0, 0, 0" Guid="8f885923-8b5a-44ba-9efd-f647bfa7d945" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="WaitElementAppearActivity_2" IsIgnore="False" ScreenShoot="472ed98b-a592-4ab8-a621-be843729a6ae.jpg" SelectionRect="0, 0, 0, 0">
+            <ea:WaitElementAppearActivity.ControlObject>
+              <OutArgument x:TypeArguments="bcci:IUiObject">
+                <mca:CSharpReference x:TypeArguments="bcci:IUiObject" sap2010:WorkflowViewState.IdRef="CSharpReference`1_2">[经销商采购管理菜单]</mca:CSharpReference>
+              </OutArgument>
+            </ea:WaitElementAppearActivity.ControlObject>
+            <ea:WaitElementAppearActivity.Selector2>
+              <InArgument x:TypeArguments="ed:Selector">
+                <mca:CSharpValue x:TypeArguments="ed:Selector" sap2010:WorkflowViewState.IdRef="CSharpValue`1_9">"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTE2Ij8+CjxBcHBsaWNhdGlvbiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4bWxuczp4c2Q9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hIj4KPEF1dG9tYXRpb25UeXBlPldFQi1DSFJPTUU8L0F1dG9tYXRpb25UeXBlPgo8UHJvY2Vzc05hbWU+Y2hyb21lPC9Qcm9jZXNzTmFtZT4KPEZpbGVQYXRoPmNocm9tZS5leGU8L0ZpbGVQYXRoPgo8VmVyc2lvbj4xLjM8L1ZlcnNpb24+CjxDaGlsZENvbnRyb2xzPgo8Q29udHJvbE1ldGFEYXRhPgo8SWRlbnRpZmllcj4KPENsYXNzTmFtZT5DaHJvbWVfV2lkZ2V0V2luXzE8L0NsYXNzTmFtZT4KPFRpdGxlPio8L1RpdGxlPgo8Um9sZT5XaW5kb3c8L1JvbGU+CjxJc0RpcmVjdENoaWxkPnRydWU8L0lzRGlyZWN0Q2hpbGQ+CjwvSWRlbnRpZmllcj4KPENoaWxkQ29udHJvbHM+CjxDb250cm9sTWV0YURhdGE+CjxXZWJJZGVudGlmaWVyPgo8WFBhdGg+aWQoJnF1b3Q7bWVudSZxdW90Oyk8L1hQYXRoPgo8L1dlYklkZW50aWZpZXI+CjxDaGlsZENvbnRyb2xzPgo8Q29udHJvbE1ldGFEYXRhPgo8V2ViSWRlbnRpZmllcj4KPFhQYXRoPi8vKltjb250YWlucyhAaWQsJnF1b3Q7VHJlZVZpZXcxX2l0ZW1fJnF1b3Q7KV0vbm9iclt0ZXh0KCk9JnF1b3Q757uP6ZSA5ZWG6YeH6LSt566h55CGJnF1b3Q7XTwvWFBhdGg+CjwvV2ViSWRlbnRpZmllcj4KPEFjY2Vzc0tleSAvPgo8Q29tcG9uZW50PjwvQ29tcG9uZW50Pgo8L0NvbnRyb2xNZXRhRGF0YT4KPC9DaGlsZENvbnRyb2xzPgo8QWNjZXNzS2V5IC8+CjxDb21wb25lbnQ+PC9Db21wb25lbnQ+CjwvQ29udHJvbE1ldGFEYXRhPgo8L0NoaWxkQ29udHJvbHM+CjxBY2Nlc3NLZXkgLz4KPENvbXBvbmVudD48L0NvbXBvbmVudD4KPC9Db250cm9sTWV0YURhdGE+CjwvQ2hpbGRDb250cm9scz4KPC9BcHBsaWNhdGlvbj4K"</mca:CSharpValue>
+              </InArgument>
+            </ea:WaitElementAppearActivity.Selector2>
+          </ea:WaitElementAppearActivity>
+          <ea:ClickActivity DelayAfter="{x:Null}" DelayBefore="{x:Null}" ScreenShoot="{x:Null}" Selector="{x:Null}" Selector2="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActivityName="点击" BringWindowType="Default" ClickLocation="Center" ClickMethod="Default" ClkType="SingleClick" ContinueOnError="False" DisplayName="点击经销商采购管理菜单" ElementRect="0, 0, 0, 0" Guid="f1181dd3-b832-48d7-806b-65ede7c5c92d" sap:VirtualizedContainerService.HintSize="200,56" sap2010:WorkflowViewState.IdRef="ClickActivity_2" IsIgnore="False" ModifierKey="None" MouseButton="LeftButton" SelectionRect="0, 0, 0, 0">
+            <ea:ClickActivity.ControlElement>
+              <InArgument x:TypeArguments="bcci:IUiObject">
+                <mca:CSharpValue x:TypeArguments="bcci:IUiObject" sap2010:WorkflowViewState.IdRef="CSharpValue`1_5">[经销商采购管理菜单]</mca:CSharpValue>
+              </InArgument>
+            </ea:ClickActivity.ControlElement>
+            <ea:ClickActivity.X>
+              <InArgument x:TypeArguments="x:Int32">
+                <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_5" />
+              </InArgument>
+            </ea:ClickActivity.X>
+            <ea:ClickActivity.XRate>
+              <InArgument x:TypeArguments="x:Double">
+                <Literal x:TypeArguments="x:Double" sap2010:WorkflowViewState.IdRef="Literal`1_7" />
+              </InArgument>
+            </ea:ClickActivity.XRate>
+            <ea:ClickActivity.Y>
+              <InArgument x:TypeArguments="x:Int32">
+                <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_6" />
+              </InArgument>
+            </ea:ClickActivity.Y>
+            <ea:ClickActivity.YRate>
+              <InArgument x:TypeArguments="x:Double">
+                <Literal x:TypeArguments="x:Double" sap2010:WorkflowViewState.IdRef="Literal`1_8" />
+              </InArgument>
+            </ea:ClickActivity.YRate>
+          </ea:ClickActivity>
+          <ea:WaitElementAppearActivity DelayAfter="{x:Null}" DelayBefore="{x:Null}" Result="{x:Null}" Selector="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActivityName="等待元素出现" BringWindowType="Default" ContinueOnError="False" DisplayName="等待采购订单录入菜单出现" ElementRect="0, 0, 0, 0" Guid="b76ce29d-102d-4a98-af66-c7d8d9bc9765" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="WaitElementAppearActivity_3" IsIgnore="False" ScreenShoot="7b4bbe7f-279e-4207-9096-30955ee82f98.jpg" SelectionRect="0, 0, 0, 0">
+            <ea:WaitElementAppearActivity.ControlObject>
+              <OutArgument x:TypeArguments="bcci:IUiObject">
+                <mca:CSharpReference x:TypeArguments="bcci:IUiObject" sap2010:WorkflowViewState.IdRef="CSharpReference`1_3">[采购订单录入菜单]</mca:CSharpReference>
+              </OutArgument>
+            </ea:WaitElementAppearActivity.ControlObject>
+            <ea:WaitElementAppearActivity.Selector2>
+              <InArgument x:TypeArguments="ed:Selector">
+                <mca:CSharpValue x:TypeArguments="ed:Selector" sap2010:WorkflowViewState.IdRef="CSharpValue`1_10">"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTE2Ij8+CjxBcHBsaWNhdGlvbiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4bWxuczp4c2Q9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hIj4KPEF1dG9tYXRpb25UeXBlPldFQi1DSFJPTUU8L0F1dG9tYXRpb25UeXBlPgo8UHJvY2Vzc05hbWU+Y2hyb21lPC9Qcm9jZXNzTmFtZT4KPEZpbGVQYXRoPmNocm9tZS5leGU8L0ZpbGVQYXRoPgo8VmVyc2lvbj4xLjM8L1ZlcnNpb24+CjxDaGlsZENvbnRyb2xzPgo8Q29udHJvbE1ldGFEYXRhPgo8SWRlbnRpZmllcj4KPENsYXNzTmFtZT5DaHJvbWVfV2lkZ2V0V2luXzE8L0NsYXNzTmFtZT4KPFRpdGxlPio8L1RpdGxlPgo8Um9sZT5XaW5kb3c8L1JvbGU+CjxJc0RpcmVjdENoaWxkPnRydWU8L0lzRGlyZWN0Q2hpbGQ+CjwvSWRlbnRpZmllcj4KPENoaWxkQ29udHJvbHM+CjxDb250cm9sTWV0YURhdGE+CjxXZWJJZGVudGlmaWVyPgo8WFBhdGg+aWQoJnF1b3Q7bWVudSZxdW90Oyk8L1hQYXRoPgo8L1dlYklkZW50aWZpZXI+CjxDaGlsZENvbnRyb2xzPgo8Q29udHJvbE1ldGFEYXRhPgo8V2ViSWRlbnRpZmllcj4KPFhQYXRoPi8vKltjb250YWlucyhAaWQsJnF1b3Q7VHJlZVZpZXcxX2l0ZW1fJnF1b3Q7KV0vbm9iclt0ZXh0KCk9JnF1b3Q76YeH6LSt6K6i5Y2V5b2V5YWlJnF1b3Q7XTwvWFBhdGg+CjwvV2ViSWRlbnRpZmllcj4KPEFjY2Vzc0tleSAvPgo8Q29tcG9uZW50PjwvQ29tcG9uZW50Pgo8L0NvbnRyb2xNZXRhRGF0YT4KPC9DaGlsZENvbnRyb2xzPgo8QWNjZXNzS2V5IC8+CjxDb21wb25lbnQ+PC9Db21wb25lbnQ+CjwvQ29udHJvbE1ldGFEYXRhPgo8L0NoaWxkQ29udHJvbHM+CjxBY2Nlc3NLZXkgLz4KPENvbXBvbmVudD48L0NvbXBvbmVudD4KPC9Db250cm9sTWV0YURhdGE+CjwvQ2hpbGRDb250cm9scz4KPC9BcHBsaWNhdGlvbj4K"</mca:CSharpValue>
+              </InArgument>
+            </ea:WaitElementAppearActivity.Selector2>
+          </ea:WaitElementAppearActivity>
+          <ea:ClickActivity DelayAfter="{x:Null}" DelayBefore="{x:Null}" ScreenShoot="{x:Null}" Selector="{x:Null}" Selector2="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActivityName="点击" BringWindowType="Default" ClickLocation="Center" ClickMethod="Default" ClkType="SingleClick" ContinueOnError="False" DisplayName="点击" ElementRect="0, 0, 0, 0" Guid="d922b72a-aa02-4418-ae1f-846a8d192658" sap:VirtualizedContainerService.HintSize="200,56" sap2010:WorkflowViewState.IdRef="ClickActivity_3" IsIgnore="False" ModifierKey="None" MouseButton="LeftButton" SelectionRect="0, 0, 0, 0">
+            <ea:ClickActivity.ControlElement>
+              <InArgument x:TypeArguments="bcci:IUiObject">
+                <mca:CSharpValue x:TypeArguments="bcci:IUiObject" sap2010:WorkflowViewState.IdRef="CSharpValue`1_7">[采购订单录入菜单]</mca:CSharpValue>
+              </InArgument>
+            </ea:ClickActivity.ControlElement>
+            <ea:ClickActivity.X>
+              <InArgument x:TypeArguments="x:Int32">
+                <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_9" />
+              </InArgument>
+            </ea:ClickActivity.X>
+            <ea:ClickActivity.XRate>
+              <InArgument x:TypeArguments="x:Double">
+                <Literal x:TypeArguments="x:Double" sap2010:WorkflowViewState.IdRef="Literal`1_11" />
+              </InArgument>
+            </ea:ClickActivity.XRate>
+            <ea:ClickActivity.Y>
+              <InArgument x:TypeArguments="x:Int32">
+                <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_10" />
+              </InArgument>
+            </ea:ClickActivity.Y>
+            <ea:ClickActivity.YRate>
+              <InArgument x:TypeArguments="x:Double">
+                <Literal x:TypeArguments="x:Double" sap2010:WorkflowViewState.IdRef="Literal`1_12" />
+              </InArgument>
+            </ea:ClickActivity.YRate>
+          </ea:ClickActivity>
+        </Sequence>
+      </ActivityAction>
+    </eaw:BrowserAttach.Body>
+    <eaw:BrowserAttach.Browser>
+      <InArgument x:TypeArguments="bcci:IBotTimeWebDriver">
+        <mca:CSharpValue x:TypeArguments="bcci:IBotTimeWebDriver" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">[browser]</mca:CSharpValue>
+      </InArgument>
+    </eaw:BrowserAttach.Browser>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+  </eaw:BrowserAttach>
+</Activity>
