@@ -1,0 +1,73 @@
+{
+  "Md5CheckSum": "fa2abe23e8fa778043e4f5e48d272199",
+  "RootNode": {
+    "RefId": null,
+    "Name": "Activity",
+    "IsActivity": true,
+    "SubItems": [
+      {
+        "RefId": "Sequence_2",
+        "Name": "Root",
+        "IsActivity": true,
+        "SubItems": [
+          {
+            "RefId": "Retry_1",
+            "Name": "重试",
+            "IsActivity": true,
+            "SubItems": [
+              {
+                "RefId": "Sequence_4",
+                "Name": "序列",
+                "IsActivity": true,
+                "SubItems": [
+                  {
+                    "RefId": "DeleteActivity_1",
+                    "Name": "删除文件/文件夹",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "FileDownloadActivity_1",
+                    "Name": "下载文件",
+                    "IsActivity": true,
+                    "SubItems": []
+                  },
+                  {
+                    "RefId": "DeCompresseFileActivity_1",
+                    "Name": "解压缩文件",
+                    "IsActivity": true,
+                    "SubItems": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "RefId": "AcquireAssetsActivity_1",
+            "Name": "获取资产",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "AcquireAssetsActivity_2",
+            "Name": "获取资产",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "DeserializeObjectActivity_1",
+            "Name": "反序列化",
+            "IsActivity": true,
+            "SubItems": []
+          },
+          {
+            "RefId": "InvokeCSharpCodeActivity_2",
+            "Name": "执行C#代码",
+            "IsActivity": true,
+            "SubItems": []
+          }
+        ]
+      }
+    ]
+  }
+}
