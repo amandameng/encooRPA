@@ -1,5 +1,6 @@
 //代码执行入口，请勿修改或删除
 decimal tax = 0.13m;
+int RDDDays = 3;
 public enum ExceptionCategory
 {
     RDD,
@@ -27,7 +28,11 @@ public void Run()
     DataTable exceptionsDT = newOrdersDT.Clone();
     exceptionsDT.Columns.Add("异常分类", typeof(string));
     exceptionsDT.Columns.Add("异常详细描述", typeof(string));
-    
+    /*
+    if(dtRow_ModuleSettings["区域"].ToString() == "华中"){
+        RDDDays = 4;
+    }
+    */
     // 新增的订单 => Exception 订单模板
     origOrdersMappingToExceptionOrders(ref exceptionsDT);
 
@@ -101,7 +106,7 @@ public void origOrdersMappingToExceptionOrders(ref DataTable exceptionsDT){
             }
 
             // RDD Check，Order Level
-          if(toIntConvert(newOrderDR["RDD issue"]) < 3){
+          if(toIntConvert(newOrderDR["RDD issue"]) < RDDDays){
                if(!hasRDDException){ // 如果为假，则赋值为真，此单仅为真
                     hasRDDException = true;
                 }
@@ -156,6 +161,7 @@ public void origOrdersMappingToExceptionOrders(ref DataTable exceptionsDT){
             }
             
             if(hasRDDException){
+
                 if(toIntConvert(origFullOrderDR["RDD issue"]) >= 3){
                     // exception为空
                     addToExceptionOrder(ref exceptionsDT, exceptionType, string.Empty, origFullOrderDR);
@@ -377,6 +383,11 @@ public void rowMappedToNewOrderRow(DataColumnCollection orderDetailsCols, DataRo
         newOrderDR["单价价差"] = 买价 - 惠氏单价;
         newOrderDR["总价价差"] = 客户产品行总金额 - 惠氏总价;
         int rddGapDays = DiffDays(DateTime.Parse(newOrderDR["读单日期"].ToString()), rddDate);
+
+        //if(dtRow_ModuleSettings["区域"].ToString() == "华中"){
+         //   rddGapDays = DiffDays(DateTime.Parse(newOrderDR["创单日期"].ToString()), rddDate);
+        //}
+
         newOrderDR["RDD issue"] = rddGapDays;
         string 惠氏订单编号 = newOrderDR["订单号"].ToString();
 
@@ -487,6 +498,11 @@ public void deletedDRowMappedToNewOrderRow(DataRow orderItemDRFromDB, ref DataRo
         newOrderDR["单价价差"] = Math.Round(买价 - 惠氏单价, 2);
         newOrderDR["总价价差"] = 客户产品行总金额 - 惠氏总价;
         int rddGapDays = DiffDays(DateTime.Parse(newOrderDR["读单日期"].ToString()), rddDate);
+        
+       // if(dtRow_ModuleSettings["区域"].ToString() == "华中"){
+       //     rddGapDays = DiffDays(DateTime.Parse(newOrderDR["创单日期"].ToString()), rddDate);
+       // }
+        
         newOrderDR["RDD issue"] = rddGapDays;
         string comment = specialProductComment(惠氏编码, customerSku, (DataTable)dtRow_ModuleSettings["specialListDT"]);
         newOrderDR["惠氏订单编号"] = orderItemDRFromDB["wyeth_POID"];
@@ -565,8 +581,8 @@ public void addToExceptionOrder(ref DataTable theExceptionDT, string exceptionTy
 
      switch(exceptionType){
             case "RDD":
-                exceptionCat = "RDD<3D";
-                exceptionDetail = "订单计划到货日期在3天内，需确认是否录入订单或延单";
+                exceptionCat = string.Format("RDD<{0}D", RDDDays);
+                exceptionDetail = string.Format("订单计划到货日期在{0}天内，需确认是否录入订单或延单", RDDDays);
                 break;
             case "订单价格差异":
                 exceptionDetail = "客户订单产品与惠氏产品存在价格差异，需确认是否录入订单并跟进价差问题";

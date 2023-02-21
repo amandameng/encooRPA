@@ -82,12 +82,11 @@ public void Run()
         dtRow_ModuleSettings[orderCat + "文件路径"] = Path.Combine(当天订单文件夹, string.Format("{0}_{1}_{2}_{3}.xlsx", region, dr["orderCatExcelFileName"].ToString(), todayDateStr, 订单批次));
         dtRow_ModuleSettings[orderCat + "订单PDF"] = Path.Combine(当天订单文件夹, string.Format("原单_{0}_{1}_{2}_{3}.pdf", region, dr["orderCatPDFFileName"].ToString(), todayDateStr, 订单批次));
     }
-    dtRow_ModuleSettings["退单订单PDF"] = Path.Combine(tempFolder, string.Format("{0}_{1}_{2}_{3}.pdf", region, "退单", todayDateStr, 订单批次));
 
-
-    dtRow_ModuleSettings["20天历史待收订单文件"] = Path.Combine(tempFolder, string.Format("20天历史待收订单文件_{0}_{1}_{2}.xlsx", region, todayDateStr, 订单批次));
-    dtRow_ModuleSettings["20天历史已收订单文件"] = Path.Combine(tempFolder, string.Format("20天历史已收订单文件_{0}_{1}_{2}.xlsx", region, todayDateStr, 订单批次));
-    dtRow_ModuleSettings["今年退单文件"] = Path.Combine(tempFolder, string.Format("今年退单文件_{0}_{1}_{2}.xlsx", region, todayDateStr, 订单批次));
+    dtRow_ModuleSettings["退单订单PDF"] = Path.Combine(当天订单文件夹, string.Format("{0}_{1}_{2}_{3}.pdf", region, "退单", todayDateStr, 订单批次));
+    dtRow_ModuleSettings["20天历史待收订单文件"] = Path.Combine(当天订单文件夹, string.Format("20天历史待收订单文件_{0}_{1}_{2}.xlsx", region, todayDateStr, 订单批次));
+    dtRow_ModuleSettings["20天历史已收订单文件"] = Path.Combine(当天订单文件夹, string.Format("20天历史已收订单文件_{0}_{1}_{2}.xlsx", region, todayDateStr, 订单批次));
+    dtRow_ModuleSettings["今年退单文件"] = Path.Combine(当天订单文件夹, string.Format("今年退单文件_{0}_{1}_{2}.xlsx", region, todayDateStr, 订单批次));
     dtRow_ModuleSettings["退单PDFList"] = new List<string>{};
 
     initOrderDate();

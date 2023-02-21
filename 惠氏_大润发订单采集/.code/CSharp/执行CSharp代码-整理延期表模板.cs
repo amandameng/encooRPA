@@ -1,4 +1,5 @@
 //代码执行入口，请勿修改或删除
+int RDDDays = 3;
 public void Run()
 {
     //在这里编写您的代码
@@ -16,8 +17,12 @@ public void Run()
         newDR["POID"] = orderDR["wyeth_POID"];
         newDR["订货日期"] = DateTime.Parse(orderDR["order_date"].ToString()).ToString("yyyy-MM-dd");
         newDR["交货日期"] = DateTime.Parse(orderDR["must_arrived_by"].ToString()).ToString("yyyy-MM-dd");
-        int rddGapDays = DiffDays(DateTime.Parse(orderDR["readDate"].ToString()), DateTime.Parse(orderDR["must_arrived_by"].ToString()));
-        newDR["备注"] = rddGapDays >= 3 ? "" : "RDD < 3";
+        int rddGapDays = DiffDays(DateTime.Parse(orderDR["readDate"].ToString()), DateTime.Parse(orderDR["must_arrived_by"].ToString())); // 其余地区是读单日期 + 3
+        /*if(orderDR["region"].ToString() == "华中"){
+            rddGapDays = DiffDays(DateTime.Parse(orderDR["order_date"].ToString()), DateTime.Parse(orderDR["must_arrived_by"].ToString()));  // 华中地区是订单日期 + 4
+            RDDDays = 4;
+        }*/
+        newDR["备注"] = rddGapDays >= RDDDays ? "" : ("RDD < " + RDDDays);
         newDR["读单日期"] = orderDR["readDate"];
         delayOrdersDT.Rows.Add(newDR);
     }

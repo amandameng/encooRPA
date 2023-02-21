@@ -32,6 +32,12 @@
           "IsEnabled": false,
           "IdRef": "InvokeWorkflow_22",
           "DisplayName": "调用子流程: 发送邮件 - 有延期表"
+        },
+        {
+          "ActivityId": "1.3228",
+          "IsEnabled": true,
+          "IdRef": "InvokeWorkflow_8",
+          "DisplayName": "调用子流程:  主业务"
         }
       ],
       "主业务.xaml": [
@@ -46,6 +52,12 @@
           "IsEnabled": false,
           "IdRef": "InvokeWorkflow_130",
           "DisplayName": "调用子流程: 下载clean PDF"
+        },
+        {
+          "ActivityId": "1.4517",
+          "IsEnabled": true,
+          "IdRef": "InvokeWorkflow_159",
+          "DisplayName": "调用子流程: 打开Excel读取区域"
         }
       ]
     }

@@ -46,7 +46,8 @@ public void initGlobalVariable()
     dtProjectSetting.Columns.Add("clean订单数据库表名", typeof(string));
     dtProjectSetting.Columns.Add("dev_email", typeof(string));
     dtProjectSetting.Columns.Add("发件箱配置", typeof(string));    
- 
+    dtProjectSetting.Columns.Add("chaojiying", typeof(string));    
+
     // 文件上传订单HTML和Excel的zip文件  -- TODO
     dtProjectSetting.Columns.Add("上传文件解压缩路径", typeof(string));
 
@@ -100,4 +101,5 @@ public void initGlobalVariable()
     dtRow_ProjectSettings["是否退单"] = 是否退单;
     dtRow_ProjectSettings["退货明细文件路径"] = Path.Combine(tempFolder, string.Format("{0}退货明细_{1}.xlsx", customer_name, DateTime.Today.ToString("yyyy-MM-dd")));
     dtRow_ProjectSettings["延期表文件路径"] = Path.Combine(tempFolder, string.Format("{0}延期表_{1}.xlsx", customer_name, DateTime.Today.ToString("yyyy-MM-dd")));
+    dtRow_ProjectSettings["chaojiying"] = chaojiiying;
 }

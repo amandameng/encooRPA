@@ -65,7 +65,8 @@
     "通知",
     "通知\\发送邮件.xaml",
     ".code\\CSharp\\执行CSharp代码-延期表配置.cs",
-    ".code\\CSharp\\执行CSharp代码-筛选删单.cs"
+    ".code\\CSharp\\执行CSharp代码-筛选删单.cs",
+    "通用\\查看数据表订单号合法性.xaml"
   ],
   "TargetFramework": ".NETFramework,Version=v4.6.2",
   "ProjectDependencies": [
@@ -164,18 +165,24 @@
       "AutoUpgrade": false,
       "UpgradeVersionPattern": "1.*.*.*",
       "Type": "ActivityOrCode"
+    },
+    {
+      "Id": "ChaojiyingOCR",
+      "AutoUpgrade": false,
+      "UpgradeVersionPattern": null,
+      "Type": "ActivityOrCode"
     }
   ],
   "ProjectDependencyItems": [
     {
       "Id": "AutomationActivity",
-      "Version": "2.0.2207.1",
+      "Version": "2.0.2212.1",
       "Title": "BotTime.Automation.Activity",
       "InnerDependencies": []
     },
     {
       "Id": "BotTime.ActivityLibrary",
-      "Version": "2.0.2206.6",
+      "Version": "2.0.2212.1",
       "Title": "BotTime.ActivityLibrary",
       "InnerDependencies": [
         {
@@ -623,13 +630,13 @@
     },
     {
       "Id": "BotTime.DataBase.Activity",
-      "Version": "2.0.2206.6",
+      "Version": "2.0.2212.1",
       "Title": "BotTime.DataBase.Activity",
       "InnerDependencies": []
     },
     {
       "Id": "BotTime.DataTableActivity",
-      "Version": "2.0.2206.6",
+      "Version": "2.0.2212.1",
       "Title": "BotTime.DataTable.Activity",
       "InnerDependencies": [
         {
@@ -690,7 +697,7 @@
     },
     {
       "Id": "BotTime.Flow.Activities",
-      "Version": "2.0.2206.6",
+      "Version": "2.0.2212.1",
       "Title": "BotTime.Flow.Activities",
       "InnerDependencies": [
         {
@@ -708,7 +715,7 @@
     },
     {
       "Id": "BotTime.Mail.Activity",
-      "Version": "2.0.2206.6",
+      "Version": "2.0.2212.1",
       "Title": "BotTime.Mail.Activity",
       "InnerDependencies": [
         {
@@ -772,7 +779,7 @@
     },
     {
       "Id": "BotTime.Office.Activity",
-      "Version": "2.0.2206.6",
+      "Version": "2.0.2212.1",
       "Title": "BotTime.Office.Activity",
       "InnerDependencies": [
         {
@@ -919,7 +926,7 @@
     },
     {
       "Id": "BotTime.WPS.Activity",
-      "Version": "1.4.2206.6",
+      "Version": "1.4.2212.1",
       "Title": "BotTime.WPS.Activity",
       "InnerDependencies": [
         {
@@ -956,7 +963,7 @@
     },
     {
       "Id": "Encoo.Text.Activity",
-      "Version": "2.0.2206.6",
+      "Version": "2.0.2212.1",
       "Title": "Encoo.Text.Activity",
       "InnerDependencies": [
         {
@@ -968,7 +975,7 @@
     },
     {
       "Id": "Encoo.CodeTool.Activity",
-      "Version": "2.0.2206.7",
+      "Version": "2.0.2212.1",
       "Title": "Encoo.CodeTool.Activity",
       "InnerDependencies": [
         {
@@ -984,7 +991,7 @@
         {
           "Id": "Flurl.Http",
           "MaxVersion": null,
-          "MinVersion": "3.0.0"
+          "MinVersion": "3.2.4"
         },
         {
           "Id": "Microsoft.CodeAnalysis.CSharp.Scripting",
@@ -1027,13 +1034,13 @@
     },
     {
       "Id": "Flurl.Http",
-      "Version": "3.0.0",
+      "Version": "3.2.4",
       "Title": "Flurl.Http",
       "InnerDependencies": [
         {
           "Id": "Flurl",
           "MaxVersion": null,
-          "MinVersion": "3.0.0"
+          "MinVersion": "3.0.6"
         },
         {
           "Id": "Newtonsoft.Json",
@@ -1044,7 +1051,7 @@
     },
     {
       "Id": "Flurl",
-      "Version": "3.0.0",
+      "Version": "3.0.6",
       "Title": "Flurl",
       "InnerDependencies": [
         {
@@ -1101,7 +1108,7 @@
     },
     {
       "Id": "Encoo.Trigger.Activity",
-      "Version": "2.0.2206.6",
+      "Version": "2.0.2212.1",
       "Title": "Encoo.Trigger.Activity",
       "InnerDependencies": [
         {
@@ -1123,7 +1130,7 @@
     },
     {
       "Id": "Encoo.Console.Activity",
-      "Version": "2.0.2206.7",
+      "Version": "2.0.2212.1",
       "Title": "Encoo.Console.Activity",
       "InnerDependencies": [
         {
@@ -1162,7 +1169,7 @@
     },
     {
       "Id": "Encoo.Pdf.Activity",
-      "Version": "2.0.2206.6",
+      "Version": "2.0.2212.1",
       "Title": "Encoo.Pdf.Activity",
       "InnerDependencies": [
         {
@@ -1180,7 +1187,7 @@
     },
     {
       "Id": "Encoo.AIHub.Activity",
-      "Version": "2.0.2206.6",
+      "Version": "2.0.2212.1",
       "Title": "Encoo.AIHub.Activity",
       "InnerDependencies": [
         {
@@ -1197,7 +1204,7 @@
     },
     {
       "Id": "Encoo.Automation.MobileActivity",
-      "Version": "2.0.2207.1",
+      "Version": "2.0.2212.1",
       "Title": "Encoo.Automation.MobileActivity Package",
       "InnerDependencies": []
     },
@@ -1223,13 +1230,19 @@
       "Version": "1.0.113.3",
       "Title": "System.Data.SQLite Core for the .NET Framework (x86/x64)",
       "InnerDependencies": []
+    },
+    {
+      "Id": "ChaojiyingOCR",
+      "Version": "2.0.4",
+      "Title": "超级鹰OCR",
+      "InnerDependencies": []
     }
   ],
-  "LastModifyTime": "2022-10-14T16:23:33.2360845+08:00",
+  "LastModifyTime": "2023-02-08T16:54:17.6385967+08:00",
   "ProjectReferences": [],
   "TerminationHandler": null,
   "ExceptionHandler": null,
   "ParallelWorkflows": null,
   "CreatedStudioVersion": "1.1.2204.10",
-  "LastStudioVersion": "1.1.2204.10"
+  "LastStudioVersion": "1.1.2206.28"
 }

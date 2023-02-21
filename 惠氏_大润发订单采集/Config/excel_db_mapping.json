@@ -1527,6 +1527,11 @@
         "display_name": "门店"
       },
       {
+        "field": "dc_no",
+        "type": "string",
+        "display_name": "大仓号"
+      },
+      {
         "field": "created_time",
         "type": "datetime",
         "display_name": "创建时间"
