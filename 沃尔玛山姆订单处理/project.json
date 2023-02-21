@@ -118,8 +118,12 @@
     "Module\\业务\\沃尔玛-RTD\\输出cleanException-沃尔玛RTD.xaml",
     ".code\\CSharp\\执行CSharp代码 - 沃尔玛配置转化.cs",
     ".code\\CSharp\\执行CSharp代码-设置沃尔玛RTD相关变量.cs",
+    ".code\\CSharp\\执行CSharp代码-分仓明细修改数据.cs",
     ".code\\CSharp\\执行CSharp代码-异常订单检查-沃尔玛-RTD-byPO.cs",
-    ".code\\CSharp\\执行CSharp代码-分仓明细修改数据.cs"
+    "Module\\业务\\获取平台相关历史数据.xaml",
+    ".code\\CSharp\\执行CSharp代码-剔除客户码对应不上的订单.cs",
+    "Module\\通用\\监控文件下载.xaml",
+    ".code\\CSharp\\执行CSharp代码_monitorDownload.cs"
   ],
   "TargetFramework": ".NETFramework,Version=v4.6.1",
   "ProjectDependencies": [
@@ -229,7 +233,7 @@
   "ProjectDependencyItems": [
     {
       "Id": "Encoo.AIHub.Activity",
-      "Version": "2.0.2211.1",
+      "Version": "2.0.2301.1",
       "Title": "Encoo.AIHub.Activity",
       "InnerDependencies": [
         {
@@ -252,7 +256,7 @@
     },
     {
       "Id": "Encoo.Pdf.Activity",
-      "Version": "2.0.2211.1",
+      "Version": "2.0.2301.1",
       "Title": "Encoo.Pdf.Activity",
       "InnerDependencies": [
         {
@@ -264,7 +268,7 @@
     },
     {
       "Id": "Encoo.Text.Activity",
-      "Version": "2.0.2211.1",
+      "Version": "2.0.2301.2",
       "Title": "Encoo.Text.Activity",
       "InnerDependencies": [
         {
@@ -299,7 +303,7 @@
     },
     {
       "Id": "Encoo.Trigger.Activity",
-      "Version": "2.0.2211.1",
+      "Version": "2.0.2301.1",
       "Title": "Encoo.Trigger.Activity",
       "InnerDependencies": [
         {
@@ -311,6 +315,11 @@
           "Id": "Microsoft.Exchange.WebServices",
           "MaxVersion": null,
           "MinVersion": "2.2.0"
+        },
+        {
+          "Id": "Microsoft.Identity.Client",
+          "MaxVersion": null,
+          "MinVersion": "4.48.1"
         },
         {
           "Id": "Microsoft.Office.Interop.Outlook",
@@ -327,19 +336,19 @@
     },
     {
       "Id": "AutomationActivity",
-      "Version": "2.0.2211.1",
+      "Version": "2.0.2301.2",
       "Title": "BotTime.Automation.Activity",
       "InnerDependencies": []
     },
     {
       "Id": "Encoo.Automation.MobileActivity",
-      "Version": "2.0.2211.1",
+      "Version": "2.0.2301.2",
       "Title": "Encoo.Automation.MobileActivity Package",
       "InnerDependencies": []
     },
     {
       "Id": "Encoo.Console.Activity",
-      "Version": "2.0.2211.1",
+      "Version": "2.0.2301.1",
       "Title": "Encoo.Console.Activity",
       "InnerDependencies": [
         {
@@ -378,7 +387,7 @@
     },
     {
       "Id": "BotTime.ActivityLibrary",
-      "Version": "2.0.2211.1",
+      "Version": "2.0.2301.1",
       "Title": "BotTime.ActivityLibrary",
       "InnerDependencies": [
         {
@@ -613,13 +622,13 @@
     },
     {
       "Id": "BotTime.DataBase.Activity",
-      "Version": "2.0.2211.1",
+      "Version": "2.0.2301.1",
       "Title": "BotTime.DataBase.Activity",
       "InnerDependencies": []
     },
     {
       "Id": "BotTime.DataTableActivity",
-      "Version": "2.0.2211.1",
+      "Version": "2.0.2301.1",
       "Title": "BotTime.DataTable.Activity",
       "InnerDependencies": [
         {
@@ -668,7 +677,7 @@
     },
     {
       "Id": "BotTime.Flow.Activities",
-      "Version": "2.0.2211.1",
+      "Version": "2.0.2301.1",
       "Title": "BotTime.Flow.Activities",
       "InnerDependencies": [
         {
@@ -680,7 +689,7 @@
     },
     {
       "Id": "BotTime.Mail.Activity",
-      "Version": "2.0.2211.1",
+      "Version": "2.0.2301.1",
       "Title": "BotTime.Mail.Activity",
       "InnerDependencies": [
         {
@@ -692,6 +701,11 @@
           "Id": "Microsoft.Exchange.WebServices",
           "MaxVersion": null,
           "MinVersion": "2.2.0"
+        },
+        {
+          "Id": "Microsoft.Identity.Client",
+          "MaxVersion": null,
+          "MinVersion": "4.48.1"
         },
         {
           "Id": "Microsoft.Office.Interop.Outlook",
@@ -744,7 +758,7 @@
     },
     {
       "Id": "BotTime.Office.Activity",
-      "Version": "2.0.2211.1",
+      "Version": "2.0.2301.2",
       "Title": "BotTime.Office.Activity",
       "InnerDependencies": [
         {
@@ -815,7 +829,7 @@
     },
     {
       "Id": "BotTime.WPS.Activity",
-      "Version": "1.4.2211.1",
+      "Version": "1.4.2301.1",
       "Title": "BotTime.WPS.Activity",
       "InnerDependencies": [
         {
@@ -894,7 +908,7 @@
     },
     {
       "Id": "Encoo.CodeTool.Activity",
-      "Version": "2.0.2211.1",
+      "Version": "2.0.2301.1",
       "Title": "Encoo.CodeTool.Activity",
       "InnerDependencies": [
         {
@@ -1289,13 +1303,31 @@
       "Version": "1.0.10",
       "Title": "ExcelNumberFormat",
       "InnerDependencies": []
+    },
+    {
+      "Id": "Microsoft.Identity.Client",
+      "Version": "4.48.1",
+      "Title": "Microsoft Authentication Library for .NET",
+      "InnerDependencies": [
+        {
+          "Id": "Microsoft.IdentityModel.Abstractions",
+          "MaxVersion": null,
+          "MinVersion": "6.22.0"
+        }
+      ]
+    },
+    {
+      "Id": "Microsoft.IdentityModel.Abstractions",
+      "Version": "6.22.0",
+      "Title": "Microsoft.IdentityModel.Abstractions",
+      "InnerDependencies": []
     }
   ],
-  "LastModifyTime": "2022-11-08T13:17:07.8152812+08:00",
+  "LastModifyTime": "2023-02-21T17:17:29.2280241+08:00",
   "ProjectReferences": [],
   "TerminationHandler": null,
   "ExceptionHandler": null,
   "ParallelWorkflows": null,
   "CreatedStudioVersion": null,
-  "LastStudioVersion": "1.1.2206.26"
+  "LastStudioVersion": "1.1.2206.34"
 }

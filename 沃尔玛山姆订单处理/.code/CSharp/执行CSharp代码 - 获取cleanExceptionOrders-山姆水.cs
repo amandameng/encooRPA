@@ -13,7 +13,7 @@ public void Run()
 
     string 订单编号字符串 = String.Join(",", 订单编号列表.ToArray());
     
-    string srcSql = @"SELECT ods.*, stst.Request_Delivery_Date, stst.WMDC, stst.Nestle_Plant_No,stst.Sold_to_Code, stst.Ship_to_Code,
+    string srcSql = @"SELECT ods.*, stst.Request_Delivery_Date, stst.WMDC, location Nestle_Plant_No,stst.Sold_to_Code, stst.Ship_to_Code,
                             oli.line_number, oli.product_code customer_product_code, oli.item_instructions, oli.cost, oli.quantity_ordered, oli.pack,
                             oli.allowance_total oli_allowance_total , `oli`.`extended_cost` oli_extended_cost, `oli`.`allowance_percent` oli_allowance_percent,
                             mmd.Nestle_Material_No, mmd.Nestle_BU, mmd.Material_Description, mmd.Remark, mmd.Remark_Option, mmd.Nestle_NPS, mmd.Distribution_Channel,
@@ -34,5 +34,7 @@ public void Run()
     // 一年内的excel to Order
     existingEX2OSql = String.Format("SELECT distinct PO_Number from excel_to_order where Customer_Name='{0}' and created_time > date_sub(CURDATE(), INTERVAL 360 DAY) limit 10000;", curCustomerName);
     orderJobHistorySql = string.Format("select * from order_job_history where customer_name='{0}' and email_sent=1", curCustomerName);
+    exportedOrdersSql = string.Format("select * from walmart_exported_orders where received_date_time > date_sub(CURDATE(), INTERVAL 180 DAY) limit 10000;");
+
 }
 //在这里编写您的函数或者类

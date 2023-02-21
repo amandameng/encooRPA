@@ -76,7 +76,7 @@
   "ProjectDependencyItems": [
     {
       "Id": "BotTime.Flow.Activities",
-      "Version": "2.0.2211.1",
+      "Version": "2.0.2301.1",
       "Title": "BotTime.Flow.Activities",
       "InnerDependencies": [
         {
@@ -94,7 +94,7 @@
     },
     {
       "Id": "Encoo.Console.Activity",
-      "Version": "2.0.2211.1",
+      "Version": "2.0.2301.1",
       "Title": "Encoo.Console.Activity",
       "InnerDependencies": [
         {
@@ -145,7 +145,7 @@
     },
     {
       "Id": "BotTime.Office.Activity",
-      "Version": "2.0.2211.1",
+      "Version": "2.0.2301.2",
       "Title": "BotTime.Office.Activity",
       "InnerDependencies": [
         {
@@ -316,7 +316,7 @@
     },
     {
       "Id": "BotTime.DataBase.Activity",
-      "Version": "2.0.2211.1",
+      "Version": "2.0.2301.1",
       "Title": "BotTime.DataBase.Activity",
       "InnerDependencies": []
     },
@@ -328,7 +328,7 @@
     },
     {
       "Id": "BotTime.ActivityLibrary",
-      "Version": "2.0.2211.1",
+      "Version": "2.0.2301.1",
       "Title": "BotTime.ActivityLibrary",
       "InnerDependencies": [
         {
@@ -752,13 +752,13 @@
     },
     {
       "Id": "AutomationActivity",
-      "Version": "2.0.2211.1",
+      "Version": "2.0.2301.2",
       "Title": "BotTime.Automation.Activity",
       "InnerDependencies": []
     },
     {
       "Id": "Encoo.CodeTool.Activity",
-      "Version": "2.0.2211.1",
+      "Version": "2.0.2301.1",
       "Title": "Encoo.CodeTool.Activity",
       "InnerDependencies": [
         {
@@ -891,7 +891,7 @@
     },
     {
       "Id": "BotTime.DataTableActivity",
-      "Version": "2.0.2211.1",
+      "Version": "2.0.2301.1",
       "Title": "BotTime.DataTable.Activity",
       "InnerDependencies": [
         {
@@ -940,7 +940,7 @@
     },
     {
       "Id": "BotTime.Mail.Activity",
-      "Version": "2.0.2211.1",
+      "Version": "2.0.2301.1",
       "Title": "BotTime.Mail.Activity",
       "InnerDependencies": [
         {
@@ -952,6 +952,11 @@
           "Id": "Microsoft.Exchange.WebServices",
           "MaxVersion": null,
           "MinVersion": "2.2.0"
+        },
+        {
+          "Id": "Microsoft.Identity.Client",
+          "MaxVersion": null,
+          "MinVersion": "4.48.1"
         },
         {
           "Id": "Microsoft.Office.Interop.Outlook",
@@ -997,6 +1002,24 @@
       "InnerDependencies": []
     },
     {
+      "Id": "Microsoft.Identity.Client",
+      "Version": "4.48.1",
+      "Title": "Microsoft Authentication Library for .NET",
+      "InnerDependencies": [
+        {
+          "Id": "Microsoft.IdentityModel.Abstractions",
+          "MaxVersion": null,
+          "MinVersion": "6.22.0"
+        }
+      ]
+    },
+    {
+      "Id": "Microsoft.IdentityModel.Abstractions",
+      "Version": "6.22.0",
+      "Title": "Microsoft.IdentityModel.Abstractions",
+      "InnerDependencies": []
+    },
+    {
       "Id": "Microsoft.Office.Interop.Outlook",
       "Version": "15.0.4797.1003",
       "Title": "Microsoft.Office.Interop.Outlook",
@@ -1004,7 +1027,7 @@
     },
     {
       "Id": "Encoo.Automation.MobileActivity",
-      "Version": "2.0.2211.1",
+      "Version": "2.0.2301.2",
       "Title": "Encoo.Automation.MobileActivity Package",
       "InnerDependencies": []
     }

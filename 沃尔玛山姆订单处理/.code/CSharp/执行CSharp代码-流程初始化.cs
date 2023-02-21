@@ -54,7 +54,11 @@ public void Run()
     eX2OTemplate = Path.Combine(配置文件夹, "Copy of Excel To Order template.xlsx");
     
     eto_file_path = Path.Combine(当前结果文件夹, String.Format("Copy of Excel To Order_{0}_{1}.xlsx", curCustomerName, timenowStr));
-    clean_order_file_path = Path.Combine(当前结果文件夹, String.Format("Clean and Exception_{0}_{1}.xlsx", curCustomerName, timenowStr));
+    clean_order_file_path = Path.Combine(当前结果文件夹, String.Format("Clean and Exception_{0}_{1}.xlsx", curCustomerName, 结束日期));
+    // 根据日期命名的文件，需要先重命名
+    if(File.Exists(clean_order_file_path)){
+        File.Move(clean_order_file_path, Path.Combine(Path.GetDirectoryName(clean_order_file_path), Path.GetFileNameWithoutExtension(clean_order_file_path) + DateTime.Now.ToString("-HH-mm-ss") + Path.GetExtension(clean_order_file_path)));
+    }
     分仓明细表模板文件 = Path.Combine(配置文件夹, "分仓明细表 WM Template.xlsx");
     分仓明细表文件 = Path.Combine(当前结果文件夹, String.Format("分仓明细表_{0}_{1}.xlsx", curCustomerName, timenowStr));
     // 初始化 沃尔玛山姆报表字典

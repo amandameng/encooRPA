@@ -5,6 +5,13 @@ public void Run()
     
     wmRTD_eto_file_path = eto_file_path.Replace($"Copy of Excel To Order_{curCustomerName}", $"Copy of Excel To Order_{沃尔玛RTD客户名}");
     wmRTD_clean_order_file_path = clean_order_file_path.Replace($"Clean and Exception_{curCustomerName}", $"Clean and Exception_{沃尔玛RTD客户名}");
+
+ // 根据日期命名的文件，需要先重命名
+    if(File.Exists(wmRTD_clean_order_file_path)){
+        string backupFilePath = Path.GetFileNameWithoutExtension(wmRTD_clean_order_file_path) + DateTime.Now.ToString("-HH-mm-ss") + Path.GetExtension(wmRTD_clean_order_file_path);
+        Console.WriteLine("backupFilePath: {0}", backupFilePath);
+        File.Move(wmRTD_clean_order_file_path, Path.Combine(Path.GetDirectoryName(wmRTD_clean_order_file_path), backupFilePath));
+    }
     wmRTD_分仓明细表文件 = 分仓明细表文件.Replace($"分仓明细表_{curCustomerName}", $"分仓明细表_{沃尔玛RTD客户名}");
 
     setCurShiptDT();

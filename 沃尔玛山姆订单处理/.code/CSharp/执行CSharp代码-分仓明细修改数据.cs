@@ -7,7 +7,7 @@ public void Run()
         string[] dataArr = 订单修改信息.Split(new string[]{";"}, StringSplitOptions.RemoveEmptyEntries);
         List<string> finalInfoList = new List<string>{};
         foreach(string item in dataArr){
-            if(item.Contains("MABD") || item.Contains("修改产品数量")){
+            if(item.Contains("MABD") || item.Contains("修改产品数量") || item.Contains("VMI")){
                 finalInfoList.Add(item);
             }
         }

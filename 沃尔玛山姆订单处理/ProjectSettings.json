@@ -11,6 +11,104 @@
           "IdRef": "If_2",
           "DisplayName": "条件（If orderDT 不为空）"
         }
+      ],
+      "Main.xaml": [
+        {
+          "ActivityId": "1.2727",
+          "IsEnabled": false,
+          "IdRef": "BrowserNavigate_1",
+          "DisplayName": "当前页跳转 - 登出连接"
+        },
+        {
+          "ActivityId": "1.940",
+          "IsEnabled": false,
+          "IdRef": "QueryTableActivity_1",
+          "DisplayName": "查询语句"
+        }
+      ],
+      "Module\\业务\\沃尔玛.xaml": [
+        {
+          "ActivityId": "1.5947",
+          "IsEnabled": true,
+          "IdRef": "If_26",
+          "DisplayName": "条件（If 增量订单数据表 存在）"
+        },
+        {
+          "ActivityId": "1.2056",
+          "IsEnabled": true,
+          "IdRef": "Flowchart_16",
+          "DisplayName": "邮件发送报表- 沃尔玛RTD"
+        },
+        {
+          "ActivityId": "1.9831",
+          "IsEnabled": true,
+          "IdRef": "InvokeWorkflow_56",
+          "DisplayName": "调用子流程: 抓取订单并入库"
+        },
+        {
+          "ActivityId": "1.6988",
+          "IsEnabled": true,
+          "IdRef": "InvokeWorkflow_75",
+          "DisplayName": "调用子流程: 异常订单判断-沃尔玛RTD"
+        }
+      ],
+      "Module\\业务\\沃尔玛\\输出cleanException-沃尔玛.xaml": [
+        {
+          "ActivityId": "1.83",
+          "IsEnabled": false,
+          "IdRef": "OfficeExcelOpenOrCreateActivity_4",
+          "DisplayName": "打开 分仓明细表文件"
+        }
+      ],
+      "Module\\通用\\订单报表入库.xaml": [
+        {
+          "ActivityId": "1.77",
+          "IsEnabled": false,
+          "IdRef": "InvokeWorkflow_22",
+          "DisplayName": "调用子流程: 根据数据表拼接数据库SQL语句-插入分仓明细"
+        },
+        {
+          "ActivityId": "1.43",
+          "IsEnabled": false,
+          "IdRef": "ExecuteSqlActivity_7",
+          "DisplayName": "执行语句 - 插入分仓明细"
+        }
+      ],
+      "Module\\业务\\山姆.xaml": [
+        {
+          "ActivityId": "1.2005",
+          "IsEnabled": true,
+          "IdRef": "InvokeCSharpCodeActivity_22",
+          "DisplayName": "执行C#代码 - 汇总山姆报表文件"
+        },
+        {
+          "ActivityId": "1.3926",
+          "IsEnabled": true,
+          "IdRef": "InvokeCSharpCodeActivity_30",
+          "DisplayName": "执行C#代码 - 排除不录单订单"
+        }
+      ],
+      "Module\\业务\\沃尔玛-RTD\\输出cleanException-沃尔玛RTD.xaml": [
+        {
+          "ActivityId": "1.788",
+          "IsEnabled": true,
+          "IdRef": "InvokeCSharpCodeActivity_3",
+          "DisplayName": "执行C#代码 - 异常订单检查-沃尔玛-RTD-byPO"
+        },
+        {
+          "ActivityId": "1.1719",
+          "IsEnabled": true,
+          "IdRef": "InvokeWorkflow_1",
+          "DisplayName": "调用子流程: 获取平台相关历史数据"
+        }
+      ],
+      "Module\\业务\\山姆水单\\输出cleanException-山姆水单.xaml": [
+        {
+          "ActivityId": "1.345",
+          "IsEnabled": true,
+          "IdRef": "InvokeCSharpCodeActivity_7",
+          "DisplayName": "执行C#代码 - 异常订单检查-山姆水单-byPO"
+        }
       ]
     }
   }

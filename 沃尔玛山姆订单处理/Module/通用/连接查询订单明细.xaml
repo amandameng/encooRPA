@@ -18,7 +18,7 @@
       <x:String>System.Data</x:String>
       <x:String>System.Collections.Generic</x:String>
       <x:String>System.Collections.ObjectModel</x:String>
-      <x:String>GlobalVariable</x:String>
+      
       <x:String>BotTime.DataBase.Activity</x:String>
       <x:String>BotTime.Flow.Activities</x:String>
       <x:String>Encoo.CodeTool.Activity.Activities.CSharp</x:String>
@@ -35,7 +35,7 @@
       <AssemblyReference>WindowsBase</AssemblyReference>
       <AssemblyReference>System.Xaml</AssemblyReference>
       <AssemblyReference>netstandard</AssemblyReference>
-      <AssemblyReference>GlobalVariable</AssemblyReference>
+      
       <AssemblyReference>BotTime.DataBase.Activity</AssemblyReference>
       <AssemblyReference>BotTime.Flow.Activities</AssemblyReference>
       <AssemblyReference>Encoo.CodeTool.Activity</AssemblyReference>

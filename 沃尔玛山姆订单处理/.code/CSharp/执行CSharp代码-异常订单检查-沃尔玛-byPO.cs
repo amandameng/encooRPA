@@ -12,7 +12,9 @@ public void Run()
 {
     exceptionByPODT = byPO模板数据表.Clone();
     AddMoreColumns(); // Clean and Exceltion BY ORder and Item 全包括
-
+    if(增量订单关联数据表 == null || 增量订单关联数据表.Rows.Count == 0){
+        return;
+    }
     // 输出：exceptionByPODT
     // 是否检查散威化
     /*
@@ -53,11 +55,13 @@ public void Run()
         // 判断ship To 门店订单
         string location = curOrderRow["location"].ToString();
         // WM locations 不包含当前订单的location 则是门店订单异常
-        bool shipTo门店 = !WMLocationsList.Contains(location);
         
+        bool shipTo门店 = !WMLocationsList.Contains(location);
+
         // EX2O是否包含当前订单，如果包含，则无需再次录单
-        bool notNewOrder = setNotIntoEx2O(order_number);
-        if(!notNewOrder) cleanExceptionDRow["是否新单"] = "是";
+        checkExistingEX2O(order_number);
+        bool isNewOrder = CheckNewOrder(order_number);
+        if(isNewOrder) cleanExceptionDRow["是否新单"] = "是";
 
         // By Order的异常判断
         handleExceptionRow(curOrderRow, ref cleanExceptionDRow, ref 问题订单List, curOrderDocLinkRows, shipTo门店);
@@ -171,19 +175,20 @@ public void Run()
         cleanExceptionDRow["Exception category"] = string.Join(issueSeparator, 问题订单List.Union(finalItemExceptionList));
         cleanExceptionDRow["Exception reason"] = cleanExceptionDRow["Exception category"];
         // POS REPLEN 的订单不进分仓明细表, 2021-12-27 by mengfanling
-        
+       // Console.WriteLine(cleanExceptionDRow["Exception category"].ToString().ToUpper());
         if(分仓行["订单类型（Promotional Event）"].ToString().Trim() != "POS REPLEN"){
-            if(cleanExceptionDRow["Exception category"].ToString().ToUpper().Contains("CVP")){
+            if(cleanExceptionDRow["Exception category"].ToString().ToUpper().Contains("CVP") || cleanExceptionDRow["Exception category"].ToString().ToUpper().Contains("VMI")){
                 分仓行["订单修改信息"] = string.IsNullOrEmpty(分仓行["订单修改信息"].ToString()) ? cleanExceptionDRow["Exception category"] : (分仓行["订单修改信息"].ToString() + "; " + cleanExceptionDRow["Exception category"].ToString());
             }
            分仓明细数据表.Rows.Add(分仓行);
         }
+       
         exceptionByPODT.Rows.Add(cleanExceptionDRow);
     }
     
     buildByPODT();
     buildByPOAndItemDT();
-    // Convert.ToInt16("请问CDC");
+
 }
 
 public List<string> itemExceptionUniq(List<string> refItemExceptionList){
@@ -291,17 +296,24 @@ public void initExceptionItemRow(ref DataRow itemExceptionRow, DataRow dr){
     itemExceptionRow["Nestle BU"] = dr["Nestle_BU"];    
 }
 
-public bool setNotIntoEx2O(string order_number){
+public void checkExistingEX2O(string order_number){
     if(existingEX2ODT!=null && orderJobHistoryDT!=null){
         bool inEX2O = existingEX2ODT.AsEnumerable().Cast<DataRow>().Any(dRow => dRow["PO_Number"].ToString().Contains(order_number));        
         bool inOrderJobHistory = orderJobHistoryDT.AsEnumerable().Cast<DataRow>().Any(dRow => dRow["order_number"].ToString() == order_number);
 
         if(inEX2O && inOrderJobHistory){
             不录单订单列表.Add(order_number);
-            return true;
         }
     }
-    return false;
+}
+
+// 检查是否新单
+public bool CheckNewOrder(string order_number){
+    if(exportedOrdersDT!=null){
+        bool isOldOrder = exportedOrdersDT.AsEnumerable().Cast<DataRow>().Any(dRow => dRow["order_number"].ToString() == order_number);
+        return !isOldOrder;
+    }
+    return true;
 }
 
 public void getWMDiscountRate(DataRowCollection etoConfigDrs){
@@ -767,6 +779,14 @@ public void handleExceptionRow(DataRow dr, ref DataRow cleanExceptionDRow, ref L
             }
             skipNext = true;
         }
+
+        if(promotionalEvent.EndsWith("&")){
+            问题订单List.Add("VMI订单，不发货");
+            if(!不录单订单列表.Contains(dr["order_number"].ToString())){
+                不录单订单列表.Add(dr["order_number"].ToString());
+            }
+        }
+
         if(!无折扣){
             问题订单List.Add("问题订单,无折扣");
             if(!不录单订单列表.Contains(dr["order_number"].ToString())){

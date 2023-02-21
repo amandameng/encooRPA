@@ -58,7 +58,7 @@
           <av:Size x:Key="ShapeSize">200,53</av:Size>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获  - 截屏" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="TryCatch_1" IsIgnore="False">
+      <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获  - 截屏" sap:VirtualizedContainerService.HintSize="449,587" sap2010:WorkflowViewState.IdRef="TryCatch_1" IsIgnore="False">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -66,7 +66,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <bfa:TryCatch.Try>
-          <Sequence DisplayName="序列 - 截屏" sap:VirtualizedContainerService.HintSize="345,347" sap2010:WorkflowViewState.IdRef="Sequence_1">
+          <Sequence DisplayName="序列 - 截屏" sap:VirtualizedContainerService.HintSize="345,350" sap2010:WorkflowViewState.IdRef="Sequence_1">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="错误图片路径" />
             </Sequence.Variables>
@@ -76,7 +76,7 @@
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - 错误图片路径" sap:VirtualizedContainerService.HintSize="323,55" sap2010:WorkflowViewState.IdRef="Assign_1" IsIgnore="False">
+            <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - 错误图片路径" sap:VirtualizedContainerService.HintSize="323,58" sap2010:WorkflowViewState.IdRef="Assign_1" IsIgnore="False">
               <bfa:Assign.To>
                 <OutArgument x:TypeArguments="x:String">
                   <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1">错误图片路径</mca:CSharpReference>

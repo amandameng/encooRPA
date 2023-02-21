@@ -12,6 +12,9 @@ public void Run()
     exceptionByPODT = byPO模板数据表.Clone();
     AddMoreColumns(); // Clean and Exceltion BY ORder and Item 全包括
 
+    if(增量订单关联数据表 == null || 增量订单关联数据表.Rows.Count == 0){
+        return;
+    }
     // 输出：exceptionByPODT
     // 是否检查散威化
     /*
@@ -55,8 +58,10 @@ public void Run()
         bool shipTo门店 = !WMLocationsList.Contains(location);
         
         // EX2O是否包含当前订单，如果包含，则无需再次录单
-        bool notNewOrder = setNotIntoEx2O(order_number);
-        if(!notNewOrder) cleanExceptionDRow["是否新单"] = "是";
+        checkExistingEX2O(order_number);
+
+        bool isNewOrder = CheckNewOrder(order_number);
+        if(isNewOrder) cleanExceptionDRow["是否新单"] = "是";
 
         // By Order的异常判断
         handleExceptionRow(curOrderRow, ref cleanExceptionDRow, ref 问题订单List, curOrderDocLinkRows, shipTo门店);
@@ -285,17 +290,25 @@ public void initExceptionItemRow(ref DataRow itemExceptionRow, DataRow dr){
     itemExceptionRow["Nestle BU"] = dr["Nestle_BU"];    
 }
 
-public bool setNotIntoEx2O(string order_number){
-    if(existingEX2ODT!=null && orderJobHistoryDT!=null){
-        bool inEX2O = existingEX2ODT.AsEnumerable().Cast<DataRow>().Any(dRow => dRow["PO_Number"].ToString().Contains(order_number));        
-        bool inOrderJobHistory = orderJobHistoryDT.AsEnumerable().Cast<DataRow>().Any(dRow => dRow["order_number"].ToString() == order_number);
-
-        if(inEX2O && inOrderJobHistory){
+public void checkExistingEX2O(string order_number){
+    if(existingEX2ODT!=null){
+        bool inEX2O = existingEX2ODT.AsEnumerable().Cast<DataRow>().Any(dRow => dRow["Customer_Order_Number"].ToString() == order_number);        
+        // bool inOrderJobHistory = orderJobHistoryDT.AsEnumerable().Cast<DataRow>().Any(dRow => dRow["order_number"].ToString() == order_number);
+        // Console.WriteLine("inEX2O: {0}, inOrderJobHistory:{1}", inEX2O, inOrderJobHistory);
+        
+        if(inEX2O){
             不录单订单列表.Add(order_number);
-            return true;
         }
     }
-    return false;
+}
+
+// 检查是否新单
+public bool CheckNewOrder(string order_number){
+    if(exportedOrdersDT!=null){
+        bool isOldOrder = exportedOrdersDT.AsEnumerable().Cast<DataRow>().Any(dRow => dRow["order_number"].ToString() == order_number);
+        return !isOldOrder;
+    }
+    return true;
 }
 
 public void getWMDiscountRate(DataRowCollection etoConfigDrs){
@@ -744,6 +757,7 @@ public void handleExceptionRow(DataRow dr, ref DataRow cleanExceptionDRow, ref L
             问题订单List.Add(string.Format("仓租不为{0}订单", 仓租固定比例值));
         }
         
+        
         /*
         2.问题订单的判断及登记
         问题订单，SAP会自动屏蔽，不会进入Idoc和SAP，需反馈给Facing加折扣重新推单
@@ -757,6 +771,14 @@ public void handleExceptionRow(DataRow dr, ref DataRow cleanExceptionDRow, ref L
         //    问题订单List.Add("问题订单,POS REPLEN");
         //}
  
+        if(promotionalEvent.EndsWith("&")){
+            问题订单List.Add("VMI订单，不发货");
+            if(!不录单订单列表.Contains(dr["order_number"].ToString())){
+                不录单订单列表.Add(dr["order_number"].ToString());
+            }
+        }
+
+                
         /*
           客户指定送货日不在行程日
           1. Promotional Event为REQ时 

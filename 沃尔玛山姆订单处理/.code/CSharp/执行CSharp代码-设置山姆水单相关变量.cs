@@ -7,6 +7,10 @@ public void Run()
     
     samWater_eto_file_path = eto_file_path.Replace("Copy of Excel To Order", $"Copy of Excel To Order_{山姆水客户名}");
     samWater_clean_order_file_path = clean_order_file_path.Replace("Clean and Exception", $"Clean and Exception_{山姆水客户名}");
+    
+    if(File.Exists(samWater_clean_order_file_path)){
+        File.Move(samWater_clean_order_file_path, Path.Combine(Path.GetDirectoryName(samWater_clean_order_file_path), Path.GetFileNameWithoutExtension(samWater_clean_order_file_path) + DateTime.Now.ToString("-HH-mm-ss") + Path.GetExtension(samWater_clean_order_file_path)));
+    }
     setEtoConfigDT();
 }
 //在这里编写您的函数或者类

@@ -3,16 +3,40 @@ const string checkPriceOption = "检查价差";
 const string checkCustomerCodeOption = "备注客户店内码";
 const string checkProductSizeOption = "客户店内码的原单规格";
 const string orderChangeQtyDescription = "订单修改产品数量";
-    
+const string itemQtyNotIntegerDesc = "订单不为整数";
+
 const string 巴黎水产品码 = "980080954";
 const string 圣培露产品码 = "980085511";
+const string 山姆水mix产品码 = "981067796";
 public string 产品主数据匹配描述 = "无法匹配雀巢主数据";
+
+// 雀巢的箱规是24，山姆箱规是16
+public const decimal nestlePackage = 24;
+public const decimal samPackage = 16;
+public int minSamQty = 6; // 最小下单数量是6，这样才能保证转换到雀巢数量时大于等于1 
+const string issueSeparator = ";";
+public List<string> samWaterSpecialCodeLs = new List<string>{山姆水mix产品码};
+
+/*
+判断规则：
+
+Ø  一个山姆产品编码同时对应以下三个不同雀巢产品编码，当有小数时请向下取整，并需要检查山姆订单数量是否为“6”的倍数。
+
+Ø  当山姆订单数量小于“6”时，不录单不填写ex2o；当订单数量大于“6”时，按照“6”的倍数规则录单，比如数量为10，录单数量仅录6，同时反馈exception；如数量为12，录单数量为12。
+
+Ø  当数量不是“6”的倍数时，需反馈为exception，原因描述为：“产品数量不是“6”的倍数“
+
+Ø  山姆订单中含产品981067796时，整单放入exception，并标记匹配的三个雀巢产品编码及数量
+*/
+
 
 public void Run()
 {
     exceptionByPODT = byPO模板数据表.Clone();
     AddMoreColumns(); // Clean and Exceltion BY ORder and Item 全包括
-
+    if(增量订单关联数据表 == null || 增量订单关联数据表.Rows.Count == 0){
+        return;
+    }
     // 输出：exceptionByPODT
     
     checkBulkWaferException = etoConfigDT.Rows[0]["checkBulkWaferException"].ToString();
@@ -42,8 +66,10 @@ public void Run()
         // 整托和起送量的判断在订单层面和item层面都要做检查
         
         // 山姆水修改的订单也要进EX2O, 沃尔玛和山姆的订单只进最新订单
-        bool notNewOrder = setNotIntoEx2O(order_number);
-        if(!notNewOrder) cleanExceptionDRow["是否新单"] = "是";
+        checkExistingEX2O(order_number);
+
+        bool isNewOrder = CheckNewOrder(order_number);
+        if(isNewOrder) cleanExceptionDRow["是否新单"] = "是";
 
         // By Order的异常判断， 检查整托和起送量
         handleExceptionRow(curOrderRow, ref cleanExceptionDRow, ref 问题订单List, curOrderDocLinkRows);
@@ -76,29 +102,57 @@ public void Run()
             repeatedOrderException(curOrderRow, prevOrderRow, ref cleanExceptionDRow, ref 问题订单List, tmpOrderDT.Rows); 
         }
 
+         /* 待拆分产品判断 
+         981067796 （6个口味平分） 星巴克胶囊咖啡6盒装， 拆分比例12512003,12468696,12466195 =0.5：0.25：0.25，这个不是普通意义上的平分，因为雀巢跟山姆的箱规不一致，比如 山姆箱规16，雀巢箱规24，客户下单最小订单数量应为24箱
+        */
+        List<string> bulk_walfer_codes = new List<string>{};
+        foreach(DataRow dr in bulkWalferConfigDT.Rows){
+            string customer_product_code = dr["customer_product_code"].ToString();
+            bulk_walfer_codes.Add(customer_product_code);
+        }
+                
         List<string> refItemExceptionList = new List<string>{};
         // By Item 检查exception, 检查整托和起送量
         foreach(DataRow dr in curOrderDocLinkRows){
+            List<string> itemExceptionList = new List<string>{};
+
             string productCode = dr["customer_product_code"].ToString();
             DataRow byPOItemRow =  exceptionByPODT.NewRow();
             byPOItemRow.ItemArray = cleanExceptionDRow.ItemArray;
             byPOItemRow["Customer order Item"] = dr["line_number"];
             int quantity_ordered = toIntConvert(dr["quantity_ordered"]);
             if(quantity_ordered == 0){
-                refItemExceptionList.Add("产品数量为0");
+                itemExceptionList.Add("产品数量为0");
             }
 
-            specialProductCheck(dr, ref refItemExceptionList, ref byPOItemRow, prevOrderDocLinkRows, 问题订单List);
-            if(!String.IsNullOrEmpty(byPOItemRow["Exception reason"].ToString())){ // 异常信息不为空
-                exceptionByPODT.Rows.Add(byPOItemRow);  // by Item 的异常订单 
+            specialProductCheck(dr, ref itemExceptionList, ref byPOItemRow, prevOrderDocLinkRows, 问题订单List);
+     
+            bool multipleHasException = false;
+            // 如果是1对多产品，检查下数量是否为整数
+             if(bulk_walfer_codes.Contains(productCode)){
+                multipleHasException = checkMultipleProducts(dr, itemExceptionList, cleanExceptionDRow);
             }
+
+            // 汇总exception信息
+            if(itemExceptionList.Count > 0){
+                byPOItemRow["Exception reason"] = string.Join(issueSeparator, itemExceptionList);
+                byPOItemRow["order category"] = "exception";
+                Console.WriteLine(string.Join("**", byPOItemRow.ItemArray));
+                if(!multipleHasException) exceptionByPODT.Rows.Add(byPOItemRow);  // by Item 的异常订单
+                refItemExceptionList = refItemExceptionList.Union(itemExceptionList).ToList();
+            }
+            
+          //  if(!String.IsNullOrEmpty(byPOItemRow["Exception reason"].ToString())){ // 异常信息不为空
+          //      exceptionByPODT.Rows.Add(byPOItemRow);  // by Item 的异常订单 
+          //  }
         }
+        List<string> finalItemExceptionList = itemExceptionUniq(refItemExceptionList);
 
         cleanExceptionDRow["Item Type"] = "Order";
-        cleanExceptionDRow["order category"] = (问题订单List.Count > 0 || refItemExceptionList.Count > 0) ? "exception" : "clean";
-        string onlyItemException = (问题订单List.Count == 0 && refItemExceptionList.Count > 0) ? "1" : "0";
+        cleanExceptionDRow["order category"] = (问题订单List.Count > 0 || finalItemExceptionList.Count > 0) ? "exception" : "clean";
+        string onlyItemException = (问题订单List.Count == 0 && finalItemExceptionList.Count > 0) ? "1" : "0";
         cleanExceptionDRow["onlyItemException"] = onlyItemException;
-        cleanExceptionDRow["Exception category"] = string.Join("; ", 问题订单List.Union(refItemExceptionList));
+        cleanExceptionDRow["Exception category"] = string.Join("; ", 问题订单List.Union(finalItemExceptionList));
         cleanExceptionDRow["Exception reason"] = cleanExceptionDRow["Exception category"];
 
         exceptionByPODT.Rows.Add(cleanExceptionDRow);
@@ -108,18 +162,40 @@ public void Run()
     // Convert.ToInt32("asdas");
 }
 
-public bool setNotIntoEx2O(string order_number){
+
+public List<string> itemExceptionUniq(List<string> refItemExceptionList){
+    string allItemsExceptionStr = string.Join(issueSeparator, refItemExceptionList);
+    string[] allItemsExceptionArr = allItemsExceptionStr.Split(new string[]{ issueSeparator }, StringSplitOptions.RemoveEmptyEntries);
+    List<string> finalItemExceptionList = new List<string>{};
+    foreach(string item in allItemsExceptionArr){
+        if(!finalItemExceptionList.Contains(item)){
+            finalItemExceptionList.Add(item);
+        }
+    }
+    return finalItemExceptionList;
+}
+
+
+public void checkExistingEX2O(string order_number){
     if(existingEX2ODT!=null && orderJobHistoryDT!=null){
         bool inEX2O = existingEX2ODT.AsEnumerable().Cast<DataRow>().Any(dRow => dRow["PO_Number"].ToString().Contains(order_number));        
         bool inOrderJobHistory = orderJobHistoryDT.AsEnumerable().Cast<DataRow>().Any(dRow => dRow["order_number"].ToString() == order_number);
 
         if(inEX2O && inOrderJobHistory){
             不录单订单列表.Add(order_number);
-            return true;
         }
     }
-    return false;
 }
+
+// 检查是否新单
+public bool CheckNewOrder(string order_number){
+    if(exportedOrdersDT!=null){
+        bool isOldOrder = exportedOrdersDT.AsEnumerable().Cast<DataRow>().Any(dRow => dRow["order_number"].ToString() == order_number);
+        return !isOldOrder;
+    }
+    return true;
+}
+
 
 public void compareOrderItem(DataRow[] curOrderDocLinkRows, DataRow[] prevOrderDocLinkRows, DataRow cleanExceptionDRow){
     string[] currentProductCodeArr = curOrderDocLinkRows.Cast<DataRow>().Select<DataRow, string>(dr => dr["customer_product_code"].ToString()).ToArray();
@@ -139,7 +215,7 @@ public void compareOrderItem(DataRow[] curOrderDocLinkRows, DataRow[] prevOrderD
                     
                     itemExceptionRow["原订单数量"] = 0;
                     itemExceptionRow["修改后订单数量"] = dr["quantity_ordered"];
-                    itemExceptionRow["雀巢数量"] = dr["quantity_ordered"];
+                    itemExceptionRow["雀巢数量"] = fetchQty( dr["quantity_ordered"], dr["customer_product_code"].ToString(), dr["Nestle_Material_No"].ToString(), samQtyMappingDT);
                     itemExceptionRow["Exception reason"] = "订单修改产品数量,新增产品行";
                     exceptionByPODT.Rows.Add(itemExceptionRow);
                 }
@@ -218,6 +294,80 @@ public void buildByPOAndItemDT(){
    */
     byPOorItem模板数据表 = poItemDT.DefaultView.ToTable(true, byPOorItem模板数据表.Columns.Cast<DataColumn>().Select<DataColumn, string>(dc => dc.ColumnName).ToArray());
 }
+
+/*
+山姆1：N产品，比例是 1：1：1, 假设山姆的产品Qty为180，那么需要衍生出3条产品行数据，每一行的Qty都是90, 45, 45. 于 2022/4/15改成  0.5：0.25：0.25
+*/
+public bool checkMultipleProducts(DataRow dr, List<string> itemExceptionList, DataRow cleanExceptionDRow){
+    string productCode = dr["customer_product_code"].ToString();
+    int quantity_ordered = toIntConvert(dr["quantity_ordered"]);
+    bool addToException = false;
+    DataRow bulkWalferProduct = bulkWalferConfigDT.Select("customer_product_code='" + productCode + "'")[0];
+    string nestleCodeAllocation = bulkWalferProduct["nestle_code_allocation"].ToString();
+    string allocationRatio = bulkWalferProduct["allocation_ratio"].ToString();
+    string[] nestleCodeArr = nestleCodeAllocation.Split(new string[]{",", "，"}, StringSplitOptions.RemoveEmptyEntries);
+    string[] allocationRatioArr = allocationRatio.Split(new string[]{"：", ":"}, StringSplitOptions.RemoveEmptyEntries); // 注意： 是中文冒号
+    for(int i=0; i< allocationRatioArr.Length; i++){
+        string ratioStr = allocationRatioArr[0];
+        string 雀巢产品编码 = nestleCodeArr[i];
+        DataRow[] bulkProductDrs = oneToNNestleProductsDT.Select(String.Format("Nestle_Plant_No='{0}' and Nestle_Material_No='{1}'", dr["location"].ToString(), 雀巢产品编码));
+        if(bulkProductDrs.Length == 0){
+           addExceptionRow(cleanExceptionDRow);
+           addToException = true;
+           continue;
+        }
+        string material_description = bulkProductDrs[0]["Material_Description"].ToString();
+        string remark = bulkProductDrs[0]["Remark"].ToString();
+        string remarkOption = bulkProductDrs[0]["Remark_Option"].ToString();
+
+        decimal rationValue = toDecimalConvert(ratioStr);
+        decimal curQuantity_ordered = quantity_ordered * samPackage/nestlePackage * rationValue;
+        DataRow[] qtyMappingRows = samQtyMappingDT.Select(string.Format("Sam_Product_Code='{0}' and Nestle_Product_Code='{1}'", productCode, 雀巢产品编码));
+        
+        decimal finalQtyD = fetchQty(quantity_ordered, qtyMappingRows[0], ref itemExceptionList, true);
+        int finalQty = toIntConvert(Math.Floor(finalQtyD));
+        
+        Console.WriteLine("quantity_ordered:{0}, curQuantity_ordered: {1}, finalQty: {2}", quantity_ordered, curQuantity_ordered, finalQty);
+        if(curQuantity_ordered != toIntConvert(curQuantity_ordered)){
+            DataRow byPOItemRow =  exceptionByPODT.NewRow();
+            byPOItemRow.ItemArray = cleanExceptionDRow.ItemArray;
+            initExceptionItemRow(ref byPOItemRow, dr);
+            byPOItemRow["修改后订单数量"] = null;
+            byPOItemRow["雀巢产品编码"] = 雀巢产品编码;
+            byPOItemRow["沃尔玛产品编码"] = productCode;
+            if(i==0){
+                byPOItemRow["原订单数量"] = quantity_ordered;
+            }else{
+                byPOItemRow["原订单数量"] = null;
+            }
+            byPOItemRow["雀巢数量"] = finalQty;
+            byPOItemRow["Material Description"] = material_description;
+            if(!itemExceptionList.Contains(itemQtyNotIntegerDesc)) itemExceptionList.Add(itemQtyNotIntegerDesc);
+            byPOItemRow["Exception reason"] = string.Join(issueSeparator, itemExceptionList);
+            exceptionByPODT.Rows.Add(byPOItemRow);
+            addToException = true;
+        }
+        
+        if(remark.Contains("特殊产品")){
+            remarkOption = remarkOption.Replace(issueSeparator, "").Replace("；", "").Trim();
+            if(!string.IsNullOrEmpty(remarkOption) && !remarkOption.Contains("JD氨糖")){ // remarkOption 不为空，则也添加到异常描述里面
+                DataRow byPOItemRow =  exceptionByPODT.NewRow();
+                byPOItemRow.ItemArray = cleanExceptionDRow.ItemArray;
+                initExceptionItemRow(ref byPOItemRow, dr);
+                byPOItemRow["雀巢数量"] = finalQty;
+                byPOItemRow["雀巢产品编码"] = 雀巢产品编码;
+                byPOItemRow["Material Description"] = material_description;
+                byPOItemRow["Item Type"] = "Item";
+                if(!itemExceptionList.Contains("特殊产品需检查订单," + remarkOption)) itemExceptionList.Add("特殊产品需检查订单," + remarkOption);
+                byPOItemRow["Exception reason"] = string.Join(issueSeparator, itemExceptionList);
+                exceptionByPODT.Rows.Add(byPOItemRow);
+                addToException = true;
+            }
+        }
+    }
+    return addToException;
+}
+
 
 // 产品行检查折扣
 public void specialProductCheck(DataRow dr, ref List<string> refItemExceptionList, ref DataRow byPOItemRow, DataRow[] prevOrderDocLinkRows, List<string> 问题订单list){
@@ -321,6 +471,29 @@ public void specialProductCheck(DataRow dr, ref List<string> refItemExceptionLis
         }
     }
     
+    // 数量按照比例转换
+    decimal final_quantity = toDecimalConvert(dr["quantity_ordered"]);
+    DataRow qtyMappingRow = null;
+    if(samQtyMappingDT!=null){
+        DataRow[] qtyMappingRows = samQtyMappingDT.Select(string.Format("Sam_Product_Code='{0}' and Nestle_Product_Code='{1}'", dr["customer_product_code"].ToString(), dr["Nestle_Material_No"].ToString()));
+        if(qtyMappingRows.Length > 0){
+            qtyMappingRow = qtyMappingRows[0];
+        
+            final_quantity = fetchQty(dr["quantity_ordered"], qtyMappingRow, ref itemExceptionList, true);
+            byPOItemRow["雀巢数量"] = toIntConvert(Math.Floor(final_quantity));
+            
+            Decimal cost = toDecimalConvert(dr["cost"]);
+            // Cost_Check_Value 设置了值
+            if(!string.IsNullOrEmpty(qtyMappingRow["Cost_Check_Value"].ToString())){
+                Decimal costCheckValue = toDecimalConvert(qtyMappingRow["Cost_Check_Value"]);
+                if(costCheckValue != cost){ // 客户网站cost跟设定的不match，则不录单
+                  itemExceptionList.Add($"{byPOItemRow["沃尔玛产品编码"]}成本为{Math.Round(cost, 2)}，与雀巢Cost{Math.Round(costCheckValue, 2)}不一致");
+                }
+            }
+        }
+    }
+    
+    
     /*
       山姆京东类型的订单如下单产品为氨糖奶粉，不录单作为exception order发给CSA取消
       Exception reason：不录单，山姆JD+氨糖奶粉
@@ -361,9 +534,10 @@ public void specialProductCheck(DataRow dr, ref List<string> refItemExceptionLis
         if(prevItemRow!=null && prevItemRow["quantity_ordered"].ToString() != dr["quantity_ordered"].ToString()){
             byPOItemRow["原订单数量"] = prevItemRow["quantity_ordered"];
             //Console.WriteLine("原订单数量: {0}, 修改后订单数量: {1}", prevItemRow["quantity_ordered"], dr["quantity_ordered"]);
-            
+            decimal finalPrevQuantity = qtyMappingRow!=null ? fetchQty(prevItemRow["quantity_ordered"], qtyMappingRow, ref itemExceptionList, false) : toDecimalConvert(prevItemRow["quantity_ordered"]);
+
             byPOItemRow["修改后订单数量"] = dr["quantity_ordered"];
-            itemExceptionList.Add(orderChangeQtyDescription);
+            itemExceptionList.Add(orderChangeQtyDescription + $"，原订单雀巢数量：{toIntConvert(finalPrevQuantity)}， 改单后雀巢数量：{toIntConvert(final_quantity)}");
         }else{
             byPOItemRow["原订单数量"] = null;
         }
@@ -697,22 +871,76 @@ public decimal getSapNetValue(DataRow dr, List<string> allitemproductCodesList, 
     string location = dr["location"].ToString();
     string allitemproductCodesStr = string.Join(", ", allitemproductCodesList.ToArray());
 
-    foreach(DataRow itemDR in curOrderDocLinkRows){
-        string customerProdCode = itemDR["customer_product_code"].ToString();
-        int itemQuantityOrdered = toIntConvert(itemDR["quantity_ordered"]);
-        
-        string 产品扣点 = itemDR["产品扣点"].ToString();
-        if(!string.IsNullOrEmpty(产品扣点) && customerProdCode == 巴黎水产品码 ){
-            decimal productDiscountRate = Math.Round(fetchRateInDecimal(产品扣点), 6);
-            不含扣点 = 不含扣点 - productDiscountRate;
+    DataRow[] oneToNDrs = oneToNNestleProductsDT.Select(string.Format("Customer_Name='{0}' and Nestle_Plant_No='{1}' and Customer_Material_No in ({2})", curCustomerName, location, allitemproductCodesStr));
+    
+    //Console.WriteLine("oneToNDrs.Length{0}", oneToNDrs.Length);
+    if(oneToNDrs.Length > 0){ // 包含 1：n 产品码
+        // 遍历order items
+        foreach(DataRow itemDR in curOrderDocLinkRows){
+            string customerProdCode = itemDR["customer_product_code"].ToString();
+            
+            List<DataRow> oneToNSndDrsList = new List<DataRow>{};
+            foreach(DataRow oneToNDR in oneToNDrs){
+                if(oneToNDR["Customer_Material_No"].ToString() == customerProdCode){
+                    oneToNSndDrsList.Add(oneToNDR);
+                }
+            }
+            DataRow[] oneToNSndDrs = oneToNSndDrsList.ToArray();
+            decimal itemNestleNPS=0;
+            // 如果调价不为空，则使用调价计算
+            if(!String.IsNullOrEmpty(itemDR["Adjustive_Price"].ToString())){
+                itemNestleNPS = toDecimalConvert(itemDR["Adjustive_Price"]);
+            }else if(!String.IsNullOrEmpty(itemDR["Nestle_NPS"].ToString())){
+                itemNestleNPS = toDecimalConvert(itemDR["Nestle_NPS"]);
+            }
+            int itemQuantityOrdered = toIntConvert(itemDR["quantity_ordered"]);
+            // 此商品属于客户1：n雀巢产品
+            if(oneToNSndDrs.Length > 0){
+                foreach(DataRow oneToNProdDr in oneToNSndDrs){
+                    decimal oneToNNestleNPS = 0; 
+                    string customerProductCode = oneToNProdDr["Customer_Material_No"].ToString();
+                    string nestleProdCode = oneToNProdDr["Nestle_Material_No"].ToString();
+//Console.WriteLine("itemQuantityOrdered: {0}", itemQuantityOrdered);
+                    decimal itemQuantity = fetchQty(itemQuantityOrdered, customerProductCode, nestleProdCode, samQtyMappingDT);
+//Console.WriteLine("itemQuantity: {0}", itemQuantity);
+
+                    if(!String.IsNullOrEmpty(oneToNProdDr["Adjustive_Price"].ToString())){
+                        oneToNNestleNPS = toDecimalConvert(oneToNProdDr["Adjustive_Price"]);
+                    }else{
+                        oneToNNestleNPS = toDecimalConvert(oneToNProdDr["Nestle_NPS"]);
+                    }
+                     Console.WriteLine($"itemNestleNPS: {oneToNNestleNPS}, itemQuantity: {itemQuantity}, 不含扣点: {不含扣点}");
+            
+                    sap_net_value += oneToNNestleNPS * itemQuantity * 不含扣点;
+                }
+            }else{
+                
+                 string nestleProdCode = itemDR["Nestle_Material_No"].ToString();
+                 decimal itemQuantity = fetchQty(itemQuantityOrdered, customerProdCode, nestleProdCode, samQtyMappingDT);
+                sap_net_value += itemNestleNPS * itemQuantity * 不含扣点;
+            }
         }
-        
-        decimal itemNestleNPS=0;
-        if(!String.IsNullOrEmpty(itemDR["Nestle_NPS"].ToString())){
-            itemNestleNPS = toDecimalConvert(itemDR["Nestle_NPS"]);
+    }else{
+        foreach(DataRow itemDR in curOrderDocLinkRows){
+            string customerProdCode = itemDR["customer_product_code"].ToString();
+            string nestleProdCode = itemDR["Nestle_Material_No"].ToString();
+    
+            int itemQuantityOrdered = toIntConvert(itemDR["quantity_ordered"]);
+            decimal itemQuantity = fetchQty(itemQuantityOrdered, customerProdCode, nestleProdCode, samQtyMappingDT);
+    
+            string 产品扣点 = itemDR["产品扣点"].ToString();
+            if(!string.IsNullOrEmpty(产品扣点) && customerProdCode == 巴黎水产品码 ){
+                decimal productDiscountRate = Math.Round(fetchRateInDecimal(产品扣点), 6);
+                不含扣点 = 不含扣点 - productDiscountRate;
+            }
+            
+            decimal itemNestleNPS=0;
+            if(!String.IsNullOrEmpty(itemDR["Nestle_NPS"].ToString())){
+                itemNestleNPS = toDecimalConvert(itemDR["Nestle_NPS"]);
+            }
+            //Console.WriteLine("itemNestleNPS: {0}, itemQuantityOrdered: {1}", itemNestleNPS, itemQuantityOrdered);
+            sap_net_value += itemNestleNPS * itemQuantityOrdered * 不含扣点;
         }
-        //Console.WriteLine("itemNestleNPS: {0}, itemQuantityOrdered: {1}", itemNestleNPS, itemQuantityOrdered);
-        sap_net_value += itemNestleNPS * itemQuantityOrdered * 不含扣点;
     }
  
     return sap_net_value;
@@ -801,6 +1029,60 @@ public List<string> shipLocationDic(string requestDeliveryDate){
     }
     return dayStringList;
 }
+
+// 山姆水，合包数量转换
+public decimal convertedQty(decimal customerQty, decimal nestleRatio, ref string exceptionReason){
+     decimal finalQty = customerQty;
+
+    // 订单数量不是6的倍数，则再判断大于还是小于6，小于则不录单，大于的话，取整录单
+    if(toIntConvert(customerQty/minSamQty) != customerQty/minSamQty){
+        if(customerQty < minSamQty){
+            exceptionReason = string.Format("产品数量不是“{0}”的倍数且小于“{1}”，不录单", minSamQty, minSamQty);
+        }else{
+            exceptionReason = string.Format("产品数量不是“{0}”的倍数", minSamQty);
+            finalQty = (Math.Floor(customerQty/minSamQty) * minSamQty) * samPackage/nestlePackage * nestleRatio;
+        }
+    }else{
+        finalQty = customerQty * samPackage/nestlePackage * nestleRatio;
+    }
+    return finalQty;
+}
+
+public decimal fetchQty(object originalQty, DataRow qtyMappingRow, ref List<string> itemExceptionList, bool intoException){
+    decimal customerOrderQty = toDecimalConvert(originalQty);
+    decimal finalQty = customerOrderQty;
+    // string Not_Integer_Still_Into_EX2O = qtyMappingRow["Not_Integer_Still_Into_EX2O"].ToString();
+    string customerProdCode = qtyMappingRow["Sam_Product_Code"].ToString();
+    decimal Nestle_Qty_ratio = toDecimalConvert(qtyMappingRow["Nestle_Qty"]);
+    //nestleQty_m = Math.Floor(nestleQty_m); // 换算后不为整数，则向下取整    
+    // 当换算后不是“6”的倍数时，需反馈为exception，原因描述为：“产品数量不是“6”的倍数“，雀巢的箱规是24，山姆箱规是16，山姆的下单数量换算为雀巢的数量需要 a*16/24, 即a * 2/3, 然后再按照0.5：0.25：0.25的比列拆分
+    if(samWaterSpecialCodeLs.Contains(customerProdCode)){
+        string exceptionReason = string.Empty;
+        finalQty = convertedQty(customerOrderQty, toDecimalConvert(qtyMappingRow["Nestle_Qty"]), ref exceptionReason);
+        if(!string.IsNullOrEmpty(exceptionReason) && intoException){
+            if(!itemExceptionList.Contains(exceptionReason)) itemExceptionList.Add(exceptionReason); 
+        }
+    }
+    return finalQty;
+}
+
+public decimal fetchQty(object originalQty, string customerProdCode, string nestleProdCode, DataTable samQtyMappingDT){
+    DataRow[] qtyMappingRows = samQtyMappingDT.Select(string.Format("Sam_Product_Code='{0}' and Nestle_Product_Code='{1}'", customerProdCode, nestleProdCode));
+    decimal customerOrderQty = toDecimalConvert(originalQty);
+    decimal finalQty = customerOrderQty;
+
+    if(qtyMappingRows.Length > 0){
+        DataRow qtyMappingRow = qtyMappingRows[0];  
+        // string Not_Integer_Still_Into_EX2O = qtyMappingRow["Not_Integer_Still_Into_EX2O"].ToString();
+         if(samWaterSpecialCodeLs.Contains(customerProdCode)){
+            string exceptionReason = string.Empty;
+            finalQty = convertedQty(customerOrderQty, toDecimalConvert(qtyMappingRow["Nestle_Qty"]), ref exceptionReason);
+         }
+    }
+    return finalQty;
+}
+
+
 
 public static decimal toDecimalConvert(object srcValue){
     Decimal nestle_NPS = 0;

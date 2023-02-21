@@ -605,7 +605,7 @@
                           <ActivityAction.Argument>
                             <DelegateInArgument x:TypeArguments="x:String" Name="item" />
                           </ActivityAction.Argument>
-                          <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="371,493" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                          <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="485,694" sap2010:WorkflowViewState.IdRef="Sequence_23">
                             <Sequence.Variables>
                               <Variable x:TypeArguments="x:Boolean" Name="processSuccess" />
                             </Sequence.Variables>
@@ -614,7 +614,7 @@
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: 指定模块的流程" sap:VirtualizedContainerService.HintSize="349,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_31" IsIgnore="False">
+                            <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: 指定模块的流程" sap:VirtualizedContainerService.HintSize="463,53" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_31" IsIgnore="False">
                               <bfa:InvokeWorkflow.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="结束日期">
                                   <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_179">[System.Convert.ToString(结束日期)]</mca:CSharpValue>
@@ -641,13 +641,19 @@
                                   <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_253">[validOrdersFromListingDT]</mca:CSharpValue>
                                 </InArgument>
                               </bfa:InvokeWorkflow.Arguments>
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
                               <bfa:InvokeWorkflow.WorkflowPath>
                                 <InArgument x:TypeArguments="x:String">
                                   <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_185">[(String.Format("Module\\业务\\{0}.xaml", item)).ToString()]</mca:CSharpValue>
                                 </InArgument>
                               </bfa:InvokeWorkflow.WorkflowPath>
                             </bfa:InvokeWorkflow>
-                            <eaw:BrowserAttach DelayAfter="{x:Null}" DelayBefore="{x:Null}" Selector="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActivityName="绑定浏览器" BringWindowType="Default" BrowserType="Chrome" ContinueOnError="False" DisplayName="绑定浏览器" ElementRect="0, 0, 0, 0" Guid="01eec7f9-56df-4062-92f5-90929065994d" sap:VirtualizedContainerService.HintSize="349,53" sap2010:WorkflowViewState.IdRef="BrowserAttach_1" IsEndClose="False" IsIgnore="False" IsMaximize="True" ScreenShoot="99272230-bb4a-452a-8b35-9894c506dbe3.jpg" SelectionRect="0, 0, 0, 0">
+                            <eaw:BrowserAttach DelayAfter="{x:Null}" DelayBefore="{x:Null}" Selector="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActivityName="绑定浏览器" BringWindowType="Default" BrowserType="Chrome" ContinueOnError="False" DisplayName="绑定浏览器" ElementRect="0, 0, 0, 0" Guid="01eec7f9-56df-4062-92f5-90929065994d" sap:VirtualizedContainerService.HintSize="463,260" sap2010:WorkflowViewState.IdRef="BrowserAttach_1" IsEndClose="False" IsIgnore="False" IsMaximize="True" ScreenShoot="99272230-bb4a-452a-8b35-9894c506dbe3.jpg" SelectionRect="0, 0, 0, 0">
                               <eaw:BrowserAttach.Body>
                                 <ActivityAction x:TypeArguments="x:Object">
                                   <ActivityAction.Argument>
@@ -669,12 +675,12 @@
                               </eaw:BrowserAttach.Selector2>
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                             </eaw:BrowserAttach>
-                            <eaw:BrowserClose DelayAfter="{x:Null}" DelayBefore="{x:Null}" Selector="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActivityName="关闭浏览器" sap2010:Annotation.AnnotationText="失败后继续" BringWindowType="Default" BrowserType="Chrome" ContinueOnError="True" DisplayName="关闭浏览器" ElementRect="0, 0, 0, 0" Guid="5523f23a-361c-4e1a-8b38-3b5e819c04b4" sap:VirtualizedContainerService.HintSize="349,78" sap2010:WorkflowViewState.IdRef="BrowserClose_3" IsIgnore="False" ScreenShoot="360de6ba-d318-46d3-bec9-82e68d97e014.jpg" SelectionRect="0, 0, 0, 0">
+                            <eaw:BrowserClose DelayAfter="{x:Null}" DelayBefore="{x:Null}" Selector="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActivityName="关闭浏览器" sap2010:Annotation.AnnotationText="失败后继续" BringWindowType="Default" BrowserType="Chrome" ContinueOnError="True" DisplayName="关闭浏览器" ElementRect="0, 0, 0, 0" Guid="5523f23a-361c-4e1a-8b38-3b5e819c04b4" sap:VirtualizedContainerService.HintSize="463,115" sap2010:WorkflowViewState.IdRef="BrowserClose_3" IsIgnore="False" ScreenShoot="360de6ba-d318-46d3-bec9-82e68d97e014.jpg" SelectionRect="0, 0, 0, 0">
                               <eaw:BrowserClose.Body>
                                 <ActivityAction x:TypeArguments="x:Object">
                                   <ActivityAction.Argument>
@@ -695,7 +701,7 @@
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
                             </eaw:BrowserClose>
-                            <ecaac1:AddToCollectionActivity ActivityName="添加对象" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="添加对象" sap:VirtualizedContainerService.HintSize="349,22" sap2010:WorkflowViewState.IdRef="AddToCollectionActivity_1">
+                            <ecaac1:AddToCollectionActivity ActivityName="添加对象" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="添加对象" sap:VirtualizedContainerService.HintSize="463,22" sap2010:WorkflowViewState.IdRef="AddToCollectionActivity_1">
                               <ecaac1:AddToCollectionActivity.Collection>
                                 <InOutArgument x:TypeArguments="scg:List(x:Boolean)">
                                   <mca:CSharpReference x:TypeArguments="scg:List(x:Boolean)" sap2010:WorkflowViewState.IdRef="CSharpReference`1_24">[processResultList]</mca:CSharpReference>
@@ -1187,13 +1193,13 @@
                                                         <av:PointCollection x:Key="ConnectorLocation">310,649.5 310,693.5</av:PointCollection>
                                                       </scg:Dictionary>
                                                     </sap:WorkflowViewStateService.ViewState>
-                                                    <Sequence DisplayName="序列 clean Exception" sap:VirtualizedContainerService.HintSize="556,744" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                                                    <Sequence DisplayName="序列 clean Exception" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="Sequence_16">
                                                       <sap:WorkflowViewStateService.ViewState>
                                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                                         </scg:Dictionary>
                                                       </sap:WorkflowViewStateService.ViewState>
-                                                      <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If Clean + Exception Order文件存在）" sap:VirtualizedContainerService.HintSize="534,620" sap2010:WorkflowViewState.IdRef="If_22" IsIgnore="False">
+                                                      <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If Clean + Exception Order文件存在）" sap:VirtualizedContainerService.HintSize="534,408" sap2010:WorkflowViewState.IdRef="If_22" IsIgnore="False">
                                                         <bfa:If.Condition>
                                                           <InArgument x:TypeArguments="x:Boolean">
                                                             <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_127">[cleanException附件.Count &gt; 0]</mca:CSharpValue>
@@ -1217,7 +1223,7 @@
                                                                   <mca:CSharpValue x:TypeArguments="scg:List(x:String)" sap2010:WorkflowViewState.IdRef="CSharpValue`1_149">[cleanException附件]</mca:CSharpValue>
                                                                 </InArgument>
                                                                 <InArgument x:TypeArguments="x:String" x:Key="邮件正文">
-                                                                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_150">[System.Convert.ToString(邮件正文模板有数据.Replace("(订单类型)", "clean + Exception order list"))]</mca:CSharpValue>
+                                                                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_286">System.Convert.ToString(邮件正文模板有数据.Replace("(订单类型)", "clean + Exception order list").Replace("本时段", "本时段" + DateTime.Now.ToString("HH:mm:ss")))</mca:CSharpValue>
                                                                 </InArgument>
                                                                 <InArgument x:TypeArguments="x:String" x:Key="邮件主题">
                                                                   <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_151">[System.Convert.ToString(邮件标题模板.Replace("(订单类型)", "Clean + Exception order list"))]</mca:CSharpValue>
@@ -1323,7 +1329,7 @@
                                                                 <av:Size x:Key="ShapeSize">200,112</av:Size>
                                                               </scg:Dictionary>
                                                             </sap:WorkflowViewStateService.ViewState>
-                                                            <Flowchart sap2010:Annotation.AnnotationText="采集上个月1号至今的所有沃尔玛山姆的分仓明细数据发出邮件" DisplayName="分仓明细表报表邮件" sap:VirtualizedContainerService.HintSize="200,112" sap2010:WorkflowViewState.IdRef="Flowchart_4">
+                                                            <Flowchart sap2010:Annotation.AnnotationText="采集上个月1号至今的所有沃尔玛山姆的分仓明细数据发出邮件" DisplayName="分仓明细表报表邮件" sap:VirtualizedContainerService.HintSize="614,843" sap2010:WorkflowViewState.IdRef="Flowchart_4">
                                                               <Flowchart.Variables>
                                                                 <Variable x:TypeArguments="sd:DataTable" Name="上月至今分仓明细数据表" />
                                                               </Flowchart.Variables>
@@ -1348,7 +1354,7 @@
                                                                     <av:PointCollection x:Key="ConnectorLocation">310,206.5 310,283.5</av:PointCollection>
                                                                   </scg:Dictionary>
                                                                 </sap:WorkflowViewStateService.ViewState>
-                                                                <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 - 连接数据库查询分仓明细" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="TryCatch_3" IsIgnore="False">
+                                                                <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 - 连接数据库查询分仓明细" sap:VirtualizedContainerService.HintSize="509,935" sap2010:WorkflowViewState.IdRef="TryCatch_3" IsIgnore="False">
                                                                   <bfa:TryCatch.Try>
                                                                     <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="491,698" sap2010:WorkflowViewState.IdRef="Sequence_37">
                                                                       <sap:WorkflowViewStateService.ViewState>
@@ -1449,7 +1455,7 @@ where branch_warehouse.Customer_Name in ({0}) and branch_warehouse.created_time 
                                                                     </Sequence>
                                                                   </bfa:TryCatch.Try>
                                                                   <bfa:TryCatch.Catches>
-                                                                    <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="435,315" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                                                                    <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="495,23" sap2010:WorkflowViewState.IdRef="Catch`1_3">
                                                                       <bfa:Catch.Action>
                                                                         <ActivityAction x:TypeArguments="s:Exception">
                                                                           <ActivityAction.Argument>
@@ -1478,7 +1484,7 @@ where branch_warehouse.Customer_Name in ({0}) and branch_warehouse.created_time 
                                                                       </bfa:Catch.Action>
                                                                       <sap:WorkflowViewStateService.ViewState>
                                                                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                                          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                                                                           <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                                                         </scg:Dictionary>
                                                                       </sap:WorkflowViewStateService.ViewState>
