@@ -1,0 +1,379 @@
+<Activity mc:Ignorable="sap sap2010 sads" x:Class="EncooWorkflow.Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:baast="clr-namespace:BotTime.ActivityLibrary.Activities.System.Tool;assembly=BotTime.ActivityLibrary" xmlns:bda="clr-namespace:BotTime.DataTableActivity.Activities;assembly=BotTime.DataTableActivity" xmlns:bfa="clr-namespace:BotTime.Flow.Activities;assembly=BotTime.Flow.Activities" xmlns:ecaac="clr-namespace:Encoo.CodeTool.Activity.Activities.CSharp;assembly=Encoo.CodeTool.Activity" xmlns:ecaah="clr-namespace:Encoo.CodeTool.Activity.Activities.Http;assembly=Encoo.CodeTool.Activity" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:EncooWorkflow" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger">
+  <x:Members>
+    <x:Property Name="jsonFile" Type="InArgument(x:String)" />
+    <x:Property Name="companyId" Type="InArgument(x:String)" />
+    <x:Property Name="departmentId" Type="InArgument(x:String)" />
+    <x:Property Name="查询关键字" Type="InArgument(x:String)" />
+    <x:Property Name="pageSize" Type="InArgument(x:String)" />
+    <x:Property Name="bearerToken" Type="InArgument(x:String)" />
+  </x:Members>
+  <this:Main.jsonFile>
+    <InArgument x:TypeArguments="x:String">
+      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_6">C:\Users\mengf\AppData\Roaming\数据检查\网营-生意参谋.txt</Literal>
+    </InArgument>
+  </this:Main.jsonFile>
+  <this:Main.companyId>
+    <InArgument x:TypeArguments="x:String">
+      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_7">ba2ea501-6c7e-4eed-9d4d-b0c2a70f3661</Literal>
+    </InArgument>
+  </this:Main.companyId>
+  <this:Main.departmentId>
+    <InArgument x:TypeArguments="x:String">
+      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_8">9c94ad12-ad79-49e6-a8df-110aa1595c0e</Literal>
+    </InArgument>
+  </this:Main.departmentId>
+  <this:Main.查询关键字>
+    <InArgument x:TypeArguments="x:String">
+      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_9">生意参谋</Literal>
+    </InArgument>
+  </this:Main.查询关键字>
+  <this:Main.pageSize>
+    <InArgument x:TypeArguments="x:String">
+      <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_5">System.Convert.ToString(200)</mca:CSharpValue>
+    </InArgument>
+  </this:Main.pageSize>
+  <this:Main.bearerToken>
+    <InArgument x:TypeArguments="x:String">
+      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_28">Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjRGOEU0RTI4RkJFOEU4NzNEMUJBQUI1M0VFRDg4QkQ3ODUwMThDMTQiLCJ0eXAiOiJhdCtqd3QiLCJ4NXQiOiJUNDVPS1B2bzZIUFJ1cXRUN3RpTDE0VUJqQlEifQ.eyJuYmYiOjE2NjkwMTI3MjYsImV4cCI6MTY2OTAxNjMyNiwiaXNzIjoiaHR0cHM6Ly9hdXRoLmVuY29vLmNvbSIsImF1ZCI6ImFwaWdhdGV3YXkiLCJjbGllbnRfaWQiOiJlbmNvb19jb25zb2xlX3YzIiwic3ViIjoiMTY0MzMiLCJhdXRoX3RpbWUiOjE2NjkwMTI3MTksImlkcCI6ImxvY2FsIiwidXNlcmlkIjoiMTEwNGVlNzItZjEzYi00NTMzLWIzMTktODg5ZDYzNGZkMzI5IiwiY2xpZW50X25hbWUiOiJlbmNvb19jb25zb2xlX3YzIiwiZGVmYXVsdF90aW1lem9uZWlkIjoiQ2hpbmEgU3RhbmRhcmQgVGltZSIsIm5hbWUiOiJzeWZ6X3NlcnZpY2VAMTYzLmNvbSIsImVtYWlsIjoic3lmel9zZXJ2aWNlQDE2My5jb20iLCJzY29wZSI6WyJvcGVuaWQiLCJwcm9maWxlIiwib2ZmbGluZV9hY2Nlc3MiLCJhcGlnYXRld2F5Il0sImFtciI6WyJwd2QiXX0.xyPEhpmqANrJhXAfIsgJcOiLvkcsZCgkHCwMqlpaOqAfa9FRR2iRcTButsNhQvOqGru-bgPAb_GIwv35XwjiZN22OE6Hgch5CQLTdHJ5WapUrHP4qKDgENWnr-Nc9BQ9IHCHF4CpCXX9KZKxdKPAJuF5t7jB7DeACaviEUPBQhtDU7yfNojEBTze-xGoWstLD94Lhmj8lKDkqQ5PyEJtsE8YnVNOucxSha32Nl3CLe7Z_Hsx2KjHLyQd9oEdTLXMcEfKgu2TZBaFbgjz1frLn2XlMLh9XIS_DQNdLh29Ze8oHTBVJVkEmyRswsD7guppfHTxxAj0qZpqt_BY-Lx0QQ</Literal>
+    </InArgument>
+  </this:Main.bearerToken>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap:VirtualizedContainerService.HintSize>654,902</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>EncooWorkflow.Workflow_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="15">
+      <x:String>System</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>BotTime.DataTableActivity.Activities</x:String>
+      <x:String>Encoo.CodeTool.Activity.Activities.CSharp</x:String>
+      <x:String>Microsoft.CSharp.Activities</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>BotTime.ActivityLibrary.Activities.System.Tool</x:String>
+      <x:String>BotTime.Flow.Activities</x:String>
+      <x:String>Encoo.CodeTool.Activity.Activities.Http</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>BotTime.DataTableActivity</AssemblyReference>
+      <AssemblyReference>Encoo.CodeTool.Activity</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>ParallelExtensionsExtras</AssemblyReference>
+      <AssemblyReference>BotTime.ActivityLibrary</AssemblyReference>
+      <AssemblyReference>BotTime.Flow.Activities</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Flowchart DisplayName="流程图_Root" sap:VirtualizedContainerService.HintSize="614,822" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <Flowchart.Variables>
+      <Variable x:TypeArguments="sd:DataTable" Name="workFlowItemDT" />
+      <Variable x:TypeArguments="x:String" Name="flowRequestURL" />
+      <Variable x:TypeArguments="x:String" Name="cookie" />
+      <Variable x:TypeArguments="x:String" Name="responseTxt" />
+    </Flowchart.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+        <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
+        <av:Size x:Key="ShapeSize">80,48</av:Size>
+        <av:PointCollection x:Key="ConnectorLocation">310,50.5 310,101</av:PointCollection>
+        <x:Double x:Key="Height">785.5</x:Double>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Flowchart.StartNode>
+      <x:Reference>__ReferenceID6</x:Reference>
+    </Flowchart.StartNode>
+    <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_2">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <av:Point x:Key="ShapeLocation">135.5,479.5</av:Point>
+          <av:Size x:Key="ShapeSize">349,93</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">310,572.5 310,609.5</av:PointCollection>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ecaac:InvokeCSharpCodeActivity ActivityName="执行C#代码" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行C#代码 - 提取workflow信息" sap:VirtualizedContainerService.HintSize="349,93" sap2010:WorkflowViewState.IdRef="InvokeCSharpCodeActivity_1">
+        <ecaac:InvokeCSharpCodeActivity.CodeFilePath>
+          <InArgument x:TypeArguments="x:String">
+            <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_1">.code\CSharp\提取workflow和配置文件.cs</Literal>
+          </InArgument>
+        </ecaac:InvokeCSharpCodeActivity.CodeFilePath>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ecaac:InvokeCSharpCodeActivity>
+      <FlowStep.Next>
+        <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">210,609.5</av:Point>
+              <av:Size x:Key="ShapeSize">200,53</av:Size>
+              <av:PointCollection x:Key="ConnectorLocation">310,662.5 310,712.5</av:PointCollection>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <bda:DataTableSaveToCSVActivity EncodingStr="{x:Null}" ActivityName="保存为CSV文件" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="保存为CSV文件" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="DataTableSaveToCSVActivity_1">
+            <bda:DataTableSaveToCSVActivity.CSVSeparator>
+              <InArgument x:TypeArguments="x:Char">
+                <mca:CSharpValue x:TypeArguments="x:Char" sap2010:WorkflowViewState.IdRef="CSharpValue`1_2">','</mca:CSharpValue>
+              </InArgument>
+            </bda:DataTableSaveToCSVActivity.CSVSeparator>
+            <bda:DataTableSaveToCSVActivity.DataTable>
+              <InArgument x:TypeArguments="sd:DataTable">
+                <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">workFlowItemDT</mca:CSharpValue>
+              </InArgument>
+            </bda:DataTableSaveToCSVActivity.DataTable>
+            <bda:DataTableSaveToCSVActivity.SavePath>
+              <InArgument x:TypeArguments="x:String">
+                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_4">System.Convert.ToString(Path.Combine(Path.GetDirectoryName(jsonFile), Path.GetFileNameWithoutExtension(jsonFile) + "-workFlowItemDT.csv"))</mca:CSharpValue>
+              </InArgument>
+            </bda:DataTableSaveToCSVActivity.SavePath>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </bda:DataTableSaveToCSVActivity>
+          <FlowStep.Next>
+            <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_7">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <av:Point x:Key="ShapeLocation">135.5,712.5</av:Point>
+                  <av:Size x:Key="ShapeSize">349,58</av:Size>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <baast:LogActivity ActivityName="写入日志" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="写入日志 - 文件路径" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="LogActivity_4" Level="Info">
+                <baast:LogActivity.LogContent>
+                  <InArgument x:TypeArguments="x:String">
+                    <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_12">System.Convert.ToString(Path.Combine(Path.GetDirectoryName(jsonFile), Path.GetFileNameWithoutExtension(jsonFile) + "-workFlowItemDT.csv"))</mca:CSharpValue>
+                  </InArgument>
+                </baast:LogActivity.LogContent>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </baast:LogActivity>
+            </FlowStep>
+          </FlowStep.Next>
+        </FlowStep>
+      </FlowStep.Next>
+    </FlowStep>
+    <x:Reference>__ReferenceID0</x:Reference>
+    <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_3">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <av:Point x:Key="ShapeLocation">210,286</av:Point>
+          <av:Size x:Key="ShapeSize">200,64</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">310,350 310,390</av:PointCollection>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ecaah:HttpRequestActivity HeaderDic="{x:Null}" InnerRequestBody="{x:Null}" RequestBody="{x:Null}" ActivityName="HTTP(S)请求" ContentType="AppJson" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="HTTP(S)请求" sap:VirtualizedContainerService.HintSize="200,64" sap2010:WorkflowViewState.IdRef="HttpRequestActivity_1" RequestBodyMode="ExpressTextBox" RequestHttpMethod="GET">
+        <ecaah:HttpRequestActivity.Headers>
+          <scg:List x:TypeArguments="ecaah:RequestHeaderActivity" Capacity="8">
+            <ecaah:RequestHeaderActivity>
+              <ecaah:RequestHeaderActivity.To>
+                <InArgument x:TypeArguments="x:String">
+                  <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_13">User-Agent</Literal>
+                </InArgument>
+              </ecaah:RequestHeaderActivity.To>
+              <ecaah:RequestHeaderActivity.Value>
+                <InArgument x:TypeArguments="x:String">
+                  <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_14">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36 Edg/106.0.1370.47</Literal>
+                </InArgument>
+              </ecaah:RequestHeaderActivity.Value>
+            </ecaah:RequestHeaderActivity>
+            <ecaah:RequestHeaderActivity>
+              <ecaah:RequestHeaderActivity.To>
+                <InArgument x:TypeArguments="x:String">
+                  <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_15">Accept</Literal>
+                </InArgument>
+              </ecaah:RequestHeaderActivity.To>
+              <ecaah:RequestHeaderActivity.Value>
+                <InArgument x:TypeArguments="x:String">
+                  <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_16">*/*</Literal>
+                </InArgument>
+              </ecaah:RequestHeaderActivity.Value>
+            </ecaah:RequestHeaderActivity>
+            <ecaah:RequestHeaderActivity>
+              <ecaah:RequestHeaderActivity.To>
+                <InArgument x:TypeArguments="x:String">
+                  <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_17">Accept-Encoding</Literal>
+                </InArgument>
+              </ecaah:RequestHeaderActivity.To>
+              <ecaah:RequestHeaderActivity.Value>
+                <InArgument x:TypeArguments="x:String">
+                  <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_18">gzip, deflate, br</Literal>
+                </InArgument>
+              </ecaah:RequestHeaderActivity.Value>
+            </ecaah:RequestHeaderActivity>
+            <ecaah:RequestHeaderActivity>
+              <ecaah:RequestHeaderActivity.To>
+                <InArgument x:TypeArguments="x:String">
+                  <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_19">Accept-Language</Literal>
+                </InArgument>
+              </ecaah:RequestHeaderActivity.To>
+              <ecaah:RequestHeaderActivity.Value>
+                <InArgument x:TypeArguments="x:String">
+                  <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_20">zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6</Literal>
+                </InArgument>
+              </ecaah:RequestHeaderActivity.Value>
+            </ecaah:RequestHeaderActivity>
+            <ecaah:RequestHeaderActivity>
+              <ecaah:RequestHeaderActivity.To>
+                <InArgument x:TypeArguments="x:String">
+                  <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_21">companyid</Literal>
+                </InArgument>
+              </ecaah:RequestHeaderActivity.To>
+              <ecaah:RequestHeaderActivity.Value>
+                <InArgument x:TypeArguments="x:String">
+                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_13">System.Convert.ToString(companyId)</mca:CSharpValue>
+                </InArgument>
+              </ecaah:RequestHeaderActivity.Value>
+            </ecaah:RequestHeaderActivity>
+            <ecaah:RequestHeaderActivity>
+              <ecaah:RequestHeaderActivity.To>
+                <InArgument x:TypeArguments="x:String">
+                  <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_23">departmentid</Literal>
+                </InArgument>
+              </ecaah:RequestHeaderActivity.To>
+              <ecaah:RequestHeaderActivity.Value>
+                <InArgument x:TypeArguments="x:String">
+                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_14">System.Convert.ToString(departmentId)</mca:CSharpValue>
+                </InArgument>
+              </ecaah:RequestHeaderActivity.Value>
+            </ecaah:RequestHeaderActivity>
+            <ecaah:RequestHeaderActivity>
+              <ecaah:RequestHeaderActivity.To>
+                <InArgument x:TypeArguments="x:String">
+                  <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_25">authorization</Literal>
+                </InArgument>
+              </ecaah:RequestHeaderActivity.To>
+              <ecaah:RequestHeaderActivity.Value>
+                <InArgument x:TypeArguments="x:String">
+                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_15">System.Convert.ToString(bearerToken)</mca:CSharpValue>
+                </InArgument>
+              </ecaah:RequestHeaderActivity.Value>
+            </ecaah:RequestHeaderActivity>
+          </scg:List>
+        </ecaah:HttpRequestActivity.Headers>
+        <ecaah:HttpRequestActivity.RequestUrl>
+          <InArgument x:TypeArguments="x:String">
+            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_11">System.Convert.ToString(flowRequestURL)</mca:CSharpValue>
+          </InArgument>
+        </ecaah:HttpRequestActivity.RequestUrl>
+        <ecaah:HttpRequestActivity.ResponseBody>
+          <OutArgument x:TypeArguments="x:String">
+            <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_4">responseTxt</mca:CSharpReference>
+          </OutArgument>
+        </ecaah:HttpRequestActivity.ResponseBody>
+        <ecaah:HttpRequestActivity.Timeout>
+          <InArgument x:TypeArguments="x:Int32">
+            <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_12" Value="30" />
+          </InArgument>
+        </ecaah:HttpRequestActivity.Timeout>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ecaah:HttpRequestActivity>
+      <FlowStep.Next>
+        <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_8">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">135.5,390</av:Point>
+              <av:Size x:Key="ShapeSize">349,58</av:Size>
+              <av:PointCollection x:Key="ConnectorLocation">310,448 310,479.5</av:PointCollection>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <baast:LogActivity ActivityName="写入日志" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="写入日志" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="LogActivity_5" Level="Info">
+            <baast:LogActivity.LogContent>
+              <InArgument x:TypeArguments="x:String">
+                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_16">System.Convert.ToString(responseTxt)</mca:CSharpValue>
+              </InArgument>
+            </baast:LogActivity.LogContent>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </baast:LogActivity>
+          <FlowStep.Next>
+            <x:Reference>__ReferenceID1</x:Reference>
+          </FlowStep.Next>
+        </FlowStep>
+      </FlowStep.Next>
+    </FlowStep>
+    <FlowStep x:Name="__ReferenceID6" sap2010:WorkflowViewState.IdRef="FlowStep_6">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <av:Point x:Key="ShapeLocation">148.5,101</av:Point>
+          <av:Size x:Key="ShapeSize">323,58</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">310,159 310,191</av:PointCollection>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - flowRequestURL" sap:VirtualizedContainerService.HintSize="323,58" sap2010:WorkflowViewState.IdRef="Assign_1" IsIgnore="False">
+        <bfa:Assign.To>
+          <OutArgument x:TypeArguments="x:String">
+            <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1">flowRequestURL</mca:CSharpReference>
+          </OutArgument>
+        </bfa:Assign.To>
+        <bfa:Assign.Value>
+          <InArgument x:TypeArguments="x:String">
+            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_18">string.Format("https://api.encoo.com/v2/workflows?pageIndex=0&amp;pageSize={0}&amp;searchString={1}", pageSize, 查询关键字)</mca:CSharpValue>
+          </InArgument>
+        </bfa:Assign.Value>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </bfa:Assign>
+      <FlowStep.Next>
+        <FlowStep x:Name="__ReferenceID5" sap2010:WorkflowViewState.IdRef="FlowStep_9">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">135.5,191</av:Point>
+              <av:Size x:Key="ShapeSize">349,58</av:Size>
+              <av:PointCollection x:Key="ConnectorLocation">310,249 310,286</av:PointCollection>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <baast:LogActivity ActivityName="写入日志" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="写入日志" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="LogActivity_6" Level="Info">
+            <baast:LogActivity.LogContent>
+              <InArgument x:TypeArguments="x:String">
+                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_17">System.Convert.ToString(flowRequestURL)</mca:CSharpValue>
+              </InArgument>
+            </baast:LogActivity.LogContent>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </baast:LogActivity>
+          <FlowStep.Next>
+            <x:Reference>__ReferenceID2</x:Reference>
+          </FlowStep.Next>
+        </FlowStep>
+      </FlowStep.Next>
+    </FlowStep>
+    <x:Reference>__ReferenceID3</x:Reference>
+    <x:Reference>__ReferenceID4</x:Reference>
+    <x:Reference>__ReferenceID5</x:Reference>
+  </Flowchart>
+</Activity>

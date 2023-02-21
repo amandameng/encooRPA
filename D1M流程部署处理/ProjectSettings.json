@@ -1,0 +1,25 @@
+{
+  "QuickOpenItems": [
+    "Main.xaml"
+  ],
+  "ProjectBreakpoints": {
+    "Value": {
+      "运维平台导入资产.xaml": [
+        {
+          "ActivityId": "1.21",
+          "IsEnabled": true,
+          "IdRef": "LogActivity_1",
+          "DisplayName": "写入日志"
+        }
+      ],
+      "提取workflow信息.xaml": [
+        {
+          "ActivityId": "1.32",
+          "IsEnabled": true,
+          "IdRef": "HttpRequestActivity_1",
+          "DisplayName": "HTTP(S)请求"
+        }
+      ]
+    }
+  }
+}

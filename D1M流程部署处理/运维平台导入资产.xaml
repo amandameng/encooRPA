@@ -1,0 +1,617 @@
+<Activity mc:Ignorable="sap sap2010 sads" x:Class="EncooWorkflow.Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:baast="clr-namespace:BotTime.ActivityLibrary.Activities.System.Tool;assembly=BotTime.ActivityLibrary" xmlns:bda="clr-namespace:BotTime.DataTableActivity.Activities;assembly=BotTime.DataTableActivity" xmlns:bfa="clr-namespace:BotTime.Flow.Activities;assembly=BotTime.Flow.Activities" xmlns:boa="clr-namespace:BotTime.Office.Activity;assembly=BotTime.Office.Activity" xmlns:ea="clr-namespace:Encootech.AutomationActivity;assembly=AutomationActivity" xmlns:ed="clr-namespace:Encoo.DataType;assembly=Encoo.DataType" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:EncooWorkflow" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger">
+  <x:Members>
+    <x:Property Name="账号资产excel文件" Type="InArgument(x:String)" />
+    <x:Property Name="店铺资产数据表" Type="InArgument(sd:DataTable)" />
+    <x:Property Name="新建数据库资产" Type="InArgument(x:Boolean)" />
+  </x:Members>
+  <this:Main.账号资产excel文件>
+    <InArgument x:TypeArguments="x:String">
+      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_40">D:\RPA 客户\D1M\店铺类目关系表.xlsx</Literal>
+    </InArgument>
+  </this:Main.账号资产excel文件>
+  <this:Main.新建数据库资产>
+    <InArgument x:TypeArguments="x:Boolean">
+      <Literal x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="Literal`1_41" />
+    </InArgument>
+  </this:Main.新建数据库资产>
+  <sap2010:ExpressionActivityEditor.ExpressionActivityEditor>C#</sap2010:ExpressionActivityEditor.ExpressionActivityEditor>
+  <sap:VirtualizedContainerService.HintSize>654,716</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>EncooWorkflow.Workflow_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="14">
+      <x:String>System</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>BotTime.ActivityLibrary.Activities.System.Tool</x:String>
+      <x:String>BotTime.DataTableActivity.Activities</x:String>
+      <x:String>BotTime.Flow.Activities</x:String>
+      <x:String>BotTime.Office.Activity</x:String>
+      <x:String>Encootech.AutomationActivity</x:String>
+      <x:String>Encoo.DataType</x:String>
+      <x:String>Microsoft.CSharp.Activities</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>netstandard</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>ParallelExtensionsExtras</AssemblyReference>
+      <AssemblyReference>BotTime.ActivityLibrary</AssemblyReference>
+      <AssemblyReference>BotTime.DataTableActivity</AssemblyReference>
+      <AssemblyReference>BotTime.Flow.Activities</AssemblyReference>
+      <AssemblyReference>BotTime.Office.Activity</AssemblyReference>
+      <AssemblyReference>AutomationActivity</AssemblyReference>
+      <AssemblyReference>Encoo.DataType</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Globalization.Extensions</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Net.WebSockets.Client.Managed</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Flowchart DisplayName="流程图_Root" sap:VirtualizedContainerService.HintSize="614,636" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+        <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
+        <av:Size x:Key="ShapeSize">80,48</av:Size>
+        <av:PointCollection x:Key="ConnectorLocation">310,50.5 310,100.5</av:PointCollection>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Flowchart.StartNode>
+      <x:Reference>__ReferenceID1</x:Reference>
+    </Flowchart.StartNode>
+    <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_2">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <av:Point x:Key="ShapeLocation">210,100.5</av:Point>
+          <av:Size x:Key="ShapeSize">200,53</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">310,153.5 310,193.5</av:PointCollection>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If）" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="If_1" IsIgnore="False">
+        <bfa:If.Condition>
+          <InArgument x:TypeArguments="x:Boolean">
+            <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_1">!string.IsNullOrEmpty(账号资产excel文件) &amp;&amp; File.Exists(账号资产excel文件)</mca:CSharpValue>
+          </InArgument>
+        </bfa:If.Condition>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <bfa:If.Then>
+          <boa:OfficeExcelOpenOrCreateActivity OfficeVersion="{x:Null}" Password="{x:Null}" SaveAs="{x:Null}" ActivityName="打开/新建" AutoSave="True" ContinueOnError="No" CreateNewFile="False" DelayAfter="0" DelayBefore="0" DisplayName="打开 - 账号资产excel文件" EnableMacro="False" sap:VirtualizedContainerService.HintSize="449,309" sap2010:WorkflowViewState.IdRef="OfficeExcelOpenOrCreateActivity_1" MultiEngineType="Office" ReadOnly="False" Visible="False" needRestoreKey="False">
+            <boa:OfficeExcelOpenOrCreateActivity.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="XlWorkbook" />
+                </ActivityAction.Argument>
+                <boa:OfficeExcelReadRangeActivity Range="{x:Null}" ActivityName="读取区域" AddHeaders="True" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="读取区域 - 店铺资产" sap:VirtualizedContainerService.HintSize="334,129" sap2010:WorkflowViewState.IdRef="OfficeExcelReadRangeActivity_1" PreserveFormat="False" RepeatedColumn="False" UseFilter="False">
+                  <boa:OfficeExcelReadRangeActivity.Data>
+                    <OutArgument x:TypeArguments="sd:DataTable">
+                      <mca:CSharpReference x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpReference`1_1">店铺资产数据表</mca:CSharpReference>
+                    </OutArgument>
+                  </boa:OfficeExcelReadRangeActivity.Data>
+                  <boa:OfficeExcelReadRangeActivity.SheetName>
+                    <InArgument x:TypeArguments="x:String">
+                      <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_4">店铺资产</Literal>
+                    </InArgument>
+                  </boa:OfficeExcelReadRangeActivity.SheetName>
+                </boa:OfficeExcelReadRangeActivity>
+              </ActivityAction>
+            </boa:OfficeExcelOpenOrCreateActivity.Body>
+            <boa:OfficeExcelOpenOrCreateActivity.ExcelFile>
+              <InArgument x:TypeArguments="x:String">
+                <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_2">System.Convert.ToString(账号资产excel文件)</mca:CSharpValue>
+              </InArgument>
+            </boa:OfficeExcelOpenOrCreateActivity.ExcelFile>
+          </boa:OfficeExcelOpenOrCreateActivity>
+        </bfa:If.Then>
+      </bfa:If>
+      <FlowStep.Next>
+        <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">210,193.5</av:Point>
+              <av:Size x:Key="ShapeSize">200,53</av:Size>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If）" sap:VirtualizedContainerService.HintSize="594,1511" sap2010:WorkflowViewState.IdRef="If_2" IsIgnore="False">
+            <bfa:If.Condition>
+              <InArgument x:TypeArguments="x:Boolean">
+                <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_3">店铺资产数据表 != null</mca:CSharpValue>
+              </InArgument>
+            </bfa:If.Condition>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <bfa:If.Then>
+              <bfa:Retry ActivityName="重试" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="重试 - 资产页面定位" sap:VirtualizedContainerService.HintSize="576,1251" sap2010:WorkflowViewState.IdRef="Retry_1" IsIgnore="False">
+                <bfa:Retry.RetryCount>
+                  <InArgument x:TypeArguments="x:Int32">
+                    <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_1" Value="1" />
+                  </InArgument>
+                </bfa:Retry.RetryCount>
+                <bfa:Retry.RetryTimeSpan>
+                  <InArgument x:TypeArguments="x:TimeSpan">
+                    <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_2" />
+                  </InArgument>
+                </bfa:Retry.RetryTimeSpan>
+                <bfa:Retry.Condition>
+                  <InArgument x:TypeArguments="x:Boolean">
+                    <Literal x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="Literal`1_3" Value="True" />
+                  </InArgument>
+                </bfa:Retry.Condition>
+                <bfa:Retry.Body>
+                  <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="556,1168" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:Boolean" Name="资产管理页" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ea:WhetherElementExistsActivity ControlObject="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" Selector="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActivityName="判断元素是否存在" BringWindowType="Default" ContinueOnError="False" DisplayName="判断元素是否存在" ElementRect="0, 0, 0, 0" Guid="4579843a-f502-4089-a247-4293b6a6026d" sap:VirtualizedContainerService.HintSize="534,66" sap2010:WorkflowViewState.IdRef="WhetherElementExistsActivity_2" IsIgnore="False" ScreenShoot="01324dee-0120-4f53-9d93-171069ff7a59.jpg" SelectionRect="0, 0, 0, 0">
+                      <ea:WhetherElementExistsActivity.Result>
+                        <OutArgument x:TypeArguments="x:Boolean">
+                          <mca:CSharpReference x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpReference`1_2">资产管理页</mca:CSharpReference>
+                        </OutArgument>
+                      </ea:WhetherElementExistsActivity.Result>
+                      <ea:WhetherElementExistsActivity.Selector2>
+                        <InArgument x:TypeArguments="ed:Selector">
+                          <mca:CSharpValue x:TypeArguments="ed:Selector" sap2010:WorkflowViewState.IdRef="CSharpValue`1_5">"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTE2Ij8+CjxBcHBsaWNhdGlvbiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4bWxuczp4c2Q9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hIj4KPEF1dG9tYXRpb25UeXBlPldFQi1DSFJPTUU8L0F1dG9tYXRpb25UeXBlPgo8UHJvY2Vzc05hbWU+Y2hyb21lPC9Qcm9jZXNzTmFtZT4KPEZpbGVQYXRoPmNocm9tZS5leGU8L0ZpbGVQYXRoPgo8VmVyc2lvbj4xLjM8L1ZlcnNpb24+CjxDaGlsZENvbnRyb2xzPgo8Q29udHJvbE1ldGFEYXRhPgo8SWRlbnRpZmllcj4KPENsYXNzTmFtZT5DaHJvbWVfV2lkZ2V0V2luXzE8L0NsYXNzTmFtZT4KPFRpdGxlPueUn+aEj+aWueiIn+i/kOe7tOW5s+WPsDwvVGl0bGU+CjxSb2xlPldpbmRvdzwvUm9sZT4KPElzRGlyZWN0Q2hpbGQ+dHJ1ZTwvSXNEaXJlY3RDaGlsZD4KPC9JZGVudGlmaWVyPgo8Q2hpbGRDb250cm9scz4KPENvbnRyb2xNZXRhRGF0YT4KPFdlYklkZW50aWZpZXI+CjxUYWc+SUZSQU1FPC9UYWc+CjxTcmM+aHR0cHM6Ly8xMC4xMC4zMC40Mjo4MDkwKjwvU3JjPgo8L1dlYklkZW50aWZpZXI+CjxDaGlsZENvbnRyb2xzPgo8Q29udHJvbE1ldGFEYXRhPgo8V2ViSWRlbnRpZmllcj4KPFRhZz5TUEFOPC9UYWc+CjxDc3NTZWxlY3Rvcj4uZWwtYnJlYWRjcnVtYl9faXRlbSBzcGFuPC9Dc3NTZWxlY3Rvcj4KPFNJbmZvPui1hOS6p+euoeeQhjwvU0luZm8+CjwvV2ViSWRlbnRpZmllcj4KPEFjY2Vzc0tleSAvPgo8Q29tcG9uZW50PjwvQ29tcG9uZW50Pgo8L0NvbnRyb2xNZXRhRGF0YT4KPC9DaGlsZENvbnRyb2xzPgo8QWNjZXNzS2V5IC8+CjxDb21wb25lbnQ+PC9Db21wb25lbnQ+CjwvQ29udHJvbE1ldGFEYXRhPgo8L0NoaWxkQ29udHJvbHM+CjxBY2Nlc3NLZXkgLz4KPENvbXBvbmVudD48L0NvbXBvbmVudD4KPC9Db250cm9sTWV0YURhdGE+CjwvQ2hpbGRDb250cm9scz4KPC9BcHBsaWNhdGlvbj4K"</mca:CSharpValue>
+                        </InArgument>
+                      </ea:WhetherElementExistsActivity.Selector2>
+                    </ea:WhetherElementExistsActivity>
+                    <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 资产管理页不存在）" sap:VirtualizedContainerService.HintSize="534,248" sap2010:WorkflowViewState.IdRef="If_6" IsIgnore="False">
+                      <bfa:If.Condition>
+                        <InArgument x:TypeArguments="x:Boolean">
+                          <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_6">!资产管理页</mca:CSharpValue>
+                        </InArgument>
+                      </bfa:If.Condition>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <bfa:If.Then>
+                        <Sequence DisplayName="序列 - 资产页不存在" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="x:Boolean" Name="confirmResult" />
+                          </Sequence.Variables>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <baast:ConfirmMessageBox ActivityName="确认框" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="确认框" sap:VirtualizedContainerService.HintSize="534,85" sap2010:WorkflowViewState.IdRef="ConfirmMessageBox_2">
+                            <baast:ConfirmMessageBox.ConfirmResult>
+                              <OutArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpReference x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpReference`1_3">confirmResult</mca:CSharpReference>
+                              </OutArgument>
+                            </baast:ConfirmMessageBox.ConfirmResult>
+                            <baast:ConfirmMessageBox.Description>
+                              <InArgument x:TypeArguments="x:String">
+                                <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_6">请先将网页跳转到生意方舟运维平台的资产管理页，若已经完成跳转，点击确认后流程重新新增资产，点击取消后终止流程</Literal>
+                              </InArgument>
+                            </baast:ConfirmMessageBox.Description>
+                            <baast:ConfirmMessageBox.Title>
+                              <InArgument x:TypeArguments="x:String">
+                                <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_5">页面跳转</Literal>
+                              </InArgument>
+                            </baast:ConfirmMessageBox.Title>
+                          </baast:ConfirmMessageBox>
+                          <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If confirmResult）" sap:VirtualizedContainerService.HintSize="534,282" sap2010:WorkflowViewState.IdRef="If_7" IsIgnore="False">
+                            <bfa:If.Condition>
+                              <InArgument x:TypeArguments="x:Boolean">
+                                <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_9">confirmResult</mca:CSharpValue>
+                              </InArgument>
+                            </bfa:If.Condition>
+                            <bfa:If.Then>
+                              <bfa:Throw DisplayName="抛出异常" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_4">
+                                <InArgument x:TypeArguments="s:Exception">
+                                  <mca:CSharpValue x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="CSharpValue`1_10">new Exception("重试新增资产")</mca:CSharpValue>
+                                </InArgument>
+                              </bfa:Throw>
+                            </bfa:If.Then>
+                            <bfa:If.Else>
+                              <bfa:Abort ActivityName="终止流程" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="终止流程" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Abort_2" IsIgnore="False" />
+                            </bfa:If.Else>
+                          </bfa:If>
+                        </Sequence>
+                      </bfa:If.Then>
+                    </bfa:If>
+                    <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If 资产管理页）" sap:VirtualizedContainerService.HintSize="534,650" sap2010:WorkflowViewState.IdRef="If_5" IsIgnore="False">
+                      <bfa:If.Condition>
+                        <InArgument x:TypeArguments="x:Boolean">
+                          <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_7">资产管理页</mca:CSharpValue>
+                        </InArgument>
+                      </bfa:If.Condition>
+                      <bfa:If.Then>
+                        <bda:ForEach CurrentIndex="{x:Null}" ActivityName="遍历行" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="遍历行 - 店铺资产数据表" sap:VirtualizedContainerService.HintSize="465,549" sap2010:WorkflowViewState.IdRef="ForEach_3">
+                          <bda:ForEach.DataTable>
+                            <InArgument x:TypeArguments="sd:DataTable">
+                              <mca:CSharpValue x:TypeArguments="sd:DataTable" sap2010:WorkflowViewState.IdRef="CSharpValue`1_8">店铺资产数据表</mca:CSharpValue>
+                            </InArgument>
+                          </bda:ForEach.DataTable>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ActivityAction x:TypeArguments="sd:DataRow">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+                            </ActivityAction.Argument>
+                            <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 - 新增资产" sap:VirtualizedContainerService.HintSize="449,362" sap2010:WorkflowViewState.IdRef="TryCatch_2" IsIgnore="False">
+                              <bfa:TryCatch.Try>
+                                <bfa:Retry ActivityName="重试" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="重试" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="Retry_2" IsIgnore="False">
+                                  <bfa:Retry.RetryCount>
+                                    <InArgument x:TypeArguments="x:Int32">
+                                      <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_44" Value="1" />
+                                    </InArgument>
+                                  </bfa:Retry.RetryCount>
+                                  <bfa:Retry.RetryTimeSpan>
+                                    <InArgument x:TypeArguments="x:TimeSpan">
+                                      <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_45" />
+                                    </InArgument>
+                                  </bfa:Retry.RetryTimeSpan>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                  <bfa:Retry.Condition>
+                                    <InArgument x:TypeArguments="x:Boolean">
+                                      <Literal x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="Literal`1_46" Value="True" />
+                                    </InArgument>
+                                  </bfa:Retry.Condition>
+                                  <bfa:Retry.Body>
+                                    <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="345,275" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                                      <Sequence.Variables>
+                                        <Variable x:TypeArguments="x:String" Name="店铺名称" />
+                                      </Sequence.Variables>
+                                      <sap:WorkflowViewStateService.ViewState>
+                                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                        </scg:Dictionary>
+                                      </sap:WorkflowViewStateService.ViewState>
+                                      <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - 店铺名称" sap:VirtualizedContainerService.HintSize="323,58" sap2010:WorkflowViewState.IdRef="Assign_4" IsIgnore="False">
+                                        <bfa:Assign.To>
+                                          <OutArgument x:TypeArguments="x:String">
+                                            <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_8">店铺名称</mca:CSharpReference>
+                                          </OutArgument>
+                                        </bfa:Assign.To>
+                                        <bfa:Assign.Value>
+                                          <InArgument x:TypeArguments="x:String">
+                                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_41">row["店铺名称"].ToString()</mca:CSharpValue>
+                                          </InArgument>
+                                        </bfa:Assign.Value>
+                                      </bfa:Assign>
+                                      <bfa:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" ActivityName="循环操作（For Each）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="循环操作（For Each）" sap:VirtualizedContainerService.HintSize="323,53" sap2010:WorkflowViewState.IdRef="ForEach`1_3" IsIgnore="False">
+                                        <bfa:ForEach.Values>
+                                          <InArgument x:TypeArguments="s:String[]">
+                                            <mca:CSharpValue x:TypeArguments="s:String[]" sap2010:WorkflowViewState.IdRef="CSharpValue`1_42">new string[]{"账号", "数据库连接"}</mca:CSharpValue>
+                                          </InArgument>
+                                        </bfa:ForEach.Values>
+                                        <sap:WorkflowViewStateService.ViewState>
+                                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                          </scg:Dictionary>
+                                        </sap:WorkflowViewStateService.ViewState>
+                                        <ActivityAction x:TypeArguments="x:String">
+                                          <ActivityAction.Argument>
+                                            <DelegateInArgument x:TypeArguments="x:String" Name="资产类型值" />
+                                          </ActivityAction.Argument>
+                                          <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="473,1295" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                                            <sap:WorkflowViewStateService.ViewState>
+                                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                              </scg:Dictionary>
+                                            </sap:WorkflowViewStateService.ViewState>
+                                            <bfa:If ActivityName="条件（If）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（If）" sap:VirtualizedContainerService.HintSize="451,53" sap2010:WorkflowViewState.IdRef="If_11" IsIgnore="False">
+                                              <bfa:If.Condition>
+                                                <InArgument x:TypeArguments="x:Boolean">
+                                                  <mca:CSharpValue x:TypeArguments="x:Boolean" sap2010:WorkflowViewState.IdRef="CSharpValue`1_43">资产类型值 == "数据库连接" &amp;&amp; !新建数据库资产</mca:CSharpValue>
+                                                </InArgument>
+                                              </bfa:If.Condition>
+                                              <sap:WorkflowViewStateService.ViewState>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                </scg:Dictionary>
+                                              </sap:WorkflowViewStateService.ViewState>
+                                              <bfa:If.Then>
+                                                <bfa:Continue ContinueAction="{x:Null}" ActivityName="继续循环" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="继续循环" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Continue_2" IsIgnore="False" />
+                                              </bfa:If.Then>
+                                            </bfa:If>
+                                            <ea:ClickActivity ControlElement="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" Selector="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActivityName="点击" BringWindowType="Default" ClickLocation="Center" ClickMethod="Default" ClkType="SingleClick" ContinueOnError="False" DisplayName="点击 - 新增" ElementRect="0, 0, 0, 0" Guid="61344dd5-b17c-4a3f-bf2d-bcf136d0c44c" sap:VirtualizedContainerService.HintSize="451,66" sap2010:WorkflowViewState.IdRef="ClickActivity_7" IsIgnore="False" ModifierKey="None" MouseButton="LeftButton" ScreenShoot="6e77ee34-c324-4604-8fcf-79383df7645a.jpg" SelectionRect="0, 0, 0, 0">
+                                              <ea:ClickActivity.Selector2>
+                                                <InArgument x:TypeArguments="ed:Selector">
+                                                  <mca:CSharpValue x:TypeArguments="ed:Selector" sap2010:WorkflowViewState.IdRef="CSharpValue`1_44">"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTE2Ij8+CjxBcHBsaWNhdGlvbiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4bWxuczp4c2Q9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hIj4KPEF1dG9tYXRpb25UeXBlPldFQi1DSFJPTUU8L0F1dG9tYXRpb25UeXBlPgo8UHJvY2Vzc05hbWU+Y2hyb21lPC9Qcm9jZXNzTmFtZT4KPEZpbGVQYXRoPmNocm9tZS5leGU8L0ZpbGVQYXRoPgo8VmVyc2lvbj4xLjM8L1ZlcnNpb24+CjxDaGlsZENvbnRyb2xzPgo8Q29udHJvbE1ldGFEYXRhPgo8SWRlbnRpZmllcj4KPENsYXNzTmFtZT5DaHJvbWVfV2lkZ2V0V2luXzE8L0NsYXNzTmFtZT4KPFRpdGxlPueUn+aEj+aWueiIn+i/kOe7tOW5s+WPsDwvVGl0bGU+CjxSb2xlPldpbmRvdzwvUm9sZT4KPElzRGlyZWN0Q2hpbGQ+dHJ1ZTwvSXNEaXJlY3RDaGlsZD4KPC9JZGVudGlmaWVyPgo8Q2hpbGRDb250cm9scz4KPENvbnRyb2xNZXRhRGF0YT4KPFdlYklkZW50aWZpZXI+CjxUYWc+SUZSQU1FPC9UYWc+CjxTcmM+aHR0cHM6Ly8xMC4xMC4zMC40Mjo4MDkwKjwvU3JjPgo8L1dlYklkZW50aWZpZXI+CjxDaGlsZENvbnRyb2xzPgo8Q29udHJvbE1ldGFEYXRhPgo8V2ViSWRlbnRpZmllcj4KPFRhZz5CVVRUT048L1RhZz4KPFNJbmZvPiDmlrDlop4gPC9TSW5mbz4KPC9XZWJJZGVudGlmaWVyPgo8QWNjZXNzS2V5IC8+CjxDb21wb25lbnQ+PC9Db21wb25lbnQ+CjwvQ29udHJvbE1ldGFEYXRhPgo8L0NoaWxkQ29udHJvbHM+CjxBY2Nlc3NLZXkgLz4KPENvbXBvbmVudD48L0NvbXBvbmVudD4KPC9Db250cm9sTWV0YURhdGE+CjwvQ2hpbGRDb250cm9scz4KPEFjY2Vzc0tleSAvPgo8Q29tcG9uZW50PjwvQ29tcG9uZW50Pgo8L0NvbnRyb2xNZXRhRGF0YT4KPC9DaGlsZENvbnRyb2xzPgo8L0FwcGxpY2F0aW9uPgo="</mca:CSharpValue>
+                                                </InArgument>
+                                              </ea:ClickActivity.Selector2>
+                                              <ea:ClickActivity.X>
+                                                <InArgument x:TypeArguments="x:Int32">
+                                                  <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_47" />
+                                                </InArgument>
+                                              </ea:ClickActivity.X>
+                                              <ea:ClickActivity.XRate>
+                                                <InArgument x:TypeArguments="x:Double">
+                                                  <Literal x:TypeArguments="x:Double" sap2010:WorkflowViewState.IdRef="Literal`1_49" />
+                                                </InArgument>
+                                              </ea:ClickActivity.XRate>
+                                              <ea:ClickActivity.Y>
+                                                <InArgument x:TypeArguments="x:Int32">
+                                                  <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_48" />
+                                                </InArgument>
+                                              </ea:ClickActivity.Y>
+                                              <ea:ClickActivity.YRate>
+                                                <InArgument x:TypeArguments="x:Double">
+                                                  <Literal x:TypeArguments="x:Double" sap2010:WorkflowViewState.IdRef="Literal`1_50" />
+                                                </InArgument>
+                                              </ea:ClickActivity.YRate>
+                                            </ea:ClickActivity>
+                                            <bfa:Delay DelayTimeSpan="00:00:00" DisplayName="延迟" sap:VirtualizedContainerService.HintSize="451,53" sap2010:WorkflowViewState.IdRef="Delay_3">
+                                              <bfa:Delay.WaitTimeSpan>
+                                                <InArgument x:TypeArguments="x:TimeSpan">
+                                                  <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_51" Value="00:00:05" />
+                                                </InArgument>
+                                              </bfa:Delay.WaitTimeSpan>
+                                            </bfa:Delay>
+                                            <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: 弹出框下拉选择 - 店铺名" sap:VirtualizedContainerService.HintSize="451,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_9" IsIgnore="False">
+                                              <bfa:InvokeWorkflow.Arguments>
+                                                <InArgument x:TypeArguments="x:String" x:Key="指定值">
+                                                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_47">System.Convert.ToString(店铺名称)</mca:CSharpValue>
+                                                </InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="标签名">
+                                                  <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_60">店铺名称</Literal>
+                                                </InArgument>
+                                              </bfa:InvokeWorkflow.Arguments>
+                                              <bfa:InvokeWorkflow.WorkflowPath>
+                                                <InArgument x:TypeArguments="x:String">
+                                                  <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_52">通用\弹出框下拉选择.xaml</Literal>
+                                                </InArgument>
+                                              </bfa:InvokeWorkflow.WorkflowPath>
+                                            </bfa:InvokeWorkflow>
+                                            <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: 弹出框下拉选择 - 资产类型" sap:VirtualizedContainerService.HintSize="451,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_10" IsIgnore="False">
+                                              <bfa:InvokeWorkflow.Arguments>
+                                                <InArgument x:TypeArguments="x:String" x:Key="指定值">
+                                                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_48">资产类型值</mca:CSharpValue>
+                                                </InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="标签名">
+                                                  <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_61">资产类型</Literal>
+                                                </InArgument>
+                                              </bfa:InvokeWorkflow.Arguments>
+                                              <bfa:InvokeWorkflow.WorkflowPath>
+                                                <InArgument x:TypeArguments="x:String">
+                                                  <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_53">通用\弹出框下拉选择.xaml</Literal>
+                                                </InArgument>
+                                              </bfa:InvokeWorkflow.WorkflowPath>
+                                            </bfa:InvokeWorkflow>
+                                            <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行流程 : 弹出框输入文本 - 资产名称" sap:VirtualizedContainerService.HintSize="451,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_11" IsIgnore="False">
+                                              <bfa:InvokeWorkflow.Arguments>
+                                                <InArgument x:TypeArguments="x:String" x:Key="文本值">
+                                                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_49">System.Convert.ToString(店铺名称+"_" + 资产类型值 + "资产")</mca:CSharpValue>
+                                                </InArgument>
+                                                <InArgument x:TypeArguments="x:String" x:Key="标签名">
+                                                  <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_62">资产名称</Literal>
+                                                </InArgument>
+                                              </bfa:InvokeWorkflow.Arguments>
+                                              <bfa:InvokeWorkflow.WorkflowPath>
+                                                <InArgument x:TypeArguments="x:String">
+                                                  <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_54">通用\弹出框输入文本.xaml</Literal>
+                                                </InArgument>
+                                              </bfa:InvokeWorkflow.WorkflowPath>
+                                            </bfa:InvokeWorkflow>
+                                            <bfa:Switch x:TypeArguments="x:String" ActivityName="条件（Switch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="条件（Switch）" sap:VirtualizedContainerService.HintSize="451,272" sap2010:WorkflowViewState.IdRef="Switch`1_3" IsIgnore="False">
+                                              <bfa:Switch.Cases>
+                                                <Sequence x:Key="账号" DisplayName="序列" sap:VirtualizedContainerService.HintSize="371,356" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                  <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行流程 : 弹出框输入文本 - 用户名" sap:VirtualizedContainerService.HintSize="349,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_12" IsIgnore="False">
+                                                    <bfa:InvokeWorkflow.Arguments>
+                                                      <InArgument x:TypeArguments="x:String" x:Key="文本值">
+                                                        <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_53">System.Convert.ToString(row["店铺账号"].ToString())</mca:CSharpValue>
+                                                      </InArgument>
+                                                      <InArgument x:TypeArguments="x:String" x:Key="标签名">
+                                                        <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_66">用户名</Literal>
+                                                      </InArgument>
+                                                    </bfa:InvokeWorkflow.Arguments>
+                                                    <bfa:InvokeWorkflow.WorkflowPath>
+                                                      <InArgument x:TypeArguments="x:String">
+                                                        <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_63">通用\弹出框输入文本.xaml</Literal>
+                                                      </InArgument>
+                                                    </bfa:InvokeWorkflow.WorkflowPath>
+                                                  </bfa:InvokeWorkflow>
+                                                  <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行流程 : 弹出框输入文本 - 密码" sap:VirtualizedContainerService.HintSize="349,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_13" IsIgnore="False">
+                                                    <bfa:InvokeWorkflow.Arguments>
+                                                      <InArgument x:TypeArguments="x:String" x:Key="文本值">
+                                                        <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_54">System.Convert.ToString(row["店铺密码"].ToString())</mca:CSharpValue>
+                                                      </InArgument>
+                                                      <InArgument x:TypeArguments="x:String" x:Key="标签名">
+                                                        <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_67">密码</Literal>
+                                                      </InArgument>
+                                                    </bfa:InvokeWorkflow.Arguments>
+                                                    <bfa:InvokeWorkflow.WorkflowPath>
+                                                      <InArgument x:TypeArguments="x:String">
+                                                        <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_64">通用\弹出框输入文本.xaml</Literal>
+                                                      </InArgument>
+                                                    </bfa:InvokeWorkflow.WorkflowPath>
+                                                  </bfa:InvokeWorkflow>
+                                                </Sequence>
+                                                <Sequence x:Key="数据库连接" DisplayName="序列" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                                                  <Sequence.Variables>
+                                                    <Variable x:TypeArguments="x:String" Name="数据库连接" />
+                                                  </Sequence.Variables>
+                                                  <sap:WorkflowViewStateService.ViewState>
+                                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                    </scg:Dictionary>
+                                                  </sap:WorkflowViewStateService.ViewState>
+                                                  <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="执行流程 : 弹出框输入文本 - DB连接字符串" sap:VirtualizedContainerService.HintSize="349,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_14" IsIgnore="False">
+                                                    <bfa:InvokeWorkflow.Arguments>
+                                                      <InArgument x:TypeArguments="x:String" x:Key="文本值">
+                                                        <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_55">System.Convert.ToString(row["数据库连接"].ToString())</mca:CSharpValue>
+                                                      </InArgument>
+                                                      <InArgument x:TypeArguments="x:String" x:Key="标签名">
+                                                        <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_68">DB连接字符串</Literal>
+                                                      </InArgument>
+                                                    </bfa:InvokeWorkflow.Arguments>
+                                                    <bfa:InvokeWorkflow.WorkflowPath>
+                                                      <InArgument x:TypeArguments="x:String">
+                                                        <Literal x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="Literal`1_65">通用\弹出框输入文本.xaml</Literal>
+                                                      </InArgument>
+                                                    </bfa:InvokeWorkflow.WorkflowPath>
+                                                  </bfa:InvokeWorkflow>
+                                                  <bfa:Assign ActivityName="赋值" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="赋值 - 数据库连接" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="Assign_5" IsIgnore="False">
+                                                    <bfa:Assign.To>
+                                                      <OutArgument x:TypeArguments="x:String">
+                                                        <mca:CSharpReference x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpReference`1_9">数据库连接</mca:CSharpReference>
+                                                      </OutArgument>
+                                                    </bfa:Assign.To>
+                                                    <bfa:Assign.Value>
+                                                      <InArgument x:TypeArguments="x:String">
+                                                        <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_50">row["数据库连接"].ToString()</mca:CSharpValue>
+                                                      </InArgument>
+                                                    </bfa:Assign.Value>
+                                                  </bfa:Assign>
+                                                  <ea:SetTextActivity ControlElement="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" Selector="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActionInvokeType="Default" ActivityName="输入文本" BringWindowType="Default" ClearFist="True" ContinueOnError="False" DisplayName="输入文本 - DB连接字符串" ElementRect="0, 0, 0, 0" Guid="fa02f972-eb3f-4bd1-8f7c-4b8ab980cd9f" sap:VirtualizedContainerService.HintSize="349,91" sap2010:WorkflowViewState.IdRef="SetTextActivity_6" IsIgnore="False" PrefixAction="SetFocus" ScreenShoot="0e736bd4-edc6-4b05-80d1-d15c34f4c43b.jpg" SelectionRect="0, 0, 0, 0">
+                                                    <ea:SetTextActivity.Selector2>
+                                                      <InArgument x:TypeArguments="ed:Selector">
+                                                        <mca:CSharpValue x:TypeArguments="ed:Selector" sap2010:WorkflowViewState.IdRef="CSharpValue`1_52">"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTE2Ij8+CjxBcHBsaWNhdGlvbiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4bWxuczp4c2Q9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hIj4KPEF1dG9tYXRpb25UeXBlPldFQi1DSFJPTUU8L0F1dG9tYXRpb25UeXBlPgo8UHJvY2Vzc05hbWU+Y2hyb21lPC9Qcm9jZXNzTmFtZT4KPEZpbGVQYXRoPmNocm9tZS5leGU8L0ZpbGVQYXRoPgo8VmVyc2lvbj4xLjM8L1ZlcnNpb24+CjxDaGlsZENvbnRyb2xzPgo8Q29udHJvbE1ldGFEYXRhPgo8SWRlbnRpZmllcj4KPENsYXNzTmFtZT5DaHJvbWVfV2lkZ2V0V2luXzE8L0NsYXNzTmFtZT4KPFRpdGxlPueUn+aEj+aWueiIn+i/kOe7tOW5s+WPsDwvVGl0bGU+CjxSb2xlPldpbmRvdzwvUm9sZT4KPElzRGlyZWN0Q2hpbGQ+dHJ1ZTwvSXNEaXJlY3RDaGlsZD4KPC9JZGVudGlmaWVyPgo8Q2hpbGRDb250cm9scz4KPENvbnRyb2xNZXRhRGF0YT4KPFdlYklkZW50aWZpZXI+CjxUYWc+SUZSQU1FPC9UYWc+CjxTcmM+aHR0cHM6Ly8xMC4xMC4zMC40Mjo4MDkwKjwvU3JjPgo8L1dlYklkZW50aWZpZXI+CjxDaGlsZENvbnRyb2xzPgo8Q29udHJvbE1ldGFEYXRhPgo8V2ViSWRlbnRpZmllcj4KPFhQYXRoPi8vKltjb250YWlucyhAY2xhc3MsICZxdW90O2VsLWRpYWxvZ19fd3JhcHBlciZxdW90OykgYW5kIG5vdChjb250YWlucygmcXVvdDtAc3R5bGUmcXVvdDssICZxdW90O2Rpc3BsYXk6IG5vbmUmcXVvdDspKV0vL2xhYmVsW3RleHQoKT0mYXBvcztEQui/nuaOpeWtl+espuS4siZhcG9zO10vZm9sbG93aW5nLXNpYmxpbmc6OiovL3RleHRhcmVhPC9YUGF0aD4KPC9XZWJJZGVudGlmaWVyPgo8QWNjZXNzS2V5IC8+CjxDb21wb25lbnQ+PC9Db21wb25lbnQ+CjwvQ29udHJvbE1ldGFEYXRhPgo8L0NoaWxkQ29udHJvbHM+CjxBY2Nlc3NLZXkgLz4KPENvbXBvbmVudD48L0NvbXBvbmVudD4KPC9Db250cm9sTWV0YURhdGE+CjwvQ2hpbGRDb250cm9scz4KPEFjY2Vzc0tleSAvPgo8Q29tcG9uZW50PjwvQ29tcG9uZW50Pgo8L0NvbnRyb2xNZXRhRGF0YT4KPC9DaGlsZENvbnRyb2xzPgo8L0FwcGxpY2F0aW9uPgo="</mca:CSharpValue>
+                                                      </InArgument>
+                                                    </ea:SetTextActivity.Selector2>
+                                                    <ea:SetTextActivity.Text>
+                                                      <InArgument x:TypeArguments="x:String">
+                                                        <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_51">System.Convert.ToString(数据库连接)</mca:CSharpValue>
+                                                      </InArgument>
+                                                    </ea:SetTextActivity.Text>
+                                                  </ea:SetTextActivity>
+                                                </Sequence>
+                                              </bfa:Switch.Cases>
+                                              <bfa:Switch.Expression>
+                                                <InArgument x:TypeArguments="x:String">
+                                                  <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_45">资产类型值</mca:CSharpValue>
+                                                </InArgument>
+                                              </bfa:Switch.Expression>
+                                              <sap:WorkflowViewStateService.ViewState>
+                                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                                </scg:Dictionary>
+                                              </sap:WorkflowViewStateService.ViewState>
+                                            </bfa:Switch>
+                                            <ea:ClickActivity ControlElement="{x:Null}" DelayAfter="{x:Null}" DelayBefore="{x:Null}" Selector="{x:Null}" SelectorId="{x:Null}" StoreId="{x:Null}" Timeout="{x:Null}" WaitTimeout="{x:Null}" ActivityName="点击" BringWindowType="Default" ClickLocation="Center" ClickMethod="Default" ClkType="SingleClick" ContinueOnError="False" DisplayName="点击-确定" ElementRect="0, 0, 0, 0" Guid="6209a0ad-8b53-4708-ac9b-d8fcbbf6c1cc" sap:VirtualizedContainerService.HintSize="451,66" sap2010:WorkflowViewState.IdRef="ClickActivity_8" IsIgnore="False" ModifierKey="None" MouseButton="LeftButton" ScreenShoot="1cfedff6-42ac-489f-af3a-56c2764c436b.jpg" SelectionRect="0, 0, 0, 0">
+                                              <ea:ClickActivity.Selector2>
+                                                <InArgument x:TypeArguments="ed:Selector">
+                                                  <mca:CSharpValue x:TypeArguments="ed:Selector" sap2010:WorkflowViewState.IdRef="CSharpValue`1_46">"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTE2Ij8+CjxBcHBsaWNhdGlvbiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4bWxuczp4c2Q9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hIj4KPEF1dG9tYXRpb25UeXBlPldFQi1DSFJPTUU8L0F1dG9tYXRpb25UeXBlPgo8UHJvY2Vzc05hbWU+Y2hyb21lPC9Qcm9jZXNzTmFtZT4KPEZpbGVQYXRoPmNocm9tZS5leGU8L0ZpbGVQYXRoPgo8VmVyc2lvbj4xLjM8L1ZlcnNpb24+CjxDaGlsZENvbnRyb2xzPgo8Q29udHJvbE1ldGFEYXRhPgo8SWRlbnRpZmllcj4KPENsYXNzTmFtZT5DaHJvbWVfV2lkZ2V0V2luXzE8L0NsYXNzTmFtZT4KPFRpdGxlPueUn+aEj+aWueiIn+i/kOe7tOW5s+WPsDwvVGl0bGU+CjxSb2xlPldpbmRvdzwvUm9sZT4KPElzRGlyZWN0Q2hpbGQ+dHJ1ZTwvSXNEaXJlY3RDaGlsZD4KPC9JZGVudGlmaWVyPgo8Q2hpbGRDb250cm9scz4KPENvbnRyb2xNZXRhRGF0YT4KPFdlYklkZW50aWZpZXI+CjxUYWc+SUZSQU1FPC9UYWc+CjxTcmM+aHR0cHM6Ly8xMC4xMC4zMC40Mjo4MDkwL2xvZ2luP3VpZD0xMTA0ZWU3Mi1mMTNiKjwvU3JjPgo8L1dlYklkZW50aWZpZXI+CjxDaGlsZENvbnRyb2xzPgo8Q29udHJvbE1ldGFEYXRhPgo8V2ViSWRlbnRpZmllcj4KPFhQYXRoPi8vKltjb250YWlucyhAY2xhc3MsICZxdW90O2VsLWRpYWxvZ19fd3JhcHBlciZxdW90OykgYW5kIG5vdChjb250YWlucygmcXVvdDtAc3R5bGUmcXVvdDssICZxdW90O2Rpc3BsYXk6IG5vbmUmcXVvdDspKV0vL3NwYW5bY29udGFpbnModGV4dCgpLCZxdW90O+ehruWumiZxdW90OyldPC9YUGF0aD4KPC9XZWJJZGVudGlmaWVyPgo8QWNjZXNzS2V5IC8+CjxDb21wb25lbnQ+PC9Db21wb25lbnQ+CjwvQ29udHJvbE1ldGFEYXRhPgo8L0NoaWxkQ29udHJvbHM+CjxBY2Nlc3NLZXkgLz4KPENvbXBvbmVudD48L0NvbXBvbmVudD4KPC9Db250cm9sTWV0YURhdGE+CjwvQ2hpbGRDb250cm9scz4KPEFjY2Vzc0tleSAvPgo8Q29tcG9uZW50PjwvQ29tcG9uZW50Pgo8L0NvbnRyb2xNZXRhRGF0YT4KPC9DaGlsZENvbnRyb2xzPgo8L0FwcGxpY2F0aW9uPgo="</mca:CSharpValue>
+                                                </InArgument>
+                                              </ea:ClickActivity.Selector2>
+                                              <ea:ClickActivity.X>
+                                                <InArgument x:TypeArguments="x:Int32">
+                                                  <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_55" />
+                                                </InArgument>
+                                              </ea:ClickActivity.X>
+                                              <ea:ClickActivity.XRate>
+                                                <InArgument x:TypeArguments="x:Double">
+                                                  <Literal x:TypeArguments="x:Double" sap2010:WorkflowViewState.IdRef="Literal`1_57" />
+                                                </InArgument>
+                                              </ea:ClickActivity.XRate>
+                                              <ea:ClickActivity.Y>
+                                                <InArgument x:TypeArguments="x:Int32">
+                                                  <Literal x:TypeArguments="x:Int32" sap2010:WorkflowViewState.IdRef="Literal`1_56" />
+                                                </InArgument>
+                                              </ea:ClickActivity.Y>
+                                              <ea:ClickActivity.YRate>
+                                                <InArgument x:TypeArguments="x:Double">
+                                                  <Literal x:TypeArguments="x:Double" sap2010:WorkflowViewState.IdRef="Literal`1_58" />
+                                                </InArgument>
+                                              </ea:ClickActivity.YRate>
+                                            </ea:ClickActivity>
+                                            <bfa:Delay DelayTimeSpan="00:00:00" DisplayName="延迟" sap:VirtualizedContainerService.HintSize="451,53" sap2010:WorkflowViewState.IdRef="Delay_4">
+                                              <bfa:Delay.WaitTimeSpan>
+                                                <InArgument x:TypeArguments="x:TimeSpan">
+                                                  <Literal x:TypeArguments="x:TimeSpan" sap2010:WorkflowViewState.IdRef="Literal`1_59" Value="00:00:03" />
+                                                </InArgument>
+                                              </bfa:Delay.WaitTimeSpan>
+                                            </bfa:Delay>
+                                          </Sequence>
+                                        </ActivityAction>
+                                      </bfa:ForEach>
+                                    </Sequence>
+                                  </bfa:Retry.Body>
+                                </bfa:Retry>
+                              </bfa:TryCatch.Try>
+                              <bfa:TryCatch.Catches>
+                                <bfa:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="435,23" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                                  <bfa:Catch.Action>
+                                    <ActivityAction x:TypeArguments="s:Exception">
+                                      <ActivityAction.Argument>
+                                        <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                                      </ActivityAction.Argument>
+                                      <baast:LogActivity ActivityName="写入日志" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="写入日志" sap:VirtualizedContainerService.HintSize="349,58" sap2010:WorkflowViewState.IdRef="LogActivity_1" Level="Error">
+                                        <baast:LogActivity.LogContent>
+                                          <InArgument x:TypeArguments="x:String">
+                                            <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_32">System.Convert.ToString(exception.Message)</mca:CSharpValue>
+                                          </InArgument>
+                                        </baast:LogActivity.LogContent>
+                                      </baast:LogActivity>
+                                    </ActivityAction>
+                                  </bfa:Catch.Action>
+                                  <sap:WorkflowViewStateService.ViewState>
+                                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                    </scg:Dictionary>
+                                  </sap:WorkflowViewStateService.ViewState>
+                                </bfa:Catch>
+                              </bfa:TryCatch.Catches>
+                            </bfa:TryCatch>
+                          </ActivityAction>
+                        </bda:ForEach>
+                      </bfa:If.Then>
+                    </bfa:If>
+                  </Sequence>
+                </bfa:Retry.Body>
+              </bfa:Retry>
+            </bfa:If.Then>
+            <bfa:If.Else>
+              <bfa:Throw DisplayName="抛出异常" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_1">
+                <InArgument x:TypeArguments="s:Exception">
+                  <mca:CSharpValue x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="CSharpValue`1_4">new Exception("店铺资产数据不存在")</mca:CSharpValue>
+                </InArgument>
+              </bfa:Throw>
+            </bfa:If.Else>
+          </bfa:If>
+        </FlowStep>
+      </FlowStep.Next>
+    </FlowStep>
+    <x:Reference>__ReferenceID0</x:Reference>
+  </Flowchart>
+</Activity>
