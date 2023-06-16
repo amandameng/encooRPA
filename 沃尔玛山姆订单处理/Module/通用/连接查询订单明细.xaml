@@ -11,14 +11,13 @@
   <sap:VirtualizedContainerService.HintSize>808,876</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>EncooWorkflow.Workflow_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="11">
+    <scg:List x:TypeArguments="x:String" Capacity="10">
       <x:String>System</x:String>
       <x:String>System.Xml</x:String>
       <x:String>System.Linq</x:String>
       <x:String>System.Data</x:String>
       <x:String>System.Collections.Generic</x:String>
       <x:String>System.Collections.ObjectModel</x:String>
-      
       <x:String>BotTime.DataBase.Activity</x:String>
       <x:String>BotTime.Flow.Activities</x:String>
       <x:String>Encoo.CodeTool.Activity.Activities.CSharp</x:String>
@@ -35,7 +34,6 @@
       <AssemblyReference>WindowsBase</AssemblyReference>
       <AssemblyReference>System.Xaml</AssemblyReference>
       <AssemblyReference>netstandard</AssemblyReference>
-      
       <AssemblyReference>BotTime.DataBase.Activity</AssemblyReference>
       <AssemblyReference>BotTime.Flow.Activities</AssemblyReference>
       <AssemblyReference>Encoo.CodeTool.Activity</AssemblyReference>
@@ -48,8 +46,6 @@
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>ParallelExtensionsExtras</AssemblyReference>
       <AssemblyReference>System.Net.WebSockets.Client.Managed</AssemblyReference>
-      
-      
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Flowchart DisplayName="Root" sap:VirtualizedContainerService.HintSize="768,796" sap2010:WorkflowViewState.IdRef="Flowchart_1">
@@ -104,7 +100,7 @@
               <av:PointCollection x:Key="ConnectorLocation">310,416.5 310,463.5</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <bda:DatabaseConnectActivity ActivityName="连接数据库" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="连接数据库" sap:VirtualizedContainerService.HintSize="449,316" sap2010:WorkflowViewState.IdRef="DatabaseConnectActivity_1" ProviderName="MySql">
+          <bda:DatabaseConnectActivity ActivityName="连接数据库" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="连接数据库" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="DatabaseConnectActivity_1" ProviderName="MySql">
             <bda:DatabaseConnectActivity.Body>
               <ActivityAction x:TypeArguments="x:Object">
                 <ActivityAction.Argument>

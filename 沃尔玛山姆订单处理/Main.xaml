@@ -150,7 +150,7 @@
               <av:PointCollection x:Key="ConnectorLocation">310,396.5 310,449</av:PointCollection>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 - 控制台获取数据库连接" sap:VirtualizedContainerService.HintSize="449,725" sap2010:WorkflowViewState.IdRef="TryCatch_1" IsIgnore="False">
+          <bfa:TryCatch ActivityName="错误捕获（Try Catch）" ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="错误捕获 - 控制台获取数据库连接" sap:VirtualizedContainerService.HintSize="200,53" sap2010:WorkflowViewState.IdRef="TryCatch_1" IsIgnore="False">
             <bfa:TryCatch.Try>
               <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="345,488" sap2010:WorkflowViewState.IdRef="Sequence_41">
                 <Sequence.Variables>
@@ -605,7 +605,7 @@
                           <ActivityAction.Argument>
                             <DelegateInArgument x:TypeArguments="x:String" Name="item" />
                           </ActivityAction.Argument>
-                          <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="485,694" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                          <Sequence DisplayName="序列" sap:VirtualizedContainerService.HintSize="485,737" sap2010:WorkflowViewState.IdRef="Sequence_23">
                             <Sequence.Variables>
                               <Variable x:TypeArguments="x:Boolean" Name="processSuccess" />
                             </Sequence.Variables>
@@ -614,7 +614,7 @@
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: 指定模块的流程" sap:VirtualizedContainerService.HintSize="463,53" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_31" IsIgnore="False">
+                            <bfa:InvokeWorkflow ContinueOnError="No" DelayAfter="0" DelayBefore="0" DisplayName="调用子流程: 指定模块的流程" sap:VirtualizedContainerService.HintSize="463,96" sap2010:WorkflowViewState.IdRef="InvokeWorkflow_31" IsIgnore="False">
                               <bfa:InvokeWorkflow.Arguments>
                                 <InArgument x:TypeArguments="x:String" x:Key="结束日期">
                                   <mca:CSharpValue x:TypeArguments="x:String" sap2010:WorkflowViewState.IdRef="CSharpValue`1_179">[System.Convert.ToString(结束日期)]</mca:CSharpValue>
@@ -643,7 +643,7 @@
                               </bfa:InvokeWorkflow.Arguments>
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                                 </scg:Dictionary>
                               </sap:WorkflowViewStateService.ViewState>
@@ -1329,7 +1329,7 @@
                                                                 <av:Size x:Key="ShapeSize">200,112</av:Size>
                                                               </scg:Dictionary>
                                                             </sap:WorkflowViewStateService.ViewState>
-                                                            <Flowchart sap2010:Annotation.AnnotationText="采集上个月1号至今的所有沃尔玛山姆的分仓明细数据发出邮件" DisplayName="分仓明细表报表邮件" sap:VirtualizedContainerService.HintSize="614,843" sap2010:WorkflowViewState.IdRef="Flowchart_4">
+                                                            <Flowchart sap2010:Annotation.AnnotationText="采集上个月1号至今的所有沃尔玛山姆的分仓明细数据发出邮件" DisplayName="分仓明细表报表邮件" sap:VirtualizedContainerService.HintSize="200,112" sap2010:WorkflowViewState.IdRef="Flowchart_4">
                                                               <Flowchart.Variables>
                                                                 <Variable x:TypeArguments="sd:DataTable" Name="上月至今分仓明细数据表" />
                                                               </Flowchart.Variables>

@@ -3,7 +3,16 @@ public string tmpSoldToCode = "4419335";
 public string tmpShipToCode = "11255";
 public string nestleSpecialCoffeCode = "981047661";
 const string 山姆水mix产品码 = "981067796";
-public int nestleSpecialCoffeCodeMultiple = 24;
+// public int nestleSpecialCoffeCodeMultiple = 24;
+
+public List<string> nestleSpecialCoffeCodeLs = new List<string>{"981047661", "981061720", "981068439"};
+public int nestleSpecialCoffeCodeMultiple = 5;
+
+public Dictionary<string, int> specialCodeMultiple = new Dictionary<string, int>{
+    {"981047661", 5},  {"981061720", 5},  {"981068439", 4}
+};
+
+
 
 // 雀巢的箱规是24，山姆箱规是16
 public const decimal nestlePackage = 24m;
@@ -219,11 +228,12 @@ public void Run()
 public decimal fetchQty(object originalQty, DataRow qtyMappingRow, ref bool 是否录单)
 {
     decimal customerOrderQty = toDecimalConvert(originalQty);
-    if (qtyMappingRow["Sam_Product_Code"].ToString() == nestleSpecialCoffeCode)
+    if (nestleSpecialCoffeCodeLs.Contains(qtyMappingRow["Sam_Product_Code"].ToString()))
     {
-        if (customerOrderQty / nestleSpecialCoffeCodeMultiple != Math.Floor(customerOrderQty / nestleSpecialCoffeCodeMultiple))
+        int codeMultiple = specialCodeMultiple[qtyMappingRow["Sam_Product_Code"].ToString()];
+        if (customerOrderQty / codeMultiple != Math.Floor(customerOrderQty / codeMultiple))
         {
-            customerOrderQty = Math.Floor(customerOrderQty / nestleSpecialCoffeCodeMultiple) * nestleSpecialCoffeCodeMultiple;
+            customerOrderQty = Math.Floor(customerOrderQty / codeMultiple) * codeMultiple;
         }
     }
     decimal nestle_qty_value = toDecimalConvert(qtyMappingRow["Nestle_Qty"]);
@@ -261,11 +271,12 @@ public decimal fetchQty(object originalQty, string customerProdCode, string nest
     decimal customerOrderQty = toDecimalConvert(originalQty);
 
     // 总数改成5的倍数再算
-    if (customerProdCode == nestleSpecialCoffeCode)
+    if (nestleSpecialCoffeCodeLs.Contains(customerProdCode))
     {
-        if (customerOrderQty / nestleSpecialCoffeCodeMultiple != Math.Floor(customerOrderQty / nestleSpecialCoffeCodeMultiple))
+        int codeMultiple = specialCodeMultiple[customerProdCode];
+        if (customerOrderQty / codeMultiple != Math.Floor(customerOrderQty / codeMultiple))
         {
-            customerOrderQty = Math.Floor(customerOrderQty / nestleSpecialCoffeCodeMultiple) * nestleSpecialCoffeCodeMultiple;
+            customerOrderQty = Math.Floor(customerOrderQty / codeMultiple) * codeMultiple;
         }
     }
     if (qtyMappingRows.Length > 0)

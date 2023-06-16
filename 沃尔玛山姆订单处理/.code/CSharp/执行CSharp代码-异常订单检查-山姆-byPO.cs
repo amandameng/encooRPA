@@ -6,8 +6,14 @@ const string checkProductSizeOption = "客户店内码的原单规格";
 const string orderChangeQtyDescription = "订单修改产品数量";
 const string itemQtyNotIntegerDesc = "订单数量转换后不为整数";
 const string issueSeparator = ";";
-public List<string> nestleSpecialCoffeCodeLs = new List<string>{"981047661", "981061720"};
+public List<string> nestleSpecialCoffeCodeLs = new List<string>{"981047661", "981061720", "981068439"};
 public int nestleSpecialCoffeCodeMultiple = 5;
+
+public Dictionary<string, int> specialCodeMultiple = new Dictionary<string, int>{
+    {"981047661", 5},  {"981061720", 5},  {"981068439", 4}
+};
+
+public List<string> 整单异常客户产品码列表 = new List<string>{"981070761"};
 
 public string 产品主数据匹配描述 = "无法匹配雀巢主数据";
 
@@ -68,6 +74,7 @@ public void Run()
             exceptionByPODT.Rows.Add(cleanExceptionDRow);
             continue; // 继续下一条
         }
+
         // 设置分仓明细表每行的信息
         setRowValueForDC(ref 分仓行, cleanExceptionDRow);
         
@@ -561,8 +568,9 @@ public void specialProductCheck(DataRow dr, ref List<string> refItemExceptionLis
 public decimal fetchQty(object originalQty, DataRow qtyMappingRow, ref List<string> itemExceptionList, bool intoException){
     decimal customerOrderQty = toDecimalConvert(originalQty);
     if(nestleSpecialCoffeCodeLs.Contains(qtyMappingRow["Sam_Product_Code"].ToString())){
-        if(customerOrderQty/nestleSpecialCoffeCodeMultiple != Math.Floor(customerOrderQty/nestleSpecialCoffeCodeMultiple)){
-            customerOrderQty = Math.Floor(customerOrderQty/nestleSpecialCoffeCodeMultiple) * nestleSpecialCoffeCodeMultiple;
+        int codeMultiple = specialCodeMultiple[qtyMappingRow["Sam_Product_Code"].ToString()];
+        if(customerOrderQty/codeMultiple != Math.Floor(customerOrderQty/codeMultiple)){
+            customerOrderQty = Math.Floor(customerOrderQty/codeMultiple) * codeMultiple;
         }
     }
     string Not_Integer_Still_Into_EX2O = qtyMappingRow["Not_Integer_Still_Into_EX2O"].ToString();
@@ -590,8 +598,9 @@ public decimal fetchQty(object originalQty, string customerProdCode, string nest
     DataRow[] qtyMappingRows = samQtyMappingDT.Select(string.Format("Sam_Product_Code='{0}' and Nestle_Product_Code='{1}'", customerProdCode, nestleProdCode));
     decimal customerOrderQty = toDecimalConvert(originalQty);
     if(nestleSpecialCoffeCodeLs.Contains(customerProdCode)){
-        if(customerOrderQty/nestleSpecialCoffeCodeMultiple != Math.Floor(customerOrderQty/nestleSpecialCoffeCodeMultiple)){
-            customerOrderQty = Math.Floor(customerOrderQty/nestleSpecialCoffeCodeMultiple) * nestleSpecialCoffeCodeMultiple;
+        int codeMultiple = specialCodeMultiple[customerProdCode];
+        if(customerOrderQty/codeMultiple != Math.Floor(customerOrderQty/codeMultiple)){
+            customerOrderQty = Math.Floor(customerOrderQty/codeMultiple) * codeMultiple;
         }
     }
     if(qtyMappingRows.Length > 0){
@@ -763,6 +772,9 @@ public void handleExceptionRow(DataRow dr, ref DataRow cleanExceptionDRow, ref L
         问题订单List.Add("Cancel PO");
     }
     
+    if(allitemproductCodesList.Intersect(整单异常客户产品码列表).Count() > 0){
+       问题订单List.Add("含有（金牌袋泡）特殊品");
+    }
     /*
     是否为手工单：通过订单产品编码来判断：
     山姆01：980064917，980063938，980064918，980064961，980070675，980086618

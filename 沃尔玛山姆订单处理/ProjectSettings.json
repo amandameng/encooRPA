@@ -86,6 +86,12 @@
           "IsEnabled": true,
           "IdRef": "InvokeCSharpCodeActivity_30",
           "DisplayName": "执行C#代码 - 排除不录单订单"
+        },
+        {
+          "ActivityId": "1.2057",
+          "IsEnabled": true,
+          "IdRef": "If_27",
+          "DisplayName": "条件（If 增量订单数据表 存在）"
         }
       ],
       "Module\\业务\\沃尔玛-RTD\\输出cleanException-沃尔玛RTD.xaml": [
